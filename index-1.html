@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1712">
+<title>SDNBet365 | منصة رياضية تجريبية</title>
+<style>
+:root{--bg:#09130e;--panel:#111f17;--panel2:#17291e;--line:#294332;--lime:#c3f36b;--text:#f4f7f2;--muted:#9fb2a4;--gold:#e8c779;--blue:#8bc8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#14291c 0,transparent 40%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:rgba(9,19,14,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--lime);color:#132018;font-weight:1000;font-size:22px}.brand strong{font-size:18px;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:4px;letter-spacing:1.5px}
+.top-right{display:flex;align-items:center;gap:9px}.demo-badge{border:1px solid #577443;color:var(--lime);border-radius:30px;padding:7px 10px;font-size:11px}.balance{background:#17291e;border:1px solid #35523a;border-radius:12px;padding:7px 12px}.balance small{display:block;color:var(--muted);font-size:10px}.balance b{color:var(--lime);font-size:15px}
+.shell{max-width:1440px;margin:auto;display:grid;grid-template-columns:225px minmax(0,1fr);min-height:calc(100vh - 67px)}aside{padding:18px 12px;border-left:1px solid var(--line);background:#0b1710}.nav{width:100%;display:flex;align-items:center;gap:11px;text-align:right;background:transparent;color:var(--muted);border-radius:11px;padding:13px;margin:3px 0}.nav.active,.nav:hover{background:var(--lime);color:#142018;font-weight:bold}.nav .ico{width:24px;text-align:center;font-size:18px}.side-info{margin:22px 5px 0;padding:13px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:11px;line-height:1.8}
+main{padding:clamp(14px,3vw,30px);min-width:0}.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:clamp(20px,4vw,34px);border:1px solid #36583e;border-radius:20px;background:radial-gradient(circle at 90% 10%,#345a38 0,transparent 38%),linear-gradient(125deg,#173625,#102018);margin-bottom:22px}.hero:after{content:"⚽";position:absolute;left:4%;bottom:-24px;font-size:110px;opacity:.08}.hero-copy{position:relative;z-index:1}.eyebrow{color:var(--lime);font-size:12px;font-weight:bold;margin-bottom:9px}.hero h1{font-size:clamp(24px,4vw,37px);margin:0 0 10px}.hero p{margin:0;color:#c5d5c8;line-height:1.8;max-width:640px;font-size:14px}.hero-tag{position:relative;z-index:1;white-space:nowrap;border:1px solid #5b8247;border-radius:30px;padding:9px 13px;color:var(--lime);font-size:12px}
+.notice{border:1px solid #6b5730;background:#211d12;color:#e8d6a3;border-radius:12px;padding:12px 14px;font-size:12px;line-height:1.8;margin-bottom:20px}.notice strong{color:#ffe7a6}
+.section{display:none}.section.active{display:block}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 14px}.section-head h2{font-size:21px;margin:0}.muted{color:var(--muted)}.tiny{font-size:11px}.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:linear-gradient(145deg,#14251a,#101c15);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.match-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:11px;margin-bottom:17px}.live-dot{color:var(--lime)}.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:7px;text-align:center;margin-bottom:17px}.team{font-weight:bold;font-size:14px}.crest{display:block;font-size:29px;margin-bottom:7px}.vs{font-size:11px;color:var(--muted);background:#203429;border-radius:20px;padding:6px 8px}.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.odd{background:#203529;border:1px solid #365640;color:var(--text);border-radius:10px;padding:10px 4px}.odd small{display:block;font-size:10px;color:var(--muted);margin-bottom:5px}.odd b{font-size:15px;color:var(--lime)}.odd.selected{background:var(--lime);border-color:var(--lime);color:#132018}.odd.selected small,.odd.selected b{color:#132018}
+.two-col{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.8fr);gap:14px;margin-top:18px}.panel-title{font-weight:bold;font-size:16px;margin:0 0 14px}.form-row{margin:12px 0}.form-row label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}.form-row input,.form-row select{width:100%;background:#09130e;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--text);outline:none}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:bold}.btn-main{background:var(--lime);color:#142018}.btn-ghost{background:#21372a;color:var(--text);border:1px solid #3b5941}.btn-block{width:100%;margin-top:8px}.btn:disabled{opacity:.45;cursor:not-allowed}.empty{padding:18px;border:1px dashed #3a5742;border-radius:12px;color:var(--muted);text-align:center;font-size:13px;line-height:1.8}
+.wallet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.stat{padding:18px;background:linear-gradient(145deg,#193323,#102018);border:1px solid #34523a;border-radius:15px}.stat span{display:block;color:var(--muted);font-size:12px;margin-bottom:10px}.stat strong{font-size:23px;color:var(--lime)}.action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}.action-card{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:15px}.action-card .big{font-size:28px}.action-card h3{margin:10px 0 7px}.action-card p{color:var(--muted);font-size:12px;line-height:1.8;min-height:42px}.game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.game{padding:20px;text-align:center;background:linear-gradient(145deg,#1a3022,#101c15);border:1px solid var(--line);border-radius:15px}.game .big{font-size:40px}.game h3{margin:8px 0}.game p{color:var(--muted);font-size:12px;line-height:1.7;min-height:40px}.history-row{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}.footer{text-align:center;color:#819487;font-size:11px;padding:24px 10px;border-top:1px solid var(--line);margin-top:28px;line-height:1.8}
+@media(max-width:850px){.shell{grid-template-columns:1fr}aside{position:sticky;top:66px;z-index:15;display:flex;gap:5px;overflow-x:auto;padding:7px;border-left:0;border-bottom:1px solid var(--line)}.nav{width:auto;white-space:nowrap;flex:0 0 auto;padding:10px 12px;margin:0}.side-info{display:none}.two-col{grid-template-columns:1fr}.game-grid{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero-tag{white-space:normal}.top{padding:9px 11px}.brand strong{font-size:15px}.logo{width:36px;height:36px}.demo-badge{display:none}main{padding:13px}.wallet-grid{grid-template-columns:1fr}.action-grid{grid-template-columns:1fr}}
+@media(min-width:851px){.nav{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">S</div><div><strong>SDN<span style="color:var(--lime)">BET365</span></strong><small>SPORTS EXPERIENCE</small></div></div>
+  <div class="top-right"><span class="demo-badge">● نسخة تجريبية</span><div class="balance"><small>الرصيد الافتراضي</small><b><span id="balance">1,000</span> نقطة</b></div></div>
+</header>
+<div class="shell">
+<aside>
+  <button class="nav active" data-tab="sports"><span class="ico">⚽</span> المباريات</button>
+  <button class="nav" data-tab="wallet"><span class="ico">👛</span> المحفظة التجريبية</button>
+  <button class="nav" data-tab="games"><span class="ico">🎮</span> الألعاب</button>
+  <button class="nav" data-tab="history"><span class="ico">📜</span> سجل النشاط</button>
+  <div class="side-info">هذه نسخة واجهة تجريبية فقط.<br>لا توجد حسابات حقيقية أو إيداعات أو سحوبات مالية.</div>
+</aside>
+<main>
+  <section class="hero">
+    <div class="hero-copy"><div class="eyebrow">مرحبًا بك في تجربتك الرياضية</div><h1>كل المباريات في مكان واحد</h1><p>واجهة عربية حديثة لمشروع SDNBet365. استكشف تصميم المباريات والمحفظة وسجل النشاط باستخدام نقاط افتراضية فقط.</p></div>
+    <span class="hero-tag">DEMO MODE · لا أموال حقيقية</span>
+  </section>
+  <div class="notice"><strong>تنبيه مهم:</strong> هذه نسخة للعرض والاختبار فقط. المباريات والاحتمالات افتراضية، وأزرار المحفظة لا تنفّذ تحويلات مالية. لا تستخدم بيانات مصرفية أو شخصية حقيقية.</div>
+
+  <section class="section active" id="sports">
+    <div class="section-head"><h2>⚽ مباريات مقترحة</h2><span class="muted tiny">بيانات خيالية للتصميم</span></div>
+    <div class="match-grid" id="matches"></div>
+    <div class="two-col">
+      <div class="card">
+        <h3 class="panel-title">🎫 قسيمة التوقع التجريبية</h3>
+        <div id="selection" class="empty">اختر نتيجة من إحدى المباريات لعرضها هنا.</div>
+        <div class="form-row"><label for="stake">قيمة النقاط الافتراضية</label><input id="stake" type="number" min="1" max="1000" value="25"></div>
+        <div class="form-row"><label for="potential">العائد الافتراضي المحتمل</label><input id="potential" readonly value="—"></div>
+        <button class="btn btn-main btn-block" id="placeBet">تسجيل تجربة التوقع</button>
+        <p class="muted tiny">لا يتم تسوية النتائج تلقائيًا؛ هذه وظيفة عرض توضيحية وليست خدمة مراهنات حقيقية.</p>
+      </div>
+      <div class="card">
+        <h3 class="panel-title">✨ تجربة SDN</h3>
+        <div class="empty">التصميم جاهز للتوسعة لاحقًا بعد مراجعة المتطلبات القانونية والأمنية. يمكن إضافة صفحات المساعدة والشروط والخصوصية في الخطوة التالية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="wallet">
+    <div class="section-head"><h2>👛 المحفظة</h2><span class="muted tiny">عرض تجريبي فقط</span></div>
+    <div class="wallet-grid">
+      <div class="stat"><span>الرصيد الحالي</span><strong id="walletBalance">1,000</strong><div class="muted tiny">نقطة افتراضية</div></div>
+      <div class="stat"><span>إجمالي الإيداعات التجريبية</span><strong id="depositTotal">0</strong><div class="muted tiny">لا تمثل أموالًا</div></div>
+      <div class="stat"><span>إجمالي السحوبات التجريبية</span><strong id="withdrawTotal">0</strong><div class="muted tiny">لا تمثل تحويلات</div></div>
+    </div>
+    <div class="action-grid">
+      <div class="action-card"><div class="big">➕</div><h3>محاكاة إيداع</h3><p>جرّب الواجهة فقط. لن تتم إضافة أموال فعلية ولا تُطلب بيانات دفع.</p><div class="form-row"><label for="depositAmount">قيمة افتراضية</label><input id="depositAmount" type="number" min="1" max="5000" value="100"></div><button class="btn btn-main btn-block" id="depositBtn">تجربة الإيداع الوهمي</button></div>
+      <div class="action-card"><div class="big">↗️</div><h3>محاكاة سحب</h3><p>اختبر تجربة المستخدم دون حساب مصرفي أو محفظة دفع أو إرسال طلب مالي.</p><div class="form-row"><label for="withdrawAmount">قيمة افتراضية</label><input id="withdrawAmount" type="number" min="1" max="5000" value="50"></div><button class="btn btn-ghost btn-block" id="withdrawBtn">تجربة السحب الوهمي</button></div>
+    </div>
+    <p class="muted tiny">لا تُدخل رقم بطاقة أو كلمة مرور أو بيانات مالية. لا يتم إرسال أي بيانات إلى خادم.</p>
+  </section>
+
+  <section class="section" id="games">
+    <div class="section-head"><h2>🎮 منطقة الترفيه</h2><span class="muted tiny">عناصر تصميم تجريبية</span></div>
+    <div class="game-grid">
+      <div class="game"><div class="big">⚽</div><h3>مركز المباريات</h3><p>عرض توضيحي لبطاقات المباريات والنتائج الافتراضية.</p><button class="btn btn-main" data-go="sports">استكشاف المباريات</button></div>
+      <div class="game"><div class="big">📊</div><h3>إحصاءات تجريبية</h3><p>مكان مخصص لإحصاءات وبيانات توضيحية غير مباشرة.</p><button class="btn btn-ghost" id="statsBtn">عرض التفاصيل</button></div>
+      <div class="game"><div class="big">🛡️</div><h3>اللعب المسؤول</h3><p>معلومات عامة عن حدود الاستخدام والسلامة والامتثال.</p><button class="btn btn-ghost" id="responsibleBtn">قراءة التنبيه</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="section-head"><h2>📜 سجل النشاط</h2><button class="btn btn-ghost" id="reset">إعادة ضبط التجربة</button></div>
+    <div class="card"><div id="historyList" class="muted">لم تُسجل أنشطة بعد.</div></div>
+  </section>
+  <footer class="footer">SDNBet365 · واجهة تجريبية فقط · لا إيداع أو سحب حقيقي · لا تستخدم بيانات مالية حقيقية</footer>
+</main>
+</div>
+<script>
+const matches=[
+{id:1,league:"بطولة افتراضية · 18:00",a:"نسور المدينة",b:"نجوم الساحل",icons:["🦅","🌊"],odds:[1.8,3.2,2.4]},
+{id:2,league:"كأس تجريبي · 20:30",a:"أبطال الشمال",b:"فرسان الجنوب",icons:["🛡️","🐎"],odds:[2.05,3.0,3.1]},
+{id:3,league:"دوري افتراضي · 21:45",a:"الصقور الخضر",b:"الذئاب الزرقاء",icons:["🟢","🐺"],odds:[1.95,3.4,2.8]},
+{id:4,league:"مباراة خيالية · 22:00",a:"البرق",b:"الرعد",icons:["⚡","🌩️"],odds:[2.25,3.1,2.55]}
+];
+let balance=1000,selection=null,logs=[],deposits=0,withdrawals=0;
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+function updateBalance(){$("balance").textContent=fmt(balance);$("walletBalance").textContent=fmt(balance);$("depositTotal").textContent=fmt(deposits);$("withdrawTotal").textContent=fmt(withdrawals)}
+function addLog(title,delta,detail){logs.unshift({title,delta,detail,time:new Date().toLocaleTimeString("ar-TN",{hour:"2-digit",minute:"2-digit"})});renderLogs()}
+function renderLogs(){const el=$("historyList");if(!logs.length){el.textContent="لم تُسجل أنشطة بعد.";el.className="muted";return}el.className="";el.innerHTML=logs.map(x=>`<div class="history-row"><div><b>${x.title}</b><div class="muted" style="margin-top:5px">${x.detail} · ${x.time}</div></div><b style="color:${x.delta>=0?'var(--lime)':'#f28b8b'}">${x.delta>0?'+':''}${fmt(x.delta)} نقطة</b></div>`).join("")}
+function renderMatches(){$("matches").innerHTML=matches.map(m=>`<article class="card"><div class="match-meta"><span>${m.league}</span><span class="live-dot">● DEMO</span></div><div class="teams"><div class="team"><span class="crest">${m.icons[0]}</span>${m.a}</div><div class="vs">VS</div><div class="team"><span class="crest">${m.icons[1]}</span>${m.b}</div></div><div class="odds">${[{k:"1",label:"فوز الأول",odd:m.odds[0]},{k:"X",label:"تعادل",odd:m.odds[1]},{k:"2",label:"فوز الثاني",odd:m.odds[2]}].map(o=>`<button class="odd ${selection&&selection.id===m.id&&selection.k===o.k?'selected':''}" data-mid="${m.id}" data-k="${o.k}" data-odd="${o.odd}"><small>${o.label}</small><b>${o.odd.toFixed(2)}</b></button>`).join("")}</div></article>`).join("");document.querySelectorAll("[data-mid]").forEach(btn=>btn.addEventListener("click",()=>{const m=matches.find(x=>x.id===Number(btn.dataset.mid));selection={id:m.id,k:btn.dataset.k,odd:Number(btn.dataset.odd),match:m,choice:btn.querySelector("small").textContent};$("selection").className="";$("selection").textContent=`${m.a} × ${m.b} — ${selection.choice} — معامل تجريبي ${selection.odd.toFixed(2)}`;updatePotential();renderMatches()}))}
+function updatePotential(){const n=Number($("stake").value);$("potential").value=selection&&n>0?fmt(n*selection.odd)+" نقطة":"—"}
+$("stake").addEventListener("input",updatePotential);
+$("placeBet").addEventListener("click",()=>{const n=Number($("stake").value);if(!selection)return alert("اختر نتيجة تجريبية أولًا.");if(!Number.isFinite(n)||n<1||n>1000)return alert("أدخل قيمة بين 1 و1000 نقطة.");if(n>balance)return alert("الرصيد الافتراضي لا يكفي.");balance-=n;updateBalance();addLog("توقع افتراضي",-n,selection.match.a+" × "+selection.match.b+" · "+selection.choice+" · عائد محتمل "+fmt(n*selection.odd));alert("سُجلت تجربة التوقع فقط. لا توجد تسوية أو أموال حقيقية.");selection=null;$("selection").className="empty";$("selection").textContent="اختر نتيجة من إحدى المباريات لعرضها هنا.";$("potential").value="—";renderMatches()});
+document.querySelectorAll(".nav").forEach(btn=>btn.addEventListener("click",()=>showTab(btn.dataset.tab)));
+function showTab(id){document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.go)));
+$("depositBtn").addEventListener("click",()=>{const n=Number($("depositAmount").value);if(!Number.isFinite(n)||n<1||n>5000)return alert("أدخل قيمة افتراضية بين 1 و5000.");deposits+=n;balance+=n;updateBalance();addLog("إيداع وهمي",n,"محاكاة واجهة فقط — لا أموال حقيقية");alert("تمت محاكاة الإيداع داخل هذه الصفحة فقط. لم يحدث أي تحويل مالي.")});
+$("withdrawBtn").addEventListener("click",()=>{const n=Number($("withdrawAmount").value);if(!Number.isFinite(n)||n<1||n>5000)return alert("أدخل قيمة افتراضية بين 1 و5000.");if(n>balance)return alert("الرصيد الافتراضي لا يكفي.");withdrawals+=n;balance-=n;updateBalance();addLog("سحب وهمي",-n,"محاكاة واجهة فقط — لا أموال حقيقية");alert("تمت محاكاة السحب داخل هذه الصفحة فقط. لم يحدث أي تحويل مالي.")});
+$("statsBtn").addEventListener("click",()=>alert("بيانات تجريبية فقط: 4 مباريات افتراضية، لا توجد نتائج مباشرة أو بيانات رياضية خارجية."));
+$("responsibleBtn").addEventListener("click",()=>alert("هذه نسخة تجريبية وليست خدمة مراهنات. يجب التحقق من القوانين والتراخيص المناسبة قبل أي تشغيل حقيقي. لا تستخدم أموالًا لا تستطيع تحمل خسارتها."));
+$("reset").addEventListener("click",()=>{if(!confirm("هل تريد إعادة ضبط رصيد وسجل النسخة التجريبية؟"))return;balance=1000;selection=null;logs=[];deposits=0;withdrawals=0;updateBalance();renderLogs();renderMatches();$("selection").className="empty";$("selection").textContent="اختر نتيجة من إحدى المباريات لعرضها هنا.";$("potential").value="—";alert("تمت إعادة ضبط التجربة.")});
+renderMatches();updateBalance();renderLogs();
+</script>
+</body>
+</html>
