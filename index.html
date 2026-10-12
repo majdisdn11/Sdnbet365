@@ -118,5 +118,14 @@ $("reset").addEventListener("click",()=>{if(!confirm("هل تريد إعادة �
 renderMatches();updateBalance();renderLogs();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  const SUPABASE_URL = "https://bjzowejwvhicgmphkwkk.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+  </script>
 </body>
 </html>
