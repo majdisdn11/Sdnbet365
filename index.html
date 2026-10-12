@@ -117,5 +117,6 @@ $("responsibleBtn").addEventListener("click",()=>alert("هذه نسخة تجري
 $("reset").addEventListener("click",()=>{if(!confirm("هل تريد إعادة ضبط رصيد وسجل النسخة التجريبية؟"))return;balance=1000;selection=null;logs=[];deposits=0;withdrawals=0;updateBalance();renderLogs();renderMatches();$("selection").className="empty";$("selection").textContent="اختر نتيجة من إحدى المباريات لعرضها هنا.";$("potential").value="—";alert("تمت إعادة ضبط التجربة.")});
 renderMatches();updateBalance();renderLogs();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>
