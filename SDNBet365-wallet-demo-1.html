@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080909">
+<title>SDNBet365 | الرياضة والترفيه</title>
+<style>
+:root{--bg:#080909;--panel:#111313;--line:#292b28;--gold:#f2c34e;--gold2:#ffe39a;--muted:#b9bbb7;--white:#f7f7f3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:5;background:#080909f2;border-bottom:1px solid #252621;backdrop-filter:blur(10px)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:12px 0}
+.brand{font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-1px}.brand span{color:var(--gold)}.crown{color:var(--gold);margin-left:8px}
+.links{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:#e1e1db}.links a:hover{color:var(--gold)}
+.actions{display:flex;gap:9px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);border-radius:30px;padding:10px 18px;font-weight:700;font-size:13px;background:transparent;color:var(--gold);cursor:pointer}.btn.primary{background:var(--gold);color:#17130a}.btn:hover{filter:brightness(1.1)}
+.hero{padding:54px 0 44px;background:radial-gradient(ellipse at 75% 30%,#443514 0,transparent 35%),linear-gradient(120deg,#080909,#14140f 65%,#080909);border-bottom:1px solid #20211d;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:28px}.eyebrow{color:var(--gold);font-weight:700;letter-spacing:1px}.hero h1{font-size:clamp(34px,5.2vw,64px);line-height:1.15;margin:10px 0 18px}.hero h1 span{color:var(--gold)}.hero p{color:#d0d0c9;max-width:560px;font-size:17px}.features{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0;color:#e9e7dd;font-size:13px}.features span{border-right:2px solid var(--gold);padding-right:10px}.hero-art{min-height:290px;border:1px solid #5b4b25;border-radius:24px;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,#725622 0,#292114 35%,#10110f 72%);box-shadow:inset 0 0 70px #000;position:relative}.ball{font-size:clamp(100px,17vw,190px);filter:drop-shadow(0 20px 18px #000)}.art-label{position:absolute;bottom:18px;left:18px;color:var(--gold2);font-weight:800;letter-spacing:2px}
+.section{padding:30px 0}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.section h2{margin:0;font-size:24px}.section h2 span{color:var(--gold)}.live-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}.live{color:#ff6c62;font-size:11px;font-weight:900}.teams{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:10px 0;font-weight:700}.score{font-size:21px;color:var(--gold);white-space:nowrap}.odds{display:flex;gap:7px}.odd{flex:1;text-align:center;background:#222521;border-radius:7px;padding:7px 4px;font-size:12px;color:var(--gold2)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.category{min-height:245px;border:1px solid var(--line);border-radius:17px;padding:24px;background:linear-gradient(145deg,#191a16,#0c0d0c);display:flex;flex-direction:column;align-items:flex-start;transition:transform .2s,border-color .2s}.category:hover{transform:translateY(-3px);border-color:#8e712c}.category .icon{font-size:48px}.category h3{font-size:25px;margin:8px 0;color:var(--gold2)}.category p{color:var(--muted);margin:0 0 18px}.category .btn{margin-top:auto}
+.notice{border:1px solid #594b28;background:#17150f;color:#e9ddba;padding:14px 16px;border-radius:12px;font-size:13px;margin-top:18px}
+.wallet-section{padding:34px 0 42px;border-top:1px solid var(--line);background:linear-gradient(180deg,#0b0c0b,#10100d)}
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wallet-card{background:var(--panel);border:1px solid #40351d;border-radius:18px;padding:22px}
+.wallet-card h3{margin:0 0 6px;color:var(--gold2);font-size:22px}
+.wallet-card p{color:var(--muted);font-size:13px;margin:0 0 18px}
+.field{display:grid;gap:7px;margin:13px 0}
+.field label{font-size:13px;color:#eee5ce}
+.field input,.field select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid #3a3b33;background:#090a09;color:var(--white);font:inherit;outline:none}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field small{color:#aaa99f;font-size:11px}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.status-box{display:none;margin-top:14px;padding:12px;border:1px solid #665326;border-radius:10px;background:#19160d;color:#ffe39a;font-size:13px}
+.status-box.show{display:block}
+.history{margin-top:18px;background:#111311;border:1px solid var(--line);border-radius:14px;padding:18px}
+.history h3{margin:0 0 12px;color:var(--gold2)}
+.history-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid #2b2d27;padding:11px 0;font-size:13px}
+.pill-demo{display:inline-block;border:1px solid #705c28;color:#f5d77c;border-radius:20px;padding:2px 9px;font-size:11px}
+@media(max-width:800px){.wallet-grid{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);margin-top:22px;padding:25px 0;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:20px;z-index:10}.modal.show{display:grid}.dialog{max-width:420px;width:100%;background:#121411;border:1px solid #5b4b25;border-radius:18px;padding:24px}.dialog h3{margin-top:0;color:var(--gold)}.dialog p{color:var(--muted)}.close{float:left;background:none;border:0;color:white;font-size:24px;cursor:pointer}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:200px}.live-row{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.links{gap:12px}.nav{justify-content:center}.brand{width:100%;text-align:center}.actions{justify-content:center;width:100%}.hero{padding-top:34px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#"><span class="crown">♛</span> SDN<span>Bet365</span></a>
+<nav class="links" aria-label="التنقل"><a href="#home">الرئيسية</a><a href="#sports">الرياضة</a><a href="#casino">الكازينو</a><a href="#livecasino">كازينو مباشر</a><a href="#wallet">الإيداع والسحب</a></nav>
+<div class="actions"><button class="btn" data-modal="login">تسجيل الدخول</button><button class="btn primary" data-modal="register">إنشاء حساب</button></div>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-grid"><div>
+<div class="eyebrow">أهلاً بك في عالم SDNBet365</div>
+<h1>حماسك يبدأ هنا<br><span>SDNBet365</span></h1>
+<p>واجهة رياضية وترفيهية بتصميم عصري، تجربة سهلة على الهاتف، وأقسام واضحة للوصول إلى المحتوى.</p>
+<div class="features"><span>◈ تصميم متجاوب</span><span>⚡ تجربة سريعة</span><span>◉ واجهة عربية</span></div>
+<a class="btn primary" href="#sports">اكتشف الأقسام ←</a>
+</div><div class="hero-art" aria-label="تصميم رياضي ذهبي"><div class="ball">⚽</div><div class="art-label">SPORT • PLAY • ENJOY</div></div></div></section>
+<section class="section wrap"><div class="section-head"><h2>مباريات <span>مختارة</span></h2><span class="eyebrow">عرض تجريبي</span></div>
+<div class="live-row">
+<div class="match"><div class="live">● بيانات تجريبية</div><div class="teams"><span>ريال مدريد</span><span class="score">1 - 1</span><span>برشلونة</span></div><div class="odds"><div class="odd">1&nbsp; 2.15</div><div class="odd">X&nbsp; 3.40</div><div class="odd">2&nbsp; 3.10</div></div></div>
+<div class="match"><div class="live">● بيانات تجريبية</div><div class="teams"><span>مانشستر سيتي</span><span class="score">0 - 0</span><span>ليفربول</span></div><div class="odds"><div class="odd">1&nbsp; 1.85</div><div class="odd">X&nbsp; 3.70</div><div class="odd">2&nbsp; 4.20</div></div></div>
+<div class="match"><div class="live">● بيانات تجريبية</div><div class="teams"><span>إنتر ميلان</span><span class="score">2 - 1</span><span>ميلان</span></div><div class="odds"><div class="odd">1&nbsp; 1.60</div><div class="odd">X&nbsp; 4.00</div><div class="odd">2&nbsp; 5.50</div></div></div>
+</div></section>
+<section class="section wrap" id="sports"><div class="section-head"><h2>اكتشف <span>الأقسام</span></h2></div><div class="cards">
+<article class="category"><div class="icon">⚽</div><h3>الرياضة</h3><p>واجهة لمتابعة مباريات كرة القدم والرياضات المختلفة. النتائج المعروضة هنا أمثلة تجريبية وليست بيانات مباشرة.</p><button class="btn" data-modal="sports">استكشف الرياضة ←</button></article>
+<article class="category" id="casino"><div class="icon">♠ ♦</div><h3>الكازينو</h3><p>مساحة مخصصة لعرض الألعاب ضمن واجهة داكنة أنيقة، ويمكن تطويرها لاحقًا وفق المتطلبات القانونية.</p><button class="btn" data-modal="casino">استكشف الكازينو ←</button></article>
+<article class="category" id="livecasino"><div class="icon">◉</div><h3>كازينو مباشر</h3><p>قسم مهيأ لتصميم ألعاب البث المباشر، دون ربط حالي بمزوّد ألعاب أو معاملات مالية حقيقية.</p><button class="btn" data-modal="live">اكتشف القسم ←</button></article>
+</div>
+<div class="notice"><strong>تنبيه:</strong> المباريات والأقسام أعلاه تجريبية. لا توجد إيداعات أو سحوبات حقيقية في هذا الإصدار.</div>
+</section>
+<section class="wallet-section" id="wallet"><div class="wrap">
+<div class="section-head"><h2>المحفظة <span>بالدينار التونسي</span></h2><span class="pill-demo">واجهة تجريبية فقط</span></div>
+<div class="wallet-grid">
+<form class="wallet-card" id="deposit-form">
+<h3>＋ طلب إيداع</h3><p>نموذج تجريبي لعرض تجربة المستخدم. لا ترسل أموالًا من خلال هذه الصفحة.</p>
+<div class="field"><label for="deposit-amount">المبلغ (TND)</label><input id="deposit-amount" type="number" min="1" max="10000" step="1" placeholder="مثال: 50" required><small>المبلغ بالدينار التونسي — لا توجد عملية دفع فعلية.</small></div>
+<div class="field"><label for="deposit-method">وسيلة الدفع التجريبية</label><select id="deposit-method" required><option value="">اختر وسيلة</option><option>تحويل بنكي (عرض فقط)</option><option>محفظة إلكترونية (عرض فقط)</option><option>وسيلة دفع مرخّصة — عند التفعيل</option></select></div>
+<div class="form-actions"><button class="btn primary" type="submit">معاينة طلب الإيداع</button></div>
+<div class="status-box" id="deposit-status" role="status" aria-live="polite"></div>
+</form>
+<form class="wallet-card" id="withdraw-form">
+<h3>− طلب سحب</h3><p>يمكنك معاينة نموذج السحب فقط. لا تدخل أرقام بطاقات أو كلمات مرور أو رموز OTP.</p>
+<div class="field"><label for="withdraw-amount">المبلغ (TND)</label><input id="withdraw-amount" type="number" min="1" max="10000" step="1" placeholder="مثال: 30" required><small>سيظهر الطلب كطلب تجريبي غير مُرسل.</small></div>
+<div class="field"><label for="withdraw-method">طريقة الاستلام</label><select id="withdraw-method" required><option value="">اختر طريقة</option><option>تحويل بنكي (عرض فقط)</option><option>محفظة إلكترونية (عرض فقط)</option><option>طريقة أخرى معتمدة — عند التفعيل</option></select></div>
+<div class="field"><label for="withdraw-reference">مرجع اختياري غير حساس</label><input id="withdraw-reference" type="text" maxlength="24" placeholder="مثال: TEST-123"><small>لا تكتب رقم حسابك الكامل أو أي بيانات سرية.</small></div>
+<div class="form-actions"><button class="btn" type="submit">معاينة طلب السحب</button></div>
+<div class="status-box" id="withdraw-status" role="status" aria-live="polite"></div>
+</form>
+</div>
+<div class="history" aria-live="polite"><h3>سجل المعاينات في هذه الصفحة</h3><div id="history-list"><div class="history-row"><span>لا توجد طلبات تجريبية بعد</span><span class="pill-demo">عرض فقط</span></div></div></div>
+<div class="notice"><strong>الأمان والقانون:</strong> لا يتم حفظ البيانات أو إرسالها إلى خادم. قبل تفعيل أي حركة مالية حقيقية، يلزم التحقق من الترخيص القانوني في تونس، وموافقة مزوّد دفع معتمد، وتطبيق حماية البيانات ومكافحة الاحتيال والتحقق من العمر والهوية وفق القانون.</div>
+</div></section>
+</section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 SDNBet365 — نسخة تجريبية</span><span>واجهة عربية • متوافقة مع الهاتف</span><span>العب بمسؤولية، حيثما كان ذلك قانونيًا.</span></div></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="dialog"><button class="close" id="close" aria-label="إغلاق">×</button><h3 id="modal-title">نسخة تجريبية</h3><p id="modal-text">هذا القسم للعرض فقط، ولم يتم تفعيل الحسابات أو المعاملات الحقيقية بعد.</p><button class="btn primary" id="ok">حسنًا</button></div></div>
+<script>
+const modal=document.getElementById('modal'), title=document.getElementById('modal-title'), msg=document.getElementById('modal-text');
+const copy={login:['تسجيل الدخول','تسجيل الدخول غير مفعّل في النسخة التجريبية.'],register:['إنشاء حساب','إنشاء الحسابات غير مفعّل حاليًا.'],sports:['قسم الرياضة','هذه واجهة أولية؛ بيانات المباريات تجريبية وليست مباشرة.'],casino:['قسم الكازينو','هذا القسم تجريبي ولا يتصل بمزوّد ألعاب.'],live:['كازينو مباشر','البث المباشر غير مفعّل في هذه النسخة.']};
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>{const c=copy[b.dataset.modal];title.textContent=c[0];msg.textContent=c[1];modal.classList.add('show')}));
+function closeModal(){modal.classList.remove('show')}document.getElementById('close').addEventListener('click',closeModal);document.getElementById('ok').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+const historyList=document.getElementById('history-list');
+function addDemoRequest(type,amount,method,reference=''){
+  const empty=historyList.querySelector('.history-row');
+  if(empty && empty.textContent.includes('لا توجد طلبات')) historyList.innerHTML='';
+  const row=document.createElement('div'); row.className='history-row';
+  const label=document.createElement('span'); label.textContent=type+' — '+amount+' د.ت — '+method+(reference?' — '+reference:'');
+  const status=document.createElement('span'); status.className='pill-demo'; status.textContent='معاينة فقط — غير مُرسل';
+  row.append(label,status); historyList.prepend(row);
+}
+document.getElementById('deposit-form').addEventListener('submit',e=>{
+  e.preventDefault();const amount=Number(document.getElementById('deposit-amount').value),method=document.getElementById('deposit-method').value;
+  const box=document.getElementById('deposit-status');
+  if(!Number.isFinite(amount)||amount<1||amount>10000){box.textContent='أدخل مبلغًا بين 1 و10000 دينار للمعاينة.';box.classList.add('show');return;}
+  box.textContent='هذه معاينة فقط: طلب إيداع بقيمة '+amount.toFixed(2)+' د.ت عبر '+method+'. لم يتم الدفع أو إرسال الطلب.';
+  box.classList.add('show');addDemoRequest('إيداع',amount.toFixed(2),method);e.target.reset();
+});
+document.getElementById('withdraw-form').addEventListener('submit',e=>{
+  e.preventDefault();const amount=Number(document.getElementById('withdraw-amount').value),method=document.getElementById('withdraw-method').value,reference=document.getElementById('withdraw-reference').value.trim();
+  const box=document.getElementById('withdraw-status');
+  if(!Number.isFinite(amount)||amount<1||amount>10000){box.textContent='أدخل مبلغًا بين 1 و10000 دينار للمعاينة.';box.classList.add('show');return;}
+  box.textContent='هذه معاينة فقط: طلب سحب بقيمة '+amount.toFixed(2)+' د.ت عبر '+method+'. لم يتم التحقق من الرصيد أو إرسال أي طلب.';
+  box.classList.add('show');addDemoRequest('سحب',amount.toFixed(2),method,reference);e.target.reset();
+});
+</script>
+</body></html>
