@@ -124,4 +124,14 @@ document.getElementById('withdraw-form').addEventListener('submit',e=>{
   box.classList.add('show');addDemoRequest('سحب',amount.toFixed(2),method,reference);e.target.reset();
 });
 </script>
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseClient = window.supabase.createClient(
+    'https://bjzowejwvhicgmphkwkk.supabase.co',
+    'PASTE_YOUR_PUBLISHABLE_KEY_HERE'
+  );
+  console.log('SDNBet365: Supabase client initialized');
+</script>
+
 </body></html>
