@@ -123,15 +123,17 @@ document.getElementById('withdraw-form').addEventListener('submit',e=>{
   box.textContent='هذه معاينة فقط: طلب سحب بقيمة '+amount.toFixed(2)+' د.ت عبر '+method+'. لم يتم التحقق من الرصيد أو إرسال أي طلب.';
   box.classList.add('show');addDemoRequest('سحب',amount.toFixed(2),method,reference);e.target.reset();
 });
-</script>
-  
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const supabaseClient = window.supabase.createClient(
+  window.sdnSupabase = window.supabase.createClient(
     'https://bjzowejwvhicgmphkwkk.supabase.co',
-sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj'
+    'sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj'
   );
+
   console.log('SDNBet365: Supabase client initialized');
 </script>
+
+  
 
 </body></html>
