@@ -95,7 +95,8 @@ document.getElementById("authForm").addEventListener("submit",async e=>{e.preven
   options: {
     emailRedirectTo: "https://majdisdn11.github.io/Sdnbet365/"
   }
-}));}else{result=await sdnClient.auth.signInWithPassword({email,password});}if(result.error)throw result.error;if(authMode==="register"&&!result.data.session){status.textContent="تم إرسال طلب إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيده ثم سجّل الدخول.";}else{status.textContent=authMode==="login"?"تم تسجيل الدخول بنجاح.":"تم إنشاء الحساب وتسجيل الدخول.";await updateAuthUI();if(authMode==="login"||result.data.session)setTimeout(closeAuth,900);}}catch(err){status.textContent="تعذّر إكمال العملية: "+(err.message||"خطأ غير معروف");}finally{submit.disabled=false;}});
+});
+                                                                                                                                                                                                                                                                                                                                                                                                                             }else{result=await sdnClient.auth.signInWithPassword({email,password});}if(result.error)throw result.error;if(authMode==="register"&&!result.data.session){status.textContent="تم إرسال طلب إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيده ثم سجّل الدخول.";}else{status.textContent=authMode==="login"?"تم تسجيل الدخول بنجاح.":"تم إنشاء الحساب وتسجيل الدخول.";await updateAuthUI();if(authMode==="login"||result.data.session)setTimeout(closeAuth,900);}}catch(err){status.textContent="تعذّر إكمال العملية: "+(err.message||"خطأ غير معروف");}finally{submit.disabled=false;}});
 sdnClient.auth.onAuthStateChange(()=>{updateAuthUI();});
 document.getElementById("authModal").addEventListener("click",e=>{if(e.target.id==="authModal")closeAuth();});
 updateAuthUI();
