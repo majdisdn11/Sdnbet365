@@ -316,6 +316,12 @@ if(event.target.id==="authModal")closeAuth();
 });
 
 updateAuthUI();
+sdnClient.auth.getUser().then(({data,error})=>{
+el("chatStatus").textContent=error
+?"تعذر التحقق من المستخدم: "+error.message
+:"حالة المستخدم: "+(data.user?"تم التعرف على الحساب":"لا يوجد حساب مسجل الدخول");
+});
+
 
 function openChat(){el("chatbox").classList.add("open")}
 function closeChat(){el("chatbox").classList.remove("open")}
