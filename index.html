@@ -343,19 +343,78 @@ el("paymentStatus").textContent="للمعاينة فقط. لم يتم إنشاء
 function demoNotice(){
 alert("هذه خيارات توضيحية للتصميم فقط، ولا توجد رهانات حقيقية مفعلة.");
 }
-el("supportForm").addEventListener("submit",event=>{
+el("supportForm").addEventListener("submit", async event => {
 event.preventDefault();
-const name=el("customerName").value.trim()||"اللاعب";
-const topic=el("topic").value;
-const message=el("message").value.trim();
-if(!message){el("chatStatus").textContent="يرجى كتابة رسالتك أولًا.";return}
-const bubble=document.createElement("div");
-bubble.className="bubble";bubble.style.marginTop="10px";
-bubble.textContent=name+" · "+topic+": "+message;
-el("conversation").appendChild(bubble);
-el("message").value="";
-el("chatStatus").textContent="ظهرت الرسالة على هذا الجهاز فقط؛ لم تُرسل إلى الإدارة.";
+
+const status = el("chatStatus");
+const button = el("supportForm").querySelector('button[type="submit"]');
+const name = el("customerName").value.trim() || "اللاعب";
+const topic = el("topic").value;
+const message = el("message").value.trim();
+
+if (!message) {
+status.textContent = "يرجى كتابة رسالتك أولًا.";
+return;
+}
+
+button.disabled = true;
+status.textContent = "جارٍ إرسال رسالتك...";
+
+try {
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+
+if (!user) {
+status.textContent = "يرجى تسجيل الدخول قبل استخدام الدعم.";
+return;
+}
+
+const { data: conversation, error: conversationError } =
+await sdnClient
+.from("support_conversations")
+.insert({
+visitor_token: user.id,
+visitor_name: name,
+topic: topic,
+status: "open"
+})
+.select("id")
+.single();
+
+if (conversationError) throw conversationError;
+
+const { error: messageError } = await sdnClient
+.from("support_messages")
+.insert({
+conversation_id: conversation.id,
+sender_role: "visitor",
+message: message
 });
+
+if (messageError) throw messageError;
+
+const bubble = document.createElement("div");
+bubble.className = "bubble";
+bubble.style.marginTop = "10px";
+bubble.textContent = name + " · " + topic + ": " + message;
+el("conversation").appendChild(bubble);
+
+el("message").value = "";
+status.textContent = "تم إرسال رسالتك إلى الدعم بنجاح.";
+
+} catch (error) {
+console.error("Support message error:", error);
+status.textContent =
+"تعذر إرسال الرسالة: " + (error.message || "خطأ غير معروف");
+} finally {
+button.disabled = false;
+}
+});
+
 el("year").textContent=new Date().getFullYear();
 </script>
 </body>
