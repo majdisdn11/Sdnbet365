@@ -8,7 +8,7 @@
 <title>SDNBet365 | لوحة الإدارة</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#121d30;--line:#263750;--text:#f3f6fb;--muted:#a6b4c8;--green:#20c783;--gold:#f4c15d}
-*{box-sizing:border-box}
+{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
 main{max-width:1050px;margin:30px auto;padding:16px}
 header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
@@ -20,7 +20,7 @@ button{border:0;background:var(--green);color:#06251b;font-weight:bold;cursor:po
 button.secondary{background:#263750;color:white}
 button:disabled{opacity:.5}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.row>*{flex:1}
+.row>{flex:1}
 .status{font-size:13px;line-height:1.8;overflow-wrap:anywhere}
 .muted{color:var(--muted)}
 .table-wrap{overflow-x:auto}
@@ -63,6 +63,30 @@ th{color:var(--gold)}
 <tbody id="requestsBody"></tbody>
 </table>
 </div>
+<section class="card" id="supportPanel">
+<h2>محادثات الدعم</h2>
+<p>عرض محادثات العملاء ورسائلهم.</p>
+<div class="row">
+<button class="secondary" id="refreshSupportButton">تحديث المحادثات</button>
+</div>
+<div id="supportStatus" class="status" role="status"></div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>اسم الزائر</th>
+<th>الموضوع</th>
+<th>الحالة</th>
+<th>تاريخ الإنشاء</th>
+<th>الإجراء</th>
+</tr>
+</thead>
+<tbody id="supportConversationsBody"></tbody>
+</table>
+</div>
+<h2>رسائل المحادثة</h2>
+<div id="supportMessages" class="status"></div>
+</section>
 </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -81,120 +105,234 @@ const requestsBody=document.getElementById("requestsBody");
 let busy=false;
 
 function setBusy(value){
- busy=value;
- document.getElementById("loginButton").disabled=value;
- document.getElementById("refreshButton").disabled=value;
+busy=value;
+document.getElementById("loginButton").disabled=value;
+document.getElementById("refreshButton").disabled=value;
 }
 function showMessage(el,message){el.textContent=message;}
 
 async function verifyAdmin(){
- const {data:{user},error}=await db.auth.getUser();
- if(error||!user)return false;
- const {data,error:adminError}=await db
-  .from("admin_users")
-  .select("user_id")
-  .eq("user_id",user.id)
-  .maybeSingle();
- if(adminError)throw adminError;
- return Boolean(data);
+const {data:{user},error}=await db.auth.getUser();
+if(error||!user)return false;
+const {data,error:adminError}=await db
+.from("admin_users")
+.select("user_id")
+.eq("user_id",user.id)
+.maybeSingle();
+if(adminError)throw adminError;
+return Boolean(data);
 }
 
 async function renderRequests(){
- dashboardStatus.textContent="جارٍ تحميل الطلبات...";
- requestsBody.replaceChildren();
+dashboardStatus.textContent="جارٍ تحميل الطلبات...";
+requestsBody.replaceChildren();
 
- const {data,error}=await db
-  .from("wallet_requests")
-  .select("id,user_id,request_type,amount,payment_method,status,created_at")
-  .order("created_at",{ascending:false})
-  .limit(100);
+const {data,error}=await db
+.from("wallet_requests")
+.select("id,user_id,request_type,amount,payment_method,status,created_at")
+.order("created_at",{ascending:false})
+.limit(100);
 
- if(error)throw error;
- if(!data||data.length===0){
-  dashboardStatus.textContent="لا توجد طلبات ظاهرة، أو أن سياسات قاعدة البيانات لا تسمح بعرضها.";
-  return;
- }
+if(error)throw error;
+if(!data||data.length===0){
+dashboardStatus.textContent="لا توجد طلبات ظاهرة، أو أن سياسات قاعدة البيانات لا تسمح بعرضها.";
+return;
+}
 
- for(const request of data){
-  const tr=document.createElement("tr");
-  const values=[
-   request.id,request.user_id,request.request_type,
-   String(request.amount)+" د.ت",request.payment_method||"—",
-   request.status,new Date(request.created_at).toLocaleString("ar-TN")
-  ];
-  for(const value of values){
-   const td=document.createElement("td");
-   td.textContent=String(value??"—");
-   tr.appendChild(td);
-  }
-  requestsBody.appendChild(tr);
- }
- dashboardStatus.textContent="تم تحميل "+data.length+" طلبًا. العرض فقط؛ لا يتم اعتماد الطلبات أو تعديل الأرصدة.";
+for(const request of data){
+const tr=document.createElement("tr");
+const values=[
+request.id,request.user_id,request.request_type,
+String(request.amount)+" د.ت",request.payment_method||"—",
+request.status,new Date(request.created_at).toLocaleString("ar-TN")
+ ];
+for(const value of values){
+const td=document.createElement("td");
+td.textContent=String(value??"—");
+tr.appendChild(td);
+}
+requestsBody.appendChild(tr);
+}
+dashboardStatus.textContent="تم تحميل "+data.length+" طلبًا. العرض فقط؛ لا يتم اعتماد الطلبات أو تعديل الأرصدة.";
 }
 
 async function openDashboard(){
- setBusy(true);
- try{
-  const {data:{user}}=await db.auth.getUser();
-  if(!user){
-   loginPanel.classList.remove("hidden");
-   dashboard.classList.add("hidden");
-   return;
-  }
-  const allowed=await verifyAdmin();
-  if(!allowed){
-   await db.auth.signOut();
-   loginPanel.classList.remove("hidden");
-   dashboard.classList.add("hidden");
-   showMessage(loginStatus,"هذا الحساب غير مسجل في قائمة المسؤولين. لم يتم منح صلاحية الإدارة.");
-   return;
-  }
-  loginPanel.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-  document.getElementById("adminInfo").textContent="المسؤول: "+user.email;
-  await renderRequests();
- }catch(error){
-  showMessage(dashboardStatus,"تعذر تحميل اللوحة: "+(error.message||"خطأ غير معروف"));
- }finally{
-  setBusy(false);
- }
+setBusy(true);
+try{
+const {data:{user}}=await db.auth.getUser();
+if(!user){
+loginPanel.classList.remove("hidden");
+dashboard.classList.add("hidden");
+return;
+}
+const allowed=await verifyAdmin();
+if(!allowed){
+await db.auth.signOut();
+loginPanel.classList.remove("hidden");
+dashboard.classList.add("hidden");
+showMessage(loginStatus,"هذا الحساب غير مسجل في قائمة المسؤولين. لم يتم منح صلاحية الإدارة.");
+return;
+}
+loginPanel.classList.add("hidden");
+dashboard.classList.remove("hidden");
+document.getElementById("adminInfo").textContent="المسؤول: "+user.email;
+await renderRequests();
+await loadSupportConversations();
+
+}catch(error){
+showMessage(dashboardStatus,"تعذر تحميل اللوحة: "+(error.message||"خطأ غير معروف"));
+}finally{
+setBusy(false);
+}
 }
 
 document.getElementById("loginButton").addEventListener("click",async()=>{
- if(busy)return;
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
- if(!email||!password){showMessage(loginStatus,"أدخل البريد الإلكتروني وكلمة المرور.");return;}
- setBusy(true);
- showMessage(loginStatus,"جارٍ تسجيل الدخول والتحقق من صلاحية الإدارة...");
- try{
-  const {error}=await db.auth.signInWithPassword({email,password});
-  if(error)throw error;
-  await openDashboard();
- }catch(error){
-  showMessage(loginStatus,"تعذر تسجيل الدخول: "+(error.message||"خطأ غير معروف"));
- }finally{setBusy(false);}
+if(busy)return;
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+if(!email||!password){showMessage(loginStatus,"أدخل البريد الإلكتروني وكلمة المرور.");return;}
+setBusy(true);
+showMessage(loginStatus,"جارٍ تسجيل الدخول والتحقق من صلاحية الإدارة...");
+try{
+const {error}=await db.auth.signInWithPassword({email,password});
+if(error)throw error;
+await openDashboard();
+}catch(error){
+showMessage(loginStatus,"تعذر تسجيل الدخول: "+(error.message||"خطأ غير معروف"));
+}finally{setBusy(false);}
 });
 
 document.getElementById("refreshButton").addEventListener("click",async()=>{
- if(busy)return;
- setBusy(true);
- try{
-  if(!await verifyAdmin())throw new Error("تعذر التحقق من صلاحية الإدارة.");
-  await renderRequests();
- }catch(error){
-  showMessage(dashboardStatus,error.message||"تعذر تحديث الطلبات.");
- }finally{setBusy(false);}
+if(busy)return;
+setBusy(true);
+try{
+if(!await verifyAdmin())throw new Error("تعذر التحقق من صلاحية الإدارة.");
+await renderRequests();
+}catch(error){
+showMessage(dashboardStatus,error.message||"تعذر تحديث الطلبات.");
+}finally{setBusy(false);}
 });
 
 document.getElementById("logoutButton").addEventListener("click",async()=>{
- await db.auth.signOut();
- dashboard.classList.add("hidden");
- loginPanel.classList.remove("hidden");
- showMessage(loginStatus,"تم تسجيل الخروج.");
+await db.auth.signOut();
+dashboard.classList.add("hidden");
+loginPanel.classList.remove("hidden");
+showMessage(loginStatus,"تم تسجيل الخروج.");
 });
+async function loadSupportConversations() {
+const status = document.getElementById("supportStatus");
+const body = document.getElementById("supportConversationsBody");
+const messages = document.getElementById("supportMessages");
+
+status.textContent = "جارٍ تحميل المحادثات...";
+body.replaceChildren();
+messages.textContent = "";
+
+try {
+if (!(await verifyAdmin())) {
+throw new Error("لا توجد صلاحية لعرض محادثات الدعم.");
+}
+
+const { data, error } = await db
+.from("support_conversations")
+.select("id, visitor_name, topic, status, created_at")
+.order("created_at", { ascending: false })
+.limit(100);
+
+if (error) throw error;
+
+if (!data || data.length === 0) {
+status.textContent =
+"لا توجد محادثات ظاهرة، أو أن سياسات الوصول تمنع عرضها.";
+return;
+}
+
+for (const conversation of data) {
+const tr = document.createElement("tr");
+
+const values = [
+conversation.visitor_name || "زائر",
+conversation.topic || "—",
+conversation.status || "—",
+conversation.created_at
+? new Date(conversation.created_at).toLocaleString("ar-TN")
+: "—"
+ ];
+
+for (const value of values) {
+const td = document.createElement("td");
+td.textContent = String(value);
+tr.appendChild(td);
+}
+
+const actionCell = document.createElement("td");
+const button = document.createElement("button");
+button.textContent = "عرض الرسائل";
+button.addEventListener("click", () => {
+loadSupportMessages(conversation.id);
+});
+
+actionCell.appendChild(button);
+tr.appendChild(actionCell);
+body.appendChild(tr);
+}
+
+status.textContent = "تم تحميل " + data.length + " محادثة.";
+} catch (error) {
+status.textContent =
+"تعذر تحميل المحادثات: " + (error.message || "خطأ غير معروف");
+}
+}
+
+async function loadSupportMessages(conversationId) {
+const output = document.getElementById("supportMessages");
+output.textContent = "جارٍ تحميل الرسائل...";
+
+try {
+if (!(await verifyAdmin())) {
+throw new Error("لا توجد صلاحية لعرض الرسائل.");
+}
+
+const { data, error } = await db
+.from("support_messages")
+.select("sender_role, message, created_at")
+.eq("conversation_id", conversationId)
+.order("created_at", { ascending: true })
+.limit(200);
+
+if (error) throw error;
+
+output.replaceChildren();
+
+if (!data || data.length === 0) {
+output.textContent = "لا توجد رسائل ظاهرة في هذه المحادثة.";
+return;
+}
+
+for (const item of data) {
+const entry = document.createElement("p");
+const time = item.created_at
+? new Date(item.created_at).toLocaleString("ar-TN")
+: "";
+
+entry.textContent =
+"[" + time + "] " + (item.sender_role || "مرسل") +
+": " + (item.message || "");
+
+output.appendChild(entry);
+}
+} catch (error) {
+output.textContent =
+"تعذر تحميل الرسائل: " + (error.message || "خطأ غير معروف");
+}
+}
+
+document
+.getElementById("refreshSupportButton")
+.addEventListener("click", loadSupportConversations);
 
 db.auth.onAuthStateChange(()=>{});
 </script>
 </body>
 </html>
+
