@@ -373,8 +373,17 @@ status.textContent = "يرجى تسجيل الدخول قبل استخدام ا�
 return;
 }
 
-const { data: conversation, error: conversationError } =
+let { data: conversation, error: conversationError } =
 await sdnClient
+.from("support_conversations")
+.select("id")
+.eq("visitor_token", user.id)
+.maybeSingle();
+
+if (conversationError) throw conversationError;
+
+if (!conversation) {
+const result = await sdnClient
 .from("support_conversations")
 .insert({
 visitor_token: user.id,
@@ -385,7 +394,10 @@ status: "open"
 .select("id")
 .single();
 
-if (conversationError) throw conversationError;
+if (result.error) throw result.error;
+
+conversation = result.data;
+}
 
 const { error: messageError } = await sdnClient
 .from("support_messages")
