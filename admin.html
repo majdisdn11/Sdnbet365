@@ -86,6 +86,23 @@ th{color:var(--gold)}
 </div>
 <h2>رسائل المحادثة</h2>
 <div id="supportMessages" class="status"></div>
+
+<div class="row">
+<input
+id="supportReplyInput"
+type="text"
+placeholder="اكتب ردك للعميل هنا..."
+/>
+<button
+type="button"
+id="supportReplyButton"
+>
+إرسال الرد
+</button>
+</div>
+<div id="supportReplyStatus" class="status" role="status"></div>
+
+
 </section>
 </section>
 </main>
@@ -285,6 +302,8 @@ status.textContent =
 }
 
 async function loadSupportMessages(conversationId) {
+window.currentSupportConversationId = conversationId;
+
 const output = document.getElementById("supportMessages");
 output.textContent = "جارٍ تحميل الرسائل...";
 
@@ -331,8 +350,62 @@ document
 .getElementById("refreshSupportButton")
 .addEventListener("click", loadSupportConversations);
 
+async function sendSupportReply(conversationId) {
+const input = document.getElementById("supportReplyInput");
+const status = document.getElementById("supportReplyStatus");
+const message = input.value.trim();
+
+if (!message) {
+status.textContent = "اكتب الرد أولًا.";
+return;
+}
+
+status.textContent = "جارٍ إرسال الرد...";
+
+try {
+if (!(await verifyAdmin())) {
+throw new Error("لا توجد صلاحية لإرسال الرد.");
+}
+
+const { error } = await db
+.from("support_messages")
+.insert({
+conversation_id: conversationId,
+sender_role: "admin",
+message: message
+});
+
+if (error) throw error;
+
+input.value = "";
+status.textContent = "تم إرسال الرد.";
+await loadSupportMessages(conversationId);
+} catch (error) {
+status.textContent =
+"تعذر إرسال الرد: " + (error.message || "خطأ غير معروف");
+}
+}
+
+
+
+document
+.getElementById("supportReplyButton")
+.addEventListener("click", () => {
+const conversationId = window.currentSupportConversationId;
+
+if (!conversationId) {
+document.getElementById("supportReplyStatus").textContent =
+"اختر محادثة أولًا عبر زر عرض الرسائل.";
+return;
+}
+
+sendSupportReply(conversationId);
+});
+
+
 db.auth.onAuthStateChange(()=>{});
 </script>
 </body>
 </html>
+
 
