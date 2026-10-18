@@ -368,11 +368,12 @@ loadCustomerSupportMessages();
 
 function closeChat(){el("chatbox").classList.remove("open")}
 
-// setInterval(() => {
-// if (el("chatbox").classList.contains("open")) {
-// loadCustomerSupportMessages();
-// }
-// }, 5000);
+setInterval(() => {
+if (el("chatbox").classList.contains("open")) {
+loadCustomerSupportMessages();
+}
+}, 5000);
+
 
 async function loadWalletHistory() {
 
@@ -656,6 +657,7 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
 
