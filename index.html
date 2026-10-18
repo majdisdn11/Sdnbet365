@@ -479,8 +479,10 @@ const { error } = await sdnClient
 user_id: userData.user.id,
 request_type: paymentAction,
 amount: amount,
+payment_method: "demo",
 status: "pending"
 });
+
 
 if (error) throw error;
 
@@ -643,6 +645,7 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
 
