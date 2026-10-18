@@ -624,7 +624,11 @@ sender_role: "visitor",
 message: message
 });
 
-if (messageError) throw messageError;
+if (messageError) {
+console.error("SUPPORT INSERT ERROR:", messageError);
+throw messageError;
+}
+
 
 const bubble = document.createElement("div");
 bubble.className = "bubble";
