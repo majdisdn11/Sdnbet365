@@ -598,7 +598,8 @@ await sdnClient
 .maybeSingle();
 
 if (conversationError) throw conversationError;
-console.log("CUSTOMER CONVERSATION:", conversation);
+status.textContent = "المحادثة: " + (conversation ? conversation.id : "لا توجد");
+
 
 
 if (!conversation) {
