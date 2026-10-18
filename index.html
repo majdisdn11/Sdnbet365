@@ -554,8 +554,8 @@ output.appendChild(bubble);
 } catch (error) {
 console.error("Support messages error:", error);
 el("chatStatus").textContent =
-"تعذر تحميل رسائل الدعم: " +
-(error.message || "خطأ غير معروف");
+"خطأ الدعم: " + (error.message || "خطأ غير معروف");
+
 }
 }
 
