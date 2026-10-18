@@ -599,7 +599,9 @@ await sdnClient
 .maybeSingle();
 
 if (conversationError) throw conversationError;
-console.log("CUSTOMER CONVERSATION:", conversation);
+el("chatStatus").textContent =
+"معرّف المحادثة: " + (conversation ? conversation.id : "لا توجد");
+
 
 
 
