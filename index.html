@@ -132,7 +132,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 
 <div class="tile">
 <p id="walletHistoryStatus">
-سيظهر سجل الطلبات هنا بعد ربطه بقاعدة البيانات.
+جارٍ تحميل سجل المحفظة...
 </p>
 
 <div style="overflow-x:auto">
@@ -303,8 +303,12 @@ if(event==="PASSWORD_RECOVERY"){
 el("resetPasswordModal").classList.add("open");
 el("resetPasswordStatus").textContent="أدخل كلمة المرور الجديدة لحسابك.";
 }
+
 updateAuthUI();
+loadWalletHistory();
 });
+
+
 
 el("resetPasswordForm").addEventListener("submit",async event=>{
 event.preventDefault();
@@ -368,6 +372,75 @@ if (el("chatbox").classList.contains("open")) {
 loadCustomerSupportMessages();
 }
 }, 5000);
+
+
+async function loadWalletHistory() {
+const status = el("walletHistoryStatus");
+const body = el("walletHistoryBody");
+
+if (!status || !body) return;
+
+status.textContent = "جارٍ تحميل سجل المحفظة...";
+body.replaceChildren();
+
+try {
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+
+if (!user) {
+status.textContent = "سجّل الدخول لعرض سجل المحفظة.";
+return;
+}
+
+const { data, error } = await sdnClient
+.from("wallet_requests")
+.select("request_type, amount, status, created_at")
+.eq("user_id", user.id)
+.order("created_at", { ascending: false })
+.limit(50);
+
+if (error) throw error;
+
+if (!data || data.length === 0) {
+status.textContent = "لا توجد طلبات محفوظة حتى الآن.";
+return;
+}
+
+for (const request of data) {
+const tr = document.createElement("tr");
+
+const values = [
+request.request_type === "deposit" ? "إيداع" :
+request.request_type === "withdraw" ? "سحب" :
+request.request_type,
+Number(request.amount).toFixed(3) + " د.ت",
+request.status,
+request.created_at
+? new Date(request.created_at).toLocaleString("ar-TN")
+: "—"
+ ];
+
+for (const value of values) {
+const td = document.createElement("td");
+td.style.padding = "10px";
+td.textContent = String(value ?? "—");
+tr.appendChild(td);
+}
+
+body.appendChild(tr);
+}
+
+status.textContent = "تم تحميل سجل المحفظة.";
+} catch (error) {
+status.textContent =
+"تعذر تحميل السجل. تحقق من الاتصال وإعدادات قاعدة البيانات.";
+}
+}
+
 
 function showPayment(action){
 paymentAction=action;
@@ -534,6 +607,7 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
 
