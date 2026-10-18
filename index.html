@@ -116,7 +116,41 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 <section class="section" id="wallet">
 <div class="section-head"><div><h2>👛 المحفظة</h2><p>واجهة تجريبية بالدينار التونسي</p></div></div>
 <div class="tile"><div class="balance">الرصيد التجريبي الحالي<strong id="balance2" style="font-size:28px">0.000 د.ت</strong></div><div class="wallet-actions"><button class="btn primary" onclick="showPayment('deposit')">طلب إيداع</button><button class="btn secondary" onclick="showPayment('withdraw')">طلب سحب</button></div><div class="notice">لا تنفذ هذه الأزرار أي تحويل مالي حقيقي.</div></div>
+
+
+
 </section>
+
+
+<section class="section" id="walletHistory">
+<div class="section-head">
+<div>
+<h2>📋 سجل المحفظة</h2>
+<p>متابعة طلبات المحفظة وحالاتها</p>
+</div>
+</div>
+
+<div class="tile">
+<p id="walletHistoryStatus">
+سيظهر سجل الطلبات هنا بعد ربطه بقاعدة البيانات.
+</p>
+
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;text-align:right">
+<thead>
+<tr>
+<th style="padding:10px">النوع</th>
+<th style="padding:10px">المبلغ</th>
+<th style="padding:10px">الحالة</th>
+<th style="padding:10px">التاريخ</th>
+</tr>
+</thead>
+<tbody id="walletHistoryBody"></tbody>
+</table>
+</div>
+</div>
+</section>
+
 
 <section class="section" id="support">
 <div class="section-head"><div><h2>💬 الدعم والاستفسارات</h2><p>نافذة تواصل تجريبية</p></div></div>
@@ -500,5 +534,6 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
