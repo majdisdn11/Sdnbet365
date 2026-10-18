@@ -489,10 +489,12 @@ if (error) throw error;
 status.textContent = "تم حفظ الطلب التجريبي بنجاح.";
 await loadWalletHistory();
 } catch (error) {
+console.error("Wallet request error:", error);
 status.textContent =
-"تعذر حفظ الطلب. تحقق من إعدادات قاعدة البيانات.";
+"سبب الخطأ: " + (error.message || String(error));
 }
 }
+
 
 
 function demoNotice(){
@@ -645,6 +647,7 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
 
