@@ -450,13 +450,49 @@ el("paymentStatus").textContent="";el("amount").value="";
 el("paymentModal").classList.add("open");
 }
 function closePayment(){el("paymentModal").classList.remove("open")}
-function submitPayment(){
-const amount=Number(el("amount").value);
-if(!Number.isFinite(amount)||amount<=0){
-el("paymentStatus").textContent="يرجى إدخال مبلغ صحيح للمعاينة.";return;
+
+async function submitPayment(){
+const amount = Number(el("amount").value);
+const status = el("paymentStatus");
+
+if (!Number.isFinite(amount) || amount <= 0) {
+status.textContent = "يرجى إدخال مبلغ صحيح للمعاينة.";
+return;
 }
-el("paymentStatus").textContent="للمعاينة فقط. لم يتم إنشاء طلب مالي أو تحويل أي مبلغ.";
+
+status.textContent = "جارٍ حفظ الطلب التجريبي...";
+
+try {
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+if (!userData.user) {
+status.textContent = "يرجى تسجيل الدخول أولًا.";
+return;
 }
+
+const { error } = await sdnClient
+.from("wallet_requests")
+.insert({
+user_id: userData.user.id,
+request_type: paymentAction,
+amount: amount,
+status: "pending"
+});
+
+if (error) throw error;
+
+status.textContent = "تم حفظ الطلب التجريبي بنجاح.";
+await loadWalletHistory();
+} catch (error) {
+status.textContent =
+"تعذر حفظ الطلب. تحقق من إعدادات قاعدة البيانات.";
+}
+}
+
+
 function demoNotice(){
 alert("هذه خيارات توضيحية للتصميم فقط، ولا توجد رهانات حقيقية مفعلة.");
 }
