@@ -5,407 +5,665 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1220">
-<title>SDNBet365 | لوحة الإدارة</title>
+<title>Sdnbet365 | المنصة الرياضية</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1220;--panel:#121d30;--line:#263750;--text:#f3f6fb;--muted:#a6b4c8;--green:#20c783;--gold:#f4c15d}
-{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
-main{max-width:1050px;margin:30px auto;padding:16px}
-header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
-h1,h2{margin-top:0}
-p{color:var(--muted);line-height:1.8}
-input,button{font:inherit;border-radius:9px;padding:12px;margin:5px 0}
-input{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line)}
-button{border:0;background:var(--green);color:#06251b;font-weight:bold;cursor:pointer}
-button.secondary{background:#263750;color:white}
-button:disabled{opacity:.5}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.row>{flex:1}
-.status{font-size:13px;line-height:1.8;overflow-wrap:anywhere}
-.muted{color:var(--muted)}
-.table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:650px}
-th,td{text-align:right;padding:12px;border-bottom:1px solid var(--line);font-size:13px}
-th{color:var(--gold)}
-.hidden{display:none}
-.notice{border:1px solid #6e592b;background:#2b2517;padding:12px;border-radius:10px;font-size:13px;line-height:1.8}
+:root{--bg:#0b1220;--panel:#121d30;--panel2:#17253b;--line:#263750;--text:#f3f6fb;--muted:#a6b4c8;--green:#20c783;--gold:#f4c15d}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% -20%,#1a3652 0,transparent 35%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.topbar{border-bottom:1px solid var(--line);background:#0b1220ef;position:sticky;top:0;z-index:5}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px}
+.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--green),#087d65);color:#061b17}
+.brand span{color:var(--green)}
+.navlinks,.auth-actions,.wallet-actions,.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.navlinks a{color:var(--muted);text-decoration:none;padding:10px;font-size:14px}
+.wallet{display:flex;align-items:center;gap:12px}
+.balance{font-size:12px;color:var(--muted)}
+.balance strong{display:block;color:white;font-size:15px;margin-top:3px}
+.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800}
+.primary{background:var(--green);color:#06251b}
+.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+.hero{padding:30px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+.hero-copy,.hero-card{border:1px solid var(--line);border-radius:22px;padding:28px;background:linear-gradient(145deg,#14233a,#101a2b)}
+.eyebrow{color:var(--green);font-weight:800}
+.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.35}
+.hero p,.tile p,.section-head p,.modal-card p{color:var(--muted);line-height:1.9}
+.hero-card{background:linear-gradient(145deg,#173e39,#132b36);display:flex;flex-direction:column;justify-content:space-between;min-height:230px}
+.big{font-size:36px;font-weight:900;color:var(--gold);margin:18px 0}
+.tag{display:inline-block;border-radius:7px;padding:5px 8px;background:#20364b;color:#cfe2f3;font-size:11px}
+.notice{border:1px solid #6e592b;background:#2b2517;color:#f2dca5;border-radius:12px;padding:13px;font-size:12px;line-height:1.8;margin-top:15px}
+.section{padding:22px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.section h2{margin:0;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile,.match{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:19px}
+.tile h3{margin:13px 0 7px}.emoji{font-size:28px}
+.match{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:10px}
+.team{text-align:center;font-weight:700}.vs{color:var(--muted);font-size:12px}
+.odds{display:flex;gap:7px;grid-column:1/-1}
+.odd{flex:1;background:var(--panel2);border:1px solid var(--line);color:white;border-radius:9px;padding:10px 5px}
+.odd small{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}
+.odd b{color:var(--gold)}
+.wallet-actions{margin-top:14px}
+.footer{border-top:1px solid var(--line);margin-top:30px;padding:25px 0;color:var(--muted);font-size:12px;line-height:1.9}
+.chat-launch{position:fixed;bottom:20px;left:20px;z-index:10;background:var(--green);color:#06251b;border:0;border-radius:999px;padding:14px 18px;font-weight:900}
+.chatbox{position:fixed;left:20px;bottom:82px;width:min(360px,calc(100vw - 40px));z-index:11;border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden;display:none}
+.chatbox.open{display:block}
+.chathead{padding:15px;background:#173a35;display:flex;justify-content:space-between}
+.chathead small{display:block;color:#b6d5ca;margin-top:4px}
+.x,.close-row button{background:transparent;color:white;border:0;font-size:23px}
+.chatbody{padding:15px}.bubble{padding:12px;background:var(--panel2);border-radius:12px;line-height:1.7;font-size:13px;margin-bottom:12px}
+.field{display:block;width:100%;border:1px solid var(--line);background:#0c1524;color:white;border-radius:10px;padding:11px;margin:8px 0}
+.modal{display:none;position:fixed;inset:0;z-index:20;background:#0009;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal-card{width:min(420px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.modal-card h3{margin-top:0}.modal-card .btn{width:100%;margin-top:8px}
+.close-row{display:flex;justify-content:space-between;align-items:center}
+.status{font-size:12px;color:var(--muted);line-height:1.8;margin-top:10px;overflow-wrap:anywhere}
+[hidden]{display:none!important}
+@media(max-width:760px){.navlinks{order:3;width:100%;overflow:auto;flex-wrap:nowrap}.wallet{margin-right:auto}.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero-copy,.hero-card{padding:21px}.match{gap:5px}.wallet .balance{display:none}}
 </style>
 </head>
 <body>
-<main>
-<header>
-<h1>SDNBet365 — لوحة الإدارة</h1>
-<p>إدارة طلبات المحفظة · اتصال مباشر بقاعدة Supabase</p>
-<div class="notice">هذه اللوحة لا تنفّذ تحويلات مالية. لا تعتمد أي طلب أو تغيّر رصيدًا حتى يتم إعداد إجراءات خلفية آمنة.</div>
+<header class="topbar">
+<div class="wrap nav">
+<div class="brand"><div class="logo">S</div><div>Sdn<span>bet365</span></div></div>
+<nav class="navlinks">
+<a href="#sports">الرياضة</a><a href="#casino">الكازينو</a><a href="#live">مباشر</a><a href="#wallet">المحفظة</a><a href="#support" onclick="openChat();return false">الدعم</a>
+</nav>
+<div class="wallet">
+<div class="balance">الرصيد التجريبي<strong id="balance">0.000 د.ت</strong></div>
+<div class="auth-actions">
+<button class="btn secondary" id="loginBtn" onclick="openAuth('login')">دخول</button>
+<button class="btn primary" id="registerBtn" onclick="openAuth('register')">إنشاء حساب</button>
+<button class="btn secondary" id="logoutBtn" onclick="logoutUser()" hidden>خروج</button>
+</div>
+</div>
+</div>
 </header>
 
-<section class="card" id="loginPanel">
-<h2>دخول المسؤول</h2>
-<label for="email">البريد الإلكتروني</label>
-<input id="email" type="email" autocomplete="username" placeholder="البريد الإلكتروني" required>
-<label for="password">كلمة المرور</label>
-<input id="password" type="password" autocomplete="current-password" placeholder="كلمة المرور" required>
-<div class="row">
-<button id="loginButton">تسجيل الدخول</button>
+<main class="wrap">
+<section class="hero">
+<div class="hero-copy">
+<div class="eyebrow">مرحبًا بك في Sdnbet365</div>
+<h1>كل الرياضة والترفيه<br>في مكان واحد</h1>
+<p>واجهة عربية متوافقة مع الهاتف تجمع الرياضة والألعاب والمحفظة والدعم.</p>
+<div class="hero-actions"><a class="btn primary" href="#sports">استكشف الرياضة</a><a class="btn secondary" href="#casino">اكتشف الألعاب</a></div>
 </div>
-<div id="loginStatus" class="status" role="status"></div>
+<div class="hero-card">
+<div><span class="tag">نسخة معاينة</span><div class="big">Sdnbet365</div><small>تصميم أولي قابل للتطوير.</small></div>
+<div class="notice">الرصيد والأحداث المعروضة تجريبية ولا تمثل أموالًا حقيقية.</div>
+</div>
 </section>
 
-<section class="card hidden" id="dashboard">
-<div class="row">
-<div><h2>طلبات المحفظة</h2><p id="adminInfo"></p></div>
-<div style="text-align:left"><button class="secondary" id="refreshButton">تحديث</button> <button class="secondary" id="logoutButton">خروج</button></div>
+<section class="section" id="sports">
+<div class="section-head"><div><h2>⚽ الرياضة</h2><p>أمثلة تصميمية وليست مباريات مباشرة</p></div><span class="tag">معاينة</span></div>
+<div class="match"><div class="team">🦅 الفريق الأول</div><div class="vs">مباراة تجريبية · 20:00</div><div class="team">🔴 الفريق الثاني</div><div class="odds"><button class="odd" onclick="demoNotice()"><small>فوز الأول</small><b>1.85</b></button><button class="odd" onclick="demoNotice()"><small>تعادل</small><b>3.20</b></button><button class="odd" onclick="demoNotice()"><small>فوز الثاني</small><b>2.40</b></button></div></div>
+<div class="match"><div class="team">🔵 نادي الساحل</div><div class="vs">مباراة تجريبية · 21:30</div><div class="team">🟡 نادي العاصمة</div><div class="odds"><button class="odd" onclick="demoNotice()"><small>فوز الأول</small><b>2.10</b></button><button class="odd" onclick="demoNotice()"><small>تعادل</small><b>3.00</b></button><button class="odd" onclick="demoNotice()"><small>فوز الثاني</small><b>2.05</b></button></div></div>
+</section>
+
+<section class="section" id="casino">
+<div class="section-head"><div><h2>🎰 الكازينو</h2><p>بطاقات تجريبية للتصميم فقط</p></div></div>
+<div class="grid">
+<article class="tile"><div class="emoji">🎰</div><h3>ألعاب السلوت</h3><p>مساحة مخصصة للألعاب عند اختيار مزود مناسب.</p></article>
+<article class="tile"><div class="emoji">🃏</div><h3>ألعاب الورق</h3><p>قسم قابل للتوسعة بألعاب تجريبية.</p></article>
+<article class="tile" id="live"><div class="emoji">🎡</div><h3>الكازينو المباشر</h3><p>يتطلب مزودًا واتفاقًا وترخيصًا مناسبًا.</p></article>
 </div>
-<div id="dashboardStatus" class="status" role="status"></div>
-<div class="table-wrap">
-<table>
-<thead><tr><th>رقم الطلب</th><th>معرّف اللاعب</th><th>النوع</th><th>المبلغ</th><th>طريقة الدفع</th><th>الحالة</th><th>التاريخ</th></tr></thead>
-<tbody id="requestsBody"></tbody>
-</table>
+</section>
+
+<section class="section" id="wallet">
+<div class="section-head"><div><h2>👛 المحفظة</h2><p>واجهة تجريبية بالدينار التونسي</p></div></div>
+<div class="tile"><div class="balance">الرصيد التجريبي الحالي<strong id="balance2" style="font-size:28px">0.000 د.ت</strong></div><div class="wallet-actions"><button class="btn primary" onclick="showPayment('deposit')">طلب إيداع</button><button class="btn secondary" onclick="showPayment('withdraw')">طلب سحب</button></div><div class="notice">لا تنفذ هذه الأزرار أي تحويل مالي حقيقي.</div></div>
+
+
+
+</section>
+
+
+<section class="section" id="walletHistory">
+<div class="section-head">
+<div>
+<h2>📋 سجل المحفظة</h2>
+<p>متابعة طلبات المحفظة وحالاتها</p>
 </div>
-<section class="card" id="supportPanel">
-<h2>محادثات الدعم</h2>
-<p>عرض محادثات العملاء ورسائلهم.</p>
-<div class="row">
-<button class="secondary" id="refreshSupportButton">تحديث المحادثات</button>
 </div>
-<div id="supportStatus" class="status" role="status"></div>
-<div class="table-wrap">
-<table>
+
+<div class="tile">
+<p id="walletHistoryStatus">
+جارٍ تحميل سجل المحفظة...
+</p>
+
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;text-align:right">
 <thead>
 <tr>
-<th>اسم الزائر</th>
-<th>الموضوع</th>
-<th>الحالة</th>
-<th>تاريخ الإنشاء</th>
-<th>الإجراء</th>
+<th style="padding:10px">النوع</th>
+<th style="padding:10px">المبلغ</th>
+<th style="padding:10px">الحالة</th>
+<th style="padding:10px">التاريخ</th>
 </tr>
 </thead>
-<tbody id="supportConversationsBody"></tbody>
+<tbody id="walletHistoryBody"></tbody>
 </table>
 </div>
-<h2>رسائل المحادثة</h2>
-<div id="supportMessages" class="status"></div>
-
-<div class="row">
-<input
-id="supportReplyInput"
-type="text"
-placeholder="اكتب ردك للعميل هنا..."
-/>
-<button
-type="button"
-id="supportReplyButton"
->
-إرسال الرد
-</button>
 </div>
-<div id="supportReplyStatus" class="status" role="status"></div>
-
-
 </section>
+
+
+<section class="section" id="support">
+<div class="section-head"><div><h2>💬 الدعم والاستفسارات</h2><p>نافذة تواصل تجريبية</p></div></div>
+<div class="tile"><h3>تحتاج إلى مساعدة؟</h3><p>افتح نافذة الدعم لكتابة استفسارك.</p><div class="wallet-actions"><button class="btn primary" onclick="openChat()">ابدأ محادثة الدعم</button></div></div>
 </section>
 </main>
+
+<footer class="footer"><div class="wrap">© <span id="year"></span> Sdnbet365 · نسخة معاينة.<br>الأرصدة والمباريات توضيحية، ولا توجد معاملات مالية حقيقية.</div></footer>
+
+<button class="chat-launch" onclick="openChat()">💬 الدعم المباشر</button>
+<div class="chatbox" id="chatbox" role="dialog" aria-label="الدعم">
+<div class="chathead"><div><strong>دعم Sdnbet365</strong><small>اكتب استفسارك</small></div><button class="x" onclick="closeChat()">×</button></div>
+<div class="chatbody"><div class="bubble">مرحبًا بك في دعم Sdnbet365.</div><div id="conversation"></div>
+<form id="supportForm">
+<label for="customerName">اسمك (اختياري)</label><input class="field" id="customerName" placeholder="اسمك">
+<label for="topic">نوع الاستفسار</label><select class="field" id="topic"><option>استفسار عام</option><option>مشكلة تقنية</option><option>المحفظة</option><option>اقتراح</option></select>
+<label for="message">رسالتك</label><textarea class="field" id="message" required placeholder="كيف يمكننا مساعدتك؟"></textarea>
+<button class="btn primary" type="submit">إرسال الاستفسار</button><div id="chatStatus" class="status">المحادثة تجريبية ولا ترسل الرسائل إلى الإدارة حاليًا.</div>
+</form></div></div>
+
+<div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+<div class="modal-card">
+<div class="close-row"><h3 id="authTitle">تسجيل الدخول</h3><button onclick="closeAuth()">×</button></div>
+<p id="authIntro">أدخل بيانات حسابك.</p>
+<form id="authForm">
+<label for="authEmail">البريد الإلكتروني</label><input class="field" id="authEmail" type="email" autocomplete="email" required placeholder="name@example.com">
+<label for="authPassword">كلمة المرور</label><input class="field" id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="6 أحرف على الأقل">
+<button class="btn primary" id="authSubmit" type="submit">دخول</button>
+</form>
+<div id="authStatus" class="status" role="status"></div>
+<button class="btn secondary" id="forgotPasswordBtn" type="button" onclick="sendRecoveryEmail()">نسيت كلمة المرور؟</button>
+<button class="btn secondary" id="switchAuth" type="button" onclick="switchAuthMode()">ليس لديك حساب؟ إنشاء حساب</button>
+</div></div>
+
+<div class="modal" id="resetPasswordModal" role="dialog" aria-modal="true" aria-labelledby="resetPasswordTitle">
+<div class="modal-card">
+<div class="close-row"><h3 id="resetPasswordTitle">تعيين كلمة مرور جديدة</h3><button type="button" onclick="closeResetPassword()">×</button></div>
+<p>أدخل كلمة المرور الجديدة مرتين.</p>
+<form id="resetPasswordForm">
+<label for="newPassword">كلمة المرور الجديدة</label><input class="field" id="newPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="6 أحرف على الأقل">
+<label for="confirmPassword">تأكيد كلمة المرور</label><input class="field" id="confirmPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="أعد كتابة كلمة المرور">
+<button class="btn primary" id="savePasswordBtn" type="submit">حفظ كلمة المرور</button>
+</form>
+<div id="resetPasswordStatus" class="status" role="status"></div>
+</div></div>
+
+<div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal-card"><div class="close-row"><h3 id="modalTitle">المحفظة</h3><button onclick="closePayment()">×</button></div>
+<p id="modalText">هذه الواجهة تجريبية.</p><label for="amount">المبلغ (للمعاينة فقط)</label><input class="field" id="amount" type="number" min="1" step="1" placeholder="مثال: 20">
+<button class="btn primary" onclick="submitPayment()">متابعة</button><button class="btn secondary" onclick="closePayment()">إلغاء</button><div id="paymentStatus" class="status"></div>
+</div></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-"use strict";
-
 const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const sdnClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const el=id=>document.getElementById(id);
+let authMode="login",paymentAction="deposit";
 
-const loginPanel=document.getElementById("loginPanel");
-const dashboard=document.getElementById("dashboard");
-const loginStatus=document.getElementById("loginStatus");
-const dashboardStatus=document.getElementById("dashboardStatus");
-const requestsBody=document.getElementById("requestsBody");
-let busy=false;
-
-function setBusy(value){
-busy=value;
-document.getElementById("loginButton").disabled=value;
-document.getElementById("refreshButton").disabled=value;
+function openAuth(mode){
+authMode=mode;renderAuthMode();el("authStatus").textContent="";
+el("authModal").classList.add("open");
 }
-function showMessage(el,message){el.textContent=message;}
-
-async function verifyAdmin(){
-const {data:{user},error}=await db.auth.getUser();
-if(error||!user)return false;
-const {data,error:adminError}=await db
-.from("admin_users")
-.select("user_id")
-.eq("user_id",user.id)
-.maybeSingle();
-if(adminError)throw adminError;
-return Boolean(data);
+function closeAuth(){el("authModal").classList.remove("open")}
+function switchAuthMode(){
+authMode=authMode==="login"?"register":"login";
+renderAuthMode();el("authStatus").textContent="";
+}
+function renderAuthMode(){
+const login=authMode==="login";
+el("authTitle").textContent=login?"تسجيل الدخول":"إنشاء حساب";
+el("authIntro").textContent=login?"أدخل بيانات حسابك للدخول.":"أنشئ حسابًا باستخدام بريد إلكتروني وكلمة مرور.";
+el("authSubmit").textContent=login?"دخول":"إنشاء حساب";
+el("switchAuth").textContent=login?"ليس لديك حساب؟ إنشاء حساب":"لديك حساب؟ تسجيل الدخول";
+el("authPassword").autocomplete=login?"current-password":"new-password";
+el("forgotPasswordBtn").hidden=!login;
 }
 
-async function renderRequests(){
-dashboardStatus.textContent="جارٍ تحميل الطلبات...";
-requestsBody.replaceChildren();
-
-const {data,error}=await db
-.from("wallet_requests")
-.select("id,user_id,request_type,amount,payment_method,status,created_at")
-.order("created_at",{ascending:false})
-.limit(100);
-
+async function sendRecoveryEmail(){
+const email=el("authEmail").value.trim();
+if(!email){
+el("authStatus").textContent="اكتب بريدك الإلكتروني أولًا، ثم اضغط نسيت كلمة المرور.";
+el("authEmail").focus();return;
+}
+const button=el("forgotPasswordBtn");
+button.disabled=true;el("authStatus").textContent="جارٍ إرسال رابط الاسترجاع...";
+try{
+const redirectTo=window.location.origin+window.location.pathname;
+const {error}=await sdnClient.auth.resetPasswordForEmail(email,{redirectTo});
 if(error)throw error;
-if(!data||data.length===0){
-dashboardStatus.textContent="لا توجد طلبات ظاهرة، أو أن سياسات قاعدة البيانات لا تسمح بعرضها.";
-return;
-}
-
-for(const request of data){
-const tr=document.createElement("tr");
-const values=[
-request.id,request.user_id,request.request_type,
-String(request.amount)+" د.ت",request.payment_method||"—",
-request.status,new Date(request.created_at).toLocaleString("ar-TN")
- ];
-for(const value of values){
-const td=document.createElement("td");
-td.textContent=String(value??"—");
-tr.appendChild(td);
-}
-requestsBody.appendChild(tr);
-}
-dashboardStatus.textContent="تم تحميل "+data.length+" طلبًا. العرض فقط؛ لا يتم اعتماد الطلبات أو تعديل الأرصدة.";
-}
-
-async function openDashboard(){
-setBusy(true);
-try{
-const {data:{user}}=await db.auth.getUser();
-if(!user){
-loginPanel.classList.remove("hidden");
-dashboard.classList.add("hidden");
-return;
-}
-const allowed=await verifyAdmin();
-if(!allowed){
-await db.auth.signOut();
-loginPanel.classList.remove("hidden");
-dashboard.classList.add("hidden");
-showMessage(loginStatus,"هذا الحساب غير مسجل في قائمة المسؤولين. لم يتم منح صلاحية الإدارة.");
-return;
-}
-loginPanel.classList.add("hidden");
-dashboard.classList.remove("hidden");
-document.getElementById("adminInfo").textContent="المسؤول: "+user.email;
-await renderRequests();
-await loadSupportConversations();
-
+el("authStatus").textContent="إذا كان البريد مسجلًا، فستصلك رسالة استرجاع. افتح الرسالة الجديدة.";
 }catch(error){
-showMessage(dashboardStatus,"تعذر تحميل اللوحة: "+(error.message||"خطأ غير معروف"));
-}finally{
-setBusy(false);
-}
+el("authStatus").textContent="تعذر إرسال الرسالة: "+(error.message||"خطأ غير معروف");
+}finally{button.disabled=false}
 }
 
-document.getElementById("loginButton").addEventListener("click",async()=>{
-if(busy)return;
-const email=document.getElementById("email").value.trim();
-const password=document.getElementById("password").value;
-if(!email||!password){showMessage(loginStatus,"أدخل البريد الإلكتروني وكلمة المرور.");return;}
-setBusy(true);
-showMessage(loginStatus,"جارٍ تسجيل الدخول والتحقق من صلاحية الإدارة...");
+function closeResetPassword(){el("resetPasswordModal").classList.remove("open")}
+
+async function updateAuthUI(){
 try{
-const {error}=await db.auth.signInWithPassword({email,password});
+const {data,error}=await sdnClient.auth.getSession();
 if(error)throw error;
-await openDashboard();
-}catch(error){
-showMessage(loginStatus,"تعذر تسجيل الدخول: "+(error.message||"خطأ غير معروف"));
-}finally{setBusy(false);}
-});
+const user=data.session?.user;
+el("loginBtn").hidden=!!user;
+el("registerBtn").hidden=!!user;
+el("logoutBtn").hidden=!user;
+if(user)el("authIntro").textContent="تم تسجيل الدخول: "+user.email;
+}catch(error){console.error("Session error:",error)}
+}
 
-document.getElementById("refreshButton").addEventListener("click",async()=>{
-if(busy)return;
-setBusy(true);
+async function logoutUser(){
+const {error}=await sdnClient.auth.signOut();
+if(error){alert("تعذر تسجيل الخروج: "+error.message);return}
+await updateAuthUI();alert("تم تسجيل الخروج.");
+}
+
+el("authForm").addEventListener("submit",async event=>{
+event.preventDefault();
+const status=el("authStatus");
+const email=el("authEmail").value.trim();
+const password=el("authPassword").value;
+const submit=el("authSubmit");
+submit.disabled=true;status.textContent="جارٍ التنفيذ...";
 try{
-if(!await verifyAdmin())throw new Error("تعذر التحقق من صلاحية الإدارة.");
-await renderRequests();
+let result;
+if(authMode==="register"){
+result=await sdnClient.auth.signUp({
+email,password,
+options:{emailRedirectTo:window.location.origin+window.location.pathname}
+});
+}else{
+result=await sdnClient.auth.signInWithPassword({email,password});
+}
+if(result.error)throw result.error;
+if(authMode==="register"&&!result.data.session){
+status.textContent="تم إرسال طلب إنشاء الحساب. تحقق من بريدك الإلكتروني.";
+}else{
+status.textContent=authMode==="login"?"تم تسجيل الدخول بنجاح.":"تم إنشاء الحساب.";
+await updateAuthUI();
+if(authMode==="login"||result.data.session)setTimeout(closeAuth,900);
+}
 }catch(error){
-showMessage(dashboardStatus,error.message||"تعذر تحديث الطلبات.");
-}finally{setBusy(false);}
+status.textContent="تعذر إكمال العملية: "+(error.message||"خطأ غير معروف");
+}finally{submit.disabled=false}
 });
 
-document.getElementById("logoutButton").addEventListener("click",async()=>{
-await db.auth.signOut();
-dashboard.classList.add("hidden");
-loginPanel.classList.remove("hidden");
-showMessage(loginStatus,"تم تسجيل الخروج.");
-});
-async function loadSupportConversations() {
-const status = document.getElementById("supportStatus");
-const body = document.getElementById("supportConversationsBody");
-const messages = document.getElementById("supportMessages");
+sdnClient.auth.onAuthStateChange((event,session)=>{
+if(event==="PASSWORD_RECOVERY"){
+el("resetPasswordModal").classList.add("open");
+el("resetPasswordStatus").textContent="أدخل كلمة المرور الجديدة لحسابك.";
+}
 
-status.textContent = "جارٍ تحميل المحادثات...";
+updateAuthUI();
+loadWalletHistory();
+});
+
+
+
+el("resetPasswordForm").addEventListener("submit",async event=>{
+event.preventDefault();
+const password=el("newPassword").value;
+const confirmation=el("confirmPassword").value;
+const button=el("savePasswordBtn");
+if(password.length<6){
+el("resetPasswordStatus").textContent="كلمة المرور يجب أن تتكون من 6 أحرف على الأقل.";return;
+}
+if(password!==confirmation){
+el("resetPasswordStatus").textContent="كلمتا المرور غير متطابقتين.";return;
+}
+button.disabled=true;el("resetPasswordStatus").textContent="جارٍ حفظ كلمة المرور...";
+try{
+const {data,error}=await sdnClient.auth.updateUser({password});
+if(error)throw error;
+if(!data.user)throw new Error("لم يتم تأكيد تحديث الحساب.");
+el("resetPasswordStatus").textContent="تم تغيير كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.";
+el("newPassword").value="";el("confirmPassword").value="";
+window.history.replaceState({},document.title,window.location.pathname);
+await updateAuthUI();
+}catch(error){
+el("resetPasswordStatus").textContent="تعذر تغيير كلمة المرور: "+(error.message||"خطأ غير معروف");
+}finally{button.disabled=false}
+});
+
+// إذا فتح المستخدم رابط استرجاع صالحًا، أظهر نافذة كلمة المرور الجديدة.
+(async()=>{
+const hashParams=new URLSearchParams((window.location.hash||"").replace(/^#/,""));
+const queryParams=new URLSearchParams(window.location.search);
+if(hashParams.get("type")==="recovery"||queryParams.get("type")==="recovery"){
+const {data,error}=await sdnClient.auth.getSession();
+if(error)console.error(error);
+if(data.session){
+el("resetPasswordModal").classList.add("open");
+el("resetPasswordStatus").textContent="أدخل كلمة المرور الجديدة لحسابك.";
+}
+}
+})();
+
+el("authModal").addEventListener("click",event=>{
+if(event.target.id==="authModal")closeAuth();
+});
+
+updateAuthUI();
+sdnClient.auth.getUser().then(({data,error})=>{
+el("chatStatus").textContent=error
+?"تعذر التحقق من المستخدم: "+error.message
+:"حالة المستخدم: "+(data.user?"تم التعرف على الحساب":"لا يوجد حساب مسجل الدخول");
+});
+
+
+function openChat(){
+el("chatbox").classList.add("open");
+loadCustomerSupportMessages();
+}
+
+function closeChat(){el("chatbox").classList.remove("open")}
+
+setInterval(() => {
+if (el("chatbox").classList.contains("open")) {
+loadCustomerSupportMessages();
+}
+}, 5000);
+
+
+async function loadWalletHistory() {
+
+const status = el("walletHistoryStatus");
+const body = el("walletHistoryBody");
+
+if (!status || !body) return;
+
+status.textContent = "جارٍ تحميل سجل المحفظة...";
 body.replaceChildren();
-messages.textContent = "";
 
 try {
-if (!(await verifyAdmin())) {
-throw new Error("لا توجد صلاحية لعرض محادثات الدعم.");
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+
+if (!user) {
+status.textContent = "سجّل الدخول لعرض سجل المحفظة.";
+return;
 }
 
-const { data, error } = await db
-.from("support_conversations")
-.select("id, visitor_name, topic, status, created_at")
+const { data, error } = await sdnClient
+.from("wallet_requests")
+.select("request_type, amount, status, created_at")
+.eq("user_id", user.id)
 .order("created_at", { ascending: false })
-.limit(100);
+.limit(50);
 
 if (error) throw error;
 
 if (!data || data.length === 0) {
-status.textContent =
-"لا توجد محادثات ظاهرة، أو أن سياسات الوصول تمنع عرضها.";
+status.textContent = "لا توجد طلبات محفوظة حتى الآن.";
 return;
 }
 
-for (const conversation of data) {
+for (const request of data) {
 const tr = document.createElement("tr");
 
 const values = [
-conversation.visitor_name || "زائر",
-conversation.topic || "—",
-conversation.status || "—",
-conversation.created_at
-? new Date(conversation.created_at).toLocaleString("ar-TN")
+request.request_type === "deposit" ? "إيداع" :
+request.request_type === "withdraw" ? "سحب" :
+request.request_type,
+Number(request.amount).toFixed(3) + " د.ت",
+request.status,
+request.created_at
+? new Date(request.created_at).toLocaleString("ar-TN")
 : "—"
  ];
 
 for (const value of values) {
 const td = document.createElement("td");
-td.textContent = String(value);
+td.style.padding = "10px";
+td.textContent = String(value ?? "—");
 tr.appendChild(td);
 }
 
-const actionCell = document.createElement("td");
-const button = document.createElement("button");
-button.textContent = "عرض الرسائل";
-button.addEventListener("click", () => {
-loadSupportMessages(conversation.id);
-});
-
-actionCell.appendChild(button);
-tr.appendChild(actionCell);
 body.appendChild(tr);
 }
 
-status.textContent = "تم تحميل " + data.length + " محادثة.";
+status.textContent = "تم تحميل سجل المحفظة.";
 } catch (error) {
 status.textContent =
-"تعذر تحميل المحادثات: " + (error.message || "خطأ غير معروف");
+"تعذر تحميل السجل. تحقق من الاتصال وإعدادات قاعدة البيانات.";
 }
 }
 
-async function loadSupportMessages(conversationId) {
-window.currentSupportConversationId = conversationId;
 
-const output = document.getElementById("supportMessages");
-output.textContent = "جارٍ تحميل الرسائل...";
+function showPayment(action){
+paymentAction=action;
+el("modalTitle").textContent=action==="deposit"?"طلب إيداع":"طلب سحب";
+el("modalText").textContent=action==="deposit"?"واجهة تجريبية؛ لا يتم تحصيل أي أموال.":"واجهة تجريبية؛ لا يتم تحويل أي أموال.";
+el("paymentStatus").textContent="";el("amount").value="";
+el("paymentModal").classList.add("open");
+}
+function closePayment(){el("paymentModal").classList.remove("open")}
+
+async function submitPayment(){
+const amount = Number(el("amount").value);
+const status = el("paymentStatus");
+
+if (!Number.isFinite(amount) || amount <= 0) {
+status.textContent = "يرجى إدخال مبلغ صحيح للمعاينة.";
+return;
+}
+
+status.textContent = "جارٍ حفظ الطلب التجريبي...";
 
 try {
-if (!(await verifyAdmin())) {
-throw new Error("لا توجد صلاحية لعرض الرسائل.");
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+if (!userData.user) {
+status.textContent = "يرجى تسجيل الدخول أولًا.";
+return;
 }
 
-const { data, error } = await db
-.from("support_messages")
-.select("sender_role, message, created_at")
-.eq("conversation_id", conversationId)
-.order("created_at", { ascending: true })
-.limit(200);
+const { error } = await sdnClient
+.from("wallet_requests")
+.insert({
+user_id: userData.user.id,
+request_type: paymentAction,
+amount: amount,
+payment_method: "demo",
+status: "pending"
+});
+
 
 if (error) throw error;
+
+status.textContent = "تم حفظ الطلب التجريبي بنجاح.";
+await loadWalletHistory();
+} catch (error) {
+console.error("Wallet request error:", error);
+status.textContent =
+"سبب الخطأ: " + (error.message || String(error));
+}
+}
+
+
+
+function demoNotice(){
+alert("هذه خيارات توضيحية للتصميم فقط، ولا توجد رهانات حقيقية مفعلة.");
+}
+
+async function loadCustomerSupportMessages() {
+const output = el("conversation");
+
+try {
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+if (!user) return;
+
+const { data: conversation, error: conversationError } =
+await sdnClient
+.from("support_conversations")
+.select("id")
+.eq("visitor_token", user.id)
+.maybeSingle();
+
+if (conversationError) throw conversationError;
+
+if (!conversation) {
+output.replaceChildren();
+return;
+}
+
+window.currentCustomerSupportConversationId = conversation.id;
+
+const { data: messages, error: messagesError } =
+await sdnClient
+.from("support_messages")
+.select("sender_role, message, created_at")
+.eq("conversation_id", conversation.id)
+.order("created_at", { ascending: true });
+
+if (messagesError) throw messagesError;
 
 output.replaceChildren();
 
-if (!data || data.length === 0) {
-output.textContent = "لا توجد رسائل ظاهرة في هذه المحادثة.";
-return;
-}
+for (const item of messages || []) {
+const bubble = document.createElement("div");
+bubble.className = "bubble";
 
-for (const item of data) {
-const entry = document.createElement("p");
-const time = item.created_at
-? new Date(item.created_at).toLocaleString("ar-TN")
-: "";
+const sender =
+item.sender_role === "admin" ? "الدعم" : "أنت";
 
-entry.textContent =
-"[" + time + "] " + (item.sender_role || "مرسل") +
-": " + (item.message || "");
-
-output.appendChild(entry);
+bubble.textContent = sender + ": " + item.message;
+output.appendChild(bubble);
 }
 } catch (error) {
-output.textContent =
-"تعذر تحميل الرسائل: " + (error.message || "خطأ غير معروف");
+console.error("Support messages error:", error);
+el("chatStatus").textContent =
+"خطأ الدعم: " + (error.message || "خطأ غير معروف");
+
 }
 }
 
-document
-.getElementById("refreshSupportButton")
-.addEventListener("click", loadSupportConversations);
 
-async function sendSupportReply(conversationId) {
-const input = document.getElementById("supportReplyInput");
-const status = document.getElementById("supportReplyStatus");
-const message = input.value.trim();
+el("supportForm").addEventListener("submit", async event => {
+event.preventDefault();
+
+const status = el("chatStatus");
+const button = el("supportForm").querySelector('button[type="submit"]');
+const name = el("customerName").value.trim() || "اللاعب";
+const topic = el("topic").value;
+const message = el("message").value.trim();
 
 if (!message) {
-status.textContent = "اكتب الرد أولًا.";
+status.textContent = "يرجى كتابة رسالتك أولًا.";
 return;
 }
 
-status.textContent = "جارٍ إرسال الرد...";
+button.disabled = true;
+status.textContent = "جارٍ إرسال رسالتك...";
 
 try {
-if (!(await verifyAdmin())) {
-throw new Error("لا توجد صلاحية لإرسال الرد.");
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+
+if (!user) {
+status.textContent = "يرجى تسجيل الدخول قبل استخدام الدعم.";
+return;
 }
 
-const { error } = await db
+let { data: conversation, error: conversationError } =
+await sdnClient
+.from("support_conversations")
+.select("id")
+.eq("visitor_token", user.id)
+.maybeSingle();
+
+if (conversationError) throw conversationError;
+console.log("CUSTOMER CONVERSATION:", conversation);
+
+
+
+
+if (!conversation) {
+const result = await sdnClient
+.from("support_conversations")
+.insert({
+visitor_token: user.id,
+visitor_name: name,
+topic: topic,
+status: "open"
+})
+.select("id")
+.single();
+
+if (result.error) throw result.error;
+
+conversation = result.data;
+}
+
+const { error: messageError } = await sdnClient
 .from("support_messages")
 .insert({
-conversation_id: conversationId,
-sender_role: "admin",
+conversation_id: conversation.id,
+sender_role: "visitor",
 message: message
 });
 
-if (error) throw error;
+if (messageError) {
+console.error("SUPPORT INSERT ERROR:", messageError);
+throw messageError;
+}
 
-input.value = "";
-status.textContent = "تم إرسال الرد.";
-await loadSupportMessages(conversationId);
+
+const bubble = document.createElement("div");
+bubble.className = "bubble";
+bubble.style.marginTop = "10px";
+bubble.textContent = name + " · " + topic + ": " + message;
+el("conversation").appendChild(bubble);
+
+el("message").value = "";
+status.textContent = "تم الإرسال. المحادثة: " + conversation.id;
+
+
 } catch (error) {
+console.error("Support message error:", error);
 status.textContent =
-"تعذر إرسال الرد: " + (error.message || "خطأ غير معروف");
+"تعذر إرسال الرسالة: " + (error.message || "خطأ غير معروف");
+} finally {
+button.disabled = false;
 }
-}
-
-
-
-document
-.getElementById("supportReplyButton")
-.addEventListener("click", () => {
-const conversationId = window.currentSupportConversationId;
-
-if (!conversationId) {
-document.getElementById("supportReplyStatus").textContent =
-"اختر محادثة أولًا عبر زر عرض الرسائل.";
-return;
-}
-
-sendSupportReply(conversationId);
 });
 
-
-db.auth.onAuthStateChange(()=>{});
+el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
