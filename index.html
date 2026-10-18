@@ -640,7 +640,8 @@ bubble.textContent = name + " · " + topic + ": " + message;
 el("conversation").appendChild(bubble);
 
 el("message").value = "";
-status.textContent = "تم إرسال رسالتك إلى الدعم بنجاح.";
+status.textContent = "تم الإرسال. المحادثة: " + conversation.id;
+
 
 } catch (error) {
 console.error("Support message error:", error);
