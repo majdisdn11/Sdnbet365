@@ -323,8 +323,18 @@ el("chatStatus").textContent=error
 });
 
 
-function openChat(){el("chatbox").classList.add("open")}
+function openChat(){
+el("chatbox").classList.add("open");
+loadCustomerSupportMessages();
+}
+
 function closeChat(){el("chatbox").classList.remove("open")}
+setInterval(() => {
+if (el("chatbox").classList.contains("open")) {
+loadCustomerSupportMessages();
+}
+}, 5000);
+
 function showPayment(action){
 paymentAction=action;
 el("modalTitle").textContent=action==="deposit"?"طلب إيداع":"طلب سحب";
@@ -343,6 +353,65 @@ el("paymentStatus").textContent="للمعاينة فقط. لم يتم إنشاء
 function demoNotice(){
 alert("هذه خيارات توضيحية للتصميم فقط، ولا توجد رهانات حقيقية مفعلة.");
 }
+
+async function loadCustomerSupportMessages() {
+const output = el("conversation");
+
+try {
+const { data: userData, error: userError } =
+await sdnClient.auth.getUser();
+
+if (userError) throw userError;
+
+const user = userData.user;
+if (!user) return;
+
+const { data: conversation, error: conversationError } =
+await sdnClient
+.from("support_conversations")
+.select("id")
+.eq("visitor_token", user.id)
+.maybeSingle();
+
+if (conversationError) throw conversationError;
+
+if (!conversation) {
+output.replaceChildren();
+return;
+}
+
+window.currentCustomerSupportConversationId = conversation.id;
+
+const { data: messages, error: messagesError } =
+await sdnClient
+.from("support_messages")
+.select("sender_role, message, created_at")
+.eq("conversation_id", conversation.id)
+.order("created_at", { ascending: true });
+
+if (messagesError) throw messagesError;
+
+output.replaceChildren();
+
+for (const item of messages || []) {
+const bubble = document.createElement("div");
+bubble.className = "bubble";
+
+const sender =
+item.sender_role === "admin" ? "الدعم" : "أنت";
+
+bubble.textContent = sender + ": " + item.message;
+output.appendChild(bubble);
+}
+} catch (error) {
+console.error("Support messages error:", error);
+el("chatStatus").textContent =
+"تعذر تحميل رسائل الدعم: " +
+(error.message || "خطأ غير معروف");
+}
+}
+
+
 el("supportForm").addEventListener("submit", async event => {
 event.preventDefault();
 
@@ -431,3 +500,5 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
+
