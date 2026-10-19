@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1220">
 <title>Sdnbet365 | لوحة الإدارة</title>
+
 <style>
 :root{
 --bg:#0b1220;--panel:#121d30;--panel2:#17253b;
@@ -12,13 +13,11 @@
 --green:#20c783;--gold:#f4c15d;--red:#ff7272;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-font-family:Tahoma,Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
-header{padding:18px;border-bottom:1px solid var(--line);
-background:#0e192a;position:sticky;top:0;z-index:3}
+header{padding:18px;border-bottom:1px solid var(--line);background:#0e192a;position:sticky;top:0;z-index:3}
 .wrap{max-width:1200px;margin:auto;padding:0 16px}
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .brand{font-size:21px;font-weight:bold}
@@ -29,20 +28,16 @@ button,.btn{border:0;border-radius:9px;padding:11px 14px;font-weight:bold}
 .secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
 .danger{background:#51272d;color:#ffdede;border:1px solid #743840}
 main{padding-top:22px;padding-bottom:50px}
-.card{background:var(--panel);border:1px solid var(--line);
-border-radius:15px;padding:17px;margin-bottom:16px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;margin-bottom:16px;min-width:0}
 h1{font-size:25px;margin:0 0 8px}
 h2{font-size:19px;margin:0 0 14px}
 h3{font-size:16px}
-input,textarea,select{width:100%;padding:12px;margin:7px 0;
-border:1px solid var(--line);border-radius:9px;
-background:#0c1524;color:var(--text)}
+input,textarea,select{width:100%;padding:12px;margin:7px 0;border:1px solid var(--line);border-radius:9px;background:#0c1524;color:var(--text)}
 textarea{min-height:95px;resize:vertical}
 label{font-size:13px;color:var(--muted)}
 .login{max-width:440px;margin:35px auto}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.stat{background:var(--panel2);border:1px solid var(--line);
-padding:16px;border-radius:12px;overflow-wrap:anywhere}
+.stat{background:var(--panel2);border:1px solid var(--line);padding:16px;border-radius:12px;overflow-wrap:anywhere}
 .stat strong{display:block;font-size:25px;color:var(--green);margin-top:8px}
 .tabs{display:flex;gap:8px;overflow-x:auto;margin:20px 0}
 .tabs button{white-space:nowrap}
@@ -52,15 +47,11 @@ table{width:100%;border-collapse:collapse;text-align:right;font-size:13px}
 th,td{padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
 th{color:var(--muted)}
 td button{margin:3px;padding:8px 10px;font-size:12px}
-.status{font-size:13px;line-height:1.9;overflow-wrap:anywhere;
-white-space:pre-wrap;color:var(--muted);margin-top:10px}
+.status{font-size:13px;line-height:1.9;overflow-wrap:anywhere;white-space:pre-wrap;color:var(--muted);margin-top:10px}
 .error{color:var(--red)}
 .good{color:var(--green)}
-.badge{display:inline-block;padding:5px 8px;border-radius:7px;
-background:var(--panel2);font-size:12px}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:15px}
-.item{padding:12px;border:1px solid var(--line);border-radius:10px;
-margin-bottom:9px;overflow-wrap:anywhere}
+.item{padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:9px;overflow-wrap:anywhere}
 .item button{margin-top:8px}
 .hidden{display:none!important}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
@@ -73,18 +64,20 @@ h1{font-size:22px}
 }
 </style>
 </head>
+
 <body>
 <header>
 <div class="wrap header-row">
 <div>
 <div class="brand">Sdn<span>bet365</span> | الإدارة</div>
-<div class="small" id="accountLabel">التحقق من الحساب...</div>
+<div class="small" id="accountLabel">جارٍ الاتصال والتحقق من الحساب...</div>
 </div>
 <button id="logoutBtn" class="secondary hidden" type="button">تسجيل الخروج</button>
 </div>
 </header>
 
 <main class="wrap">
+
 <section id="loginPanel" class="card login hidden">
 <h1>دخول المدير</h1>
 <p class="small">سجّل الدخول بحساب المدير الموجود في Supabase.</p>
@@ -99,16 +92,17 @@ h1{font-size:22px}
 </section>
 
 <section id="deniedPanel" class="card hidden">
-<h2>لا توجد صلاحية إدارية</h2>
+<h2>تعذر الدخول إلى لوحة الإدارة</h2>
 <p id="deniedText" class="status error"></p>
-<p class="small">تأكد من وجود حسابك في جدول admin_users ومن أن سياسات قاعدة البيانات تسمح للمدير بالوصول.</p>
+<p class="small">تأكد من تسجيل الدخول الصحيح ومن صلاحيات جدول admin_users في Supabase.</p>
 <button id="deniedLogout" class="secondary" type="button">تسجيل الخروج</button>
 </section>
 
 <section id="dashboard" class="hidden">
+
 <div class="card">
 <h1>لوحة تحكم المدير</h1>
-<p class="small">إدارة الطلبات ومحادثات الدعم. كل إجراء يعرض نتيجته من قاعدة البيانات.</p>
+<p class="small">إدارة طلبات المحفظة ومحادثات الدعم.</p>
 <div class="actions">
 <button id="refreshBtn" class="primary" type="button">تحديث البيانات</button>
 </div>
@@ -130,507 +124,11 @@ h1{font-size:22px}
 
 <section id="tab-overview" class="card">
 <h2>نظرة عامة</h2>
-<p class="small">الأرقام التالية تعتمد على السجلات التي تسمح صلاحياتك بقراءتها.</p>
+<p class="small">الأرقام تعتمد على السجلات التي تسمح صلاحياتك بقراءتها.</p>
 <div id="overviewStatus" class="status">اضغط تحديث البيانات.</div>
 </section>
 
 <section id="tab-wallet" class="card hidden">
 <h2>طلبات المحفظة</h2>
-<p class="small">راجع بيانات الطلب قبل تغيير حالته. تغيير الحالة هنا ليس تحويلًا ماليًا.</p>
-<div class="actions">
-<button class="secondary" id="allWalletBtn" type="button">كل الطلبات</button>
-<button class="secondary" id="pendingWalletBtn" type="button">المعلّقة فقط</button>
-</div>
-<div id="walletStatus" class="status"></div>
-<div class="table-wrap">
-<table>
-<thead><tr>
-<th>المستخدم</th><th>النوع</th><th>المبلغ</th>
-<th>الوسيلة</th><th>الحالة</th><th>التاريخ</th><th>الإجراء</th>
-</tr></thead>
-<tbody id="walletBody"></tbody>
-</table>
-</div>
-</section>
-
-<section id="tab-support" class="card hidden">
-<h2>محادثات الدعم الفني</h2>
-<div class="layout">
-<div>
-<button id="refreshSupportBtn" class="secondary" type="button">تحديث المحادثات</button>
-<div id="supportStatus" class="status"></div>
-<div id="conversationList"></div>
-</div>
-<div>
-<h3 id="selectedConversationTitle">اختر محادثة</h3>
-<div id="messagesList"></div>
-<form id="replyForm">
-<label for="replyText">الرد على العميل</label>
-<textarea id="replyText" required placeholder="اكتب ردك هنا"></textarea>
-<button class="primary" id="replyBtn" type="submit" disabled>إرسال الرد</button>
-</form>
-<div id="replyStatus" class="status"></div>
-</div>
-</div>
-</section>
-</section>
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-"use strict";
-
-const SUPABASE_URL = "https://bjzowejwvhicgmphkwkk.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
-
-const db = window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY
-);
-
-const $` = id => document.getElementById(id);
-let currentUser = null;
-let selectedConversationId = null;
-let walletCache = [];
-let conversationsCache = [];
-let walletPendingOnly = false;
-let busy = false;
-
-function message(id, text, isError=false) {
-const node = `$(id);
-if (!node) return;
-node.textContent = text || "";
-node.classList.toggle("error", !!isError);
-node.classList.toggle("good", !isError && !!text);
-}
-
-function show(id, visible) {
-$`(id).classList.toggle("hidden", !visible);
-}
-
-function safeDate(value) {
-if (!value) return "—";
-const date = new Date(value);
-return Number.isNaN(date.getTime())
-? "—" : date.toLocaleString("ar-TN");
-}
-
-function amountText(value) {
-const number = Number(value);
-return Number.isFinite(number) ? number.toFixed(3) + " د.ت" : "—";
-}
-
-function requestType(value) {
-if (value === "deposit") return "إيداع";
-if (value === "withdraw") return "سحب";
-return value || "غير محدد";
-}
-
-function statusText(value) {
-const labels = {
-pending:"قيد المراجعة",
-approved:"مقبول",
-rejected:"مرفوض",
-completed:"مكتمل",
-open:"مفتوحة",
-closed:"مغلقة"
-};
-return labels[value] || value || "غير محدد";
-}
-
-function addCell(row, value) {
-const cell = document.createElement("td");
-cell.textContent = String(value ?? "—");
-row.appendChild(cell);
-return cell;
-}
-
-function addButton(parent, label, className, handler) {
-const button = document.createElement("button");
-button.type = "button";
-button.textContent = label;
-button.className = className;
-button.addEventListener("click", handler);
-parent.appendChild(button);
-return button;
-}
-
-async function checkAdmin(user) {
-// يفترض هذا الجزء أن admin_users يحتوي على عمود user_id.
-const { data, error } = await db
-.from("admin_users")
-.select("user_id")
-.eq("user_id", user.id)
-.maybeSingle();
-
-if (error) throw error;
-return !!data;
-}
-
-async function start() {
-show("dashboard", false);
-show("deniedPanel", false);
-show("loginPanel", false);
-show("logoutBtn", false);
-message("mainStatus", "");
-
-const { data, error } = await db.auth.getSession();
-if (error) {
-show("loginPanel", true);
-message("loginStatus", "تعذر التحقق من الجلسة: " + error.message, true);
-return;
-}
-
-const user = data.session?.user;
-if (!user) {
-currentUser = null;
-`$("accountLabel").textContent = "يرجى تسجيل الدخول";
-show("loginPanel", true);
-return;
-}
-
-currentUser = user;
-$`("accountLabel").textContent = "التحقق من صلاحيات: " + (user.email || user.id);
-show("logoutBtn", true);
-
-try {
-const isAdmin = await checkAdmin(user);
-if (!isAdmin) {
-show("deniedPanel", true);
-message("deniedText", "هذا الحساب غير موجود كمدير في admin_users.", true);
-return;
-}
-
-show("dashboard", true);
-message("mainStatus", "تم التحقق من وجود حساب المدير. جارٍ تحميل البيانات...");
-await refreshAll();
-} catch (error) {
-show("deniedPanel", true);
-message("deniedText",
-"تعذر التحقق من صلاحيات المدير.\n" +
-(error.message || String(error)) +
-"\nتحقق من اسم عمود user_id وسياسات RLS في جدول admin_users.", true);
-}
-}
-
-async function refreshAll() {
-if (!currentUser || busy) return;
-busy = true;
-`$("refreshBtn").disabled = true;
-message("mainStatus", "جارٍ تحديث البيانات...");
-
-try {
-await Promise.all([loadWallet(), loadConversations()]);
-message("mainStatus", "انتهى التحديث. راجع رسائل الأقسام لأي أخطاء.");
-updateStats();
-} catch (error) {
-message("mainStatus", "تعذر تحديث بعض البيانات: " + (error.message || error), true);
-} finally {
-busy = false;
-$`("refreshBtn").disabled = false;
-}
-}
-
-async function loadWallet() {
-message("walletStatus", "جارٍ تحميل طلبات المحفظة...");
-`$("walletBody").replaceChildren();
-
-const { data, error } = await db
-.from("wallet_requests")
-.select("id,user_id,request_type,amount,payment_method,status,created_at")
-.order("created_at", { ascending:false })
-.limit(200);
-
-if (error) {
-walletCache = [];
-message("walletStatus",
-"تعذر قراءة طلبات المحفظة: " + error.message +
-"\nقد تحتاج إلى مراجعة سياسات RLS وصلاحية قراءة الجدول.", true);
-updateStats();
-return;
-}
-
-walletCache = data || [];
-renderWallet();
-updateStats();
-}
-
-function renderWallet() {
-const body = $`("walletBody");
-body.replaceChildren();
-
-const rows = walletPendingOnly
-? walletCache.filter(item => item.status === "pending")
-: walletCache;
-
-if (!rows.length) {
-message("walletStatus", "لا توجد طلبات مطابقة للعرض.");
-return;
-}
-
-message("walletStatus", "عدد الطلبات المعروضة: " + rows.length);
-
-for (const item of rows) {
-const tr = document.createElement("tr");
-addCell(tr, item.user_id);
-addCell(tr, requestType(item.request_type));
-addCell(tr, amountText(item.amount));
-addCell(tr, item.payment_method || "—");
-addCell(tr, statusText(item.status));
-addCell(tr, safeDate(item.created_at));
-
-const actions = document.createElement("td");
-
-if (item.status === "pending") {
-addButton(actions, "قبول", "primary", () =>
-updateWalletStatus(item, "approved"));
-addButton(actions, "رفض", "danger", () =>
-updateWalletStatus(item, "rejected"));
-} else {
-actions.textContent = "لا يوجد إجراء";
-}
-
-tr.appendChild(actions);
-body.appendChild(tr);
-}
-}
-
-async function updateWalletStatus(item, nextStatus) {
-const actionLabel = nextStatus === "approved" ? "قبول" : "رفض";
-if (!confirm("هل تريد " + actionLabel + " الطلب؟\n" +
-"المبلغ: " + amountText(item.amount) +
-"\nهذا يغيّر حالة السجل فقط، ولا ينفذ تحويلًا ماليًا.")) return;
-
-message("walletStatus", "جارٍ تحديث الطلب...");
-try {
-const { data, error } = await db
-.from("wallet_requests")
-.update({status:nextStatus})
-.eq("id", item.id)
-.eq("status", "pending")
-.select("id,status");
-
-if (error) throw error;
-if (!data || data.length === 0) {
-throw new Error("لم يتغير الطلب. قد لا تملك صلاحية التحديث أو أن حالته تغيرت.");
-}
-
-message("walletStatus", "تم تحديث حالة الطلب إلى: " + statusText(nextStatus));
-await loadWallet();
-} catch (error) {
-message("walletStatus",
-"فشل تحديث الطلب: " + (error.message || String(error)) +
-"\nلم يتم تأكيد أي تحويل مالي.", true);
-}
-}
-
-async function loadConversations() {
-message("supportStatus", "جارٍ تحميل المحادثات...");
-`$("conversationList").replaceChildren();
-
-const { data, error } = await db
-.from("support_conversations")
-.select("id,visitor_token,visitor_name,topic,status,created_at,updated_at")
-.order("updated_at", {ascending:false})
-.limit(100);
-
-if (error) {
-conversationsCache = [];
-message("supportStatus", "تعذر قراءة المحادثات: " + error.message, true);
-updateStats();
-return;
-}
-
-conversationsCache = data || [];
-renderConversations();
-updateStats();
-}
-
-function renderConversations() {
-const list = $`("conversationList");
-list.replaceChildren();
-
-if (!conversationsCache.length) {
-message("supportStatus", "لا توجد محادثات، أو لا توجد سجلات يمكن عرضها.");
-return;
-}
-
-message("supportStatus", "عدد المحادثات: " + conversationsCache.length);
-
-for (const conv of conversationsCache) {
-const item = document.createElement("div");
-item.className = "item";
-
-const title = document.createElement("strong");
-title.textContent = conv.visitor_name || "العميل";
-item.appendChild(title);
-
-const details = document.createElement("p");
-details.className = "small";
-details.textContent =
-(conv.topic || "استفسار عام") + " · " +
-statusText(conv.status) + "\n" + safeDate(conv.created_at);
-item.appendChild(details);
-
-addButton(item, "فتح المحادثة", "secondary", () => openConversation(conv));
-list.appendChild(item);
-}
-}
-
-async function openConversation(conv) {
-selectedConversationId = conv.id;
-$("selectedConversationTitle").textContent = (conv.visitor_name || "العميل") + " — " + (conv.topic || "استفسار عام"); $("replyBtn").disabled = false;
-`$("messagesList").replaceChildren();
-message("replyStatus", "جارٍ تحميل الرسائل...");
-
-const { data, error } = await db
-.from("support_messages")
-.select("id,sender_role,message,created_at")
-.eq("conversation_id", conv.id)
-.order("created_at", {ascending:true})
-.limit(300);
-
-if (error) {
-message("replyStatus", "تعذر تحميل الرسائل: " + error.message, true);
-return;
-}
-
-$`("messagesList").replaceChildren();
-
-for (const msg of data || []) {
-const bubble = document.createElement("div");
-bubble.className = "item";
-
-const sender = document.createElement("strong");
-sender.textContent = msg.sender_role === "admin" ? "الدعم" :
-msg.sender_role === "visitor" ? "العميل" : (msg.sender_role || "مرسل");
-bubble.appendChild(sender);
-
-const content = document.createElement("p");
-content.textContent = msg.message || "";
-content.style.whiteSpace = "pre-wrap";
-bubble.appendChild(content);
-
-const time = document.createElement("div");
-time.className = "small";
-time.textContent = safeDate(msg.created_at);
-bubble.appendChild(time);
-
-`$("messagesList").appendChild(bubble);
-}
-
-message("replyStatus", "تم تحميل الرسائل.");
-}
-
-$`("replyForm").addEventListener("submit", async event => {
-event.preventDefault();
-
-if (!selectedConversationId || !currentUser) {
-message("replyStatus", "اختر محادثة أولًا.", true);
-return;
-}
-
-const text = `$("replyText").value.trim();
-if (!text) {
-message("replyStatus", "اكتب الرد أولًا.", true);
-return;
-}
-
-$`("replyBtn").disabled = true;
-message("replyStatus", "جارٍ إرسال الرد...");
-
-try {
-const { error } = await db
-.from("support_messages")
-.insert({
-conversation_id:selectedConversationId,
-sender_role:"admin",
-message:text
-});
-
-if (error) throw error;
-
-$("replyText").value = ""; message("replyStatus", "تم حفظ الرد في قاعدة البيانات."); const conv = conversationsCache.find(c =&gt; c.id === selectedConversationId); if (conv) await openConversation(conv); } catch (error) { message("replyStatus", "تعذر إرسال الرد: " + (error.message || String(error)) + "\nتحقق من سياسة الإدراج في support_messages.", true); } finally { $("replyBtn").disabled = !selectedConversationId;
-}
-});
-
-function updateStats() {
-$("depositCount").textContent = walletCache.filter(x =&gt; x.request_type === "deposit").length; $("withdrawCount").textContent =
-walletCache.filter(x => x.request_type === "withdraw").length;
-$("conversationCount").textContent = conversationsCache.length; $("pendingCount").textContent =
-walletCache.filter(x => x.status === "pending").length;
-
-`$("overviewStatus").textContent =
-"طلبات المحفظة المحمّلة: " + walletCache.length +
-"\nطلبات الإيداع: " +
-walletCache.filter(x => x.request_type === "deposit").length +
-"\nطلبات السحب: " +
-walletCache.filter(x => x.request_type === "withdraw").length +
-"\nالطلبات المعلّقة: " +
-walletCache.filter(x => x.status === "pending").length +
-"\nمحادثات الدعم: " + conversationsCache.length;
-}
-
-document.querySelectorAll("[data-tab]").forEach(button => {
-button.addEventListener("click", () => {
-document.querySelectorAll("[data-tab]").forEach(b =>
-b.classList.toggle("active", b === button));
-
-["overview","wallet","support"].forEach(tab =>
-show("tab-" + tab, button.dataset.tab === tab));
-});
-});
-
-$`("allWalletBtn").addEventListener("click", () => {
-walletPendingOnly = false;
-renderWallet();
-});
-
-`$("pendingWalletBtn").addEventListener("click", () => {
-walletPendingOnly = true;
-renderWallet();
-});
-
- ("refreshSupportBtn").addEventListener("click", loadConversations);
-
-latex
-("loginForm").addEventListener("submit", async event =&gt; { event.preventDefault(); const button = 
-
-("loginBtn");
-button.disabled = true;
-message("loginStatus", "جارٍ تسجيل الدخول...");
-
-try {
-const { error } = await db.auth.signInWithPassword({
-email: ("password").value
-});
-
-if (error) throw error;
-await start();
-} catch (error) {
-message("loginStatus", "فشل تسجيل الدخول: " +
-(error.message || String(error)), true);
-} finally {
-button.disabled = false;
-}
-});
-
-async function logout() {
-await db.auth.signOut();
-currentUser = null;
-selectedConversationId = null;
-await start();
-}
-
- ("deniedLogout").addEventListener("click", logout);
-
-db.auth.onAuthStateChange(() => {
-// تأخير قصير لتجنب استدعاءات متزامنة مع تحديث الجلسة.
-setTimeout(() => start(), 0);
-});
-
-start();
-</script>
-</body>
-</html>
+<p class="small">تغيير حالة الطلب لا ينفذ تحويلًا ماليًا.</p>
+<div class="actions
