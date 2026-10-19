@@ -3,11 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08111f">
+<meta name="theme-color" content="#07101d">
 <title>Sdnbet365 | المنصة الرياضية</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 :root{
 --bg:#07101d;
@@ -17,11 +21,14 @@
 --text:#f5f7fb;
 --muted:#9eacbd;
 --green:#20c77a;
---green2:#13a965;
 --red:#ef5350;
 --yellow:#f4c542;
 --blue:#3182f6;
 --shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -29,19 +36,37 @@ font-family:Arial,Tahoma,sans-serif;
 background:var(--bg);
 color:var(--text);
 min-height:100vh;
+overflow-x:hidden;
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
+button,
+input,
+select,
+textarea{
+font:inherit;
+}
 
-.container{width:min(1180px,92%);margin:auto}
+button{
+cursor:pointer;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+.container{
+width:min(1180px,92%);
+margin:auto;
+}
+
+/* HEADER */
 
 header{
 position:sticky;
 top:0;
 z-index:100;
-background:rgba(7,16,29,.96);
+background:rgba(7,16,29,.97);
 backdrop-filter:blur(14px);
 border-bottom:1px solid var(--border);
 }
@@ -55,7 +80,7 @@ gap:15px;
 }
 
 .logo{
-font-size:24px;
+font-size:25px;
 font-weight:900;
 color:var(--green);
 white-space:nowrap;
@@ -64,12 +89,17 @@ white-space:nowrap;
 .navlinks{
 display:flex;
 align-items:center;
-gap:8px;
-overflow:auto;
+gap:5px;
+overflow-x:auto;
+scrollbar-width:none;
+}
+
+.navlinks::-webkit-scrollbar{
+display:none;
 }
 
 .navlinks a{
-padding:10px 13px;
+padding:10px 12px;
 color:#dbe5f1;
 border-radius:9px;
 white-space:nowrap;
@@ -86,6 +116,23 @@ gap:8px;
 white-space:nowrap;
 }
 
+.userArea{
+display:flex;
+align-items:center;
+gap:8px;
+white-space:nowrap;
+}
+
+.userName{
+color:#dbe6f2;
+font-size:14px;
+max-width:210px;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+/* BUTTONS */
+
 .btn{
 border:0;
 border-radius:10px;
@@ -95,7 +142,9 @@ background:var(--panel2);
 border:1px solid var(--border);
 }
 
-.btn:hover{filter:brightness(1.1)}
+.btn:hover{
+filter:brightness(1.1);
+}
 
 .btn-primary{
 background:var(--green);
@@ -120,18 +169,24 @@ color:#171000;
 border-color:var(--yellow);
 }
 
-.hidden{display:none!important}
+.hidden{
+display:none!important;
+}
 
-.hero{padding:70px 0 45px}
+/* HERO */
+
+.hero{
+padding:60px 0 45px;
+}
 
 .heroGrid{
 display:grid;
 grid-template-columns:1.4fr .8fr;
 gap:25px;
-align-items:stretch;
 }
 
-.heroCard,.balanceCard{
+.heroCard,
+.balanceCard{
 background:linear-gradient(145deg,#112238,#0d1828);
 border:1px solid var(--border);
 border-radius:22px;
@@ -144,7 +199,9 @@ font-size:clamp(30px,6vw,54px);
 margin-bottom:15px;
 }
 
-.hero h1 span{color:var(--green)}
+.hero h1 span{
+color:var(--green);
+}
 
 .hero p{
 color:var(--muted);
@@ -184,16 +241,26 @@ margin-top:14px;
 line-height:1.7;
 }
 
-section{padding:35px 0}
+/* SECTIONS */
 
-.sectionTitle{margin-bottom:22px}
+section{
+padding:35px 0;
+}
+
+.sectionTitle{
+margin-bottom:22px;
+}
 
 .sectionTitle h2{
 font-size:28px;
 margin-bottom:7px;
 }
 
-.sectionTitle p{color:var(--muted)}
+.sectionTitle p{
+color:var(--muted);
+}
+
+/* CARDS */
 
 .cards{
 display:grid;
@@ -213,14 +280,20 @@ font-size:35px;
 margin-bottom:13px;
 }
 
-.card h3{margin-bottom:8px}
+.card h3{
+margin-bottom:8px;
+}
 
 .card p{
 color:var(--muted);
 line-height:1.7;
 }
 
-.card .btn{margin-top:18px}
+.card .btn{
+margin-top:18px;
+}
+
+/* MATCHES */
 
 .matches{
 display:grid;
@@ -255,7 +328,9 @@ text-align:center;
 font-weight:800;
 }
 
-.vs{color:var(--muted)}
+.vs{
+color:var(--muted);
+}
 
 .odds{
 display:grid;
@@ -279,6 +354,8 @@ font-size:12px;
 margin-bottom:4px;
 }
 
+/* WALLET */
+
 .walletGrid{
 display:grid;
 grid-template-columns:1fr 1.3fr;
@@ -300,7 +377,9 @@ margin:15px 0;
 direction:ltr;
 }
 
-.formGroup{margin-bottom:15px}
+.formGroup{
+margin-bottom:15px;
+}
 
 .formGroup label{
 display:block;
@@ -326,12 +405,6 @@ outline:none;
 border-color:var(--green);
 }
 
-.walletButtons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
 .notice{
 background:#182333;
 border:1px solid #33445a;
@@ -343,7 +416,11 @@ font-size:14px;
 margin-bottom:17px;
 }
 
-.tableWrap{overflow:auto}
+/* TABLE */
+
+.tableWrap{
+overflow:auto;
+}
 
 table{
 width:100%;
@@ -351,7 +428,8 @@ border-collapse:collapse;
 min-width:650px;
 }
 
-th,td{
+th,
+td{
 padding:13px 10px;
 border-bottom:1px solid var(--border);
 text-align:right;
@@ -362,7 +440,9 @@ color:#c9d4e1;
 background:#132237;
 }
 
-td{color:#dce4ee}
+td{
+color:#dce4ee;
+}
 
 .status{
 display:inline-block;
@@ -391,6 +471,8 @@ color:#ff7d7a;
 background:#26313e;
 color:#adb8c5;
 }
+
+/* SUPPORT */
 
 .supportCard{
 background:var(--panel);
@@ -432,6 +514,8 @@ font-size:11px;
 margin-top:4px;
 }
 
+/* MODAL */
+
 .modal{
 position:fixed;
 inset:0;
@@ -443,7 +527,9 @@ justify-content:center;
 padding:15px;
 }
 
-.modal.show{display:flex}
+.modal.show{
+display:flex;
+}
 
 .modalBox{
 width:min(500px,100%);
@@ -470,16 +556,7 @@ color:#aeb9c7;
 font-size:27px;
 }
 
-.userArea{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.userName{
-color:#dbe6f2;
-font-size:14px;
-}
+/* TOAST */
 
 .toast{
 position:fixed;
@@ -497,7 +574,11 @@ display:none;
 text-align:center;
 }
 
-.toast.show{display:block}
+.toast.show{
+display:block;
+}
+
+/* FOOTER */
 
 footer{
 margin-top:45px;
@@ -507,36 +588,180 @@ color:var(--muted);
 text-align:center;
 }
 
+/* DESKTOP */
+
 @media(max-width:850px){
-.heroGrid,.walletGrid{grid-template-columns:1fr}
-.cards{grid-template-columns:1fr 1fr}
+
+.heroGrid,
+.walletGrid{
+grid-template-columns:1fr;
+}
+
+.cards{
+grid-template-columns:1fr 1fr;
+}
+
 .nav{
 flex-wrap:wrap;
 padding:10px 0;
 }
+
 .navlinks{
 order:3;
 width:100%;
 }
+
 }
 
-@media(max-width:560px){
-.cards{grid-template-columns:1fr}
+/* MOBILE */
 
-.authButtons .btn{
-padding:9px 11px;
+@media(max-width:560px){
+
+header{
+position:sticky;
+top:0;
+}
+
+.nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:7px;
+padding:12px 0 7px;
+}
+
+.logo{
+width:100%;
+text-align:center;
+font-size:31px;
+margin-bottom:2px;
+}
+
+.authButtons,
+.userArea{
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.userArea{
+flex-wrap:wrap;
+}
+
+.userName{
+font-size:15px;
+max-width:230px;
+}
+
+.navlinks{
+order:4;
+width:100%;
+display:flex;
+justify-content:flex-start;
+overflow-x:auto;
+padding:5px 0 9px;
+gap:3px;
+}
+
+.navlinks a{
+flex:0 0 auto;
+font-size:15px;
+padding:9px 12px;
+}
+
+.hero{
+padding:30px 0 25px;
+}
+
+.heroGrid{
+gap:15px;
+}
+
+.heroCard,
+.balanceCard,
+.walletCard,
+.supportCard{
+padding:18px;
+border-radius:18px;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+font-size:16px;
+line-height:1.8;
+}
+
+.heroActions{
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.heroActions .btn{
+text-align:center;
+padding:12px 8px;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.walletButtons{
+grid-template-columns:1fr;
+}
+
+.teams{
+font-size:14px;
+}
+
+.balance{
+font-size:32px;
+}
+
+.walletBalance{
+font-size:30px;
+}
+
+.modalBox{
+padding:20px;
+}
+
+table{
+min-width:620px;
+}
+
+}
+
+/* VERY SMALL PHONES */
+
+@media(max-width:380px){
+
+.container{
+width:94%;
+}
+
+.logo{
+font-size:27px;
+}
+
+.navlinks a{
+font-size:14px;
+padding:8px 10px;
+}
+
+.heroActions{
+grid-template-columns:1fr;
+}
+
+.authButtons .btn,
+.userArea .btn{
+padding:9px 12px;
 font-size:13px;
 }
 
-.heroCard,.balanceCard,.walletCard,.supportCard{
-padding:18px;
-}
-
-.walletButtons{grid-template-columns:1fr}
-
-.teams{font-size:14px}
-
-.balance{font-size:32px}
 }
 </style>
 </head>
@@ -553,18 +778,28 @@ padding:18px;
 <a href="#casino">الكازينو</a>
 <a href="#live">مباشر</a>
 <a href="#wallet">المحفظة</a>
-<a href="#history">سجل المحفظة</a>
+<a href="#history">السجل</a>
 <a href="#support">الدعم</a>
 </nav>
 
 <div class="authButtons" id="authButtons">
-<button class="btn" onclick="openModal('loginModal')">دخول</button>
-<button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button>
+<button class="btn" onclick="openModal('loginModal')">
+دخول
+</button>
+
+<button class="btn btn-primary" onclick="openModal('registerModal')">
+إنشاء حساب
+</button>
 </div>
 
 <div class="userArea hidden" id="userArea">
+
 <span class="userName" id="userName"></span>
-<button class="btn" onclick="signOutUser()">خروج</button>
+
+<button class="btn" onclick="signOutUser()">
+خروج
+</button>
+
 </div>
 
 </div>
@@ -572,11 +807,17 @@ padding:18px;
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
+
 <div class="container heroGrid">
 
 <div class="heroCard">
-<h1>منصة <span>Sdnbet365</span></h1>
+
+<h1>
+منصة <span>Sdnbet365</span>
+</h1>
 
 <p>
 منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف.
@@ -585,214 +826,463 @@ padding:18px;
 </p>
 
 <div class="heroActions">
-<a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
-<a href="#wallet" class="btn">المحفظة</a>
+
+<a href="#sports" class="btn btn-primary">
+استكشف الرياضة
+</a>
+
+<a href="#wallet" class="btn">
+المحفظة
+</a>
+
 </div>
+
 </div>
 
 <div class="balanceCard">
-<div class="balanceLabel">رصيد الحساب</div>
-<div class="balance" id="heroBalance">0.000 د.ت</div>
+
+<div class="balanceLabel">
+رصيد الحساب
+</div>
+
+<div class="balance" id="heroBalance">
+0.000 د.ت
+</div>
+
 <div class="loginHint" id="heroHint">
 سجّل الدخول للوصول إلى بيانات حسابك.
 </div>
+
 </div>
 
 </div>
+
 </section>
 
+
+<!-- SPORTS -->
+
 <section id="sports">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>الرياضة</h2>
-<p>واجهة المباريات الرياضية.</p>
+
+<p>
+واجهة المباريات الرياضية.
+</p>
+
 </div>
 
 <div class="cards">
 
 <div class="card">
-<div class="cardIcon">⚽</div>
-<h3>كرة القدم</h3>
-<p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p>
-<a href="#matches" class="btn">عرض المباريات</a>
+
+<div class="cardIcon">
+⚽
 </div>
+
+<h3>
+كرة القدم
+</h3>
+
+<p>
+تابع المباريات والبطولات في واجهة مرتبة وسريعة.
+</p>
+
+<a href="#matches" class="btn">
+عرض المباريات
+</a>
+
+</div>
+
 
 <div class="card">
-<div class="cardIcon">🏀</div>
-<h3>كرة السلة</h3>
-<p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+
+<div class="cardIcon">
+🏀
+</div>
+
+<h3>
+كرة السلة
+</h3>
+
+<p>
+واجهة متجاوبة لمتابعة الفرق والمواجهات.
+</p>
+
+<button
+class="btn"
+onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
 عرض الخيارات
 </button>
+
 </div>
+
 
 <div class="card">
-<div class="cardIcon">🎾</div>
-<h3>التنس</h3>
-<p>تصميم بسيط لمتابعة مباريات التنس.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+
+<div class="cardIcon">
+🎾
+</div>
+
+<h3>
+التنس
+</h3>
+
+<p>
+تصميم بسيط لمتابعة مباريات التنس.
+</p>
+
+<button
+class="btn"
+onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
 عرض الخيارات
 </button>
+
 </div>
 
 </div>
+
 
 <div id="matches" class="matches" style="margin-top:18px">
 
 <div class="match">
+
 <div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>20:00</span>
+
+<span class="matchLeague">
+Football • Demo
+</span>
+
+<span>
+20:00
+</span>
+
 </div>
 
 <div class="teams">
-<span>Real Madrid</span>
-<span class="vs">VS</span>
-<span>Barcelona</span>
+
+<span>
+Real Madrid
+</span>
+
+<span class="vs">
+VS
+</span>
+
+<span>
+Barcelona
+</span>
+
 </div>
 
 <div class="odds">
-<div class="odd"><span>1</span>2.10</div>
-<div class="odd"><span>X</span>3.20</div>
-<div class="odd"><span>2</span>2.80</div>
+
+<div class="odd">
+<span>1</span>
+2.10
 </div>
+
+<div class="odd">
+<span>X</span>
+3.20
 </div>
+
+<div class="odd">
+<span>2</span>
+2.80
+</div>
+
+</div>
+
+</div>
+
 
 <div class="match">
+
 <div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>21:30</span>
+
+<span class="matchLeague">
+Football • Demo
+</span>
+
+<span>
+21:30
+</span>
+
 </div>
 
 <div class="teams">
-<span>Liverpool</span>
-<span class="vs">VS</span>
-<span>Arsenal</span>
+
+<span>
+Liverpool
+</span>
+
+<span class="vs">
+VS
+</span>
+
+<span>
+Arsenal
+</span>
+
 </div>
 
 <div class="odds">
-<div class="odd"><span>1</span>2.25</div>
-<div class="odd"><span>X</span>3.40</div>
-<div class="odd"><span>2</span>2.60</div>
+
+<div class="odd">
+<span>1</span>
+2.25
 </div>
+
+<div class="odd">
+<span>X</span>
+3.40
+</div>
+
+<div class="odd">
+<span>2</span>
+2.60
 </div>
 
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- CASINO -->
+
 <section id="casino">
+
 <div class="container">
 
 <div class="sectionTitle">
-<h2>الكازينو</h2>
-<p>أقسام واجهة تجريبية.</p>
+
+<h2>
+الكازينو
+</h2>
+
+<p>
+أقسام واجهة تجريبية.
+</p>
+
 </div>
 
 <div class="cards">
 
 <div class="card">
-<div class="cardIcon">🎰</div>
-<h3>Slots</h3>
-<p>واجهة ألعاب تجريبية.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
+<div class="cardIcon">
+🎰
+</div>
+
+<h3>
+Slots
+</h3>
+
+<p>
+واجهة ألعاب تجريبية.
+</p>
+
+<button
+class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
+
 </div>
+
 
 <div class="card">
-<div class="cardIcon">🃏</div>
-<h3>Cards</h3>
-<p>قسم ألعاب البطاقات.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
+<div class="cardIcon">
+🃏
+</div>
+
+<h3>
+Cards
+</h3>
+
+<p>
+قسم ألعاب البطاقات.
+</p>
+
+<button
+class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
+
 </div>
+
 
 <div class="card">
-<div class="cardIcon">🎲</div>
-<h3>Games</h3>
-<p>ألعاب إضافية للعرض.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
+<div class="cardIcon">
+🎲
+</div>
+
+<h3>
+Games
+</h3>
+
+<p>
+ألعاب إضافية للعرض.
+</p>
+
+<button
+class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+
+<!-- LIVE -->
+
 <section id="live">
+
 <div class="container">
 
 <div class="sectionTitle">
-<h2>مباشر</h2>
-<p>الأحداث المباشرة.</p>
+
+<h2>
+مباشر
+</h2>
+
+<p>
+الأحداث المباشرة.
+</p>
+
 </div>
 
 <div class="card">
-<div class="cardIcon">🔴</div>
-<h3>البث المباشر</h3>
+
+<div class="cardIcon">
+🔴
+</div>
+
+<h3>
+البث المباشر
+</h3>
+
 <p>
 سيتم عرض الأحداث المباشرة عند ربط المنصة
 بمصدر بيانات أو خدمة بث مرخّصة.
 </p>
+
 </div>
 
 </div>
+
 </section>
 
+
+<!-- WALLET -->
+
 <section id="wallet">
+
 <div class="container">
 
 <div class="sectionTitle">
-<h2>المحفظة</h2>
-<p>إدارة طلبات الإيداع والسحب.</p>
+
+<h2>
+المحفظة
+</h2>
+
+<p>
+إدارة طلبات الإيداع والسحب.
+</p>
+
 </div>
 
 <div class="walletGrid">
 
+
 <div class="walletCard">
 
-<div class="balanceLabel">رصيد الحساب</div>
+<div class="balanceLabel">
+رصيد الحساب
+</div>
 
 <div class="walletBalance" id="walletBalance">
 0.000 د.ت
 </div>
 
 <p style="color:var(--muted);line-height:1.8">
+
 الرصيد المعروض هنا يتم قراءته من حسابك في Supabase.
 لا يمكن للمستخدم تعديل الرصيد من الواجهة.
+
 </p>
 
 <div style="margin-top:18px">
-<button class="btn btn-primary" onclick="loadWalletData()">
+
+<button
+class="btn btn-primary"
+onclick="loadWalletData()">
+
 تحديث الرصيد
+
 </button>
+
 </div>
 
 </div>
+
 
 <div class="walletCard">
 
 <div class="notice">
+
 D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب.
 لا يتم تنفيذ الدفع تلقائيًا من المتصفح.
+
 </div>
 
+
 <div class="formGroup">
-<label>نوع العملية</label>
+
+<label>
+نوع العملية
+</label>
 
 <select id="walletType">
-<option value="deposit">إيداع</option>
-<option value="withdraw">سحب</option>
+
+<option value="deposit">
+إيداع
+</option>
+
+<option value="withdraw">
+سحب
+</option>
+
 </select>
+
 </div>
 
+
 <div class="formGroup">
-<label>المبلغ بالدينار التونسي</label>
+
+<label>
+المبلغ بالدينار التونسي
+</label>
 
 <input
 id="walletAmount"
@@ -800,73 +1290,133 @@ type="number"
 min="1"
 step="0.001"
 placeholder="مثال: 50">
+
 </div>
 
+
 <div class="formGroup">
-<label>طريقة الدفع</label>
+
+<label>
+طريقة الدفع
+</label>
 
 <select id="paymentMethod">
-<option value="D17">D17</option>
-<option value="Flouci">Flouci</option>
+
+<option value="D17">
+D17
+</option>
+
+<option value="Flouci">
+Flouci
+</option>
+
 </select>
+
 </div>
 
+
 <div class="formGroup">
-<label>رقم الحساب / الهاتف</label>
+
+<label>
+رقم الحساب / الهاتف
+</label>
 
 <input
 id="paymentAccount"
 type="text"
 placeholder="رقم الهاتف أو الحساب">
+
 </div>
 
+
 <div class="formGroup">
-<label>مرجع العملية إن وجد</label>
+
+<label>
+مرجع العملية إن وجد
+</label>
 
 <input
 id="paymentReference"
 type="text"
 placeholder="رقم العملية">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="createWalletRequest()">
+
 إرسال الطلب
+
 </button>
 
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+
+<!-- HISTORY -->
+
 <section id="history">
+
 <div class="container">
 
 <div class="sectionTitle">
-<h2>سجل المحفظة</h2>
-<p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
+
+<h2>
+سجل المحفظة
+</h2>
+
+<p>
+جميع طلبات الإيداع والسحب الخاصة بحسابك.
+</p>
+
 </div>
 
 <div class="walletCard">
 
 <div id="historyLoginMessage" class="notice">
+
 سجّل الدخول لعرض سجل المحفظة.
+
 </div>
 
 <div class="tableWrap">
 
 <table>
+
 <thead>
+
 <tr>
-<th>النوع</th>
-<th>المبلغ</th>
-<th>الطريقة</th>
-<th>الحالة</th>
-<th>التاريخ</th>
+
+<th>
+النوع
+</th>
+
+<th>
+المبلغ
+</th>
+
+<th>
+الطريقة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+التاريخ
+</th>
+
 </tr>
+
 </thead>
 
 <tbody id="historyBody"></tbody>
@@ -876,200 +1426,383 @@ onclick="createWalletRequest()">
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+
+<!-- SUPPORT -->
+
 <section id="support">
+
 <div class="container">
 
 <div class="sectionTitle">
-<h2>الدعم</h2>
-<p>تواصل مع فريق الدعم من داخل الموقع.</p>
+
+<h2>
+الدعم
+</h2>
+
+<p>
+تواصل مع فريق الدعم من داخل الموقع.
+</p>
+
 </div>
 
 <div class="supportCard">
 
 <div id="supportMessages" class="messages">
+
 <div style="color:var(--muted);text-align:center">
+
 سجّل الدخول لبدء المحادثة.
-</div>
+
 </div>
 
+</div>
+
+
 <div class="formGroup">
+
 <textarea
 id="supportInput"
 rows="3"
 placeholder="اكتب رسالتك..."></textarea>
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="sendSupportMessage()">
+
 إرسال الرسالة
+
 </button>
+
 
 <div
 id="supportStatus"
 style="color:var(--muted);margin-top:12px;text-align:center">
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 </main>
 
+
 <footer>
+
 <div class="container">
+
 Sdnbet365 ©
+
 <br>
+
 منصة تجريبية قيد التطوير.
+
 </div>
+
 </footer>
+
 
 <!-- LOGIN -->
 
 <div class="modal" id="loginModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
-<h2>تسجيل الدخول</h2>
-<button class="close" onclick="closeModal('loginModal')">×</button>
+
+<h2>
+تسجيل الدخول
+</h2>
+
+<button
+class="close"
+onclick="closeModal('loginModal')">
+×
+</button>
+
 </div>
 
-<div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="loginEmail" type="email">
-</div>
 
 <div class="formGroup">
-<label>كلمة المرور</label>
-<input id="loginPassword" type="password">
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input
+id="loginEmail"
+type="email"
+autocomplete="email">
+
 </div>
+
+
+<div class="formGroup">
+
+<label>
+كلمة المرور
+</label>
+
+<input
+id="loginPassword"
+type="password"
+autocomplete="current-password">
+
+</div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="loginUser()">
+
 دخول
+
 </button>
+
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="closeModal('loginModal');openModal('registerModal')">
+
 إنشاء حساب
+
 </button>
+
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="openRecovery()">
+
 نسيت كلمة المرور؟
+
 </button>
 
-<div id="loginStatus" style="margin-top:12px"></div>
+
+<div
+id="loginStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <!-- REGISTER -->
 
 <div class="modal" id="registerModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
-<h2>إنشاء حساب</h2>
-<button class="close" onclick="closeModal('registerModal')">×</button>
+
+<h2>
+إنشاء حساب
+</h2>
+
+<button
+class="close"
+onclick="closeModal('registerModal')">
+×
+</button>
+
 </div>
 
-<div class="formGroup">
-<label>الاسم</label>
-<input id="registerName" type="text">
-</div>
 
 <div class="formGroup">
-<label>رقم الهاتف</label>
-<input id="registerPhone" type="text">
+
+<label>
+الاسم
+</label>
+
+<input
+id="registerName"
+type="text">
+
 </div>
 
-<div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="registerEmail" type="email">
-</div>
 
 <div class="formGroup">
-<label>كلمة المرور</label>
-<input id="registerPassword" type="password">
+
+<label>
+رقم الهاتف
+</label>
+
+<input
+id="registerPhone"
+type="text">
+
 </div>
+
+
+<div class="formGroup">
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input
+id="registerEmail"
+type="email"
+autocomplete="email">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+كلمة المرور
+</label>
+
+<input
+id="registerPassword"
+type="password"
+autocomplete="new-password">
+
+</div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="registerUser()">
+
 إنشاء الحساب
+
 </button>
 
-<div id="registerStatus" style="margin-top:12px"></div>
+
+<div
+id="registerStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <!-- RECOVERY -->
 
 <div class="modal" id="recoveryModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
-<h2>استعادة كلمة المرور</h2>
-<button class="close" onclick="closeModal('recoveryModal')">×</button>
+
+<h2>
+استعادة كلمة المرور
+</h2>
+
+<button
+class="close"
+onclick="closeModal('recoveryModal')">
+×
+</button>
+
 </div>
 
+
 <div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="recoveryEmail" type="email">
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input
+id="recoveryEmail"
+type="email"
+autocomplete="email">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="sendRecovery()">
+
 إرسال رابط الاستعادة
+
 </button>
 
-<div id="recoveryStatus" style="margin-top:12px"></div>
+
+<div
+id="recoveryStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <!-- RESET PASSWORD -->
 
 <div class="modal" id="resetModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
-<h2>تغيير كلمة المرور</h2>
+
+<h2>
+تغيير كلمة المرور
+</h2>
+
 </div>
 
+
 <div class="formGroup">
-<label>كلمة المرور الجديدة</label>
-<input id="newPassword" type="password">
+
+<label>
+كلمة المرور الجديدة
+</label>
+
+<input
+id="newPassword"
+type="password"
+autocomplete="new-password">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="changePassword()">
+
 حفظ كلمة المرور
+
 </button>
 
-<div id="resetStatus" style="margin-top:12px"></div>
+
+<div
+id="resetStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <div class="toast" id="toast"></div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1096,61 +1829,92 @@ SUPABASE_PUBLISHABLE_KEY
 GLOBALS
 ========================================================= */
 
-let currentUser = null;
-let currentProfile = null;
-let currentConversation = null;
+let currentUser=null;
+let currentProfile=null;
+let currentConversation=null;
 
 
 /* =========================================================
-UI HELPERS
+UI
 ========================================================= */
 
 function openModal(id){
+
 const element=document.getElementById(id);
-if(element) element.classList.add("show");
+
+if(element){
+element.classList.add("show");
+}
+
 }
 
 function closeModal(id){
+
 const element=document.getElementById(id);
-if(element) element.classList.remove("show");
+
+if(element){
+element.classList.remove("show");
 }
 
+}
+
+
 function showToast(message){
+
 const toast=document.getElementById("toast");
 
 toast.textContent=message;
 toast.classList.add("show");
 
-setTimeout(()=>{
+setTimeout(function(){
+
 toast.classList.remove("show");
+
 },3500);
+
 }
+
 
 function showStatus(id,message,type=""){
-const el=document.getElementById(id);
 
-if(!el)return;
+const element=document.getElementById(id);
 
-el.textContent=message;
+if(!element)return;
+
+element.textContent=message;
 
 if(type==="error"){
-el.style.color="#ff7773";
+
+element.style.color="#ff7773";
+
 }else if(type==="success"){
-el.style.color="#20c77a";
+
+element.style.color="#20c77a";
+
 }else{
-el.style.color="#9eacbd";
+
+element.style.color="#9eacbd";
+
 }
+
 }
+
 
 function formatMoney(value){
+
 const number=Number(value||0);
+
 return number.toFixed(3)+" د.ت";
+
 }
 
+
 function formatDate(date){
+
 if(!date)return "-";
 
 try{
+
 return new Date(date).toLocaleString(
 "ar-TN",
 {
@@ -1158,18 +1922,25 @@ dateStyle:"short",
 timeStyle:"short"
 }
 );
+
 }catch(error){
+
 return String(date);
-}
+
 }
 
+}
+
+
 function escapeHtml(value){
+
 return String(value ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
 
 
@@ -1179,50 +1950,58 @@ AUTH
 
 async function getCurrentUser(){
 
-const {
-data,
-error
-} = await supabaseClient.auth.getUser();
+const result=
+await supabaseClient.auth.getUser();
 
-if(error){
-console.error("Auth error:",error);
+if(result.error){
+
+console.error(result.error);
+
 return null;
+
 }
 
-return data.user || null;
+return result.data.user || null;
+
 }
 
 
 async function registerUser(){
 
-const name =
+const name=
 document.getElementById("registerName").value.trim();
 
-const phone =
+const phone=
 document.getElementById("registerPhone").value.trim();
 
-const email =
+const email=
 document.getElementById("registerEmail").value.trim();
 
-const password =
+const password=
 document.getElementById("registerPassword").value;
 
 if(!email || !password){
+
 showStatus(
 "registerStatus",
 "أدخل البريد الإلكتروني وكلمة المرور.",
 "error"
 );
+
 return;
+
 }
 
-if(password.length < 6){
+if(password.length<6){
+
 showStatus(
 "registerStatus",
 "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
 "error"
 );
+
 return;
+
 }
 
 showStatus(
@@ -1230,31 +2009,33 @@ showStatus(
 "جارٍ إنشاء الحساب..."
 );
 
-const {
-data,
-error
-} =
+const result=
 await supabaseClient.auth.signUp({
-email,
-password,
+
+email:email,
+
+password:password,
+
 options:{
 data:{
 full_name:name,
 phone:phone
 }
 }
+
 });
 
-if(error){
+if(result.error){
+
 showStatus(
 "registerStatus",
-error.message,
+result.error.message,
 "error"
 );
-return;
-}
 
-if(data.user){
+return;
+
+}
 
 showStatus(
 "registerStatus",
@@ -1262,20 +2043,25 @@ showStatus(
 "success"
 );
 
-setTimeout(()=>{
+if(result.data.user){
+
+setTimeout(function(){
+
 closeModal("registerModal");
+
 },1800);
 
 }
+
 }
 
 
 async function loginUser(){
 
-const email =
+const email=
 document.getElementById("loginEmail").value.trim();
 
-const password =
+const password=
 document.getElementById("loginPassword").value;
 
 if(!email || !password){
@@ -1287,6 +2073,7 @@ showStatus(
 );
 
 return;
+
 }
 
 showStatus(
@@ -1294,27 +2081,28 @@ showStatus(
 "جارٍ تسجيل الدخول..."
 );
 
-const {
-data,
-error
-} =
+const result=
 await supabaseClient.auth.signInWithPassword({
-email,
-password
+
+email:email,
+
+password:password
+
 });
 
-if(error){
+if(result.error){
 
 showStatus(
 "loginStatus",
-error.message,
+result.error.message,
 "error"
 );
 
 return;
+
 }
 
-currentUser=data.user;
+currentUser=result.data.user;
 
 closeModal("loginModal");
 
@@ -1340,9 +2128,11 @@ await updateAuthUI();
 
 document.getElementById("historyBody").innerHTML="";
 
-document.getElementById("historyLoginMessage").classList.remove("hidden");
+document
+.getElementById("historyLoginMessage")
+.classList.remove("hidden");
 
-document.getElementById("supportMessages").innerHTML =
+document.getElementById("supportMessages").innerHTML=
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
 document.getElementById("supportInput").value="";
@@ -1357,28 +2147,29 @@ async function updateAuthUI(){
 
 currentUser=await getCurrentUser();
 
-const authButtons =
+const authButtons=
 document.getElementById("authButtons");
 
-const userArea =
+const userArea=
 document.getElementById("userArea");
 
-const userName =
+const userName=
 document.getElementById("userName");
 
 if(currentUser){
 
 authButtons.classList.add("hidden");
+
 userArea.classList.remove("hidden");
 
-const name =
+const name=
 currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "حسابك";
 
 userName.textContent=name;
 
-document.getElementById("heroHint").textContent =
+document.getElementById("heroHint").textContent=
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 
 await loadWalletData();
@@ -1386,15 +2177,16 @@ await loadWalletData();
 }else{
 
 authButtons.classList.remove("hidden");
+
 userArea.classList.add("hidden");
 
-document.getElementById("heroBalance").textContent =
+document.getElementById("heroBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent =
+document.getElementById("walletBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("heroHint").textContent =
+document.getElementById("heroHint").textContent=
 "سجّل الدخول للوصول إلى بيانات حسابك.";
 
 }
@@ -1410,66 +2202,63 @@ async function loadProfile(){
 
 if(!currentUser)return null;
 
-const {
-data,
-error
-} =
+const result=
 await supabaseClient
 .from("profiles")
 .select("*")
 .eq("id",currentUser.id)
 .maybeSingle();
 
-if(error){
+if(result.error){
 
 console.error(
 "Profile error:",
-error
+result.error
 );
 
 return null;
+
 }
 
-currentProfile=data;
+currentProfile=result.data;
 
-return data;
+return result.data;
+
 }
 
 
 /* =========================================================
-WALLET BALANCE
+WALLET
 ========================================================= */
 
 async function loadWalletData(){
 
 if(!currentUser){
 
-document.getElementById("heroBalance").textContent =
+document.getElementById("heroBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent =
+document.getElementById("walletBalance").textContent=
 "0.000 د.ت";
 
 return;
+
 }
 
-const profile=await loadProfile();
+const profile=
+await loadProfile();
 
-const balance =
+const balance=
 profile?.balance ?? 0;
 
-document.getElementById("heroBalance").textContent =
+document.getElementById("heroBalance").textContent=
 formatMoney(balance);
 
-document.getElementById("walletBalance").textContent =
+document.getElementById("walletBalance").textContent=
 formatMoney(balance);
 
 }
 
-
-/* =========================================================
-CREATE WALLET REQUEST
-========================================================= */
 
 async function createWalletRequest(){
 
@@ -1480,23 +2269,24 @@ showToast("يجب تسجيل الدخول أولًا");
 openModal("loginModal");
 
 return;
+
 }
 
-const type =
+const type=
 document.getElementById("walletType").value;
 
-const amount =
+const amount=
 Number(
 document.getElementById("walletAmount").value
 );
 
-const method =
+const method=
 document.getElementById("paymentMethod").value;
 
-const account =
+const account=
 document.getElementById("paymentAccount").value.trim();
 
-const reference =
+const reference=
 document.getElementById("paymentReference").value.trim();
 
 if(!amount || amount<=0){
@@ -1504,6 +2294,7 @@ if(!amount || amount<=0){
 showToast("أدخل مبلغًا صحيحًا");
 
 return;
+
 }
 
 if(!account){
@@ -1511,13 +2302,15 @@ if(!account){
 showToast("أدخل رقم الحساب أو الهاتف");
 
 return;
+
 }
 
 if(type==="withdraw"){
 
-const profile=await loadProfile();
+const profile=
+await loadProfile();
 
-const balance =
+const balance=
 Number(profile?.balance || 0);
 
 if(amount>balance){
@@ -1527,36 +2320,43 @@ showToast(
 );
 
 return;
-}
 
 }
 
-const {
-error
-} =
+}
+
+const result=
 await supabaseClient
 .from("wallet_requests")
 .insert({
 
 user_id:currentUser.id,
+
 request_type:type,
+
 amount:amount,
+
 payment_method:method,
+
 payment_account:account,
+
 payment_reference:reference || null,
+
 status:"pending"
 
 });
 
-if(error){
+if(result.error){
 
-console.error(error);
+console.error(result.error);
 
 showToast(
-"تعذر إرسال الطلب: "+error.message
+"تعذر إرسال الطلب: "+
+result.error.message
 );
 
 return;
+
 }
 
 document.getElementById("walletAmount").value="";
@@ -1572,16 +2372,12 @@ await loadWalletHistory();
 }
 
 
-/* =========================================================
-WALLET HISTORY
-========================================================= */
-
 async function loadWalletHistory(){
 
-const body =
+const body=
 document.getElementById("historyBody");
 
-const message =
+const message=
 document.getElementById("historyLoginMessage");
 
 body.innerHTML="";
@@ -1591,75 +2387,86 @@ if(!currentUser){
 message.classList.remove("hidden");
 
 return;
+
 }
 
 message.classList.add("hidden");
 
-const {
-data,
-error
-} =
+const result=
 await supabaseClient
 .from("wallet_requests")
 .select("*")
 .eq("user_id",currentUser.id)
 .order("created_at",{ascending:false});
 
-if(error){
+if(result.error){
 
-console.error(error);
+console.error(result.error);
 
-body.innerHTML =
+body.innerHTML=
 '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
 
 return;
+
 }
+
+const data=result.data;
 
 if(!data || data.length===0){
 
-body.innerHTML =
+body.innerHTML=
 '<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
 
 return;
+
 }
 
-data.forEach(item=>{
+data.forEach(function(item){
 
 const tr=document.createElement("tr");
 
-const type =
+const type=
 item.request_type==="deposit"
 ? "إيداع"
 : "سحب";
 
-const statusClass =
-item.status==="approved"
-? "status-approved"
-: item.status==="rejected"
-? "status-rejected"
-: item.status==="cancelled"
-? "status-cancelled"
-: "status-pending";
+let statusClass="status-pending";
+let statusText="قيد المراجعة";
 
-const statusText =
-item.status==="approved"
-? "مقبول"
-: item.status==="rejected"
-? "مرفوض"
-: item.status==="cancelled"
-? "ملغى"
-: "قيد المراجعة";
+if(item.status==="approved"){
 
-tr.innerHTML = `
+statusClass="status-approved";
+statusText="مقبول";
+
+}else if(item.status==="rejected"){
+
+statusClass="status-rejected";
+statusText="مرفوض";
+
+}else if(item.status==="cancelled"){
+
+statusClass="status-cancelled";
+statusText="ملغى";
+
+}
+
+tr.innerHTML=
+`
 <td>${escapeHtml(type)}</td>
+
 <td>${escapeHtml(formatMoney(item.amount))}</td>
+
 <td>${escapeHtml(item.payment_method || "-")}</td>
+
 <td>
 <span class="status ${statusClass}">
 ${escapeHtml(statusText)}
 </span>
 </td>
-<td>${escapeHtml(formatDate(item.created_at))}</td>
+
+<td>
+${escapeHtml(formatDate(item.created_at))}
+</td>
 `;
 
 body.appendChild(tr);
@@ -1677,10 +2484,7 @@ async function getOrCreateConversation(){
 
 if(!currentUser)return null;
 
-const {
-data:existing,
-error:findError
-} =
+const existingResult=
 await supabaseClient
 .from("support_conversations")
 .select("*")
@@ -1690,109 +2494,125 @@ await supabaseClient
 .limit(1)
 .maybeSingle();
 
-if(findError){
+if(existingResult.error){
 
-console.error("Conversation search error:",findError);
+console.error(
+"Conversation search:",
+existingResult.error
+);
 
 return null;
+
 }
 
-if(existing){
+if(existingResult.data){
 
-currentConversation=existing;
+currentConversation=
+existingResult.data;
 
-return existing;
+return existingResult.data;
+
 }
 
-const {
-data:newConversation,
-error:createError
-} =
+const newResult=
 await supabaseClient
 .from("support_conversations")
 .insert({
 
 user_id:currentUser.id,
+
 visitor_token:currentUser.id,
+
 status:"open"
 
 })
 .select()
 .single();
 
-if(createError){
+if(newResult.error){
 
-console.error("Conversation create error:",createError);
+console.error(
+"Conversation create:",
+newResult.error
+);
 
 return null;
+
 }
 
-currentConversation=newConversation;
+currentConversation=
+newResult.data;
 
-return newConversation;
+return newResult.data;
 
 }
 
 
 async function loadSupport(){
 
-const box =
+const box=
 document.getElementById("supportMessages");
 
 if(!currentUser){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
 return;
+
 }
 
-const conversation =
+const conversation=
 await getOrCreateConversation();
 
 if(!conversation){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
 
 return;
+
 }
 
-const {
-data,
-error
-} =
+const result=
 await supabaseClient
 .from("support_messages")
 .select("*")
 .eq("conversation_id",conversation.id)
 .order("created_at",{ascending:true});
 
-if(error){
+if(result.error){
 
-console.error("Support messages error:",error);
+console.error(
+"Support messages:",
+result.error
+);
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
 
 return;
+
 }
+
+const data=result.data;
 
 box.innerHTML="";
 
 if(!data || data.length===0){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
 
 return;
+
 }
 
-data.forEach(message=>{
+data.forEach(function(message){
 
 const div=document.createElement("div");
 
-div.className =
+div.className=
 "message "+
 (
 message.sender_type==="user"
@@ -1800,8 +2620,12 @@ message.sender_type==="user"
 : "admin"
 );
 
-div.innerHTML = `
-<div>${escapeHtml(message.message || "")}</div>
+div.innerHTML=
+`
+<div>
+${escapeHtml(message.message || "")}
+</div>
+
 <div class="messageTime">
 ${escapeHtml(formatDate(message.created_at))}
 </div>
@@ -1825,12 +2649,13 @@ showToast("يجب تسجيل الدخول أولًا");
 openModal("loginModal");
 
 return;
+
 }
 
-const input =
+const input=
 document.getElementById("supportInput");
 
-const message =
+const message=
 input.value.trim();
 
 if(!message){
@@ -1838,9 +2663,10 @@ if(!message){
 showToast("اكتب رسالة أولًا");
 
 return;
+
 }
 
-const conversation =
+const conversation=
 await getOrCreateConversation();
 
 if(!conversation){
@@ -1848,6 +2674,7 @@ if(!conversation){
 showToast("تعذر فتح المحادثة");
 
 return;
+
 }
 
 showStatus(
@@ -1855,30 +2682,31 @@ showStatus(
 "جارٍ إرسال الرسالة..."
 );
 
-const {
-error
-} =
+const result=
 await supabaseClient
 .from("support_messages")
 .insert({
 
 conversation_id:conversation.id,
+
 sender_type:"user",
+
 message:message
 
 });
 
-if(error){
+if(result.error){
 
-console.error(error);
+console.error(result.error);
 
 showStatus(
 "supportStatus",
-error.message,
+result.error.message,
 "error"
 );
 
 return;
+
 }
 
 input.value="";
@@ -1901,6 +2729,7 @@ PASSWORD RECOVERY
 function openRecovery(){
 
 closeModal("loginModal");
+
 openModal("recoveryModal");
 
 }
@@ -1908,7 +2737,7 @@ openModal("recoveryModal");
 
 async function sendRecovery(){
 
-const email =
+const email=
 document.getElementById("recoveryEmail").value.trim();
 
 if(!email){
@@ -1920,16 +2749,15 @@ showStatus(
 );
 
 return;
+
 }
 
-const redirectTo =
+const redirectTo=
 window.location.origin+
 window.location.pathname+
 "?type=recovery";
 
-const {
-error
-} =
+const result=
 await supabaseClient.auth.resetPasswordForEmail(
 email,
 {
@@ -1937,15 +2765,16 @@ redirectTo:redirectTo
 }
 );
 
-if(error){
+if(result.error){
 
 showStatus(
 "recoveryStatus",
-error.message,
+result.error.message,
 "error"
 );
 
 return;
+
 }
 
 showStatus(
@@ -1959,7 +2788,7 @@ showStatus(
 
 async function changePassword(){
 
-const password =
+const password=
 document.getElementById("newPassword").value;
 
 if(password.length<6){
@@ -1971,24 +2800,24 @@ showStatus(
 );
 
 return;
+
 }
 
-const {
-error
-} =
+const result=
 await supabaseClient.auth.updateUser({
 password:password
 });
 
-if(error){
+if(result.error){
 
 showStatus(
 "resetStatus",
-error.message,
+result.error.message,
 "error"
 );
 
 return;
+
 }
 
 showStatus(
@@ -1997,8 +2826,10 @@ showStatus(
 "success"
 );
 
-setTimeout(()=>{
+setTimeout(function(){
+
 closeModal("resetModal");
+
 },1500);
 
 }
@@ -2009,26 +2840,30 @@ AUTH STATE
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-async (event,session)=>{
+function(event,session){
 
-currentUser =
+currentUser=
 session?.user || null;
+
+setTimeout(async function(){
+
+await updateAuthUI();
 
 if(currentUser){
 
-await updateAuthUI();
 await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
 
 }else{
 
-await updateAuthUI();
 await loadWalletHistory();
-}
 
 }
-);
+
+},0);
+
+});
 
 
 /* =========================================================
@@ -2039,7 +2874,7 @@ async function initialize(){
 
 try{
 
-currentUser =
+currentUser=
 await getCurrentUser();
 
 await updateAuthUI();
@@ -2072,34 +2907,43 @@ error
 RECOVERY URL
 ========================================================= */
 
-if(
+const urlParams=
 new URLSearchParams(
 window.location.search
-).get("type")==="recovery"
+);
+
+if(
+urlParams.get("type")==="recovery"
 ){
 
-setTimeout(()=>{
+setTimeout(function(){
+
 openModal("resetModal");
+
 },800);
 
 }
+
 
 initialize();
 
 
 /* =========================================================
-CLOSE MODALS WHEN CLICK OUTSIDE
+MODAL OUTSIDE CLICK
 ========================================================= */
 
-document.querySelectorAll(".modal")
-.forEach(modal=>{
+document
+.querySelectorAll(".modal")
+.forEach(function(modal){
 
 modal.addEventListener(
 "click",
-event=>{
+function(event){
 
 if(event.target===modal){
+
 modal.classList.remove("show");
+
 }
 
 }
@@ -2109,20 +2953,19 @@ modal.classList.remove("show");
 
 
 /* =========================================================
-REFRESH WALLET/SUPPORT
+AUTO REFRESH
 ========================================================= */
 
 setInterval(
-async()=>{
+async function(){
 
 if(!currentUser)return;
 
 await loadWalletData();
 await loadWalletHistory();
-await loadSupport();
 
 },
-10000
+15000
 );
 
 </script>
