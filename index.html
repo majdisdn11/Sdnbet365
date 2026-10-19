@@ -63,7 +63,24 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 .close-row{display:flex;justify-content:space-between;align-items:center}
 .status{font-size:12px;color:var(--muted);line-height:1.8;margin-top:10px;overflow-wrap:anywhere}
 [hidden]{display:none!important}
-@media(max-width:760px){.navlinks{order:3;width:100%;overflow:auto;flex-wrap:nowrap}.wallet{margin-right:auto}.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero-copy,.hero-card{padding:21px}.match{gap:5px}.wallet .balance{display:none}}
+
+@media(max-width:760px){
+.navlinks{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}
+.navlinks a{white-space:nowrap;flex-shrink:0}
+.wallet{margin-right:auto}
+.hero{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr}
+.hero-copy,.hero-card{padding:21px}
+.match{grid-template-columns:1fr;gap:10px}
+.team{padding:5px}
+.vs{text-align:center}
+.odds{display:flex;gap:5px;width:100%}
+.odd{min-width:0;padding:10px 2px}
+.odd small{font-size:10px}
+.wallet .balance{display:none}
+}
+
+
 </style>
 </head>
 <body>
