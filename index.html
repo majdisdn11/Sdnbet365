@@ -3,15 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07101d">
+<meta name="theme-color" content="#08111f">
 <title>Sdnbet365 | المنصة الرياضية</title>
 
 <style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
 --bg:#07101d;
@@ -28,10 +24,6 @@ padding:0;
 --shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 font-family:Arial,Tahoma,sans-serif;
 background:var(--bg);
@@ -39,21 +31,9 @@ color:var(--text);
 min-height:100vh;
 }
 
-button,
-input,
-select,
-textarea{
-font:inherit;
-}
-
-button{
-cursor:pointer;
-}
-
-a{
-color:inherit;
-text-decoration:none;
-}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 .container{
 width:min(1180px,92%);
@@ -64,7 +44,7 @@ header{
 position:sticky;
 top:0;
 z-index:100;
-background:rgba(7,16,29,.97);
+background:rgba(7,16,29,.96);
 backdrop-filter:blur(14px);
 border-bottom:1px solid var(--border);
 }
@@ -87,14 +67,8 @@ white-space:nowrap;
 .navlinks{
 display:flex;
 align-items:center;
-gap:6px;
-overflow-x:auto;
--webkit-overflow-scrolling:touch;
-scrollbar-width:none;
-}
-
-.navlinks::-webkit-scrollbar{
-display:none;
+gap:8px;
+overflow:auto;
 }
 
 .navlinks a{
@@ -124,9 +98,7 @@ background:var(--panel2);
 border:1px solid var(--border);
 }
 
-.btn:hover{
-filter:brightness(1.1);
-}
+.btn:hover{filter:brightness(1.1)}
 
 .btn-primary{
 background:var(--green);
@@ -151,14 +123,10 @@ color:#171000;
 border-color:var(--yellow);
 }
 
-.hidden{
-display:none!important;
-}
-
-/* HERO */
+.hidden{display:none!important}
 
 .hero{
-padding:55px 0 35px;
+padding:70px 0 45px;
 }
 
 .heroGrid{
@@ -168,8 +136,7 @@ gap:25px;
 align-items:stretch;
 }
 
-.heroCard,
-.balanceCard{
+.heroCard,.balanceCard{
 background:linear-gradient(145deg,#112238,#0d1828);
 border:1px solid var(--border);
 border-radius:22px;
@@ -182,9 +149,7 @@ font-size:clamp(30px,6vw,54px);
 margin-bottom:15px;
 }
 
-.hero h1 span{
-color:var(--green);
-}
+.hero h1 span{color:var(--green)}
 
 .hero p{
 color:var(--muted);
@@ -224,26 +189,16 @@ margin-top:14px;
 line-height:1.7;
 }
 
-/* SECTIONS */
+section{padding:35px 0}
 
-section{
-padding:35px 0;
-}
-
-.sectionTitle{
-margin-bottom:22px;
-}
+.sectionTitle{margin-bottom:22px}
 
 .sectionTitle h2{
 font-size:28px;
 margin-bottom:7px;
 }
 
-.sectionTitle p{
-color:var(--muted);
-}
-
-/* CARDS */
+.sectionTitle p{color:var(--muted)}
 
 .cards{
 display:grid;
@@ -263,20 +218,14 @@ font-size:35px;
 margin-bottom:13px;
 }
 
-.card h3{
-margin-bottom:8px;
-}
+.card h3{margin-bottom:8px}
 
 .card p{
 color:var(--muted);
 line-height:1.7;
 }
 
-.card .btn{
-margin-top:18px;
-}
-
-/* MATCHES */
+.card .btn{margin-top:18px}
 
 .matches{
 display:grid;
@@ -311,9 +260,7 @@ text-align:center;
 font-weight:800;
 }
 
-.vs{
-color:var(--muted);
-}
+.vs{color:var(--muted)}
 
 .odds{
 display:grid;
@@ -337,8 +284,6 @@ font-size:12px;
 margin-bottom:4px;
 }
 
-/* WALLET */
-
 .walletGrid{
 display:grid;
 grid-template-columns:1fr 1.3fr;
@@ -360,9 +305,7 @@ margin:15px 0;
 direction:ltr;
 }
 
-.formGroup{
-margin-bottom:15px;
-}
+.formGroup{margin-bottom:15px}
 
 .formGroup label{
 display:block;
@@ -405,11 +348,7 @@ font-size:14px;
 margin-bottom:17px;
 }
 
-/* TABLE */
-
-.tableWrap{
-overflow:auto;
-}
+.tableWrap{overflow:auto}
 
 table{
 width:100%;
@@ -417,8 +356,7 @@ border-collapse:collapse;
 min-width:650px;
 }
 
-th,
-td{
+th,td{
 padding:13px 10px;
 border-bottom:1px solid var(--border);
 text-align:right;
@@ -429,9 +367,7 @@ color:#c9d4e1;
 background:#132237;
 }
 
-td{
-color:#dce4ee;
-}
+td{color:#dce4ee}
 
 .status{
 display:inline-block;
@@ -461,8 +397,6 @@ background:#26313e;
 color:#adb8c5;
 }
 
-/* SUPPORT */
-
 .supportCard{
 background:var(--panel);
 border:1px solid var(--border);
@@ -485,7 +419,6 @@ padding:10px 13px;
 margin-bottom:10px;
 border-radius:12px;
 line-height:1.6;
-word-break:break-word;
 }
 
 .message.user{
@@ -504,8 +437,6 @@ font-size:11px;
 margin-top:4px;
 }
 
-/* MODAL */
-
 .modal{
 position:fixed;
 inset:0;
@@ -517,9 +448,7 @@ justify-content:center;
 padding:15px;
 }
 
-.modal.show{
-display:flex;
-}
+.modal.show{display:flex}
 
 .modalBox{
 width:min(500px,100%);
@@ -546,8 +475,6 @@ color:#aeb9c7;
 font-size:27px;
 }
 
-/* USER AREA */
-
 .userArea{
 display:flex;
 align-items:center;
@@ -557,13 +484,7 @@ gap:8px;
 .userName{
 color:#dbe6f2;
 font-size:14px;
-max-width:220px;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
 }
-
-/* TOAST */
 
 .toast{
 position:fixed;
@@ -581,11 +502,7 @@ display:none;
 text-align:center;
 }
 
-.toast.show{
-display:block;
-}
-
-/* FOOTER */
+.toast.show{display:block}
 
 footer{
 margin-top:45px;
@@ -595,108 +512,36 @@ color:var(--muted);
 text-align:center;
 }
 
-/* RESPONSIVE */
-
 @media(max-width:850px){
-
-.heroGrid,
-.walletGrid{
-grid-template-columns:1fr;
-}
-
-.cards{
-grid-template-columns:1fr 1fr;
-}
-
+.heroGrid,.walletGrid{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr 1fr}
 .nav{
 flex-wrap:wrap;
 padding:10px 0;
 }
-
-.logo{
-font-size:22px;
-}
-
 .navlinks{
 order:3;
 width:100%;
 }
-
-.userArea{
-margin-right:auto;
-}
-
 }
 
 @media(max-width:560px){
-
-.container{
-width:94%;
-}
-
-.cards{
-grid-template-columns:1fr;
-}
+.cards{grid-template-columns:1fr}
 
 .authButtons .btn{
 padding:9px 11px;
 font-size:13px;
 }
 
-.hero{
-padding-top:35px;
-}
-
-.heroCard,
-.balanceCard,
-.walletCard,
-.supportCard{
+.heroCard,.balanceCard,.walletCard,.supportCard{
 padding:18px;
 }
 
-.walletButtons{
-grid-template-columns:1fr;
-}
+.walletButtons{grid-template-columns:1fr}
 
-.teams{
-font-size:14px;
-}
+.teams{font-size:14px}
 
-.balance{
-font-size:32px;
-}
-
-.userName{
-max-width:145px;
-}
-
-.logo{
-font-size:20px;
-}
-
-.hero h1{
-font-size:34px;
-}
-
-}
-
-/* SMALL PHONES */
-
-@media(max-width:390px){
-
-.userName{
-max-width:110px;
-}
-
-.authButtons .btn{
-padding:8px 9px;
-}
-
-.navlinks a{
-padding:9px 10px;
-font-size:14px;
-}
-
+.balance{font-size:32px}
 }
 </style>
 </head>
@@ -713,7 +558,7 @@ font-size:14px;
 <a href="#casino">الكازينو</a>
 <a href="#live">مباشر</a>
 <a href="#wallet">المحفظة</a>
-<a href="#history">سجل المحفظة</a>
+<a href="#history">السجل</a>
 <a href="#support">الدعم</a>
 </nav>
 
@@ -736,7 +581,6 @@ font-size:14px;
 <div class="container heroGrid">
 
 <div class="heroCard">
-
 <h1>منصة <span>Sdnbet365</span></h1>
 
 <p>
@@ -749,26 +593,18 @@ font-size:14px;
 <a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
 <a href="#wallet" class="btn">المحفظة</a>
 </div>
-
 </div>
 
 <div class="balanceCard">
-
 <div class="balanceLabel">رصيد الحساب</div>
-
-<div class="balance" id="heroBalance">
-0.000 د.ت
-</div>
-
+<div class="balance" id="heroBalance">0.000 د.ت</div>
 <div class="loginHint" id="heroHint">
 سجّل الدخول للوصول إلى بيانات حسابك.
 </div>
-
 </div>
 
 </div>
 </section>
-
 
 <section id="sports">
 <div class="container">
@@ -791,7 +627,7 @@ font-size:14px;
 <div class="cardIcon">🏀</div>
 <h3>كرة السلة</h3>
 <p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
 عرض الخيارات
 </button>
 </div>
@@ -800,7 +636,7 @@ font-size:14px;
 <div class="cardIcon">🎾</div>
 <h3>التنس</h3>
 <p>تصميم بسيط لمتابعة مباريات التنس.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
 عرض الخيارات
 </button>
 </div>
@@ -810,7 +646,6 @@ font-size:14px;
 <div id="matches" class="matches" style="margin-top:18px">
 
 <div class="match">
-
 <div class="matchTop">
 <span class="matchLeague">Football • Demo</span>
 <span>20:00</span>
@@ -827,12 +662,9 @@ font-size:14px;
 <div class="odd"><span>X</span>3.20</div>
 <div class="odd"><span>2</span>2.80</div>
 </div>
-
 </div>
 
-
 <div class="match">
-
 <div class="matchTop">
 <span class="matchLeague">Football • Demo</span>
 <span>21:30</span>
@@ -849,14 +681,11 @@ font-size:14px;
 <div class="odd"><span>X</span>3.40</div>
 <div class="odd"><span>2</span>2.60</div>
 </div>
-
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="casino">
 <div class="container">
@@ -896,10 +725,8 @@ font-size:14px;
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="live">
 <div class="container">
@@ -910,21 +737,16 @@ font-size:14px;
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🔴</div>
-
 <h3>البث المباشر</h3>
-
 <p>
 سيتم عرض الأحداث المباشرة عند ربط المنصة
 بمصدر بيانات أو خدمة بث مرخّصة.
 </p>
-
 </div>
 
 </div>
 </section>
-
 
 <section id="wallet">
 <div class="container">
@@ -938,9 +760,7 @@ font-size:14px;
 
 <div class="walletCard">
 
-<div class="balanceLabel">
-رصيد الحساب
-</div>
+<div class="balanceLabel">رصيد الحساب</div>
 
 <div class="walletBalance" id="walletBalance">
 0.000 د.ت
@@ -952,15 +772,12 @@ font-size:14px;
 </p>
 
 <div style="margin-top:18px">
-
 <button class="btn btn-primary" onclick="loadWalletData()">
 تحديث الرصيد
 </button>
-
 </div>
 
 </div>
-
 
 <div class="walletCard">
 
@@ -970,66 +787,46 @@ D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو 
 </div>
 
 <div class="formGroup">
-
 <label>نوع العملية</label>
-
 <select id="walletType">
 <option value="deposit">إيداع</option>
 <option value="withdraw">سحب</option>
 </select>
-
 </div>
 
-
 <div class="formGroup">
-
 <label>المبلغ بالدينار التونسي</label>
-
 <input
 id="walletAmount"
 type="number"
 min="1"
 step="0.001"
 placeholder="مثال: 50">
-
 </div>
 
-
 <div class="formGroup">
-
 <label>طريقة الدفع</label>
-
 <select id="paymentMethod">
 <option value="D17">D17</option>
 <option value="Flouci">Flouci</option>
 </select>
-
 </div>
 
-
 <div class="formGroup">
-
 <label>رقم الحساب / الهاتف</label>
-
 <input
 id="paymentAccount"
 type="text"
 placeholder="رقم الهاتف أو الحساب">
-
 </div>
 
-
 <div class="formGroup">
-
 <label>مرجع العملية إن وجد</label>
-
 <input
 id="paymentReference"
 type="text"
 placeholder="رقم العملية">
-
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1039,24 +836,16 @@ onclick="createWalletRequest()">
 </button>
 
 </div>
-
 </div>
-
 </div>
 </section>
-
 
 <section id="history">
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>سجل المحفظة</h2>
-
-<p>
-جميع طلبات الإيداع والسحب الخاصة بحسابك.
-</p>
-
+<p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
 </div>
 
 <div class="walletCard">
@@ -1066,11 +855,8 @@ onclick="createWalletRequest()">
 </div>
 
 <div class="tableWrap">
-
 <table>
-
 <thead>
-
 <tr>
 <th>النوع</th>
 <th>المبلغ</th>
@@ -1078,54 +864,37 @@ onclick="createWalletRequest()">
 <th>الحالة</th>
 <th>التاريخ</th>
 </tr>
-
 </thead>
-
 <tbody id="historyBody"></tbody>
-
 </table>
-
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="support">
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>الدعم</h2>
-
-<p>
-تواصل مع فريق الدعم من داخل الموقع.
-</p>
-
+<p>تواصل مع فريق الدعم من داخل الموقع.</p>
 </div>
 
 <div class="supportCard">
 
 <div id="supportMessages" class="messages">
-
 <div style="color:var(--muted);text-align:center">
 سجّل الدخول لبدء المحادثة.
 </div>
-
 </div>
 
-
 <div class="formGroup">
-
 <textarea
 id="supportInput"
 rows="3"
 placeholder="اكتب رسالتك..."></textarea>
-
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1134,77 +903,44 @@ onclick="sendSupportMessage()">
 إرسال الرسالة
 </button>
 
-
 <div
 id="supportStatus"
 style="color:var(--muted);margin-top:12px;text-align:center">
 </div>
 
 </div>
-
 </div>
 </section>
 
 </main>
 
-
 <footer>
-
 <div class="container">
-
 Sdnbet365 ©
-
 <br>
-
 منصة تجريبية قيد التطوير.
-
 </div>
-
 </footer>
-
 
 <!-- LOGIN -->
 
 <div class="modal" id="loginModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>تسجيل الدخول</h2>
-
-<button
-class="close"
-onclick="closeModal('loginModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('loginModal')">×</button>
 </div>
 
-
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="loginEmail"
-type="email"
-autocomplete="email">
-
+<input id="loginEmail" type="email">
 </div>
-
 
 <div class="formGroup">
-
 <label>كلمة المرور</label>
-
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password">
-
+<input id="loginPassword" type="password">
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1213,14 +949,12 @@ onclick="loginUser()">
 دخول
 </button>
 
-
 <button
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="closeModal('loginModal');openModal('registerModal')">
 إنشاء حساب
 </button>
-
 
 <button
 class="btn"
@@ -1229,82 +963,40 @@ onclick="openRecovery()">
 نسيت كلمة المرور؟
 </button>
 
-
-<div
-id="loginStatus"
-style="margin-top:12px">
-</div>
+<div id="loginStatus" style="margin-top:12px"></div>
 
 </div>
 </div>
-
 
 <!-- REGISTER -->
 
 <div class="modal" id="registerModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>إنشاء حساب</h2>
-
-<button
-class="close"
-onclick="closeModal('registerModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('registerModal')">×</button>
 </div>
 
-
 <div class="formGroup">
-
 <label>الاسم</label>
-
-<input
-id="registerName"
-type="text"
-autocomplete="name">
-
+<input id="registerName" type="text">
 </div>
 
-
 <div class="formGroup">
-
 <label>رقم الهاتف</label>
-
-<input
-id="registerPhone"
-type="text"
-autocomplete="tel">
-
+<input id="registerPhone" type="text">
 </div>
 
-
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="registerEmail"
-type="email"
-autocomplete="email">
-
+<input id="registerEmail" type="email">
 </div>
-
 
 <div class="formGroup">
-
 <label>كلمة المرور</label>
-
-<input
-id="registerPassword"
-type="password"
-autocomplete="new-password">
-
+<input id="registerPassword" type="password">
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1313,46 +1005,25 @@ onclick="registerUser()">
 إنشاء الحساب
 </button>
 
-
-<div
-id="registerStatus"
-style="margin-top:12px">
-</div>
+<div id="registerStatus" style="margin-top:12px"></div>
 
 </div>
 </div>
-
 
 <!-- RECOVERY -->
 
 <div class="modal" id="recoveryModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>استعادة كلمة المرور</h2>
-
-<button
-class="close"
-onclick="closeModal('recoveryModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('recoveryModal')">×</button>
 </div>
-
 
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="recoveryEmail"
-type="email"
-autocomplete="email">
-
+<input id="recoveryEmail" type="email">
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1361,40 +1032,24 @@ onclick="sendRecovery()">
 إرسال رابط الاستعادة
 </button>
 
-
-<div
-id="recoveryStatus"
-style="margin-top:12px">
-</div>
+<div id="recoveryStatus" style="margin-top:12px"></div>
 
 </div>
 </div>
-
 
 <!-- RESET PASSWORD -->
 
 <div class="modal" id="resetModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>تغيير كلمة المرور</h2>
-
 </div>
-
 
 <div class="formGroup">
-
 <label>كلمة المرور الجديدة</label>
-
-<input
-id="newPassword"
-type="password"
-autocomplete="new-password">
-
+<input id="newPassword" type="password">
 </div>
-
 
 <button
 class="btn btn-primary"
@@ -1403,18 +1058,12 @@ onclick="changePassword()">
 حفظ كلمة المرور
 </button>
 
-
-<div
-id="resetStatus"
-style="margin-top:12px">
-</div>
+<div id="resetStatus" style="margin-top:12px"></div>
 
 </div>
 </div>
-
 
 <div class="toast" id="toast"></div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1447,86 +1096,57 @@ let currentConversation = null;
 
 
 /* =========================================================
-UI HELPERS
+UI
 ========================================================= */
 
 function openModal(id){
-
-const modal =
-document.getElementById(id);
-
-if(modal){
-modal.classList.add("show");
+const el=document.getElementById(id);
+if(el) el.classList.add("show");
 }
-
-}
-
 
 function closeModal(id){
-
-const modal =
-document.getElementById(id);
-
-if(modal){
-modal.classList.remove("show");
+const el=document.getElementById(id);
+if(el) el.classList.remove("show");
 }
-
-}
-
 
 function showToast(message){
 
-const toast =
-document.getElementById("toast");
+const toast=document.getElementById("toast");
 
-toast.textContent = message;
-
+toast.textContent=message;
 toast.classList.add("show");
 
-setTimeout(function(){
-
+setTimeout(()=>{
 toast.classList.remove("show");
-
 },3500);
 
 }
 
-
 function showStatus(id,message,type=""){
 
-const el =
-document.getElementById(id);
+const el=document.getElementById(id);
 
 if(!el)return;
 
-el.textContent = message;
+el.textContent=message;
 
 if(type==="error"){
-
 el.style.color="#ff7773";
-
 }else if(type==="success"){
-
 el.style.color="#20c77a";
-
 }else{
-
 el.style.color="#9eacbd";
-
 }
 
 }
-
 
 function formatMoney(value){
 
-const number =
-Number(value || 0);
+const number=Number(value || 0);
 
 return number.toFixed(3)+" د.ت";
 
 }
-
 
 function formatDate(date){
 
@@ -1542,14 +1162,13 @@ timeStyle:"short"
 }
 );
 
-}catch(error){
+}catch(e){
 
 return "-";
 
 }
 
 }
-
 
 function escapeHtml(value){
 
@@ -1569,34 +1188,20 @@ AUTH
 
 async function getCurrentUser(){
 
-try{
-
-const result =
-await supabaseClient.auth.getUser();
-
-if(result.error){
-
-console.error(
-"Auth error:",
-result.error
-);
-
-return null;
-
-}
-
-return result.data.user || null;
-
-}catch(error){
-
-console.error(
-"Get user error:",
+const {
+data,
 error
-);
+} = await supabaseClient.auth.getUser();
+
+if(error){
+
+console.error(error);
 
 return null;
 
 }
+
+return data.user || null;
 
 }
 
@@ -1615,7 +1220,6 @@ document.getElementById("registerEmail").value.trim();
 const password =
 document.getElementById("registerPassword").value;
 
-
 if(!email || !password){
 
 showStatus(
@@ -1628,8 +1232,7 @@ return;
 
 }
 
-
-if(password.length < 6){
+if(password.length<6){
 
 showStatus(
 "registerStatus",
@@ -1641,22 +1244,18 @@ return;
 
 }
 
-
 showStatus(
 "registerStatus",
 "جارٍ إنشاء الحساب..."
 );
 
-
 const {
 data,
 error
-} =
-await supabaseClient.auth.signUp({
+} = await supabaseClient.auth.signUp({
 
-email:email,
-
-password:password,
+email,
+password,
 
 options:{
 data:{
@@ -1666,7 +1265,6 @@ phone:phone
 }
 
 });
-
 
 if(error){
 
@@ -1680,7 +1278,6 @@ return;
 
 }
 
-
 if(data.user){
 
 showStatus(
@@ -1689,10 +1286,8 @@ showStatus(
 "success"
 );
 
-setTimeout(function(){
-
+setTimeout(()=>{
 closeModal("registerModal");
-
 },1800);
 
 }
@@ -1708,7 +1303,6 @@ document.getElementById("loginEmail").value.trim();
 const password =
 document.getElementById("loginPassword").value;
 
-
 if(!email || !password){
 
 showStatus(
@@ -1721,25 +1315,18 @@ return;
 
 }
 
-
 showStatus(
 "loginStatus",
 "جارٍ تسجيل الدخول..."
 );
 
-
 const {
 data,
 error
-} =
-await supabaseClient.auth.signInWithPassword({
-
-email:email,
-
-password:password
-
+} = await supabaseClient.auth.signInWithPassword({
+email,
+password
 });
-
 
 if(error){
 
@@ -1753,20 +1340,15 @@ return;
 
 }
 
-
-currentUser =
-data.user;
+currentUser=data.user;
 
 closeModal("loginModal");
 
 showToast("تم تسجيل الدخول بنجاح");
 
 await updateAuthUI();
-
 await loadWalletData();
-
 await loadWalletHistory();
-
 await loadSupport();
 
 }
@@ -1774,42 +1356,18 @@ await loadSupport();
 
 async function signOutUser(){
 
-try{
-
 await supabaseClient.auth.signOut();
 
-}catch(error){
-
-console.error(error);
-
-}
-
-
 currentUser=null;
-
 currentProfile=null;
-
 currentConversation=null;
-
 
 await updateAuthUI();
 
+document.getElementById("historyBody").innerHTML="";
 
-document.getElementById(
-"historyBody"
-).innerHTML="";
-
-
-document.getElementById(
-"historyLoginMessage"
-).classList.remove("hidden");
-
-
-document.getElementById(
-"supportMessages"
-).innerHTML =
+document.getElementById("supportMessages").innerHTML =
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-
 
 showToast("تم تسجيل الخروج");
 
@@ -1818,9 +1376,7 @@ showToast("تم تسجيل الخروج");
 
 async function updateAuthUI(){
 
-currentUser =
-await getCurrentUser();
-
+currentUser=await getCurrentUser();
 
 const authButtons =
 document.getElementById("authButtons");
@@ -1831,54 +1387,33 @@ document.getElementById("userArea");
 const userName =
 document.getElementById("userName");
 
-
 if(currentUser){
 
 authButtons.classList.add("hidden");
-
 userArea.classList.remove("hidden");
-
 
 const name =
 currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "حسابك";
 
-
 userName.textContent=name;
 
-
-document.getElementById(
-"heroHint"
-).textContent =
+document.getElementById("heroHint").textContent =
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
-
-
-await loadWalletData();
-
 
 }else{
 
 authButtons.classList.remove("hidden");
-
 userArea.classList.add("hidden");
 
-
-document.getElementById(
-"heroBalance"
-).textContent =
+document.getElementById("heroBalance").textContent =
 "0.000 د.ت";
 
-
-document.getElementById(
-"walletBalance"
-).textContent =
+document.getElementById("walletBalance").textContent =
 "0.000 د.ت";
 
-
-document.getElementById(
-"heroHint"
-).textContent =
+document.getElementById("heroHint").textContent =
 "سجّل الدخول للوصول إلى بيانات حسابك.";
 
 }
@@ -1894,29 +1429,22 @@ async function loadProfile(){
 
 if(!currentUser)return null;
 
-
 const {
 data,
 error
-} =
-await supabaseClient
+} = await supabaseClient
 .from("profiles")
 .select("*")
 .eq("id",currentUser.id)
 .maybeSingle();
 
-
 if(error){
 
-console.error(
-"Profile error:",
-error
-);
+console.error("Profile error:",error);
 
 return null;
 
 }
-
 
 currentProfile=data;
 
@@ -1926,62 +1454,41 @@ return data;
 
 
 /* =========================================================
-WALLET BALANCE
+WALLET
 ========================================================= */
 
 async function loadWalletData(){
 
 if(!currentUser){
 
-document.getElementById(
-"heroBalance"
-).textContent =
+document.getElementById("heroBalance").textContent =
 "0.000 د.ت";
 
-
-document.getElementById(
-"walletBalance"
-).textContent =
+document.getElementById("walletBalance").textContent =
 "0.000 د.ت";
 
 return;
 
 }
 
+const profile=await loadProfile();
 
-const profile =
-await loadProfile();
+const balance=profile?.balance ?? 0;
 
-
-const balance =
-profile?.balance ?? 0;
-
-
-document.getElementById(
-"heroBalance"
-).textContent =
+document.getElementById("heroBalance").textContent =
 formatMoney(balance);
 
-
-document.getElementById(
-"walletBalance"
-).textContent =
+document.getElementById("walletBalance").textContent =
 formatMoney(balance);
 
 }
 
 
-/* =========================================================
-CREATE WALLET REQUEST
-========================================================= */
-
 async function createWalletRequest(){
 
 if(!currentUser){
 
-showToast(
-"يجب تسجيل الدخول أولًا"
-);
+showToast("يجب تسجيل الدخول أولًا");
 
 openModal("loginModal");
 
@@ -1989,78 +1496,46 @@ return;
 
 }
 
-
 const type =
-document.getElementById(
-"walletType"
-).value;
-
+document.getElementById("walletType").value;
 
 const amount =
-Number(
-document.getElementById(
-"walletAmount"
-).value
-);
-
+Number(document.getElementById("walletAmount").value);
 
 const method =
-document.getElementById(
-"paymentMethod"
-).value;
-
+document.getElementById("paymentMethod").value;
 
 const account =
-document.getElementById(
-"paymentAccount"
-).value.trim();
-
+document.getElementById("paymentAccount").value.trim();
 
 const reference =
-document.getElementById(
-"paymentReference"
-).value.trim();
-
+document.getElementById("paymentReference").value.trim();
 
 if(!amount || amount<=0){
 
-showToast(
-"أدخل مبلغًا صحيحًا"
-);
+showToast("أدخل مبلغًا صحيحًا");
 
 return;
 
 }
-
 
 if(!account){
 
-showToast(
-"أدخل رقم الحساب أو الهاتف"
-);
+showToast("أدخل رقم الحساب أو الهاتف");
 
 return;
 
 }
-
 
 if(type==="withdraw"){
 
-const profile =
-await loadProfile();
+const profile=await loadProfile();
 
-
-const balance =
-Number(
-profile?.balance || 0
-);
-
+const balance=Number(profile?.balance || 0);
 
 if(amount>balance){
 
-showToast(
-"الرصيد غير كافٍ لطلب السحب"
-);
+showToast("الرصيد غير كافٍ لطلب السحب");
 
 return;
 
@@ -2068,31 +1543,21 @@ return;
 
 }
 
-
 const {
 error
-} =
-await supabaseClient
+} = await supabaseClient
 .from("wallet_requests")
 .insert({
 
 user_id:currentUser.id,
-
 request_type:type,
-
 amount:amount,
-
 payment_method:method,
-
 payment_account:account,
-
-payment_reference:
-reference || null,
-
+payment_reference:reference || null,
 status:"pending"
 
 });
-
 
 if(error){
 
@@ -2106,52 +1571,28 @@ return;
 
 }
 
-
-document.getElementById(
-"walletAmount"
-).value="";
-
-
-document.getElementById(
-"paymentAccount"
-).value="";
-
-
-document.getElementById(
-"paymentReference"
-).value="";
-
+document.getElementById("walletAmount").value="";
+document.getElementById("paymentAccount").value="";
+document.getElementById("paymentReference").value="";
 
 showToast(
 "تم إرسال طلبك بنجاح وهو الآن قيد المراجعة"
 );
-
 
 await loadWalletHistory();
 
 }
 
 
-/* =========================================================
-WALLET HISTORY
-========================================================= */
-
 async function loadWalletHistory(){
 
 const body =
-document.getElementById(
-"historyBody"
-);
-
+document.getElementById("historyBody");
 
 const message =
-document.getElementById(
-"historyLoginMessage"
-);
-
+document.getElementById("historyLoginMessage");
 
 body.innerHTML="";
-
 
 if(!currentUser){
 
@@ -2161,28 +1602,20 @@ return;
 
 }
 
-
 message.classList.add("hidden");
-
 
 const {
 data,
 error
-} =
-await supabaseClient
+} = await supabaseClient
 .from("wallet_requests")
 .select("*")
 .eq("user_id",currentUser.id)
-.order(
-"created_at",
-{ascending:false}
-);
-
+.order("created_at",{ascending:false});
 
 if(error){
 
 console.error(error);
-
 
 body.innerHTML =
 '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
@@ -2190,7 +1623,6 @@ body.innerHTML =
 return;
 
 }
-
 
 if(!data || data.length===0){
 
@@ -2201,18 +1633,14 @@ return;
 
 }
 
+data.forEach(item=>{
 
-data.forEach(function(item){
-
-const tr =
-document.createElement("tr");
-
+const tr=document.createElement("tr");
 
 const type =
 item.request_type==="deposit"
 ? "إيداع"
 : "سحب";
-
 
 const statusClass =
 item.status==="approved"
@@ -2223,7 +1651,6 @@ item.status==="approved"
 ? "status-cancelled"
 : "status-pending";
 
-
 const statusText =
 item.status==="approved"
 ? "مقبول"
@@ -2233,29 +1660,17 @@ item.status==="approved"
 ? "ملغى"
 : "قيد المراجعة";
 
-
 tr.innerHTML = `
 <td>${escapeHtml(type)}</td>
-
-<td>
-${escapeHtml(formatMoney(item.amount))}
-</td>
-
-<td>
-${escapeHtml(item.payment_method || "-")}
-</td>
-
+<td>${escapeHtml(formatMoney(item.amount))}</td>
+<td>${escapeHtml(item.payment_method || "-")}</td>
 <td>
 <span class="status ${statusClass}">
 ${escapeHtml(statusText)}
 </span>
 </td>
-
-<td>
-${escapeHtml(formatDate(item.created_at))}
-</td>
+<td>${escapeHtml(formatDate(item.created_at))}</td>
 `;
-
 
 body.appendChild(tr);
 
@@ -2272,32 +1687,28 @@ async function getOrCreateConversation(){
 
 if(!currentUser)return null;
 
-
 const {
 data:existing,
 error:findError
-} =
-await supabaseClient
+} = await supabaseClient
 .from("support_conversations")
 .select("*")
 .eq("user_id",currentUser.id)
 .eq("status","open")
-.order(
-"created_at",
-{ascending:false}
-)
+.order("created_at",{ascending:false})
 .limit(1)
 .maybeSingle();
 
-
 if(findError){
 
-console.error(findError);
+console.error(
+"Conversation error:",
+findError
+);
 
 return null;
 
 }
-
 
 if(existing){
 
@@ -2307,34 +1718,31 @@ return existing;
 
 }
 
-
 const {
 data:newConversation,
 error:createError
-} =
-await supabaseClient
+} = await supabaseClient
 .from("support_conversations")
 .insert({
 
 user_id:currentUser.id,
-
 visitor_token:currentUser.id,
-
 status:"open"
 
 })
 .select()
 .single();
 
-
 if(createError){
 
-console.error(createError);
+console.error(
+"Create conversation error:",
+createError
+);
 
 return null;
 
 }
-
 
 currentConversation=newConversation;
 
@@ -2346,10 +1754,9 @@ return newConversation;
 async function loadSupport(){
 
 const box =
-document.getElementById(
-"supportMessages"
-);
+document.getElementById("supportMessages");
 
+if(!box)return;
 
 if(!currentUser){
 
@@ -2360,10 +1767,8 @@ return;
 
 }
 
-
 const conversation =
 await getOrCreateConversation();
-
 
 if(!conversation){
 
@@ -2374,27 +1779,21 @@ return;
 
 }
 
-
 const {
 data,
 error
-} =
-await supabaseClient
+} = await supabaseClient
 .from("support_messages")
 .select("*")
-.eq(
-"conversation_id",
-conversation.id
-)
-.order(
-"created_at",
-{ascending:true}
-);
-
+.eq("conversation_id",conversation.id)
+.order("created_at",{ascending:true});
 
 if(error){
 
-console.error(error);
+console.error(
+"Messages error:",
+error
+);
 
 box.innerHTML =
 '<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
@@ -2403,9 +1802,7 @@ return;
 
 }
 
-
 box.innerHTML="";
-
 
 if(!data || data.length===0){
 
@@ -2416,40 +1813,30 @@ return;
 
 }
 
+data.forEach(message=>{
 
-data.forEach(function(message){
-
-const div =
-document.createElement("div");
-
+const div=document.createElement("div");
 
 div.className =
 "message "+
 (
-message.sender_type==="user"
+message.sender_role==="user"
 ? "user"
 : "admin"
 );
 
-
 div.innerHTML = `
-<div>
-${escapeHtml(message.message || "")}
-</div>
-
+<div>${escapeHtml(message.message || "")}</div>
 <div class="messageTime">
 ${escapeHtml(formatDate(message.created_at))}
 </div>
 `;
 
-
 box.appendChild(div);
 
 });
 
-
-box.scrollTop =
-box.scrollHeight;
+box.scrollTop=box.scrollHeight;
 
 }
 
@@ -2458,9 +1845,7 @@ async function sendSupportMessage(){
 
 if(!currentUser){
 
-showToast(
-"يجب تسجيل الدخول أولًا"
-);
+showToast("يجب تسجيل الدخول أولًا");
 
 openModal("loginModal");
 
@@ -2468,73 +1853,60 @@ return;
 
 }
 
-
 const input =
-document.getElementById(
-"supportInput"
-);
-
+document.getElementById("supportInput");
 
 const message =
 input.value.trim();
 
-
 if(!message){
 
-showToast(
-"اكتب رسالة أولًا"
-);
+showToast("اكتب رسالة أولًا");
 
 return;
 
 }
-
 
 const conversation =
 await getOrCreateConversation();
 
-
 if(!conversation){
 
-showToast(
-"تعذر فتح المحادثة"
-);
+showToast("تعذر فتح المحادثة");
 
 return;
 
 }
-
 
 showStatus(
 "supportStatus",
 "جارٍ إرسال الرسالة..."
 );
 
-
 const {
 error
-} =
-await supabaseClient
+} = await supabaseClient
 .from("support_messages")
 .insert({
 
-conversation_id:
-conversation.id,
+conversation_id:conversation.id,
 
-sender_type:"user",
+sender_role:"user",
 
 message:message
 
 });
 
-
 if(error){
 
-console.error(error);
+console.error(
+"Send message error:",
+error
+);
 
 showStatus(
 "supportStatus",
-error.message,
+"تعذر إرسال الرسالة: "+error.message,
 "error"
 );
 
@@ -2542,16 +1914,13 @@ return;
 
 }
 
-
 input.value="";
-
 
 showStatus(
 "supportStatus",
-"تم إرسال الرسالة.",
+"تم إرسال الرسالة بنجاح.",
 "success"
 );
-
 
 await loadSupport();
 
@@ -2574,10 +1943,7 @@ openModal("recoveryModal");
 async function sendRecovery(){
 
 const email =
-document.getElementById(
-"recoveryEmail"
-).value.trim();
-
+document.getElementById("recoveryEmail").value.trim();
 
 if(!email){
 
@@ -2591,12 +1957,10 @@ return;
 
 }
 
-
 const redirectTo =
-window.location.origin +
-window.location.pathname +
+window.location.origin+
+window.location.pathname+
 "?type=recovery";
-
 
 const {
 error
@@ -2607,7 +1971,6 @@ email,
 redirectTo:redirectTo
 }
 );
-
 
 if(error){
 
@@ -2620,7 +1983,6 @@ error.message,
 return;
 
 }
-
 
 showStatus(
 "recoveryStatus",
@@ -2634,10 +1996,7 @@ showStatus(
 async function changePassword(){
 
 const password =
-document.getElementById(
-"newPassword"
-).value;
-
+document.getElementById("newPassword").value;
 
 if(password.length<6){
 
@@ -2651,16 +2010,12 @@ return;
 
 }
 
-
 const {
 error
 } =
 await supabaseClient.auth.updateUser({
-
 password:password
-
 });
-
 
 if(error){
 
@@ -2674,18 +2029,14 @@ return;
 
 }
 
-
 showStatus(
 "resetStatus",
 "تم تغيير كلمة المرور بنجاح.",
 "success"
 );
 
-
-setTimeout(function(){
-
+setTimeout(()=>{
 closeModal("resetModal");
-
 },1500);
 
 }
@@ -2696,25 +2047,18 @@ AUTH STATE
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-async function(event,session){
+async(event,session)=>{
 
 currentUser =
 session?.user || null;
 
+await updateAuthUI();
 
 if(currentUser){
 
-await updateAuthUI();
-
 await loadWalletData();
-
 await loadWalletHistory();
-
 await loadSupport();
-
-}else{
-
-await updateAuthUI();
 
 }
 
@@ -2733,16 +2077,12 @@ try{
 currentUser =
 await getCurrentUser();
 
-
 await updateAuthUI();
-
 
 if(currentUser){
 
 await loadWalletData();
-
 await loadWalletHistory();
-
 await loadSupport();
 
 }
@@ -2769,10 +2109,8 @@ window.location.search
 ).get("type")==="recovery"
 ){
 
-setTimeout(function(){
-
+setTimeout(()=>{
 openModal("resetModal");
-
 },800);
 
 }
@@ -2782,15 +2120,15 @@ initialize();
 
 
 /* =========================================================
-CLOSE MODALS WHEN CLICK OUTSIDE
+CLOSE MODALS
 ========================================================= */
 
 document.querySelectorAll(".modal")
-.forEach(function(modal){
+.forEach(modal=>{
 
 modal.addEventListener(
 "click",
-function(event){
+event=>{
 
 if(event.target===modal){
 
@@ -2805,19 +2143,16 @@ modal.classList.remove("show");
 
 
 /* =========================================================
-REFRESH WALLET/SUPPORT
+AUTO REFRESH
 ========================================================= */
 
 setInterval(
-async function(){
+async()=>{
 
 if(!currentUser)return;
 
 await loadWalletData();
-
 await loadWalletHistory();
-
-await loadSupport();
 
 },
 15000
@@ -2826,4 +2161,4 @@ await loadSupport();
 </script>
 
 </body>
-</html>
+                        </html>
