@@ -136,7 +136,8 @@ gap:25px;
 align-items:stretch;
 }
 
-.heroCard,.balanceCard{
+.heroCard,
+.balanceCard{
 background:linear-gradient(145deg,#112238,#0d1828);
 border:1px solid var(--border);
 border-radius:22px;
@@ -512,8 +513,23 @@ color:var(--muted);
 text-align:center;
 }
 
+.siteLink{
+display:inline-block;
+margin-top:12px;
+padding:10px 16px;
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:10px;
+color:var(--green);
+font-weight:bold;
+}
+
 @media(max-width:850px){
-.heroGrid,.walletGrid{grid-template-columns:1fr}
+
+.heroGrid,
+.walletGrid{
+grid-template-columns:1fr;
+}
 
 .cards{
 grid-template-columns:1fr 1fr;
@@ -528,6 +544,7 @@ padding:10px 0;
 order:3;
 width:100%;
 }
+
 }
 
 @media(max-width:560px){
@@ -569,7 +586,7 @@ font-size:32px;
 <header>
 <div class="container nav">
 
-<a href="#" class="logo">Sdnbet365</a>
+<a href="#top" class="logo">Sdnbet365</a>
 
 <nav class="navlinks">
 <a href="#sports">الرياضة</a>
@@ -581,27 +598,42 @@ font-size:32px;
 </nav>
 
 <div class="authButtons" id="authButtons">
-<button class="btn" onclick="openModal('loginModal')">دخول</button>
+
+<button class="btn" onclick="openModal('loginModal')">
+دخول
+</button>
+
 <button class="btn btn-primary" onclick="openModal('registerModal')">
 إنشاء حساب
 </button>
+
 </div>
 
 <div class="userArea hidden" id="userArea">
+
 <span class="userName" id="userName"></span>
-<button class="btn" onclick="signOutUser()">خروج</button>
+
+<button class="btn" onclick="signOutUser()">
+خروج
+</button>
+
 </div>
 
 </div>
 </header>
 
-<main>
+
+<main id="top">
 
 <section class="hero">
+
 <div class="container heroGrid">
 
 <div class="heroCard">
-<h1>منصة <span>Sdnbet365</span></h1>
+
+<h1>
+منصة <span>Sdnbet365</span>
+</h1>
 
 <p>
 منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف.
@@ -610,13 +642,25 @@ font-size:32px;
 </p>
 
 <div class="heroActions">
-<a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
-<a href="#wallet" class="btn">المحفظة</a>
-</div>
+
+<a href="#sports" class="btn btn-primary">
+استكشف الرياضة
+</a>
+
+<a href="#wallet" class="btn">
+المحفظة
+</a>
+
 </div>
 
+</div>
+
+
 <div class="balanceCard">
-<div class="balanceLabel">رصيد الحساب</div>
+
+<div class="balanceLabel">
+رصيد الحساب
+</div>
 
 <div class="balance" id="heroBalance">
 0.000 د.ت
@@ -625,156 +669,318 @@ font-size:32px;
 <div class="loginHint" id="heroHint">
 سجّل الدخول للوصول إلى بيانات حسابك.
 </div>
+
 </div>
 
 </div>
+
 </section>
 
 
 <section id="sports">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>الرياضة</h2>
-<p>واجهة المباريات الرياضية.</p>
+
+<p>
+واجهة المباريات الرياضية.
+</p>
+
 </div>
+
 
 <div class="cards">
 
 <div class="card">
+
 <div class="cardIcon">⚽</div>
+
 <h3>كرة القدم</h3>
-<p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p>
-<a href="#matches" class="btn">عرض المباريات</a>
+
+<p>
+تابع المباريات والبطولات في واجهة مرتبة وسريعة.
+</p>
+
+<a href="#matches" class="btn">
+عرض المباريات
+</a>
+
 </div>
 
+
 <div class="card">
+
 <div class="cardIcon">🏀</div>
+
 <h3>كرة السلة</h3>
-<p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
+
+<p>
+واجهة متجاوبة لمتابعة الفرق والمواجهات.
+</p>
+
+<button
+class="btn"
+onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
+
 عرض الخيارات
+
 </button>
+
 </div>
+
 
 <div class="card">
+
 <div class="cardIcon">🎾</div>
+
 <h3>التنس</h3>
-<p>تصميم بسيط لمتابعة مباريات التنس.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
+
+<p>
+تصميم بسيط لمتابعة مباريات التنس.
+</p>
+
+<button
+class="btn"
+onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
+
 عرض الخيارات
+
 </button>
+
 </div>
 
 </div>
+
 
 <div id="matches" class="matches" style="margin-top:18px">
 
 <div class="match">
 
 <div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>20:00</span>
+
+<span class="matchLeague">
+Football • Demo
+</span>
+
+<span>
+20:00
+</span>
+
 </div>
+
 
 <div class="teams">
-<span>Real Madrid</span>
-<span class="vs">VS</span>
-<span>Barcelona</span>
+
+<span>
+Real Madrid
+</span>
+
+<span class="vs">
+VS
+</span>
+
+<span>
+Barcelona
+</span>
+
 </div>
+
 
 <div class="odds">
-<div class="odd"><span>1</span>2.10</div>
-<div class="odd"><span>X</span>3.20</div>
-<div class="odd"><span>2</span>2.80</div>
+
+<div class="odd">
+<span>1</span>
+2.10
+</div>
+
+<div class="odd">
+<span>X</span>
+3.20
+</div>
+
+<div class="odd">
+<span>2</span>
+2.80
 </div>
 
 </div>
+
+</div>
+
 
 <div class="match">
 
 <div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>21:30</span>
+
+<span class="matchLeague">
+Football • Demo
+</span>
+
+<span>
+21:30
+</span>
+
 </div>
+
 
 <div class="teams">
-<span>Liverpool</span>
-<span class="vs">VS</span>
-<span>Arsenal</span>
+
+<span>
+Liverpool
+</span>
+
+<span class="vs">
+VS
+</span>
+
+<span>
+Arsenal
+</span>
+
 </div>
+
 
 <div class="odds">
-<div class="odd"><span>1</span>2.25</div>
-<div class="odd"><span>X</span>3.40</div>
-<div class="odd"><span>2</span>2.60</div>
+
+<div class="odd">
+<span>1</span>
+2.25
+</div>
+
+<div class="odd">
+<span>X</span>
+3.40
+</div>
+
+<div class="odd">
+<span>2</span>
+2.60
 </div>
 
 </div>
 
 </div>
+
 </div>
+
+</div>
+
 </section>
 
 
 <section id="casino">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>الكازينو</h2>
-<p>أقسام واجهة تجريبية.</p>
+
+<p>
+أقسام واجهة تجريبية.
+</p>
+
 </div>
+
 
 <div class="cards">
 
 <div class="card">
+
 <div class="cardIcon">🎰</div>
+
 <h3>Slots</h3>
-<p>واجهة ألعاب تجريبية.</p>
-<button class="btn"
+
+<p>
+واجهة ألعاب تجريبية.
+</p>
+
+<button
+class="btn"
 onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
 فتح
+
 </button>
+
 </div>
 
+
 <div class="card">
+
 <div class="cardIcon">🃏</div>
+
 <h3>Cards</h3>
-<p>قسم ألعاب البطاقات.</p>
-<button class="btn"
+
+<p>
+قسم ألعاب البطاقات.
+</p>
+
+<button
+class="btn"
 onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
 فتح
+
 </button>
+
 </div>
+
 
 <div class="card">
+
 <div class="cardIcon">🎲</div>
+
 <h3>Games</h3>
-<p>ألعاب إضافية للعرض.</p>
-<button class="btn"
+
+<p>
+ألعاب إضافية للعرض.
+</p>
+
+<button
+class="btn"
 onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+
 فتح
+
 </button>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 
 <section id="live">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>مباشر</h2>
-<p>الأحداث المباشرة.</p>
+
+<p>
+الأحداث المباشرة.
+</p>
+
 </div>
+
 
 <div class="card">
 
-<div class="cardIcon">🔴</div>
+<div class="cardIcon">
+🔴
+</div>
 
-<h3>البث المباشر</h3>
+<h3>
+البث المباشر
+</h3>
 
 <p>
 سيتم عرض الأحداث المباشرة عند ربط المنصة
@@ -784,37 +990,53 @@ onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعا
 </div>
 
 </div>
+
 </section>
 
 
 <section id="wallet">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>المحفظة</h2>
-<p>إدارة طلبات الإيداع والسحب.</p>
+
+<p>
+إدارة طلبات الإيداع والسحب.
+</p>
+
 </div>
+
 
 <div class="walletGrid">
 
 <div class="walletCard">
 
-<div class="balanceLabel">رصيد الحساب</div>
+<div class="balanceLabel">
+رصيد الحساب
+</div>
 
 <div class="walletBalance" id="walletBalance">
 0.000 د.ت
 </div>
 
 <p style="color:var(--muted);line-height:1.8">
+
 الرصيد المعروض هنا يتم قراءته من حسابك في Supabase.
 لا يمكن للمستخدم تعديل الرصيد من الواجهة.
+
 </p>
+
 
 <div style="margin-top:18px">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="loadWalletData()">
+
 تحديث الرصيد
+
 </button>
 
 </div>
@@ -825,18 +1047,28 @@ onclick="loadWalletData()">
 <div class="walletCard">
 
 <div class="notice">
+
 D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب.
 لا يتم تنفيذ الدفع تلقائيًا من المتصفح.
+
 </div>
+
 
 <div class="formGroup">
 
-<label>نوع العملية</label>
+<label>
+نوع العملية
+</label>
 
 <select id="walletType">
 
-<option value="deposit">إيداع</option>
-<option value="withdraw">سحب</option>
+<option value="deposit">
+إيداع
+</option>
+
+<option value="withdraw">
+سحب
+</option>
 
 </select>
 
@@ -845,7 +1077,9 @@ D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو 
 
 <div class="formGroup">
 
-<label>المبلغ بالدينار التونسي</label>
+<label>
+المبلغ بالدينار التونسي
+</label>
 
 <input
 id="walletAmount"
@@ -859,12 +1093,19 @@ placeholder="مثال: 50">
 
 <div class="formGroup">
 
-<label>طريقة الدفع</label>
+<label>
+طريقة الدفع
+</label>
 
 <select id="paymentMethod">
 
-<option value="D17">D17</option>
-<option value="Flouci">Flouci</option>
+<option value="D17">
+D17
+</option>
+
+<option value="Flouci">
+Flouci
+</option>
 
 </select>
 
@@ -873,7 +1114,9 @@ placeholder="مثال: 50">
 
 <div class="formGroup">
 
-<label>رقم الحساب / الهاتف</label>
+<label>
+رقم الحساب / الهاتف
+</label>
 
 <input
 id="paymentAccount"
@@ -885,7 +1128,9 @@ placeholder="رقم الهاتف أو الحساب">
 
 <div class="formGroup">
 
-<label>مرجع العملية إن وجد</label>
+<label>
+مرجع العملية إن وجد
+</label>
 
 <input
 id="paymentReference"
@@ -905,8 +1150,11 @@ onclick="createWalletRequest()">
 </button>
 
 </div>
+
 </div>
+
 </div>
+
 </section>
 
 
@@ -916,7 +1164,9 @@ onclick="createWalletRequest()">
 
 <div class="sectionTitle">
 
-<h2>سجل المحفظة</h2>
+<h2>
+سجل المحفظة
+</h2>
 
 <p>
 جميع طلبات الإيداع والسحب الخاصة بحسابك.
@@ -927,9 +1177,14 @@ onclick="createWalletRequest()">
 
 <div class="walletCard">
 
-<div id="historyLoginMessage" class="notice">
+<div
+id="historyLoginMessage"
+class="notice">
+
 سجّل الدخول لعرض سجل المحفظة.
+
 </div>
+
 
 <div class="tableWrap">
 
@@ -938,11 +1193,27 @@ onclick="createWalletRequest()">
 <thead>
 
 <tr>
-<th>النوع</th>
-<th>المبلغ</th>
-<th>الطريقة</th>
-<th>الحالة</th>
-<th>التاريخ</th>
+
+<th>
+النوع
+</th>
+
+<th>
+المبلغ
+</th>
+
+<th>
+الطريقة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+التاريخ
+</th>
+
 </tr>
 
 </thead>
@@ -966,7 +1237,9 @@ onclick="createWalletRequest()">
 
 <div class="sectionTitle">
 
-<h2>الدعم</h2>
+<h2>
+الدعم
+</h2>
 
 <p>
 تواصل مع فريق الدعم من داخل الموقع.
@@ -977,10 +1250,14 @@ onclick="createWalletRequest()">
 
 <div class="supportCard">
 
-<div id="supportMessages" class="messages">
+<div
+id="supportMessages"
+class="messages">
 
 <div style="color:var(--muted);text-align:center">
+
 سجّل الدخول لبدء المحادثة.
+
 </div>
 
 </div>
@@ -1031,6 +1308,18 @@ Sdnbet365 ©
 
 منصة تجريبية قيد التطوير.
 
+<br>
+
+<a
+class="siteLink"
+href="https://majdisdn11.github.io/Sdnbet365/"
+target="_blank"
+rel="noopener">
+
+🌐 فتح موقع Sdnbet365
+
+</a>
+
 </div>
 
 </footer>
@@ -1044,11 +1333,16 @@ Sdnbet365 ©
 
 <div class="modalHeader">
 
-<h2>تسجيل الدخول</h2>
+<h2>
+تسجيل الدخول
+</h2>
 
-<button class="close"
+<button
+class="close"
 onclick="closeModal('loginModal')">
+
 ×
+
 </button>
 
 </div>
@@ -1056,7 +1350,9 @@ onclick="closeModal('loginModal')">
 
 <div class="formGroup">
 
-<label>البريد الإلكتروني</label>
+<label>
+البريد الإلكتروني
+</label>
 
 <input
 id="loginEmail"
@@ -1067,7 +1363,9 @@ type="email">
 
 <div class="formGroup">
 
-<label>كلمة المرور</label>
+<label>
+كلمة المرور
+</label>
 
 <input
 id="loginPassword"
@@ -1106,11 +1404,14 @@ onclick="openRecovery()">
 </button>
 
 
-<div id="loginStatus"
+<div
+id="loginStatus"
 style="margin-top:12px">
+
 </div>
 
 </div>
+
 </div>
 
 
@@ -1122,11 +1423,16 @@ style="margin-top:12px">
 
 <div class="modalHeader">
 
-<h2>إنشاء حساب</h2>
+<h2>
+إنشاء حساب
+</h2>
 
-<button class="close"
+<button
+class="close"
 onclick="closeModal('registerModal')">
+
 ×
+
 </button>
 
 </div>
@@ -1134,7 +1440,9 @@ onclick="closeModal('registerModal')">
 
 <div class="formGroup">
 
-<label>الاسم</label>
+<label>
+الاسم
+</label>
 
 <input
 id="registerName"
@@ -1145,7 +1453,9 @@ type="text">
 
 <div class="formGroup">
 
-<label>رقم الهاتف</label>
+<label>
+رقم الهاتف
+</label>
 
 <input
 id="registerPhone"
@@ -1156,7 +1466,9 @@ type="text">
 
 <div class="formGroup">
 
-<label>البريد الإلكتروني</label>
+<label>
+البريد الإلكتروني
+</label>
 
 <input
 id="registerEmail"
@@ -1167,7 +1479,9 @@ type="email">
 
 <div class="formGroup">
 
-<label>كلمة المرور</label>
+<label>
+كلمة المرور
+</label>
 
 <input
 id="registerPassword"
@@ -1186,8 +1500,10 @@ onclick="registerUser()">
 </button>
 
 
-<div id="registerStatus"
+<div
+id="registerStatus"
 style="margin-top:12px">
+
 </div>
 
 </div>
@@ -1203,11 +1519,16 @@ style="margin-top:12px">
 
 <div class="modalHeader">
 
-<h2>استعادة كلمة المرور</h2>
+<h2>
+استعادة كلمة المرور
+</h2>
 
-<button class="close"
+<button
+class="close"
 onclick="closeModal('recoveryModal')">
+
 ×
+
 </button>
 
 </div>
@@ -1215,7 +1536,9 @@ onclick="closeModal('recoveryModal')">
 
 <div class="formGroup">
 
-<label>البريد الإلكتروني</label>
+<label>
+البريد الإلكتروني
+</label>
 
 <input
 id="recoveryEmail"
@@ -1234,8 +1557,10 @@ onclick="sendRecovery()">
 </button>
 
 
-<div id="recoveryStatus"
+<div
+id="recoveryStatus"
 style="margin-top:12px">
+
 </div>
 
 </div>
@@ -1251,14 +1576,18 @@ style="margin-top:12px">
 
 <div class="modalHeader">
 
-<h2>تغيير كلمة المرور</h2>
+<h2>
+تغيير كلمة المرور
+</h2>
 
 </div>
 
 
 <div class="formGroup">
 
-<label>كلمة المرور الجديدة</label>
+<label>
+كلمة المرور الجديدة
+</label>
 
 <input
 id="newPassword"
@@ -1277,16 +1606,21 @@ onclick="changePassword()">
 </button>
 
 
-<div id="resetStatus"
+<div
+id="resetStatus"
 style="margin-top:12px">
-</div>
 
 </div>
 
 </div>
 
+</div>
 
-<div class="toast" id="toast"></div>
+
+<div
+class="toast"
+id="toast">
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1326,7 +1660,7 @@ UI
 
 function openModal(id){
 
-const el=document.getElementById(id);
+const el = document.getElementById(id);
 
 if(el){
 el.classList.add("show");
@@ -1337,7 +1671,7 @@ el.classList.add("show");
 
 function closeModal(id){
 
-const el=document.getElementById(id);
+const el = document.getElementById(id);
 
 if(el){
 el.classList.remove("show");
@@ -1348,11 +1682,12 @@ el.classList.remove("show");
 
 function showToast(message){
 
-const toast=document.getElementById("toast");
+const toast =
+document.getElementById("toast");
 
 if(!toast)return;
 
-toast.textContent=message;
+toast.textContent = message;
 
 toast.classList.add("show");
 
@@ -1367,11 +1702,12 @@ toast.classList.remove("show");
 
 function showStatus(id,message,type=""){
 
-const el=document.getElementById(id);
+const el =
+document.getElementById(id);
 
 if(!el)return;
 
-el.textContent=message;
+el.textContent = message;
 
 if(type==="error"){
 
@@ -1392,7 +1728,7 @@ el.style.color="#9eacbd";
 
 function formatMoney(value){
 
-const number=Number(value || 0);
+const number = Number(value || 0);
 
 return number.toFixed(3)+" د.ت";
 
@@ -1422,14 +1758,16 @@ return "-";
 }
 
 
+/* إصلاح حماية HTML */
+
 function escapeHtml(value){
 
 return String(value ?? "")
-.replace(/&/g,"&")
-.replace(/</g,"<")
-.replace(/>/g,">")
-.replace(/"/g,""")
-.replace(/'/g,"'");
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1449,7 +1787,10 @@ error
 
 if(error){
 
-console.error("getCurrentUser:",error);
+console.error(
+"getCurrentUser:",
+error
+);
 
 return null;
 
@@ -1459,7 +1800,10 @@ return data?.user || null;
 
 }catch(error){
 
-console.error("getCurrentUser exception:",error);
+console.error(
+"getCurrentUser exception:",
+error
+);
 
 return null;
 
@@ -1470,17 +1814,25 @@ return null;
 
 async function registerUser(){
 
-const name=
-document.getElementById("registerName").value.trim();
+const name =
+document
+.getElementById("registerName")
+.value.trim();
 
-const phone=
-document.getElementById("registerPhone").value.trim();
+const phone =
+document
+.getElementById("registerPhone")
+.value.trim();
 
-const email=
-document.getElementById("registerEmail").value.trim();
+const email =
+document
+.getElementById("registerEmail")
+.value.trim();
 
-const password=
-document.getElementById("registerPassword").value;
+const password =
+document
+.getElementById("registerPassword")
+.value;
 
 
 if(!email || !password){
@@ -1496,7 +1848,7 @@ return;
 }
 
 
-if(password.length<6){
+if(password.length < 6){
 
 showStatus(
 "registerStatus",
@@ -1568,11 +1920,15 @@ closeModal("registerModal");
 
 async function loginUser(){
 
-const email=
-document.getElementById("loginEmail").value.trim();
+const email =
+document
+.getElementById("loginEmail")
+.value.trim();
 
-const password=
-document.getElementById("loginPassword").value;
+const password =
+document
+.getElementById("loginPassword")
+.value;
 
 
 if(!email || !password){
@@ -1619,13 +1975,16 @@ return;
 }
 
 
-currentUser=data?.user || null;
+currentUser =
+data?.user || null;
 
 closeModal("loginModal");
 
-showToast("تم تسجيل الدخول بنجاح");
+showToast(
+"تم تسجيل الدخول بنجاح"
+);
 
-await updateAuthUI();
+await updateAuthUI(currentUser);
 
 if(currentUser){
 
@@ -1646,47 +2005,55 @@ await supabaseClient.auth.signOut();
 
 }catch(error){
 
-console.error("Sign out:",error);
+console.error(
+"Sign out:",
+error
+);
 
 }
 
+currentUser = null;
+currentProfile = null;
+currentConversation = null;
 
-currentUser=null;
-currentProfile=null;
-currentConversation=null;
+await updateAuthUI(null);
 
+document.getElementById(
+"historyBody"
+).innerHTML = "";
 
-await updateAuthUI();
-
-
-document.getElementById("historyBody").innerHTML="";
-
-
-document.getElementById("supportMessages").innerHTML=
+document.getElementById(
+"supportMessages"
+).innerHTML =
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
-
-showToast("تم تسجيل الخروج");
-
-}
-
-
-async function updateAuthUI(){
-
-if(!currentUser){
-
-currentUser=await getCurrentUser();
+showToast(
+"تم تسجيل الخروج"
+);
 
 }
 
 
-const authButtons=
+async function updateAuthUI(userOverride){
+
+if(arguments.length > 0){
+
+currentUser = userOverride;
+
+}else{
+
+currentUser = await getCurrentUser();
+
+}
+
+
+const authButtons =
 document.getElementById("authButtons");
 
-const userArea=
+const userArea =
 document.getElementById("userArea");
 
-const userName=
+const userName =
 document.getElementById("userName");
 
 
@@ -1697,18 +2064,18 @@ authButtons.classList.add("hidden");
 userArea.classList.remove("hidden");
 
 
-const name=
+const name =
 currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "حسابك";
 
+userName.textContent = name;
 
-userName.textContent=name;
 
-
-document.getElementById("heroHint").textContent=
+document.getElementById(
+"heroHint"
+).textContent =
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
-
 
 }else{
 
@@ -1717,15 +2084,19 @@ authButtons.classList.remove("hidden");
 userArea.classList.add("hidden");
 
 
-document.getElementById("heroBalance").textContent=
+document.getElementById(
+"heroBalance"
+).textContent =
 "0.000 د.ت";
 
-
-document.getElementById("walletBalance").textContent=
+document.getElementById(
+"walletBalance"
+).textContent =
 "0.000 د.ت";
 
-
-document.getElementById("heroHint").textContent=
+document.getElementById(
+"heroHint"
+).textContent =
 "سجّل الدخول للوصول إلى بيانات حسابك.";
 
 }
@@ -1755,14 +2126,18 @@ await supabaseClient
 
 if(error){
 
-console.error("Profile error:",error);
+console.error(
+"Profile error:",
+error
+);
 
 return null;
 
 }
 
 
-currentProfile=data || null;
+currentProfile =
+data || null;
 
 return data || null;
 
@@ -1777,10 +2152,14 @@ async function loadWalletData(){
 
 if(!currentUser){
 
-document.getElementById("heroBalance").textContent=
+document.getElementById(
+"heroBalance"
+).textContent =
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent=
+document.getElementById(
+"walletBalance"
+).textContent =
 "0.000 د.ت";
 
 return;
@@ -1788,15 +2167,21 @@ return;
 }
 
 
-const profile=await loadProfile();
+const profile =
+await loadProfile();
 
-const balance=profile?.balance ?? 0;
+const balance =
+profile?.balance ?? 0;
 
 
-document.getElementById("heroBalance").textContent=
+document.getElementById(
+"heroBalance"
+).textContent =
 formatMoney(balance);
 
-document.getElementById("walletBalance").textContent=
+document.getElementById(
+"walletBalance"
+).textContent =
 formatMoney(balance);
 
 }
@@ -1806,7 +2191,9 @@ async function createWalletRequest(){
 
 if(!currentUser){
 
-showToast("يجب تسجيل الدخول أولًا");
+showToast(
+"يجب تسجيل الدخول أولًا"
+);
 
 openModal("loginModal");
 
@@ -1815,25 +2202,39 @@ return;
 }
 
 
-const type=
-document.getElementById("walletType").value;
+const type =
+document.getElementById(
+"walletType"
+).value;
 
-const amount=
-Number(document.getElementById("walletAmount").value);
+const amount =
+Number(
+document.getElementById(
+"walletAmount"
+).value
+);
 
-const method=
-document.getElementById("paymentMethod").value;
+const method =
+document.getElementById(
+"paymentMethod"
+).value;
 
-const account=
-document.getElementById("paymentAccount").value.trim();
+const account =
+document.getElementById(
+"paymentAccount"
+).value.trim();
 
-const reference=
-document.getElementById("paymentReference").value.trim();
+const reference =
+document.getElementById(
+"paymentReference"
+).value.trim();
 
 
-if(!amount || amount<=0){
+if(!amount || amount <= 0){
 
-showToast("أدخل مبلغًا صحيحًا");
+showToast(
+"أدخل مبلغًا صحيحًا"
+);
 
 return;
 
@@ -1842,23 +2243,30 @@ return;
 
 if(!account){
 
-showToast("أدخل رقم الحساب أو الهاتف");
+showToast(
+"أدخل رقم الحساب أو الهاتف"
+);
 
 return;
 
 }
 
 
-if(type==="withdraw"){
+if(type === "withdraw"){
 
-const profile=await loadProfile();
+const profile =
+await loadProfile();
 
-const balance=
-Number(profile?.balance || 0);
+const balance =
+Number(
+profile?.balance || 0
+);
 
-if(amount>balance){
+if(amount > balance){
 
-showToast("الرصيد غير كافٍ لطلب السحب");
+showToast(
+"الرصيد غير كافٍ لطلب السحب"
+);
 
 return;
 
@@ -1875,11 +2283,18 @@ await supabaseClient
 .insert({
 
 user_id:currentUser.id,
+
 request_type:type,
+
 amount:amount,
+
 payment_method:method,
+
 payment_account:account,
-payment_reference:reference || null,
+
+payment_reference:
+reference || null,
+
 status:"pending"
 
 });
@@ -1887,10 +2302,14 @@ status:"pending"
 
 if(error){
 
-console.error("Wallet request:",error);
+console.error(
+"Wallet request:",
+error
+);
 
 showToast(
-"تعذر إرسال الطلب: "+error.message
+"تعذر إرسال الطلب: " +
+error.message
 );
 
 return;
@@ -1898,9 +2317,17 @@ return;
 }
 
 
-document.getElementById("walletAmount").value="";
-document.getElementById("paymentAccount").value="";
-document.getElementById("paymentReference").value="";
+document.getElementById(
+"walletAmount"
+).value = "";
+
+document.getElementById(
+"paymentAccount"
+).value = "";
+
+document.getElementById(
+"paymentReference"
+).value = "";
 
 
 showToast(
@@ -1915,14 +2342,17 @@ await loadWalletHistory();
 
 async function loadWalletHistory(){
 
-const body=
-document.getElementById("historyBody");
+const body =
+document.getElementById(
+"historyBody"
+);
 
-const message=
-document.getElementById("historyLoginMessage");
+const message =
+document.getElementById(
+"historyLoginMessage"
+);
 
-
-body.innerHTML="";
+body.innerHTML = "";
 
 
 if(!currentUser){
@@ -1950,9 +2380,12 @@ await supabaseClient
 
 if(error){
 
-console.error("Wallet history:",error);
+console.error(
+"Wallet history:",
+error
+);
 
-body.innerHTML=
+body.innerHTML =
 '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
 
 return;
@@ -1960,9 +2393,9 @@ return;
 }
 
 
-if(!data || data.length===0){
+if(!data || data.length === 0){
 
-body.innerHTML=
+body.innerHTML =
 '<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
 
 return;
@@ -1972,49 +2405,65 @@ return;
 
 data.forEach(item=>{
 
-const tr=document.createElement("tr");
+const tr =
+document.createElement("tr");
 
 
-const type=
-item.request_type==="deposit"
+const type =
+item.request_type === "deposit"
 ? "إيداع"
 : "سحب";
 
 
-const statusClass=
-item.status==="approved"
+const status =
+String(
+item.status || "pending"
+).toLowerCase();
+
+
+const statusClass =
+status === "approved"
 ? "status-approved"
-: item.status==="rejected"
+: status === "rejected"
 ? "status-rejected"
-: item.status==="cancelled"
+: status === "cancelled"
 ? "status-cancelled"
 : "status-pending";
 
 
-const statusText=
-item.status==="approved"
+const statusText =
+status === "approved"
 ? "مقبول"
-: item.status==="rejected"
+: status === "rejected"
 ? "مرفوض"
-: item.status==="cancelled"
+: status === "cancelled"
 ? "ملغى"
 : "قيد المراجعة";
 
 
-tr.innerHTML=`
-
-<td>$`{escapeHtml(type)}</td>
-
-<td>`${escapeHtml(formatMoney(item.amount))}</td>
-
-<td>$`{escapeHtml(item.payment_method || "-")}</td>
+tr.innerHTML = `
 
 <td>
-<span class="status ${statusClass}"&gt; ${escapeHtml(statusText)}
+${escapeHtml(type)}
+</td>
+
+<td>
+${escapeHtml(formatMoney(item.amount))}
+</td>
+
+<td>
+${escapeHtml(item.payment_method || "-")}
+</td>
+
+<td>
+<span class="status ${statusClass}">
+${escapeHtml(statusText)}
 </span>
 </td>
 
-<td>`${escapeHtml(formatDate(item.created_at))}</td>
+<td>
+${escapeHtml(formatDate(item.created_at))}
+</td>
 
 `;
 
@@ -2069,19 +2518,37 @@ return null;
 
 if(existing){
 
-currentConversation=existing;
+currentConversation = existing;
 
 return existing;
 
 }
 
 
-/* إنشاء محادثة جديدة */
+/* محاولة إنشاء محادثة بالحقول الأساسية */
 
-const {
-data:created,
-error:createError
-} =
+let result =
+await supabaseClient
+.from("support_conversations")
+.insert({
+
+user_id:currentUser.id,
+
+status:"open"
+
+})
+.select("*")
+.single();
+
+
+/*
+إذا كان جدول المحادثات يحتاج visitor_name/topic
+نحاول مرة ثانية بالحقول الإضافية.
+*/
+
+if(result.error){
+
+result =
 await supabaseClient
 .from("support_conversations")
 .insert({
@@ -2101,12 +2568,14 @@ status:"open"
 .select("*")
 .single();
 
+}
 
-if(createError){
+
+if(result.error){
 
 console.error(
 "Support conversation create error:",
-createError
+result.error
 );
 
 return null;
@@ -2114,17 +2583,20 @@ return null;
 }
 
 
-currentConversation=created;
+currentConversation =
+result.data;
 
-return created;
+return result.data;
 
 }
 
 
 async function loadSupport(){
 
-const box=
-document.getElementById("supportMessages");
+const box =
+document.getElementById(
+"supportMessages"
+);
 
 
 if(!box)return;
@@ -2132,7 +2604,7 @@ if(!box)return;
 
 if(!currentUser){
 
-box.innerHTML=
+box.innerHTML =
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
 return;
@@ -2140,13 +2612,13 @@ return;
 }
 
 
-const conversation=
+const conversation =
 await getOrCreateConversation();
 
 
 if(!conversation){
 
-box.innerHTML=
+box.innerHTML =
 '<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
 
 return;
@@ -2172,7 +2644,7 @@ console.error(
 error
 );
 
-box.innerHTML=
+box.innerHTML =
 '<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
 
 return;
@@ -2180,12 +2652,12 @@ return;
 }
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
-if(!data || data.length===0){
+if(!data || data.length === 0){
 
-box.innerHTML=
+box.innerHTML =
 '<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
 
 return;
@@ -2195,32 +2667,39 @@ return;
 
 data.forEach(message=>{
 
-const div=document.createElement("div");
+const div =
+document.createElement("div");
 
 
-const role=
-String(message.sender_role || "").toLowerCase();
+const role =
+String(
+message.sender_role || ""
+).toLowerCase();
 
 
-const isUser=
-role==="user" ||
-role==="customer" ||
-role==="client";
+/*
+قاعدة البيانات عندك تستخدم:
+visitor = العميل
+admin = الإدارة
+*/
+
+const isUser =
+role === "visitor";
 
 
-div.className=
-"message "+
+div.className =
+"message " +
 (isUser ? "user" : "admin");
 
 
-div.innerHTML=`
+div.innerHTML = `
 
 <div>
-$`{escapeHtml(message.message || "")}
+${escapeHtml(message.message || "")}
 </div>
 
 <div class="messageTime">
-`${escapeHtml(formatDate(message.created_at))}
+${escapeHtml(formatDate(message.created_at))}
 </div>
 
 `;
@@ -2231,7 +2710,8 @@ box.appendChild(div);
 });
 
 
-box.scrollTop=box.scrollHeight;
+box.scrollTop =
+box.scrollHeight;
 
 }
 
@@ -2240,7 +2720,9 @@ async function sendSupportMessage(){
 
 if(!currentUser){
 
-showToast("يجب تسجيل الدخول أولًا");
+showToast(
+"يجب تسجيل الدخول أولًا"
+);
 
 openModal("loginModal");
 
@@ -2249,29 +2731,35 @@ return;
 }
 
 
-const input=
-document.getElementById("supportInput");
+const input =
+document.getElementById(
+"supportInput"
+);
 
-const message=
+const message =
 input.value.trim();
 
 
 if(!message){
 
-showToast("اكتب رسالة أولًا");
+showToast(
+"اكتب رسالة أولًا"
+);
 
 return;
 
 }
 
 
-const conversation=
+const conversation =
 await getOrCreateConversation();
 
 
 if(!conversation){
 
-showToast("تعذر فتح المحادثة");
+showToast(
+"تعذر فتح المحادثة"
+);
 
 return;
 
@@ -2293,7 +2781,7 @@ await supabaseClient
 
 conversation_id:conversation.id,
 
-sender_role:"visitor"
+sender_role:"visitor",
 
 message:message
 
@@ -2309,7 +2797,8 @@ error
 
 showStatus(
 "supportStatus",
-"تعذر إرسال الرسالة: "+error.message,
+"تعذر إرسال الرسالة: " +
+error.message,
 "error"
 );
 
@@ -2318,7 +2807,7 @@ return;
 }
 
 
-input.value="";
+input.value = "";
 
 
 showStatus(
@@ -2348,8 +2837,10 @@ openModal("recoveryModal");
 
 async function sendRecovery(){
 
-const email=
-document.getElementById("recoveryEmail").value.trim();
+const email =
+document.getElementById(
+"recoveryEmail"
+).value.trim();
 
 
 if(!email){
@@ -2365,16 +2856,17 @@ return;
 }
 
 
-const redirectTo=
-window.location.origin+
-window.location.pathname+
+const redirectTo =
+window.location.origin +
+window.location.pathname +
 "?type=recovery";
 
 
 const {
 error
 } =
-await supabaseClient.auth.resetPasswordForEmail(
+await supabaseClient.auth
+.resetPasswordForEmail(
 email,
 {
 redirectTo:redirectTo
@@ -2406,11 +2898,13 @@ showStatus(
 
 async function changePassword(){
 
-const password=
-document.getElementById("newPassword").value;
+const password =
+document.getElementById(
+"newPassword"
+).value;
 
 
-if(password.length<6){
+if(password.length < 6){
 
 showStatus(
 "resetStatus",
@@ -2426,7 +2920,8 @@ return;
 const {
 error
 } =
-await supabaseClient.auth.updateUser({
+await supabaseClient.auth
+.updateUser({
 password:password
 });
 
@@ -2467,26 +2962,45 @@ AUTH STATE
 supabaseClient.auth.onAuthStateChange(
 (event,session)=>{
 
-currentUser=
+currentUser =
 session?.user || null;
+
 
 setTimeout(async()=>{
 
-await updateAuthUI();
+await updateAuthUI(currentUser);
 
 if(currentUser){
 
 await loadWalletData();
+
 await loadWalletHistory();
+
 await loadSupport();
 
 }else{
 
-currentConversation=null;
+currentConversation = null;
 
 }
 
 },0);
+
+
+/*
+فتح نافذة تغيير كلمة المرور
+عند وصول رابط الاستعادة.
+*/
+
+if(event === "PASSWORD_RECOVERY"){
+
+setTimeout(()=>{
+
+openModal("resetModal");
+
+},300);
+
+}
 
 }
 );
@@ -2500,15 +3014,17 @@ async function initialize(){
 
 try{
 
-currentUser=
+currentUser =
 await getCurrentUser();
 
-await updateAuthUI();
+await updateAuthUI(currentUser);
 
 if(currentUser){
 
 await loadWalletData();
+
 await loadWalletHistory();
+
 await loadSupport();
 
 }
@@ -2532,7 +3048,7 @@ RECOVERY URL
 if(
 new URLSearchParams(
 window.location.search
-).get("type")==="recovery"
+).get("type") === "recovery"
 ){
 
 setTimeout(()=>{
@@ -2551,14 +3067,15 @@ initialize();
 CLOSE MODALS
 ========================================================= */
 
-document.querySelectorAll(".modal")
+document
+.querySelectorAll(".modal")
 .forEach(modal=>{
 
 modal.addEventListener(
 "click",
 event=>{
 
-if(event.target===modal){
+if(event.target === modal){
 
 modal.classList.remove("show");
 
@@ -2580,6 +3097,7 @@ async()=>{
 if(!currentUser)return;
 
 await loadWalletData();
+
 await loadWalletHistory();
 
 },
@@ -2589,4 +3107,4 @@ await loadWalletHistory();
 </script>
 
 </body>
-</html>
+  </html>
