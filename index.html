@@ -514,11 +514,16 @@ text-align:center;
 
 @media(max-width:850px){
 .heroGrid,.walletGrid{grid-template-columns:1fr}
-.cards{grid-template-columns:1fr 1fr}
+
+.cards{
+grid-template-columns:1fr 1fr;
+}
+
 .nav{
 flex-wrap:wrap;
 padding:10px 0;
 }
+
 .navlinks{
 order:3;
 width:100%;
@@ -526,22 +531,35 @@ width:100%;
 }
 
 @media(max-width:560px){
-.cards{grid-template-columns:1fr}
+
+.cards{
+grid-template-columns:1fr;
+}
 
 .authButtons .btn{
 padding:9px 11px;
 font-size:13px;
 }
 
-.heroCard,.balanceCard,.walletCard,.supportCard{
+.heroCard,
+.balanceCard,
+.walletCard,
+.supportCard{
 padding:18px;
 }
 
-.walletButtons{grid-template-columns:1fr}
+.walletButtons{
+grid-template-columns:1fr;
+}
 
-.teams{font-size:14px}
+.teams{
+font-size:14px;
+}
 
-.balance{font-size:32px}
+.balance{
+font-size:32px;
+}
+
 }
 </style>
 </head>
@@ -564,7 +582,9 @@ padding:18px;
 
 <div class="authButtons" id="authButtons">
 <button class="btn" onclick="openModal('loginModal')">دخول</button>
-<button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button>
+<button class="btn btn-primary" onclick="openModal('registerModal')">
+إنشاء حساب
+</button>
 </div>
 
 <div class="userArea hidden" id="userArea">
@@ -597,7 +617,11 @@ padding:18px;
 
 <div class="balanceCard">
 <div class="balanceLabel">رصيد الحساب</div>
-<div class="balance" id="heroBalance">0.000 د.ت</div>
+
+<div class="balance" id="heroBalance">
+0.000 د.ت
+</div>
+
 <div class="loginHint" id="heroHint">
 سجّل الدخول للوصول إلى بيانات حسابك.
 </div>
@@ -605,6 +629,7 @@ padding:18px;
 
 </div>
 </section>
+
 
 <section id="sports">
 <div class="container">
@@ -646,6 +671,7 @@ padding:18px;
 <div id="matches" class="matches" style="margin-top:18px">
 
 <div class="match">
+
 <div class="matchTop">
 <span class="matchLeague">Football • Demo</span>
 <span>20:00</span>
@@ -662,9 +688,11 @@ padding:18px;
 <div class="odd"><span>X</span>3.20</div>
 <div class="odd"><span>2</span>2.80</div>
 </div>
+
 </div>
 
 <div class="match">
+
 <div class="matchTop">
 <span class="matchLeague">Football • Demo</span>
 <span>21:30</span>
@@ -681,11 +709,13 @@ padding:18px;
 <div class="odd"><span>X</span>3.40</div>
 <div class="odd"><span>2</span>2.60</div>
 </div>
+
 </div>
 
 </div>
 </div>
 </section>
+
 
 <section id="casino">
 <div class="container">
@@ -701,7 +731,8 @@ padding:18px;
 <div class="cardIcon">🎰</div>
 <h3>Slots</h3>
 <p>واجهة ألعاب تجريبية.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+<button class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
 </div>
@@ -710,7 +741,8 @@ padding:18px;
 <div class="cardIcon">🃏</div>
 <h3>Cards</h3>
 <p>قسم ألعاب البطاقات.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+<button class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
 </div>
@@ -719,7 +751,8 @@ padding:18px;
 <div class="cardIcon">🎲</div>
 <h3>Games</h3>
 <p>ألعاب إضافية للعرض.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+<button class="btn"
+onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
 فتح
 </button>
 </div>
@@ -727,6 +760,7 @@ padding:18px;
 </div>
 </div>
 </section>
+
 
 <section id="live">
 <div class="container">
@@ -737,16 +771,21 @@ padding:18px;
 </div>
 
 <div class="card">
+
 <div class="cardIcon">🔴</div>
+
 <h3>البث المباشر</h3>
+
 <p>
 سيتم عرض الأحداث المباشرة عند ربط المنصة
 بمصدر بيانات أو خدمة بث مرخّصة.
 </p>
+
 </div>
 
 </div>
 </section>
+
 
 <section id="wallet">
 <div class="container">
@@ -772,12 +811,16 @@ padding:18px;
 </p>
 
 <div style="margin-top:18px">
-<button class="btn btn-primary" onclick="loadWalletData()">
+
+<button class="btn btn-primary"
+onclick="loadWalletData()">
 تحديث الرصيد
 </button>
+
 </div>
 
 </div>
+
 
 <div class="walletCard">
 
@@ -787,52 +830,78 @@ D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو 
 </div>
 
 <div class="formGroup">
+
 <label>نوع العملية</label>
+
 <select id="walletType">
+
 <option value="deposit">إيداع</option>
 <option value="withdraw">سحب</option>
+
 </select>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>المبلغ بالدينار التونسي</label>
+
 <input
 id="walletAmount"
 type="number"
 min="1"
 step="0.001"
 placeholder="مثال: 50">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>طريقة الدفع</label>
+
 <select id="paymentMethod">
+
 <option value="D17">D17</option>
 <option value="Flouci">Flouci</option>
+
 </select>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>رقم الحساب / الهاتف</label>
+
 <input
 id="paymentAccount"
 type="text"
 placeholder="رقم الهاتف أو الحساب">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>مرجع العملية إن وجد</label>
+
 <input
 id="paymentReference"
 type="text"
 placeholder="رقم العملية">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="createWalletRequest()">
+
 إرسال الطلب
+
 </button>
 
 </div>
@@ -840,13 +909,21 @@ onclick="createWalletRequest()">
 </div>
 </section>
 
+
 <section id="history">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>سجل المحفظة</h2>
-<p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
+
+<p>
+جميع طلبات الإيداع والسحب الخاصة بحسابك.
+</p>
+
 </div>
+
 
 <div class="walletCard">
 
@@ -855,8 +932,11 @@ onclick="createWalletRequest()">
 </div>
 
 <div class="tableWrap">
+
 <table>
+
 <thead>
+
 <tr>
 <th>النوع</th>
 <th>المبلغ</th>
@@ -864,208 +944,353 @@ onclick="createWalletRequest()">
 <th>الحالة</th>
 <th>التاريخ</th>
 </tr>
+
 </thead>
+
 <tbody id="historyBody"></tbody>
+
 </table>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+
 <section id="support">
+
 <div class="container">
 
 <div class="sectionTitle">
+
 <h2>الدعم</h2>
-<p>تواصل مع فريق الدعم من داخل الموقع.</p>
+
+<p>
+تواصل مع فريق الدعم من داخل الموقع.
+</p>
+
 </div>
+
 
 <div class="supportCard">
 
 <div id="supportMessages" class="messages">
+
 <div style="color:var(--muted);text-align:center">
 سجّل الدخول لبدء المحادثة.
 </div>
+
 </div>
 
+
 <div class="formGroup">
+
 <textarea
 id="supportInput"
 rows="3"
 placeholder="اكتب رسالتك..."></textarea>
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="sendSupportMessage()">
+
 إرسال الرسالة
+
 </button>
+
 
 <div
 id="supportStatus"
 style="color:var(--muted);margin-top:12px;text-align:center">
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 </main>
 
+
 <footer>
+
 <div class="container">
+
 Sdnbet365 ©
+
 <br>
+
 منصة تجريبية قيد التطوير.
+
 </div>
+
 </footer>
+
 
 <!-- LOGIN -->
 
 <div class="modal" id="loginModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
+
 <h2>تسجيل الدخول</h2>
-<button class="close" onclick="closeModal('loginModal')">×</button>
+
+<button class="close"
+onclick="closeModal('loginModal')">
+×
+</button>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>البريد الإلكتروني</label>
-<input id="loginEmail" type="email">
+
+<input
+id="loginEmail"
+type="email">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>كلمة المرور</label>
-<input id="loginPassword" type="password">
+
+<input
+id="loginPassword"
+type="password">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="loginUser()">
+
 دخول
+
 </button>
+
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="closeModal('loginModal');openModal('registerModal')">
+
 إنشاء حساب
+
 </button>
+
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="openRecovery()">
+
 نسيت كلمة المرور؟
+
 </button>
 
-<div id="loginStatus" style="margin-top:12px"></div>
+
+<div id="loginStatus"
+style="margin-top:12px">
+</div>
 
 </div>
 </div>
+
 
 <!-- REGISTER -->
 
 <div class="modal" id="registerModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
+
 <h2>إنشاء حساب</h2>
-<button class="close" onclick="closeModal('registerModal')">×</button>
+
+<button class="close"
+onclick="closeModal('registerModal')">
+×
+</button>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>الاسم</label>
-<input id="registerName" type="text">
+
+<input
+id="registerName"
+type="text">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>رقم الهاتف</label>
-<input id="registerPhone" type="text">
+
+<input
+id="registerPhone"
+type="text">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>البريد الإلكتروني</label>
-<input id="registerEmail" type="email">
+
+<input
+id="registerEmail"
+type="email">
+
 </div>
 
+
 <div class="formGroup">
+
 <label>كلمة المرور</label>
-<input id="registerPassword" type="password">
+
+<input
+id="registerPassword"
+type="password">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="registerUser()">
+
 إنشاء الحساب
+
 </button>
 
-<div id="registerStatus" style="margin-top:12px"></div>
+
+<div id="registerStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <!-- RECOVERY -->
 
 <div class="modal" id="recoveryModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
+
 <h2>استعادة كلمة المرور</h2>
-<button class="close" onclick="closeModal('recoveryModal')">×</button>
+
+<button class="close"
+onclick="closeModal('recoveryModal')">
+×
+</button>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>البريد الإلكتروني</label>
-<input id="recoveryEmail" type="email">
+
+<input
+id="recoveryEmail"
+type="email">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="sendRecovery()">
+
 إرسال رابط الاستعادة
+
 </button>
 
-<div id="recoveryStatus" style="margin-top:12px"></div>
+
+<div id="recoveryStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <!-- RESET PASSWORD -->
 
 <div class="modal" id="resetModal">
+
 <div class="modalBox">
 
 <div class="modalHeader">
+
 <h2>تغيير كلمة المرور</h2>
+
 </div>
 
+
 <div class="formGroup">
+
 <label>كلمة المرور الجديدة</label>
-<input id="newPassword" type="password">
+
+<input
+id="newPassword"
+type="password">
+
 </div>
+
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="changePassword()">
+
 حفظ كلمة المرور
+
 </button>
 
-<div id="resetStatus" style="margin-top:12px"></div>
+
+<div id="resetStatus"
+style="margin-top:12px">
+</div>
 
 </div>
+
 </div>
+
 
 <div class="toast" id="toast"></div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -1100,27 +1325,45 @@ UI
 ========================================================= */
 
 function openModal(id){
+
 const el=document.getElementById(id);
-if(el) el.classList.add("show");
+
+if(el){
+el.classList.add("show");
 }
 
-function closeModal(id){
-const el=document.getElementById(id);
-if(el) el.classList.remove("show");
 }
+
+
+function closeModal(id){
+
+const el=document.getElementById(id);
+
+if(el){
+el.classList.remove("show");
+}
+
+}
+
 
 function showToast(message){
 
 const toast=document.getElementById("toast");
 
+if(!toast)return;
+
 toast.textContent=message;
+
 toast.classList.add("show");
 
 setTimeout(()=>{
+
 toast.classList.remove("show");
+
 },3500);
 
 }
+
 
 function showStatus(id,message,type=""){
 
@@ -1131,14 +1374,21 @@ if(!el)return;
 el.textContent=message;
 
 if(type==="error"){
+
 el.style.color="#ff7773";
+
 }else if(type==="success"){
+
 el.style.color="#20c77a";
+
 }else{
+
 el.style.color="#9eacbd";
+
 }
 
 }
+
 
 function formatMoney(value){
 
@@ -1147,6 +1397,7 @@ const number=Number(value || 0);
 return number.toFixed(3)+" د.ت";
 
 }
+
 
 function formatDate(date){
 
@@ -1170,6 +1421,7 @@ return "-";
 
 }
 
+
 function escapeHtml(value){
 
 return String(value ?? "")
@@ -1188,6 +1440,8 @@ AUTH
 
 async function getCurrentUser(){
 
+try{
+
 const {
 data,
 error
@@ -1195,30 +1449,39 @@ error
 
 if(error){
 
-console.error(error);
+console.error("getCurrentUser:",error);
 
 return null;
 
 }
 
-return data.user || null;
+return data?.user || null;
+
+}catch(error){
+
+console.error("getCurrentUser exception:",error);
+
+return null;
+
+}
 
 }
 
 
 async function registerUser(){
 
-const name =
+const name=
 document.getElementById("registerName").value.trim();
 
-const phone =
+const phone=
 document.getElementById("registerPhone").value.trim();
 
-const email =
+const email=
 document.getElementById("registerEmail").value.trim();
 
-const password =
+const password=
 document.getElementById("registerPassword").value;
+
 
 if(!email || !password){
 
@@ -1231,6 +1494,7 @@ showStatus(
 return;
 
 }
+
 
 if(password.length<6){
 
@@ -1244,15 +1508,18 @@ return;
 
 }
 
+
 showStatus(
 "registerStatus",
 "جارٍ إنشاء الحساب..."
 );
 
+
 const {
 data,
 error
-} = await supabaseClient.auth.signUp({
+} =
+await supabaseClient.auth.signUp({
 
 email,
 password,
@@ -1266,6 +1533,7 @@ phone:phone
 
 });
 
+
 if(error){
 
 showStatus(
@@ -1278,7 +1546,8 @@ return;
 
 }
 
-if(data.user){
+
+if(data?.user){
 
 showStatus(
 "registerStatus",
@@ -1287,7 +1556,9 @@ showStatus(
 );
 
 setTimeout(()=>{
+
 closeModal("registerModal");
+
 },1800);
 
 }
@@ -1297,11 +1568,12 @@ closeModal("registerModal");
 
 async function loginUser(){
 
-const email =
+const email=
 document.getElementById("loginEmail").value.trim();
 
-const password =
+const password=
 document.getElementById("loginPassword").value;
+
 
 if(!email || !password){
 
@@ -1315,18 +1587,24 @@ return;
 
 }
 
+
 showStatus(
 "loginStatus",
 "جارٍ تسجيل الدخول..."
 );
 
+
 const {
 data,
 error
-} = await supabaseClient.auth.signInWithPassword({
+} =
+await supabaseClient.auth.signInWithPassword({
+
 email,
 password
+
 });
+
 
 if(error){
 
@@ -1340,34 +1618,53 @@ return;
 
 }
 
-currentUser=data.user;
+
+currentUser=data?.user || null;
 
 closeModal("loginModal");
 
 showToast("تم تسجيل الدخول بنجاح");
 
 await updateAuthUI();
+
+if(currentUser){
+
 await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
 
 }
 
+}
+
 
 async function signOutUser(){
 
+try{
+
 await supabaseClient.auth.signOut();
+
+}catch(error){
+
+console.error("Sign out:",error);
+
+}
+
 
 currentUser=null;
 currentProfile=null;
 currentConversation=null;
 
+
 await updateAuthUI();
+
 
 document.getElementById("historyBody").innerHTML="";
 
-document.getElementById("supportMessages").innerHTML =
+
+document.getElementById("supportMessages").innerHTML=
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
+
 
 showToast("تم تسجيل الخروج");
 
@@ -1376,44 +1673,59 @@ showToast("تم تسجيل الخروج");
 
 async function updateAuthUI(){
 
+if(!currentUser){
+
 currentUser=await getCurrentUser();
 
-const authButtons =
+}
+
+
+const authButtons=
 document.getElementById("authButtons");
 
-const userArea =
+const userArea=
 document.getElementById("userArea");
 
-const userName =
+const userName=
 document.getElementById("userName");
+
 
 if(currentUser){
 
 authButtons.classList.add("hidden");
+
 userArea.classList.remove("hidden");
 
-const name =
+
+const name=
 currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "حسابك";
 
+
 userName.textContent=name;
 
-document.getElementById("heroHint").textContent =
+
+document.getElementById("heroHint").textContent=
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
+
 
 }else{
 
 authButtons.classList.remove("hidden");
+
 userArea.classList.add("hidden");
 
-document.getElementById("heroBalance").textContent =
+
+document.getElementById("heroBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent =
+
+document.getElementById("walletBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("heroHint").textContent =
+
+document.getElementById("heroHint").textContent=
 "سجّل الدخول للوصول إلى بيانات حسابك.";
 
 }
@@ -1429,14 +1741,17 @@ async function loadProfile(){
 
 if(!currentUser)return null;
 
+
 const {
 data,
 error
-} = await supabaseClient
+} =
+await supabaseClient
 .from("profiles")
 .select("*")
 .eq("id",currentUser.id)
 .maybeSingle();
+
 
 if(error){
 
@@ -1446,9 +1761,10 @@ return null;
 
 }
 
-currentProfile=data;
 
-return data;
+currentProfile=data || null;
+
+return data || null;
 
 }
 
@@ -1461,24 +1777,26 @@ async function loadWalletData(){
 
 if(!currentUser){
 
-document.getElementById("heroBalance").textContent =
+document.getElementById("heroBalance").textContent=
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent =
+document.getElementById("walletBalance").textContent=
 "0.000 د.ت";
 
 return;
 
 }
 
+
 const profile=await loadProfile();
 
 const balance=profile?.balance ?? 0;
 
-document.getElementById("heroBalance").textContent =
+
+document.getElementById("heroBalance").textContent=
 formatMoney(balance);
 
-document.getElementById("walletBalance").textContent =
+document.getElementById("walletBalance").textContent=
 formatMoney(balance);
 
 }
@@ -1496,20 +1814,22 @@ return;
 
 }
 
-const type =
+
+const type=
 document.getElementById("walletType").value;
 
-const amount =
+const amount=
 Number(document.getElementById("walletAmount").value);
 
-const method =
+const method=
 document.getElementById("paymentMethod").value;
 
-const account =
+const account=
 document.getElementById("paymentAccount").value.trim();
 
-const reference =
+const reference=
 document.getElementById("paymentReference").value.trim();
+
 
 if(!amount || amount<=0){
 
@@ -1519,6 +1839,7 @@ return;
 
 }
 
+
 if(!account){
 
 showToast("أدخل رقم الحساب أو الهاتف");
@@ -1527,11 +1848,13 @@ return;
 
 }
 
+
 if(type==="withdraw"){
 
 const profile=await loadProfile();
 
-const balance=Number(profile?.balance || 0);
+const balance=
+Number(profile?.balance || 0);
 
 if(amount>balance){
 
@@ -1543,9 +1866,11 @@ return;
 
 }
 
+
 const {
 error
-} = await supabaseClient
+} =
+await supabaseClient
 .from("wallet_requests")
 .insert({
 
@@ -1559,9 +1884,10 @@ status:"pending"
 
 });
 
+
 if(error){
 
-console.error(error);
+console.error("Wallet request:",error);
 
 showToast(
 "تعذر إرسال الطلب: "+error.message
@@ -1571,13 +1897,16 @@ return;
 
 }
 
+
 document.getElementById("walletAmount").value="";
 document.getElementById("paymentAccount").value="";
 document.getElementById("paymentReference").value="";
 
+
 showToast(
 "تم إرسال طلبك بنجاح وهو الآن قيد المراجعة"
 );
+
 
 await loadWalletHistory();
 
@@ -1586,13 +1915,15 @@ await loadWalletHistory();
 
 async function loadWalletHistory(){
 
-const body =
+const body=
 document.getElementById("historyBody");
 
-const message =
+const message=
 document.getElementById("historyLoginMessage");
 
+
 body.innerHTML="";
+
 
 if(!currentUser){
 
@@ -1602,47 +1933,55 @@ return;
 
 }
 
+
 message.classList.add("hidden");
+
 
 const {
 data,
 error
-} = await supabaseClient
+} =
+await supabaseClient
 .from("wallet_requests")
 .select("*")
 .eq("user_id",currentUser.id)
 .order("created_at",{ascending:false});
 
+
 if(error){
 
-console.error(error);
+console.error("Wallet history:",error);
 
-body.innerHTML =
+body.innerHTML=
 '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
 
 return;
 
 }
 
+
 if(!data || data.length===0){
 
-body.innerHTML =
+body.innerHTML=
 '<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
 
 return;
 
 }
 
+
 data.forEach(item=>{
 
 const tr=document.createElement("tr");
 
-const type =
+
+const type=
 item.request_type==="deposit"
 ? "إيداع"
 : "سحب";
 
-const statusClass =
+
+const statusClass=
 item.status==="approved"
 ? "status-approved"
 : item.status==="rejected"
@@ -1651,7 +1990,8 @@ item.status==="approved"
 ? "status-cancelled"
 : "status-pending";
 
-const statusText =
+
+const statusText=
 item.status==="approved"
 ? "مقبول"
 : item.status==="rejected"
@@ -1660,17 +2000,25 @@ item.status==="approved"
 ? "ملغى"
 : "قيد المراجعة";
 
-tr.innerHTML = `
+
+tr.innerHTML=`
+
 <td>${escapeHtml(type)}</td>
+
 <td>${escapeHtml(formatMoney(item.amount))}</td>
+
 <td>${escapeHtml(item.payment_method || "-")}</td>
+
 <td>
 <span class="status ${statusClass}">
 ${escapeHtml(statusText)}
 </span>
 </td>
+
 <td>${escapeHtml(formatDate(item.created_at))}</td>
+
 `;
+
 
 body.appendChild(tr);
 
@@ -1685,12 +2033,20 @@ SUPPORT
 
 async function getOrCreateConversation(){
 
-if(!currentUser)return null;
+if(!currentUser){
+
+return null;
+
+}
+
+
+/* البحث عن محادثة مفتوحة */
 
 const {
 data:existing,
 error:findError
-} = await supabaseClient
+} =
+await supabaseClient
 .from("support_conversations")
 .select("*")
 .eq("user_id",currentUser.id)
@@ -1699,16 +2055,18 @@ error:findError
 .limit(1)
 .maybeSingle();
 
+
 if(findError){
 
 console.error(
-"Conversation error:",
+"Support conversation search error:",
 findError
 );
 
 return null;
 
 }
+
 
 if(existing){
 
@@ -1718,25 +2076,37 @@ return existing;
 
 }
 
+
+/* إنشاء محادثة جديدة */
+
 const {
-data:newConversation,
+data:created,
 error:createError
-} = await supabaseClient
+} =
+await supabaseClient
 .from("support_conversations")
 .insert({
 
 user_id:currentUser.id,
-visitor_token:currentUser.id,
+
+visitor_name:
+currentUser.user_metadata?.full_name ||
+currentUser.email ||
+"عميل",
+
+topic:"دعم من الموقع",
+
 status:"open"
 
 })
-.select()
+.select("*")
 .single();
+
 
 if(createError){
 
 console.error(
-"Create conversation error:",
+"Support conversation create error:",
 createError
 );
 
@@ -1744,97 +2114,123 @@ return null;
 
 }
 
-currentConversation=newConversation;
 
-return newConversation;
+currentConversation=created;
+
+return created;
 
 }
 
 
 async function loadSupport(){
 
-const box =
+const box=
 document.getElementById("supportMessages");
+
 
 if(!box)return;
 
+
 if(!currentUser){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
 return;
 
 }
 
-const conversation =
+
+const conversation=
 await getOrCreateConversation();
+
 
 if(!conversation){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
 
 return;
 
 }
 
+
 const {
 data,
 error
-} = await supabaseClient
+} =
+await supabaseClient
 .from("support_messages")
 .select("*")
 .eq("conversation_id",conversation.id)
 .order("created_at",{ascending:true});
 
+
 if(error){
 
 console.error(
-"Messages error:",
+"Support messages:",
 error
 );
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
 
 return;
 
 }
 
+
 box.innerHTML="";
+
 
 if(!data || data.length===0){
 
-box.innerHTML =
+box.innerHTML=
 '<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
 
 return;
 
 }
 
+
 data.forEach(message=>{
 
 const div=document.createElement("div");
 
-div.className =
-"message "+
-(
-message.sender_role==="user"
-? "user"
-: "admin"
-);
 
-div.innerHTML = `
-<div>${escapeHtml(message.message || "")}</div>
+const role=
+String(message.sender_role || "").toLowerCase();
+
+
+const isUser=
+role==="user" ||
+role==="customer" ||
+role==="client";
+
+
+div.className=
+"message "+
+(isUser ? "user" : "admin");
+
+
+div.innerHTML=`
+
+<div>
+${escapeHtml(message.message || "")}
+</div>
+
 <div class="messageTime">
 ${escapeHtml(formatDate(message.created_at))}
 </div>
+
 `;
+
 
 box.appendChild(div);
 
 });
+
 
 box.scrollTop=box.scrollHeight;
 
@@ -1853,11 +2249,13 @@ return;
 
 }
 
-const input =
+
+const input=
 document.getElementById("supportInput");
 
-const message =
+const message=
 input.value.trim();
+
 
 if(!message){
 
@@ -1867,8 +2265,10 @@ return;
 
 }
 
-const conversation =
+
+const conversation=
 await getOrCreateConversation();
+
 
 if(!conversation){
 
@@ -1878,14 +2278,17 @@ return;
 
 }
 
+
 showStatus(
 "supportStatus",
 "جارٍ إرسال الرسالة..."
 );
 
+
 const {
 error
-} = await supabaseClient
+} =
+await supabaseClient
 .from("support_messages")
 .insert({
 
@@ -1897,10 +2300,11 @@ message:message
 
 });
 
+
 if(error){
 
 console.error(
-"Send message error:",
+"Send support message:",
 error
 );
 
@@ -1914,13 +2318,16 @@ return;
 
 }
 
+
 input.value="";
+
 
 showStatus(
 "supportStatus",
 "تم إرسال الرسالة بنجاح.",
 "success"
 );
+
 
 await loadSupport();
 
@@ -1942,8 +2349,9 @@ openModal("recoveryModal");
 
 async function sendRecovery(){
 
-const email =
+const email=
 document.getElementById("recoveryEmail").value.trim();
+
 
 if(!email){
 
@@ -1957,10 +2365,12 @@ return;
 
 }
 
-const redirectTo =
+
+const redirectTo=
 window.location.origin+
 window.location.pathname+
 "?type=recovery";
+
 
 const {
 error
@@ -1971,6 +2381,7 @@ email,
 redirectTo:redirectTo
 }
 );
+
 
 if(error){
 
@@ -1984,6 +2395,7 @@ return;
 
 }
 
+
 showStatus(
 "recoveryStatus",
 "تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.",
@@ -1995,8 +2407,9 @@ showStatus(
 
 async function changePassword(){
 
-const password =
+const password=
 document.getElementById("newPassword").value;
+
 
 if(password.length<6){
 
@@ -2010,12 +2423,14 @@ return;
 
 }
 
+
 const {
 error
 } =
 await supabaseClient.auth.updateUser({
 password:password
 });
+
 
 if(error){
 
@@ -2029,14 +2444,18 @@ return;
 
 }
 
+
 showStatus(
 "resetStatus",
 "تم تغيير كلمة المرور بنجاح.",
 "success"
 );
 
+
 setTimeout(()=>{
+
 closeModal("resetModal");
+
 },1500);
 
 }
@@ -2047,10 +2466,12 @@ AUTH STATE
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-async(event,session)=>{
+(event,session)=>{
 
-currentUser =
+currentUser=
 session?.user || null;
+
+setTimeout(async()=>{
 
 await updateAuthUI();
 
@@ -2060,7 +2481,13 @@ await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
 
+}else{
+
+currentConversation=null;
+
 }
+
+},0);
 
 }
 );
@@ -2074,7 +2501,7 @@ async function initialize(){
 
 try{
 
-currentUser =
+currentUser=
 await getCurrentUser();
 
 await updateAuthUI();
@@ -2110,7 +2537,9 @@ window.location.search
 ){
 
 setTimeout(()=>{
+
 openModal("resetModal");
+
 },800);
 
 }
@@ -2161,4 +2590,4 @@ await loadWalletHistory();
 </script>
 
 </body>
-                        </html>
+  </html>
