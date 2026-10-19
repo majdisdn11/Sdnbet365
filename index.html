@@ -599,7 +599,8 @@ await sdnClient
 .maybeSingle();
 
 if (conversationError) throw conversationError;
-status.textContent = "المحادثة: " + (conversation ? conversation.id : "لا توجد");
+alert("معرّف المحادثة: " + (conversation ? conversation.id : "لا توجد"));
+
 
 
 
@@ -657,6 +658,7 @@ el("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
+
 
 
 
