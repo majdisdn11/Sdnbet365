@@ -7,11 +7,7 @@
 <title>Sdnbet365 | المنصة الرياضية</title>
 
 <style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
 --bg:#07101d;
@@ -35,28 +31,11 @@ color:var(--text);
 min-height:100vh;
 }
 
-button,
-input,
-select,
-textarea{
-font:inherit;
-}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
-button{
-cursor:pointer;
-}
-
-a{
-color:inherit;
-text-decoration:none;
-}
-
-.container{
-width:min(1180px,92%);
-margin:auto;
-}
-
-/* HEADER */
+.container{width:min(1180px,92%);margin:auto}
 
 header{
 position:sticky;
@@ -107,8 +86,6 @@ gap:8px;
 white-space:nowrap;
 }
 
-/* BUTTONS */
-
 .btn{
 border:0;
 border-radius:10px;
@@ -118,9 +95,7 @@ background:var(--panel2);
 border:1px solid var(--border);
 }
 
-.btn:hover{
-filter:brightness(1.1);
-}
+.btn:hover{filter:brightness(1.1)}
 
 .btn-primary{
 background:var(--green);
@@ -145,15 +120,9 @@ color:#171000;
 border-color:var(--yellow);
 }
 
-.hidden{
-display:none!important;
-}
+.hidden{display:none!important}
 
-/* HERO */
-
-.hero{
-padding:70px 0 45px;
-}
+.hero{padding:70px 0 45px}
 
 .heroGrid{
 display:grid;
@@ -162,8 +131,7 @@ gap:25px;
 align-items:stretch;
 }
 
-.heroCard,
-.balanceCard{
+.heroCard,.balanceCard{
 background:linear-gradient(145deg,#112238,#0d1828);
 border:1px solid var(--border);
 border-radius:22px;
@@ -176,9 +144,7 @@ font-size:clamp(30px,6vw,54px);
 margin-bottom:15px;
 }
 
-.hero h1 span{
-color:var(--green);
-}
+.hero h1 span{color:var(--green)}
 
 .hero p{
 color:var(--muted);
@@ -218,26 +184,16 @@ margin-top:14px;
 line-height:1.7;
 }
 
-/* SECTIONS */
+section{padding:35px 0}
 
-section{
-padding:35px 0;
-}
-
-.sectionTitle{
-margin-bottom:22px;
-}
+.sectionTitle{margin-bottom:22px}
 
 .sectionTitle h2{
 font-size:28px;
 margin-bottom:7px;
 }
 
-.sectionTitle p{
-color:var(--muted);
-}
-
-/* CARDS */
+.sectionTitle p{color:var(--muted)}
 
 .cards{
 display:grid;
@@ -257,20 +213,14 @@ font-size:35px;
 margin-bottom:13px;
 }
 
-.card h3{
-margin-bottom:8px;
-}
+.card h3{margin-bottom:8px}
 
 .card p{
 color:var(--muted);
 line-height:1.7;
 }
 
-.card .btn{
-margin-top:18px;
-}
-
-/* MATCHES */
+.card .btn{margin-top:18px}
 
 .matches{
 display:grid;
@@ -305,9 +255,7 @@ text-align:center;
 font-weight:800;
 }
 
-.vs{
-color:var(--muted);
-}
+.vs{color:var(--muted)}
 
 .odds{
 display:grid;
@@ -331,8 +279,6 @@ font-size:12px;
 margin-bottom:4px;
 }
 
-/* WALLET */
-
 .walletGrid{
 display:grid;
 grid-template-columns:1fr 1.3fr;
@@ -354,9 +300,7 @@ margin:15px 0;
 direction:ltr;
 }
 
-.formGroup{
-margin-bottom:15px;
-}
+.formGroup{margin-bottom:15px}
 
 .formGroup label{
 display:block;
@@ -399,11 +343,7 @@ font-size:14px;
 margin-bottom:17px;
 }
 
-/* TABLE */
-
-.tableWrap{
-overflow:auto;
-}
+.tableWrap{overflow:auto}
 
 table{
 width:100%;
@@ -411,8 +351,7 @@ border-collapse:collapse;
 min-width:650px;
 }
 
-th,
-td{
+th,td{
 padding:13px 10px;
 border-bottom:1px solid var(--border);
 text-align:right;
@@ -423,9 +362,7 @@ color:#c9d4e1;
 background:#132237;
 }
 
-td{
-color:#dce4ee;
-}
+td{color:#dce4ee}
 
 .status{
 display:inline-block;
@@ -454,8 +391,6 @@ color:#ff7d7a;
 background:#26313e;
 color:#adb8c5;
 }
-
-/* SUPPORT */
 
 .supportCard{
 background:var(--panel);
@@ -497,8 +432,6 @@ font-size:11px;
 margin-top:4px;
 }
 
-/* MODAL */
-
 .modal{
 position:fixed;
 inset:0;
@@ -510,9 +443,7 @@ justify-content:center;
 padding:15px;
 }
 
-.modal.show{
-display:flex;
-}
+.modal.show{display:flex}
 
 .modalBox{
 width:min(500px,100%);
@@ -539,8 +470,6 @@ color:#aeb9c7;
 font-size:27px;
 }
 
-/* USER AREA */
-
 .userArea{
 display:flex;
 align-items:center;
@@ -551,8 +480,6 @@ gap:8px;
 color:#dbe6f2;
 font-size:14px;
 }
-
-/* TOAST */
 
 .toast{
 position:fixed;
@@ -570,11 +497,7 @@ display:none;
 text-align:center;
 }
 
-.toast.show{
-display:block;
-}
-
-/* FOOTER */
+.toast.show{display:block}
 
 footer{
 margin-top:45px;
@@ -584,23 +507,13 @@ color:var(--muted);
 text-align:center;
 }
 
-/* RESPONSIVE */
-
 @media(max-width:850px){
-.heroGrid,
-.walletGrid{
-grid-template-columns:1fr;
-}
-
-.cards{
-grid-template-columns:1fr 1fr;
-}
-
+.heroGrid,.walletGrid{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr 1fr}
 .nav{
 flex-wrap:wrap;
 padding:10px 0;
 }
-
 .navlinks{
 order:3;
 width:100%;
@@ -608,33 +521,22 @@ width:100%;
 }
 
 @media(max-width:560px){
-.cards{
-grid-template-columns:1fr;
-}
+.cards{grid-template-columns:1fr}
 
 .authButtons .btn{
 padding:9px 11px;
 font-size:13px;
 }
 
-.heroCard,
-.balanceCard,
-.walletCard,
-.supportCard{
+.heroCard,.balanceCard,.walletCard,.supportCard{
 padding:18px;
 }
 
-.walletButtons{
-grid-template-columns:1fr;
-}
+.walletButtons{grid-template-columns:1fr}
 
-.teams{
-font-size:14px;
-}
+.teams{font-size:14px}
 
-.balance{
-font-size:32px;
-}
+.balance{font-size:32px}
 }
 </style>
 </head>
@@ -698,7 +600,6 @@ font-size:32px;
 
 </div>
 </section>
-
 
 <section id="sports">
 <div class="container">
@@ -782,7 +683,6 @@ font-size:32px;
 </div>
 </section>
 
-
 <section id="casino">
 <div class="container">
 
@@ -821,10 +721,8 @@ font-size:32px;
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="live">
 <div class="container">
@@ -845,7 +743,6 @@ font-size:32px;
 
 </div>
 </section>
-
 
 <section id="wallet">
 <div class="container">
@@ -878,7 +775,6 @@ font-size:32px;
 
 </div>
 
-
 <div class="walletCard">
 
 <div class="notice">
@@ -903,7 +799,7 @@ id="walletAmount"
 type="number"
 min="1"
 step="0.001"
-placeholder="مثال: 50"
+placeholder="مثال: 50">
 </div>
 
 <div class="formGroup">
@@ -921,7 +817,7 @@ placeholder="مثال: 50"
 <input
 id="paymentAccount"
 type="text"
-placeholder="رقم الهاتف أو الحساب"
+placeholder="رقم الهاتف أو الحساب">
 </div>
 
 <div class="formGroup">
@@ -930,23 +826,21 @@ placeholder="رقم الهاتف أو الحساب"
 <input
 id="paymentReference"
 type="text"
-placeholder="رقم العملية"
+placeholder="رقم العملية">
 </div>
 
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="createWalletRequest()"
+onclick="createWalletRequest()">
 إرسال الطلب
 </button>
 
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="history">
 <div class="container">
@@ -982,10 +876,8 @@ onclick="createWalletRequest()"
 </div>
 
 </div>
-
 </div>
 </section>
-
 
 <section id="support">
 <div class="container">
@@ -1007,27 +899,26 @@ onclick="createWalletRequest()"
 <textarea
 id="supportInput"
 rows="3"
-placeholder="اكتب رسالتك..."
+placeholder="اكتب رسالتك..."></textarea>
 </div>
 
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="sendSupportMessage()"
+onclick="sendSupportMessage()">
 إرسال الرسالة
 </button>
 
 <div
 id="supportStatus"
-style="color:var(--muted);margin-top:12px;text-align:center"
-
+style="color:var(--muted);margin-top:12px;text-align:center">
 </div>
 
+</div>
 </div>
 </section>
 
 </main>
-
 
 <footer>
 <div class="container">
@@ -1036,7 +927,6 @@ Sdnbet365 ©
 منصة تجريبية قيد التطوير.
 </div>
 </footer>
-
 
 <!-- LOGIN -->
 
@@ -1061,21 +951,21 @@ Sdnbet365 ©
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="loginUser()"
+onclick="loginUser()">
 دخول
 </button>
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
-onclick="closeModal('loginModal');openModal('registerModal')"
+onclick="closeModal('loginModal');openModal('registerModal')">
 إنشاء حساب
 </button>
 
 <button
 class="btn"
 style="width:100%;margin-top:9px"
-onclick="openRecovery()"
+onclick="openRecovery()">
 نسيت كلمة المرور؟
 </button>
 
@@ -1083,7 +973,6 @@ onclick="openRecovery()"
 
 </div>
 </div>
-
 
 <!-- REGISTER -->
 
@@ -1118,7 +1007,7 @@ onclick="openRecovery()"
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="registerUser()"
+onclick="registerUser()">
 إنشاء الحساب
 </button>
 
@@ -1126,7 +1015,6 @@ onclick="registerUser()"
 
 </div>
 </div>
-
 
 <!-- RECOVERY -->
 
@@ -1146,7 +1034,7 @@ onclick="registerUser()"
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="sendRecovery()"
+onclick="sendRecovery()">
 إرسال رابط الاستعادة
 </button>
 
@@ -1154,7 +1042,6 @@ onclick="sendRecovery()"
 
 </div>
 </div>
-
 
 <!-- RESET PASSWORD -->
 
@@ -1173,7 +1060,7 @@ onclick="sendRecovery()"
 <button
 class="btn btn-primary"
 style="width:100%"
-onclick="changePassword()"
+onclick="changePassword()">
 حفظ كلمة المرور
 </button>
 
@@ -1182,9 +1069,7 @@ onclick="changePassword()"
 </div>
 </div>
 
-
 <div class="toast" id="toast"></div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1198,9 +1083,7 @@ const SUPABASE_URL =
 "https://bjzowejwvhicgmphkwkk.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj
-";
-
+"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1223,11 +1106,13 @@ UI HELPERS
 ========================================================= */
 
 function openModal(id){
-document.getElementById(id).classList.add("show");
+const element=document.getElementById(id);
+if(element) element.classList.add("show");
 }
 
 function closeModal(id){
-document.getElementById(id).classList.remove("show");
+const element=document.getElementById(id);
+if(element) element.classList.remove("show");
 }
 
 function showToast(message){
@@ -1259,13 +1144,13 @@ el.style.color="#9eacbd";
 
 function formatMoney(value){
 const number=Number(value||0);
-
 return number.toFixed(3)+" د.ت";
 }
 
 function formatDate(date){
 if(!date)return "-";
 
+try{
 return new Date(date).toLocaleString(
 "ar-TN",
 {
@@ -1273,15 +1158,18 @@ dateStyle:"short",
 timeStyle:"short"
 }
 );
+}catch(error){
+return String(date);
+}
 }
 
 function escapeHtml(value){
 return String(value ?? "")
-.replace(/&/g,"&")
-.replace(/</g,"<")
-.replace(/>/g,">")
-.replace(/"/g,""")
-.replace(/'/g,"'");
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
 
 
@@ -1294,11 +1182,10 @@ async function getCurrentUser(){
 const {
 data,
 error
-} =
-await supabaseClient.auth.getUser();
+} = await supabaseClient.auth.getUser();
 
 if(error){
-console.error(error);
+console.error("Auth error:",error);
 return null;
 }
 
@@ -1348,27 +1235,22 @@ data,
 error
 } =
 await supabaseClient.auth.signUp({
-
 email,
 password,
-
 options:{
 data:{
 full_name:name,
 phone:phone
 }
 }
-
 });
 
 if(error){
-
 showStatus(
 "registerStatus",
 error.message,
 "error"
 );
-
 return;
 }
 
@@ -1385,7 +1267,6 @@ closeModal("registerModal");
 },1800);
 
 }
-
 }
 
 
@@ -1459,8 +1340,13 @@ await updateAuthUI();
 
 document.getElementById("historyBody").innerHTML="";
 
-document.getElementById("supportMessages").innerHTML=
-<div style="color:var(--muted);text-align:center"> سجّل الدخول لبدء المحادثة. </div>;
+document.getElementById("historyLoginMessage").classList.remove("hidden");
+
+document.getElementById("supportMessages").innerHTML =
+'<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
+
+document.getElementById("supportInput").value="";
+document.getElementById("supportStatus").textContent="";
 
 showToast("تم تسجيل الخروج");
 
@@ -1492,7 +1378,7 @@ currentUser.email ||
 
 userName.textContent=name;
 
-document.getElementById("heroHint").textContent=
+document.getElementById("heroHint").textContent =
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 
 await loadWalletData();
@@ -1502,13 +1388,13 @@ await loadWalletData();
 authButtons.classList.remove("hidden");
 userArea.classList.add("hidden");
 
-document.getElementById("heroBalance").textContent=
+document.getElementById("heroBalance").textContent =
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent=
+document.getElementById("walletBalance").textContent =
 "0.000 د.ت";
 
-document.getElementById("heroHint").textContent=
+document.getElementById("heroHint").textContent =
 "سجّل الدخول للوصول إلى بيانات حسابك.";
 
 }
@@ -1558,10 +1444,10 @@ async function loadWalletData(){
 
 if(!currentUser){
 
-document.getElementById("heroBalance").textContent=
+document.getElementById("heroBalance").textContent =
 "0.000 د.ت";
 
-document.getElementById("walletBalance").textContent=
+document.getElementById("walletBalance").textContent =
 "0.000 د.ت";
 
 return;
@@ -1569,13 +1455,13 @@ return;
 
 const profile=await loadProfile();
 
-const balance=
+const balance =
 profile?.balance ?? 0;
 
-document.getElementById("heroBalance").textContent=
+document.getElementById("heroBalance").textContent =
 formatMoney(balance);
 
-document.getElementById("walletBalance").textContent=
+document.getElementById("walletBalance").textContent =
 formatMoney(balance);
 
 }
@@ -1596,21 +1482,21 @@ openModal("loginModal");
 return;
 }
 
-const type=
+const type =
 document.getElementById("walletType").value;
 
-const amount=
+const amount =
 Number(
 document.getElementById("walletAmount").value
 );
 
-const method=
+const method =
 document.getElementById("paymentMethod").value;
 
-const account=
+const account =
 document.getElementById("paymentAccount").value.trim();
 
-const reference=
+const reference =
 document.getElementById("paymentReference").value.trim();
 
 if(!amount || amount<=0){
@@ -1627,16 +1513,11 @@ showToast("أدخل رقم الحساب أو الهاتف");
 return;
 }
 
-/*
-السحب يجب أن يخضع لاحقًا للتحقق من الرصيد
-والموافقة الإدارية.
-*/
-
 if(type==="withdraw"){
 
 const profile=await loadProfile();
 
-const balance=
+const balance =
 Number(profile?.balance || 0);
 
 if(amount>balance){
@@ -1658,17 +1539,11 @@ await supabaseClient
 .insert({
 
 user_id:currentUser.id,
-
 request_type:type,
-
 amount:amount,
-
 payment_method:method,
-
 payment_account:account,
-
 payment_reference:reference || null,
-
 status:"pending"
 
 });
@@ -1703,10 +1578,10 @@ WALLET HISTORY
 
 async function loadWalletHistory(){
 
-const body=
+const body =
 document.getElementById("historyBody");
 
-const message=
+const message =
 document.getElementById("historyLoginMessage");
 
 body.innerHTML="";
@@ -1734,31 +1609,30 @@ if(error){
 
 console.error(error);
 
-body.innerHTML=
-<tr> <td colspan="5"> تعذر تحميل السجل. </td> </tr>;
+body.innerHTML =
+'<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
 
 return;
 }
 
 if(!data || data.length===0){
 
-body.innerHTML=
-<tr> <td colspan="5"> لا توجد معاملات حتى الآن. </td> </tr>;
+body.innerHTML =
+'<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
 
 return;
 }
 
 data.forEach(item=>{
 
-const tr=
-document.createElement("tr");
+const tr=document.createElement("tr");
 
-const type=
+const type =
 item.request_type==="deposit"
 ? "إيداع"
 : "سحب";
 
-const statusClass=
+const statusClass =
 item.status==="approved"
 ? "status-approved"
 : item.status==="rejected"
@@ -1767,7 +1641,7 @@ item.status==="approved"
 ? "status-cancelled"
 : "status-pending";
 
-const statusText=
+const statusText =
 item.status==="approved"
 ? "مقبول"
 : item.status==="rejected"
@@ -1776,27 +1650,16 @@ item.status==="approved"
 ? "ملغى"
 : "قيد المراجعة";
 
-tr.innerHTML=`
-
-<td>$``{type}</td>
-
+tr.innerHTML = `
+<td>${escapeHtml(type)}</td>
+<td>${escapeHtml(formatMoney(item.amount))}</td>
+<td>${escapeHtml(item.payment_method || "-")}</td>
 <td>
-``${escapeHtml(formatMoney(item.amount))}
-</td>
-
-<td>
-$``{escapeHtml(item.payment_method || "-")}
-</td>
-
-<td>
-<span class="status ${statusClass}"&gt; ${statusText}
+<span class="status ${statusClass}">
+${escapeHtml(statusText)}
 </span>
 </td>
-
-<td>
-``${escapeHtml(formatDate(item.created_at))}
-</td>
-
+<td>${escapeHtml(formatDate(item.created_at))}</td>
 `;
 
 body.appendChild(tr);
@@ -1829,7 +1692,7 @@ await supabaseClient
 
 if(findError){
 
-console.error(findError);
+console.error("Conversation search error:",findError);
 
 return null;
 }
@@ -1850,9 +1713,7 @@ await supabaseClient
 .insert({
 
 user_id:currentUser.id,
-
 visitor_token:currentUser.id,
-
 status:"open"
 
 })
@@ -1861,7 +1722,7 @@ status:"open"
 
 if(createError){
 
-console.error(createError);
+console.error("Conversation create error:",createError);
 
 return null;
 }
@@ -1875,24 +1736,24 @@ return newConversation;
 
 async function loadSupport(){
 
-const box=
+const box =
 document.getElementById("supportMessages");
 
 if(!currentUser){
 
-box.innerHTML=
-<div style="color:var(--muted);text-align:center"> سجّل الدخول لبدء المحادثة. </div>;
+box.innerHTML =
+'<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
 
 return;
 }
 
-const conversation=
+const conversation =
 await getOrCreateConversation();
 
 if(!conversation){
 
-box.innerHTML=
-<div style="color:#ff7773;text-align:center"> تعذر فتح محادثة الدعم. </div>;
+box.innerHTML =
+'<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
 
 return;
 }
@@ -1909,7 +1770,10 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
+console.error("Support messages error:",error);
+
+box.innerHTML =
+'<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
 
 return;
 }
@@ -1918,18 +1782,17 @@ box.innerHTML="";
 
 if(!data || data.length===0){
 
-box.innerHTML=
-<div style="color:var(--muted);text-align:center"> اكتب رسالتك الأولى لفريق الدعم. </div>;
+box.innerHTML =
+'<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
 
 return;
 }
 
 data.forEach(message=>{
 
-const div=
-document.createElement("div");
+const div=document.createElement("div");
 
-div.className=
+div.className =
 "message "+
 (
 message.sender_type==="user"
@@ -1937,7 +1800,12 @@ message.sender_type==="user"
 : "admin"
 );
 
-div.innerHTML=<div> {escapeHtml(formatDate(message.created_at))} </div>;
+div.innerHTML = `
+<div>${escapeHtml(message.message || "")}</div>
+<div class="messageTime">
+${escapeHtml(formatDate(message.created_at))}
+</div>
+`;
 
 box.appendChild(div);
 
@@ -1959,10 +1827,10 @@ openModal("loginModal");
 return;
 }
 
-const input=
+const input =
 document.getElementById("supportInput");
 
-const message=
+const message =
 input.value.trim();
 
 if(!message){
@@ -1972,7 +1840,7 @@ showToast("اكتب رسالة أولًا");
 return;
 }
 
-const conversation=
+const conversation =
 await getOrCreateConversation();
 
 if(!conversation){
@@ -1995,9 +1863,7 @@ await supabaseClient
 .insert({
 
 conversation_id:conversation.id,
-
 sender_type:"user",
-
 message:message
 
 });
@@ -2035,7 +1901,6 @@ PASSWORD RECOVERY
 function openRecovery(){
 
 closeModal("loginModal");
-
 openModal("recoveryModal");
 
 }
@@ -2043,7 +1908,7 @@ openModal("recoveryModal");
 
 async function sendRecovery(){
 
-const email=
+const email =
 document.getElementById("recoveryEmail").value.trim();
 
 if(!email){
@@ -2057,7 +1922,7 @@ showStatus(
 return;
 }
 
-const redirectTo=
+const redirectTo =
 window.location.origin+
 window.location.pathname+
 "?type=recovery";
@@ -2094,7 +1959,7 @@ showStatus(
 
 async function changePassword(){
 
-const password=
+const password =
 document.getElementById("newPassword").value;
 
 if(password.length<6){
@@ -2146,17 +2011,20 @@ AUTH STATE
 supabaseClient.auth.onAuthStateChange(
 async (event,session)=>{
 
-currentUser=
+currentUser =
 session?.user || null;
-
-await updateAuthUI();
 
 if(currentUser){
 
+await updateAuthUI();
 await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
 
+}else{
+
+await updateAuthUI();
+await loadWalletHistory();
 }
 
 }
@@ -2171,7 +2039,7 @@ async function initialize(){
 
 try{
 
-currentUser=
+currentUser =
 await getCurrentUser();
 
 await updateAuthUI();
@@ -2181,6 +2049,10 @@ if(currentUser){
 await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
+
+}else{
+
+await loadWalletHistory();
 
 }
 
@@ -2212,7 +2084,6 @@ openModal("resetModal");
 
 }
 
-
 initialize();
 
 
@@ -2228,9 +2099,7 @@ modal.addEventListener(
 event=>{
 
 if(event.target===modal){
-
 modal.classList.remove("show");
-
 }
 
 }
