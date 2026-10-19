@@ -3,2591 +3,2296 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#08111f">
 <title>Sdnbet365 | المنصة الرياضية</title>
 
 <style>
-:root{
---bg:#080f1c;
---panel:#111c2e;
---panel2:#17263c;
---line:#283a55;
---text:#f5f8fc;
---muted:#aab8cb;
---green:#20c783;
---green2:#0d8e70;
---gold:#f4c15d;
---red:#ef6262;
---blue:#3d9cff
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-*{box-sizing:border-box}
-
-html{
-scroll-behavior:smooth;
-scroll-padding-top:95px
+:root{
+  --bg:#07101d;
+  --panel:#101c2d;
+  --panel2:#15253a;
+  --border:#263950;
+  --text:#f5f7fb;
+  --muted:#9eacbd;
+  --green:#20c77a;
+  --green2:#13a965;
+  --red:#ef5350;
+  --yellow:#f4c542;
+  --blue:#3182f6;
+  --shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 body{
-margin:0;
-background:
-radial-gradient(circle at 80% -20%,#1b405d 0,transparent 35%),
-radial-gradient(circle at -10% 50%,#12362f 0,transparent 28%),
-var(--bg);
-color:var(--text);
-font-family:Tahoma,Arial,sans-serif;
-overflow-wrap:break-word
+  font-family:Arial,Tahoma,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
 }
 
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-button:disabled{opacity:.6;cursor:not-allowed}
-
-.wrap{
-max-width:1180px;
-margin:auto;
-padding:0 18px
+button,
+input,
+select,
+textarea{
+  font:inherit;
 }
 
-.topbar{
-border-bottom:1px solid var(--line);
-background:#080f1cef;
-position:sticky;
-top:0;
-z-index:50;
-backdrop-filter:blur(14px)
+button{
+  cursor:pointer;
 }
 
-.nav{
-min-height:74px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:16px;
-flex-wrap:wrap;
-padding:12px 0
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-.brand{
-display:flex;
-align-items:center;
-gap:10px;
-font-weight:900;
-font-size:22px;
-flex-shrink:0
+.container{
+  width:min(1180px,92%);
+  margin:auto;
 }
 
-.logo{
-display:grid;
-place-items:center;
-width:42px;
-height:42px;
-border-radius:13px;
-background:linear-gradient(135deg,var(--green),#087d65);
-color:#061b17;
-box-shadow:0 8px 25px #20c78322
-}
-
-.brand span{color:var(--green)}
-
-.navlinks,
-.auth-actions,
-.wallet-actions,
-.hero-actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap
-}
-
-.navlinks a{
-color:var(--muted);
-text-decoration:none;
-padding:10px;
-font-size:14px;
-border-radius:9px
-}
-
-.navlinks a:hover{
-background:var(--panel2);
-color:var(--text)
-}
-
-.wallet{
-display:flex;
-align-items:center;
-gap:12px
-}
-
-.balance{
-font-size:12px;
-color:var(--muted)
-}
-
-.balance strong{
-display:block;
-color:white;
-font-size:15px;
-margin-top:3px
-}
-
-.btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-text-decoration:none;
-border:0;
-border-radius:11px;
-padding:11px 15px;
-font-weight:800;
-transition:.2s
-}
-
-.btn:hover{
-filter:brightness(1.08);
-transform:translateY(-1px)
-}
-
-.primary{
-background:var(--green);
-color:#06251b
-}
-
-.secondary{
-background:var(--panel2);
-color:var(--text);
-border:1px solid var(--line)
-}
-
-.danger{
-background:#4a2027;
-color:#ffd9dd;
-border:1px solid #71333d
-}
-
-.hero{
-padding:30px 0 24px;
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:22px
-}
-
-.hero-copy,
-.hero-card{
-min-width:0;
-border:1px solid var(--line);
-border-radius:22px;
-padding:28px;
-background:linear-gradient(145deg,#14233a,#101a2b)
-}
-
-.eyebrow{
-color:var(--green);
-font-weight:800
-}
-
-.hero h1{
-font-size:clamp(28px,4vw,44px);
-line-height:1.45;
-margin:15px 0
-}
-
-.hero p,
-.tile p,
-.section-head p,
-.modal-card p{
-color:var(--muted);
-line-height:1.9
-}
-
-.hero-card{
-background:linear-gradient(145deg,#173e39,#132b36);
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-min-height:230px
-}
-
-.big{
-font-size:36px;
-font-weight:900;
-color:var(--gold);
-margin:18px 0
-}
-
-.tag{
-display:inline-block;
-border-radius:7px;
-padding:5px 8px;
-background:#20364b;
-color:#cfe2f3;
-font-size:11px
-}
-
-.notice{
-border:1px solid #6e592b;
-background:#2b2517;
-color:#f2dca5;
-border-radius:12px;
-padding:13px;
-font-size:12px;
-line-height:1.8;
-margin-top:15px
-}
-
-.section{padding:22px 0}
-
-.section-head{
-display:flex;
-align-items:end;
-justify-content:space-between;
-gap:12px;
-margin-bottom:16px
-}
-
-.section h2{
-margin:0;
-font-size:22px
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:14px
-}
-
-.tile,
-.match{
-min-width:0;
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:17px;
-padding:19px
-}
-
-.tile h3{margin:13px 0 7px}
-
-.emoji{font-size:28px}
-
-.match{
-display:grid;
-grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
-gap:12px;
-align-items:center;
-margin-bottom:10px
-}
-
-.team{
-text-align:center;
-font-weight:700;
-overflow-wrap:anywhere
-}
-
-.vs{
-color:var(--muted);
-font-size:12px;
-text-align:center
-}
-
-.odds{
-display:flex;
-gap:7px;
-grid-column:1/-1;
-min-width:0
-}
-
-.odd{
-flex:1;
-min-width:0;
-background:var(--panel2);
-border:1px solid var(--line);
-color:white;
-border-radius:9px;
-padding:10px 5px
-}
-
-.odd small{
-display:block;
-color:var(--muted);
-font-size:11px;
-margin-bottom:5px
-}
-
-.odd b{color:var(--gold)}
-
-.wallet-actions{margin-top:14px}
-
-.footer{
-border-top:1px solid var(--line);
-margin-top:30px;
-padding:25px 0;
-color:var(--muted);
-font-size:12px;
-line-height:1.9
-}
-
-.chat-launch{
-position:fixed;
-bottom:20px;
-left:20px;
-z-index:60;
-background:var(--green);
-color:#06251b;
-border:0;
-border-radius:999px;
-padding:14px 18px;
-font-weight:900;
-box-shadow:0 5px 20px #0004
-}
-
-.chatbox{
-position:fixed;
-left:20px;
-bottom:82px;
-width:min(360px,calc(100vw - 40px));
-max-height:calc(100dvh - 110px);
-z-index:61;
-border:1px solid var(--line);
-border-radius:18px;
-background:var(--panel);
-overflow:auto;
-display:none;
-box-shadow:0 20px 70px #0008
-}
-
-.chatbox.open{display:block}
-
-.chathead{
-padding:15px;
-background:#173a35;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-position:sticky;
-top:0
-}
-
-.chathead small{
-display:block;
-color:#b6d5ca;
-margin-top:4px
-}
-
-.x,
-.close-row button{
-background:transparent;
-color:white;
-border:0;
-font-size:23px
-}
-
-.chatbody{padding:15px}
-
-.bubble{
-padding:12px;
-background:var(--panel2);
-border-radius:12px;
-line-height:1.7;
-font-size:13px;
-margin-bottom:12px;
-overflow-wrap:anywhere;
-white-space:pre-wrap
-}
-
-.field{
-display:block;
-width:100%;
-min-width:0;
-border:1px solid var(--line);
-background:#0c1524;
-color:white;
-border-radius:10px;
-padding:11px;
-margin:8px 0;
-outline:none
-}
-
-.field:focus{
-border-color:var(--green);
-box-shadow:0 0 0 3px #20c78318
-}
-
-textarea.field{
-min-height:90px;
-resize:vertical
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-z-index:100;
-background:#000b;
-align-items:center;
-justify-content:center;
-padding:18px
-}
-
-.modal.open{display:flex}
-
-.modal-card{
-width:min(480px,100%);
-max-height:90vh;
-max-height:90dvh;
-overflow:auto;
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:18px;
-padding:22px;
-box-shadow:0 25px 90px #0009
-}
-
-.modal-card h3{margin-top:0}
-
-.modal-card .btn{
-width:100%;
-margin-top:8px
-}
-
-.close-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px
-}
-
-.status{
-font-size:12px;
-color:var(--muted);
-line-height:1.8;
-margin-top:10px;
-overflow-wrap:anywhere;
-white-space:pre-wrap
-}
-
-[hidden]{display:none!important}
-
-table{color:var(--text)}
-
-.payment-methods{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin:12px 0
-}
-
-.payment-method{
-border:1px solid var(--line);
-background:var(--panel2);
-color:var(--text);
-border-radius:13px;
-padding:14px 10px;
-text-align:center;
-font-weight:800
-}
-
-.payment-method.active{
-border-color:var(--green);
-background:#12382f;
-box-shadow:0 0 0 2px #20c78322
-}
-
-.payment-method .method-icon{
-font-size:25px;
-display:block;
-margin-bottom:5px
-}
-
-.payment-info{
-border:1px solid var(--line);
-background:#0c1524;
-border-radius:12px;
-padding:12px;
-font-size:12px;
-color:var(--muted);
-line-height:1.8;
-margin:10px 0
-}
-
-.payment-info strong{color:white}
-
-.method-note{
-font-size:11px;
-color:var(--muted);
-margin-top:6px
-}
-
-.amount-presets{
-display:flex;
-gap:6px;
-flex-wrap:wrap;
-margin:4px 0 8px
-}
-
-.amount-presets button{
-flex:1;
-min-width:70px;
-background:var(--panel2);
-border:1px solid var(--line);
-color:var(--text);
-border-radius:9px;
-padding:8px
-}
-
-.amount-presets button:hover{
-border-color:var(--green)
-}
-
-.table-wrap{overflow-x:auto}
-
-.empty{
-padding:18px;
-text-align:center;
-color:var(--muted);
-font-size:13px
-}
-
-.success{color:#70e6b7}
-.error{color:#ff9c9c}
-
-@media(min-width:761px) and (max-width:1000px){
-.nav{gap:10px}
-.navlinks{gap:2px}
-.navlinks a{
-padding:8px;
-font-size:13px
-}
-.hero-copy,
-.hero-card{padding:22px}
-.tile,
-.match{padding:15px}
-}
-
-@media(max-width:760px){
-.wrap{
-padding-right:14px;
-padding-left:14px
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(7,16,29,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
 }
 
 .nav{
-min-height:0;
-gap:10px;
-padding:10px 0
-}
-
-.brand{
-font-size:20px;
-gap:8px
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 
 .logo{
-width:38px;
-height:38px;
-border-radius:11px
+  font-size:24px;
+  font-weight:900;
+  color:var(--green);
+  white-space:nowrap;
 }
 
 .navlinks{
-order:3;
-width:100%;
-overflow-x:auto;
-overflow-y:hidden;
-flex-wrap:nowrap;
-gap:4px;
-padding:2px 0 5px;
-scrollbar-width:thin;
--webkit-overflow-scrolling:touch
+  display:flex;
+  align-items:center;
+  gap:8px;
+  overflow:auto;
 }
 
 .navlinks a{
-white-space:nowrap;
-flex-shrink:0;
-padding:9px 11px
+  padding:10px 13px;
+  color:#dbe5f1;
+  border-radius:9px;
+  white-space:nowrap;
 }
 
-.wallet{
-margin-right:auto;
-gap:6px
+.navlinks a:hover{
+  background:var(--panel2);
+  color:white;
 }
 
-.auth-actions{gap:5px}
-
-.auth-actions .btn{
-padding:9px 10px;
-font-size:12px
+.authButtons{
+  display:flex;
+  gap:8px;
+  white-space:nowrap;
 }
+
+/* BUTTONS */
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 17px;
+  color:white;
+  background:var(--panel2);
+  border:1px solid var(--border);
+}
+
+.btn:hover{
+  filter:brightness(1.1);
+}
+
+.btn-primary{
+  background:var(--green);
+  color:#03140c;
+  border-color:var(--green);
+  font-weight:800;
+}
+
+.btn-danger{
+  background:var(--red);
+  border-color:var(--red);
+}
+
+.btn-blue{
+  background:var(--blue);
+  border-color:var(--blue);
+}
+
+.btn-yellow{
+  background:var(--yellow);
+  color:#171000;
+  border-color:var(--yellow);
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* HERO */
 
 .hero{
-grid-template-columns:minmax(0,1fr);
-gap:13px;
-padding:18px 0 12px
+  padding:70px 0 45px;
 }
 
-.hero-copy,
-.hero-card{
-padding:20px;
-border-radius:18px
+.heroGrid{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:25px;
+  align-items:stretch;
 }
 
-.eyebrow{font-size:13px}
+.heroCard,
+.balanceCard{
+  background:linear-gradient(145deg,#112238,#0d1828);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
 
 .hero h1{
-font-size:clamp(27px,7vw,36px);
-line-height:1.45;
-margin:12px 0
+  font-size:clamp(30px,6vw,54px);
+  margin-bottom:15px;
+}
+
+.hero h1 span{
+  color:var(--green);
 }
 
 .hero p{
-font-size:14px;
-line-height:1.9
+  color:var(--muted);
+  line-height:1.9;
+  font-size:17px;
 }
 
-.hero-actions{gap:8px}
-
-.hero-actions .btn{
-flex:1 1 auto;
-padding:11px 10px;
-font-size:13px
+.heroActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
 }
 
-.hero-card{min-height:190px}
-
-.big{
-font-size:30px;
-margin:14px 0
+.balanceCard{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
 }
 
-.section{padding:17px 0}
-
-.section-head{
-align-items:center;
-gap:8px;
-margin-bottom:12px
+.balanceLabel{
+  color:var(--muted);
+  margin-bottom:10px;
 }
 
-.section h2{font-size:20px}
-
-.section-head p{
-font-size:12px;
-margin:7px 0 0
+.balance{
+  font-size:40px;
+  font-weight:900;
+  color:var(--green);
+  direction:ltr;
 }
 
-.grid{
-grid-template-columns:minmax(0,1fr);
-gap:10px
+.loginHint{
+  color:var(--muted);
+  margin-top:14px;
+  line-height:1.7;
 }
 
-.tile,
+/* SECTIONS */
+
+section{
+  padding:35px 0;
+}
+
+.sectionTitle{
+  margin-bottom:22px;
+}
+
+.sectionTitle h2{
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.sectionTitle p{
+  color:var(--muted);
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+}
+
+.cardIcon{
+  font-size:35px;
+  margin-bottom:13px;
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.card .btn{
+  margin-top:18px;
+}
+
+/* MATCHES */
+
+.matches{
+  display:grid;
+  gap:12px;
+}
+
 .match{
-padding:15px;
-border-radius:14px
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
 }
 
-.match{
-grid-template-columns:minmax(0,1fr);
-gap:9px;
-margin-bottom:10px
+.matchTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
 }
 
-.team{
-padding:4px;
-font-size:14px
+.matchLeague{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.teams{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:12px;
+  text-align:center;
+  font-weight:800;
 }
 
 .vs{
-font-size:12px;
-text-align:center
+  color:var(--muted);
 }
 
 .odds{
-display:flex;
-gap:5px;
-width:100%
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:15px;
 }
 
 .odd{
-min-width:0;
-padding:10px 2px
+  background:#182a40;
+  border:1px solid #29415c;
+  border-radius:9px;
+  padding:10px;
+  text-align:center;
 }
 
-.odd small{
-font-size:10px;
-white-space:normal
+.odd span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:4px;
 }
 
-.odd b{font-size:14px}
+/* WALLET */
 
-.wallet .balance{display:none}
-
-.wallet-actions{
-gap:8px;
-flex-wrap:wrap
+.walletGrid{
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:18px;
 }
 
-.wallet-actions .btn{
-flex:1 1 120px
+.walletCard{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:23px;
 }
 
-.footer{
-margin-top:20px;
-padding:20px 0 90px
+.walletBalance{
+  font-size:36px;
+  color:var(--green);
+  font-weight:900;
+  margin:15px 0;
+  direction:ltr;
 }
 
-.chat-launch{
-left:12px;
-bottom:12px;
-padding:12px 15px;
-font-size:13px
+.formGroup{
+  margin-bottom:15px;
 }
 
-.chatbox{
-left:10px;
-bottom:70px;
-width:calc(100vw - 20px);
-max-height:calc(100dvh - 85px);
-border-radius:16px
+.formGroup label{
+  display:block;
+  color:#d8e0eb;
+  margin-bottom:7px;
 }
 
-.chatbody{padding:12px}
-
-.modal{padding:12px}
-
-.modal-card{
-padding:18px;
-border-radius:16px
+.formGroup input,
+.formGroup select,
+.formGroup textarea{
+  width:100%;
+  padding:12px 13px;
+  background:#091525;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:white;
+  outline:none;
 }
 
-.payment-method{
-padding:12px 7px;
-font-size:13px
-}
-}
-
-@media(max-width:380px){
-.wrap{
-padding-right:10px;
-padding-left:10px
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus{
+  border-color:var(--green);
 }
 
-.brand{font-size:18px}
-
-.logo{
-width:34px;
-height:34px
+.walletButtons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.auth-actions .btn{
-padding:8px;
-font-size:11px
+.notice{
+  background:#182333;
+  border:1px solid #33445a;
+  color:#c6d0dc;
+  padding:13px;
+  border-radius:10px;
+  line-height:1.7;
+  font-size:14px;
+  margin-bottom:17px;
 }
 
-.hero-copy,
-.hero-card{padding:16px}
+/* TABLE */
 
-.hero h1{font-size:27px}
+.tableWrap{
+  overflow:auto;
+}
 
-.hero-actions{flex-direction:column}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
 
-.hero-actions .btn{width:100%}
+th,
+td{
+  padding:13px 10px;
+  border-bottom:1px solid var(--border);
+  text-align:right;
+}
 
-.section h2{font-size:18px}
+th{
+  color:#c9d4e1;
+  background:#132237;
+}
 
-.tile,
-.match{padding:12px}
+td{
+  color:#dce4ee;
+}
 
-.odd small{font-size:9px}
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+}
 
-.payment-methods{gap:7px}
+.status-pending{
+  background:rgba(244,197,66,.14);
+  color:var(--yellow);
+}
+
+.status-approved{
+  background:rgba(32,199,122,.14);
+  color:var(--green);
+}
+
+.status-rejected{
+  background:rgba(239,83,80,.14);
+  color:#ff7d7a;
+}
+
+.status-cancelled{
+  background:#26313e;
+  color:#adb8c5;
+}
+
+/* SUPPORT */
+
+.supportCard{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:25px;
+}
+
+.messages{
+  height:320px;
+  overflow:auto;
+  padding:15px;
+  background:#091525;
+  border-radius:13px;
+  margin-bottom:14px;
+}
+
+.message{
+  max-width:80%;
+  padding:10px 13px;
+  margin-bottom:10px;
+  border-radius:12px;
+  line-height:1.6;
+}
+
+.message.user{
+  background:#123c2b;
+  margin-right:auto;
+}
+
+.message.admin{
+  background:#1a2c42;
+  margin-left:auto;
+}
+
+.messageTime{
+  color:#8b99aa;
+  font-size:11px;
+  margin-top:4px;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:min(500px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#0e1a2b;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:var(--shadow);
+}
+
+.modalHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.close{
+  border:0;
+  background:transparent;
+  color:#aeb9c7;
+  font-size:27px;
+}
+
+/* USER AREA */
+
+.userArea{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.userName{
+  color:#dbe6f2;
+  font-size:14px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  max-width:500px;
+  margin:auto;
+  z-index:2000;
+  padding:14px 17px;
+  background:#152337;
+  border:1px solid var(--border);
+  border-radius:12px;
+  display:none;
+  text-align:center;
+}
+
+.toast.show{
+  display:block;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:45px;
+  border-top:1px solid var(--border);
+  padding:25px 0;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+  .heroGrid,
+  .walletGrid{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .nav{
+    flex-wrap:wrap;
+    padding:10px 0;
+  }
+
+  .navlinks{
+    order:3;
+    width:100%;
+  }
+}
+
+@media(max-width:560px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .authButtons .btn{
+    padding:9px 11px;
+    font-size:13px;
+  }
+
+  .heroCard,
+  .balanceCard,
+  .walletCard,
+  .supportCard{
+    padding:18px;
+  }
+
+  .walletButtons{
+    grid-template-columns:1fr;
+  }
+
+  .teams{
+    font-size:14px;
+  }
+
+  .balance{
+    font-size:32px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
-<div class="wrap nav">
+<header>
+  <div class="container nav">
 
-<div class="brand">
-<div class="logo">S</div>
-<div>Sdn<span>bet365</span></div>
-</div>
+    <a href="#" class="logo">Sdnbet365</a>
 
-<nav class="navlinks">
-<a href="#sports">الرياضة</a>
-<a href="#casino">الكازينو</a>
-<a href="#live">مباشر</a>
-<a href="#wallet">المحفظة</a>
-<a href="#history">سجل المحفظة</a>
-<a href="#support">الدعم</a>
-</nav>
+    <nav class="navlinks">
+      <a href="#sports">الرياضة</a>
+      <a href="#casino">الكازينو</a>
+      <a href="#live">مباشر</a>
+      <a href="#wallet">المحفظة</a>
+      <a href="#history">سجل المحفظة</a>
+      <a href="#support">الدعم</a>
+    </nav>
 
-<div class="wallet">
-<div class="balance">
-الرصيد
-<strong id="balanceValue">0.000 د.ت</strong>
-</div>
+    <div class="authButtons" id="authButtons">
+      <button class="btn" onclick="openModal('loginModal')">دخول</button>
+      <button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button>
+    </div>
 
-<div class="auth-actions">
-<button class="btn secondary" id="loginBtn" onclick="openAuth('login')">دخول</button>
-<button class="btn primary" id="registerBtn" onclick="openAuth('register')">إنشاء حساب</button>
-<button class="btn secondary" id="accountBtn" onclick="openAccount()" hidden>حسابي</button>
-<button class="btn danger" id="logoutBtn" onclick="logout()" hidden>خروج</button>
-</div>
-</div>
+    <div class="userArea hidden" id="userArea">
+      <span class="userName" id="userName"></span>
+      <button class="btn" onclick="signOutUser()">خروج</button>
+    </div>
 
-</div>
+  </div>
 </header>
 
-<main class="wrap">
+<main>
 
 <section class="hero">
+  <div class="container heroGrid">
 
-<div class="hero-copy">
+    <div class="heroCard">
+      <h1>منصة <span>Sdnbet365</span></h1>
 
-<div class="eyebrow">منصة Sdnbet365</div>
+      <p>
+        منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف.
+        تابع الأقسام، أدر محفظتك، راجع معاملاتك وتواصل مع الدعم
+        من واجهة واحدة.
+      </p>
 
-<h1>
-تجربة رياضية حديثة وسريعة
-<br>
-بتصميم متجاوب مع الهاتف
-</h1>
+      <div class="heroActions">
+        <a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
+        <a href="#wallet" class="btn">المحفظة</a>
+      </div>
+    </div>
 
-<p>
-تابع الرياضة، راجع المحفظة، تواصل مع الدعم،
-وسجّل طلبات D17 وFlouci من واجهة واحدة.
-</p>
+    <div class="balanceCard">
+      <div class="balanceLabel">رصيد الحساب</div>
+      <div class="balance" id="heroBalance">0.000 د.ت</div>
+      <div class="loginHint" id="heroHint">
+        سجّل الدخول للوصول إلى بيانات حسابك.
+      </div>
+    </div>
 
-<div class="hero-actions">
-<a class="btn primary" href="#sports">استكشف الرياضة</a>
-<a class="btn secondary" href="#wallet">المحفظة</a>
-</div>
-
-<div class="notice">
-هذه نسخة تجريبية للواجهة. خيارات المباريات والأسعار المعروضة للتصميم فقط،
-ولا توجد رهانات حقيقية مفعلة داخل هذه الصفحة.
-</div>
-
-</div>
-
-<div class="hero-card">
-
-<div>
-<span class="tag">الحساب والمحفظة</span>
-
-<div class="big" id="heroBalance">
-0.000 د.ت
-</div>
-
-<p>
-سجّل الدخول للوصول إلى بيانات حسابك وسجل المحفظة
-وطلبات الإيداع والسحب.
-</p>
-</div>
-
-<button class="btn primary" onclick="openAuth('login')">
-تسجيل الدخول
-</button>
-
-</div>
-
+  </div>
 </section>
 
 
-<section class="section" id="sports">
+<section id="sports">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>الرياضة</h2>
-<p>مباريات وأسعار توضيحية للواجهة.</p>
-</div>
-</div>
+    <div class="sectionTitle">
+      <h2>الرياضة</h2>
+      <p>واجهة المباريات الرياضية.</p>
+    </div>
 
-<div class="grid">
+    <div class="cards">
 
-<div class="tile">
-<div class="emoji">⚽</div>
-<h3>كرة القدم</h3>
-<p>
-تابع المباريات والبطولات في واجهة مرتبة وسريعة.
-</p>
-<button class="btn secondary" onclick="demoNotice()">
-عرض الخيارات
-</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">⚽</div>
+        <h3>كرة القدم</h3>
+        <p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p>
+        <a href="#matches" class="btn">عرض المباريات</a>
+      </div>
 
-<div class="tile">
-<div class="emoji">🏀</div>
-<h3>كرة السلة</h3>
-<p>
-واجهة متجاوبة لمتابعة الفرق والمواجهات.
-</p>
-<button class="btn secondary" onclick="demoNotice()">
-عرض الخيارات
-</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">🏀</div>
+        <h3>كرة السلة</h3>
+        <p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
+        <button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+          عرض الخيارات
+        </button>
+      </div>
 
-<div class="tile">
-<div class="emoji">🎾</div>
-<h3>التنس</h3>
-<p>
-تصميم بسيط لمتابعة مباريات التنس.
-</p>
-<button class="btn secondary" onclick="demoNotice()">
-عرض الخيارات
-</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">🎾</div>
+        <h3>التنس</h3>
+        <p>تصميم بسيط لمتابعة مباريات التنس.</p>
+        <button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية الحقيقية لاحقًا')">
+          عرض الخيارات
+        </button>
+      </div>
 
-</div>
+    </div>
 
-<div style="margin-top:14px">
+    <div id="matches" class="matches" style="margin-top:18px">
 
-<div class="match">
-<div class="team">Real Madrid</div>
-<div class="vs">VS</div>
-<div class="team">Barcelona</div>
+      <div class="match">
+        <div class="matchTop">
+          <span class="matchLeague">Football • Demo</span>
+          <span>20:00</span>
+        </div>
 
-<div class="odds">
-<button class="odd" onclick="demoNotice()">
-<small>1</small>
-<b>2.10</b>
-</button>
+        <div class="teams">
+          <span>Real Madrid</span>
+          <span class="vs">VS</span>
+          <span>Barcelona</span>
+        </div>
 
-<button class="odd" onclick="demoNotice()">
-<small>X</small>
-<b>3.20</b>
-</button>
+        <div class="odds">
+          <div class="odd"><span>1</span>2.10</div>
+          <div class="odd"><span>X</span>3.20</div>
+          <div class="odd"><span>2</span>2.80</div>
+        </div>
+      </div>
 
-<button class="odd" onclick="demoNotice()">
-<small>2</small>
-<b>2.80</b>
-</button>
-</div>
-</div>
+      <div class="match">
+        <div class="matchTop">
+          <span class="matchLeague">Football • Demo</span>
+          <span>21:30</span>
+        </div>
 
-<div class="match">
-<div class="team">Liverpool</div>
-<div class="vs">VS</div>
-<div class="team">Arsenal</div>
+        <div class="teams">
+          <span>Liverpool</span>
+          <span class="vs">VS</span>
+          <span>Arsenal</span>
+        </div>
 
-<div class="odds">
-<button class="odd" onclick="demoNotice()">
-<small>1</small>
-<b>2.25</b>
-</button>
+        <div class="odds">
+          <div class="odd"><span>1</span>2.25</div>
+          <div class="odd"><span>X</span>3.40</div>
+          <div class="odd"><span>2</span>2.60</div>
+        </div>
+      </div>
 
-<button class="odd" onclick="demoNotice()">
-<small>X</small>
-<b>3.40</b>
-</button>
+    </div>
 
-<button class="odd" onclick="demoNotice()">
-<small>2</small>
-<b>2.60</b>
-</button>
-</div>
-</div>
-
-</div>
+  </div>
 </section>
 
 
-<section class="section" id="casino">
+<section id="casino">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>الكازينو</h2>
-<p>أقسام توضيحية للواجهة فقط.</p>
-</div>
-</div>
+    <div class="sectionTitle">
+      <h2>الكازينو</h2>
+      <p>أقسام واجهة تجريبية.</p>
+    </div>
 
-<div class="grid">
+    <div class="cards">
 
-<div class="tile">
-<div class="emoji">🎰</div>
-<h3>Slots</h3>
-<p>واجهة ألعاب تجريبية.</p>
-<button class="btn secondary" onclick="demoNotice()">فتح</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">🎰</div>
+        <h3>Slots</h3>
+        <p>واجهة ألعاب تجريبية.</p>
+        <button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+          فتح
+        </button>
+      </div>
 
-<div class="tile">
-<div class="emoji">🃏</div>
-<h3>Cards</h3>
-<p>قسم ألعاب البطاقات.</p>
-<button class="btn secondary" onclick="demoNotice()">فتح</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">🃏</div>
+        <h3>Cards</h3>
+        <p>قسم ألعاب البطاقات.</p>
+        <button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+          فتح
+        </button>
+      </div>
 
-<div class="tile">
-<div class="emoji">🎲</div>
-<h3>Games</h3>
-<p>ألعاب إضافية للعرض.</p>
-<button class="btn secondary" onclick="demoNotice()">فتح</button>
-</div>
+      <div class="card">
+        <div class="cardIcon">🎲</div>
+        <h3>Games</h3>
+        <p>ألعاب إضافية للعرض.</p>
+        <button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
+          فتح
+        </button>
+      </div>
 
-</div>
+    </div>
 
+  </div>
 </section>
 
 
-<section class="section" id="live">
+<section id="live">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>مباشر</h2>
-<p>محتوى توضيحي للواجهة.</p>
-</div>
-</div>
+    <div class="sectionTitle">
+      <h2>مباشر</h2>
+      <p>الأحداث المباشرة.</p>
+    </div>
 
-<div class="tile">
-<h3>🔴 البث المباشر</h3>
-<p>
-سيتم عرض الأحداث المباشرة هنا عند ربط الخدمة بمصدر البيانات الحقيقي.
-</p>
-</div>
+    <div class="card">
+      <div class="cardIcon">🔴</div>
+      <h3>البث المباشر</h3>
+      <p>
+        سيتم عرض الأحداث المباشرة عند ربط المنصة
+        بمصدر بيانات أو خدمة بث مرخّصة.
+      </p>
+    </div>
 
+  </div>
 </section>
 
 
-<section class="section" id="wallet">
+<section id="wallet">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>المحفظة</h2>
-<p>إدارة طلبات الإيداع والسحب.</p>
-</div>
-</div>
+    <div class="sectionTitle">
+      <h2>المحفظة</h2>
+      <p>إدارة طلبات الإيداع والسحب.</p>
+    </div>
 
-<div class="tile">
+    <div class="walletGrid">
 
-<h3>رصيد الحساب</h3>
+      <div class="walletCard">
 
-<div class="big" id="walletBalance">
-0.000 د.ت
-</div>
+        <div class="balanceLabel">رصيد الحساب</div>
 
-<p>
-يمكنك إرسال طلب إيداع أو سحب باستخدام D17 أو Flouci.
-</p>
+        <div class="walletBalance" id="walletBalance">
+          0.000 د.ت
+        </div>
 
-<div class="wallet-actions">
+        <p style="color:var(--muted);line-height:1.8">
+          الرصيد المعروض هنا يتم قراءته من حسابك في Supabase.
+          لا يمكن للمستخدم تعديل الرصيد من الواجهة.
+        </p>
 
-<button
-class="btn primary"
-onclick="showPayment('deposit')">
-💰 إيداع
-</button>
+        <div style="margin-top:18px">
+          <button class="btn btn-primary" onclick="loadWalletData()">
+            تحديث الرصيد
+          </button>
+        </div>
 
-<button
-class="btn secondary"
-onclick="showPayment('withdraw')">
-💸 سحب
-</button>
+      </div>
 
-</div>
 
-<div class="notice">
-مهم: D17 وFlouci هنا مرتبطان بنظام تسجيل طلبات داخل Supabase فقط.
-لا يتم تنفيذ أو التحقق من الدفع تلقائيًا من هذه الصفحة.
-</div>
+      <div class="walletCard">
 
-</div>
+        <div class="notice">
+          D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب.
+          لا يتم تنفيذ الدفع تلقائيًا من المتصفح.
+        </div>
 
+        <div class="formGroup">
+          <label>نوع العملية</label>
+
+          <select id="walletType">
+            <option value="deposit">إيداع</option>
+            <option value="withdraw">سحب</option>
+          </select>
+        </div>
+
+        <div class="formGroup">
+          <label>المبلغ بالدينار التونسي</label>
+
+          <input
+            id="walletAmount"
+            type="number"
+            min="1"
+            step="0.001"
+            placeholder="مثال: 50"
+          >
+        </div>
+
+        <div class="formGroup">
+          <label>طريقة الدفع</label>
+
+          <select id="paymentMethod">
+            <option value="D17">D17</option>
+            <option value="Flouci">Flouci</option>
+          </select>
+        </div>
+
+        <div class="formGroup">
+          <label>رقم الحساب / الهاتف</label>
+
+          <input
+            id="paymentAccount"
+            type="text"
+            placeholder="رقم الهاتف أو الحساب"
+          >
+        </div>
+
+        <div class="formGroup">
+          <label>مرجع العملية إن وجد</label>
+
+          <input
+            id="paymentReference"
+            type="text"
+            placeholder="رقم العملية"
+          >
+        </div>
+
+        <button
+          class="btn btn-primary"
+          style="width:100%"
+          onclick="createWalletRequest()"
+        >
+          إرسال الطلب
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 </section>
 
 
-<section class="section" id="history">
+<section id="history">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>سجل المحفظة</h2>
-<p id="walletHistoryStatus">سجّل الدخول لعرض سجل المحفظة.</p>
-</div>
+    <div class="sectionTitle">
+      <h2>سجل المحفظة</h2>
+      <p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
+    </div>
 
-<button class="btn secondary" onclick="loadWalletHistory()">
-تحديث
-</button>
-</div>
+    <div class="walletCard">
 
-<div class="tile table-wrap">
+      <div id="historyLoginMessage" class="notice">
+        سجّل الدخول لعرض سجل المحفظة.
+      </div>
 
-<table style="width:100%;border-collapse:collapse;min-width:620px">
+      <div class="tableWrap">
 
-<thead>
-<tr style="border-bottom:1px solid var(--line)">
-<th style="padding:10px">النوع</th>
-<th style="padding:10px">المبلغ</th>
-<th style="padding:10px">الطريقة</th>
-<th style="padding:10px">الحالة</th>
-<th style="padding:10px">التاريخ</th>
-</tr>
-</thead>
+        <table>
+          <thead>
+            <tr>
+              <th>النوع</th>
+              <th>المبلغ</th>
+              <th>الطريقة</th>
+              <th>الحالة</th>
+              <th>التاريخ</th>
+            </tr>
+          </thead>
 
-<tbody id="walletHistoryBody"></tbody>
+          <tbody id="historyBody"></tbody>
 
-</table>
+        </table>
 
-</div>
+      </div>
 
+    </div>
+
+  </div>
 </section>
 
 
-<section class="section" id="support">
+<section id="support">
+  <div class="container">
 
-<div class="section-head">
-<div>
-<h2>الدعم</h2>
-<p>تواصل مع فريق الدعم من داخل الموقع.</p>
-</div>
+    <div class="sectionTitle">
+      <h2>الدعم</h2>
+      <p>تواصل مع فريق الدعم من داخل الموقع.</p>
+    </div>
 
-<button class="btn primary" onclick="openChat()">
-فتح الدعم
-</button>
-</div>
+    <div class="supportCard">
 
-<div class="tile">
-<h3>💬 مركز الدعم</h3>
-<p>
-يمكنك إرسال استفسار عن الحساب أو المحفظة أو D17 أو Flouci.
-</p>
-<button class="btn primary" onclick="openChat()">
-بدء المحادثة
-</button>
-</div>
+      <div id="supportMessages" class="messages">
+        <div style="color:var(--muted);text-align:center">
+          سجّل الدخول لبدء المحادثة.
+        </div>
+      </div>
 
+      <div class="formGroup">
+        <textarea
+          id="supportInput"
+          rows="3"
+          placeholder="اكتب رسالتك..."
+        ></textarea>
+      </div>
+
+      <button
+        class="btn btn-primary"
+        style="width:100%"
+        onclick="sendSupportMessage()"
+      >
+        إرسال الرسالة
+      </button>
+
+      <div
+        id="supportStatus"
+        style="color:var(--muted);margin-top:12px;text-align:center"
+      ></div>
+
+    </div>
+
+  </div>
 </section>
 
 </main>
 
 
-<footer class="footer">
-<div class="wrap">
-Sdnbet365 © <span id="year"></span>
-<br>
-هذه الصفحة واجهة تجريبية، وأي عمليات مالية حقيقية تحتاج إلى تكامل آمن مع مزود الدفع والخادم الخلفي.
-</div>
+<footer>
+  <div class="container">
+    Sdnbet365 ©
+    <br>
+    منصة تجريبية قيد التطوير.
+  </div>
 </footer>
 
 
-<button class="chat-launch" onclick="openChat()">
-💬 الدعم
-</button>
+<!-- LOGIN -->
 
+<div class="modal" id="loginModal">
+  <div class="modalBox">
 
-<div class="chatbox" id="chatbox">
+    <div class="modalHeader">
+      <h2>تسجيل الدخول</h2>
+      <button class="close" onclick="closeModal('loginModal')">×</button>
+    </div>
 
-<div class="chathead">
+    <div class="formGroup">
+      <label>البريد الإلكتروني</label>
+      <input id="loginEmail" type="email">
+    </div>
 
-<div>
-<strong>الدعم الفني</strong>
-<small>سنرد عليك عند توفر فريق الدعم</small>
-</div>
+    <div class="formGroup">
+      <label>كلمة المرور</label>
+      <input id="loginPassword" type="password">
+    </div>
 
-<button class="x" onclick="closeChat()">×</button>
+    <button
+      class="btn btn-primary"
+      style="width:100%"
+      onclick="loginUser()"
+    >
+      دخول
+    </button>
 
-</div>
+    <button
+      class="btn"
+      style="width:100%;margin-top:9px"
+      onclick="closeModal('loginModal');openModal('registerModal')"
+    >
+      إنشاء حساب
+    </button>
 
-<div class="chatbody">
+    <button
+      class="btn"
+      style="width:100%;margin-top:9px"
+      onclick="openRecovery()"
+    >
+      نسيت كلمة المرور؟
+    </button>
 
-<div id="conversation"></div>
+    <div id="loginStatus" style="margin-top:12px"></div>
 
-<form id="supportForm">
-
-<input
-class="field"
-id="customerName"
-placeholder="اسمك"
-maxlength="100"
-
-<select class="field" id="topic">
-
-<option value="general">استفسار عام</option>
-<option value="account">الحساب</option>
-<option value="deposit">الإيداع</option>
-<option value="withdraw">السحب</option>
-<option value="D17">D17</option>
-<option value="Flouci">Flouci</option>
-<option value="technical">مشكلة تقنية</option>
-
-</select>
-
-<textarea
-class="field"
-id="message"
-placeholder="اكتب رسالتك..."
-maxlength="2000"
-
-<button class="btn primary" type="submit">
-إرسال الرسالة
-</button>
-
-<div class="status" id="chatStatus"></div>
-
-</form>
-
-</div>
+  </div>
 </div>
 
 
-<!-- AUTH MODAL -->
+<!-- REGISTER -->
 
-<div class="modal" id="authModal">
+<div class="modal" id="registerModal">
+  <div class="modalBox">
 
-<div class="modal-card">
+    <div class="modalHeader">
+      <h2>إنشاء حساب</h2>
+      <button class="close" onclick="closeModal('registerModal')">×</button>
+    </div>
 
-<div class="close-row">
-<h3 id="authTitle">تسجيل الدخول</h3>
-<button onclick="closeModal('authModal')">×</button>
-</div>
+    <div class="formGroup">
+      <label>الاسم</label>
+      <input id="registerName" type="text">
+    </div>
 
-<p id="authDescription">
-أدخل بيانات حسابك.
-</p>
+    <div class="formGroup">
+      <label>رقم الهاتف</label>
+      <input id="registerPhone" type="text">
+    </div>
 
-<form id="authForm">
+    <div class="formGroup">
+      <label>البريد الإلكتروني</label>
+      <input id="registerEmail" type="email">
+    </div>
 
-<div id="registerFields" hidden>
+    <div class="formGroup">
+      <label>كلمة المرور</label>
+      <input id="registerPassword" type="password">
+    </div>
 
-<input
-class="field"
-id="username"
-placeholder="اسم المستخدم"
-maxlength="50"
+    <button
+      class="btn btn-primary"
+      style="width:100%"
+      onclick="registerUser()"
+    >
+      إنشاء الحساب
+    </button>
 
-<input
-class="field"
-id="dateOfBirth"
-type="date"
+    <div id="registerStatus" style="margin-top:12px"></div>
 
-<select class="field" id="countryCode">
-<option value="+216">تونس +216</option>
-<option value="+213">الجزائر +213</option>
-<option value="+212">المغرب +212</option>
-<option value="+20">مصر +20</option>
-<option value="+33">فرنسا +33</option>
-<option value="+39">إيطاليا +39</option>
-<option value="+49">ألمانيا +49</option>
-</select>
-
-<input
-class="field"
-id="phone"
-placeholder="رقم الهاتف"
-inputmode="tel"
-
-</div>
-
-<input
-class="field"
-id="email"
-type="email"
-placeholder="البريد الإلكتروني"
-autocomplete="email"
-required
-
-<input
-class="field"
-id="password"
-type="password"
-placeholder="كلمة المرور"
-autocomplete="current-password"
-required
-
-<button class="btn primary" id="authSubmit" type="submit">
-دخول
-</button>
-
-</form>
-
-<div class="status" id="authStatus"></div>
-
-<div style="margin-top:12px;text-align:center">
-
-<button
-class="btn secondary"
-id="switchAuthBtn"
-onclick="toggleAuthMode()"
-إنشاء حساب جديد
-</button>
-
-<button
-class="btn secondary"
-onclick="openResetRequest()"
-style="margin-top:8px"
-نسيت كلمة المرور؟
-</button>
-
-</div>
-
-</div>
+  </div>
 </div>
 
 
-<!-- ACCOUNT MODAL -->
+<!-- RECOVERY -->
 
-<div class="modal" id="accountModal">
+<div class="modal" id="recoveryModal">
+  <div class="modalBox">
 
-<div class="modal-card">
+    <div class="modalHeader">
+      <h2>استعادة كلمة المرور</h2>
+      <button class="close" onclick="closeModal('recoveryModal')">×</button>
+    </div>
 
-<div class="close-row">
+    <div class="formGroup">
+      <label>البريد الإلكتروني</label>
+      <input id="recoveryEmail" type="email">
+    </div>
 
-<h3>حسابي</h3>
+    <button
+      class="btn btn-primary"
+      style="width:100%"
+      onclick="sendRecovery()"
+    >
+      إرسال رابط الاستعادة
+    </button>
 
-<button onclick="closeModal('accountModal')">
-×
-</button>
+    <div id="recoveryStatus" style="margin-top:12px"></div>
 
-</div>
-
-<p>
-بيانات الحساب الشخصي.
-</p>
-
-<form id="profileForm">
-
-<input
-class="field"
-id="profileUsername"
-placeholder="اسم المستخدم"
-maxlength="50"
-
-<input
-class="field"
-id="profileDob"
-type="date"
-
-<select class="field" id="profileCountry">
-<option value="+216">تونس +216</option>
-<option value="+213">الجزائر +213</option>
-<option value="+212">المغرب +212</option>
-<option value="+20">مصر +20</option>
-<option value="+33">فرنسا +33</option>
-<option value="+39">إيطاليا +39</option>
-<option value="+49">ألمانيا +49</option>
-</select>
-
-<input
-class="field"
-id="profilePhone"
-placeholder="رقم الهاتف"
-inputmode="tel"
-
-<input
-class="field"
-id="profileEmail"
-type="email"
-placeholder="البريد الإلكتروني"
-disabled
-
-<input
-class="field"
-id="profileId"
-placeholder="معرف الحساب"
-disabled
-
-<input
-class="field"
-id="profileCreated"
-placeholder="تاريخ إنشاء الحساب"
-disabled
-
-<button class="btn primary" type="submit">
-حفظ البيانات
-</button>
-
-</form>
-
-<div class="status" id="profileStatus"></div>
-
-</div>
+  </div>
 </div>
 
 
-<!-- RESET PASSWORD MODAL -->
+<!-- RESET PASSWORD -->
 
-<div class="modal" id="resetPasswordModal">
+<div class="modal" id="resetModal">
+  <div class="modalBox">
 
-<div class="modal-card">
+    <div class="modalHeader">
+      <h2>تغيير كلمة المرور</h2>
+    </div>
 
-<div class="close-row">
+    <div class="formGroup">
+      <label>كلمة المرور الجديدة</label>
+      <input id="newPassword" type="password">
+    </div>
 
-<h3>تغيير كلمة المرور</h3>
+    <button
+      class="btn btn-primary"
+      style="width:100%"
+      onclick="changePassword()"
+    >
+      حفظ كلمة المرور
+    </button>
 
-<button onclick="closeModal('resetPasswordModal')">
-×
-</button>
+    <div id="resetStatus" style="margin-top:12px"></div>
 
-</div>
-
-<p>
-أدخل كلمة المرور الجديدة.
-</p>
-
-<form id="resetPasswordForm">
-
-<input
-class="field"
-id="newPassword"
-type="password"
-placeholder="كلمة المرور الجديدة"
-autocomplete="new-password"
-required
-
-<input
-class="field"
-id="confirmPassword"
-type="password"
-placeholder="تأكيد كلمة المرور"
-autocomplete="new-password"
-required
-
-<button class="btn primary" id="savePasswordBtn" type="submit">
-حفظ كلمة المرور
-</button>
-
-</form>
-
-<div class="status" id="resetPasswordStatus"></div>
-
-</div>
+  </div>
 </div>
 
 
-<!-- PAYMENT MODAL -->
-
-<div class="modal" id="paymentModal">
-
-<div class="modal-card">
-
-<div class="close-row">
-
-<h3 id="modalTitle">طلب إيداع</h3>
-
-<button onclick="closePayment()">
-×
-</button>
-
-</div>
-
-<p id="modalText">
-اختر D17 أو Flouci لإرسال طلب الإيداع.
-</p>
-
-
-<div class="payment-methods">
-
-<button
-type="button"
-class="payment-method active"
-id="methodD17"
-onclick="selectPaymentMethod('D17')"
-
-<span class="method-icon">📱</span>
-D17
-
-</button>
-
-<button
-type="button"
-class="payment-method"
-id="methodFlouci"
-onclick="selectPaymentMethod('Flouci')"
-
-<span class="method-icon">💳</span>
-Flouci
-
-</button>
-
-</div>
-
-
-<div class="payment-info" id="paymentInfo">
-<strong>📱 D17</strong>
-<br>
-أدخل رقم الهاتف/الحساب المرتبط بـ D17 ثم رقم العملية أو المرجع.
-</div>
-
-
-<label>
-المبلغ بالدينار التونسي
-</label>
-
-<input
-class="field"
-id="amount"
-type="number"
-min="1"
-max="100000"
-step="0.001"
-placeholder="مثال: 50"
-
-
-<div class="amount-presets">
-
-<button type="button" onclick="setAmount(10)">10 د.ت</button>
-<button type="button" onclick="setAmount(20)">20 د.ت</button>
-<button type="button" onclick="setAmount(50)">50 د.ت</button>
-<button type="button" onclick="setAmount(100)">100 د.ت</button>
-
-</div>
-
-
-<label>
-رقم الهاتف أو الحساب
-</label>
-
-<input
-class="field"
-id="paymentAccount"
-placeholder="رقم الهاتف أو حساب D17"
-inputmode="tel"
-maxlength="100"
-
-
-<label>
-رقم العملية أو المرجع
-</label>
-
-<input
-class="field"
-id="paymentReference"
-placeholder="رقم العملية / المرجع"
-maxlength="150"
-
-
-<div class="method-note">
-سيتم حفظ الطلب في قاعدة البيانات بحالة "معلّق".
-</div>
-
-
-<button
-class="btn primary"
-id="submitPaymentBtn"
-onclick="submitPayment()"
-إرسال الطلب
-</button>
-
-<div class="status" id="paymentStatus"></div>
-
-</div>
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+const SUPABASE_URL =
+"https://bjzowejwvhicgmphkwkk.supabase.co";
 
-const sdnClient=window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_O5rsM4bPYTpU09g0ZSuoh_wBasP2mj".replace(
+  "Suoh_w",
+  "Suoh_w"
+);
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
 
-let authMode="login";
-let paymentAction="deposit";
-let paymentMethod="D17";
-let supportConversationId=null;
-let supportPoll=null;
-let supportLoadInProgress=false;
-let supportLoadAgain=false;
-let profileSaveInProgress=false;
+/* =========================================================
+   GLOBALS
+========================================================= */
+
+let currentUser = null;
+let currentProfile = null;
+let currentConversation = null;
 
 
-function el(id){
-return document.getElementById(id);
-}
-
-
-function showStatus(id,message,type=""){
-const node=el(id);
-
-if(!node)return;
-
-node.textContent=message||"";
-node.className="status "+(type||"");
-}
-
+/* =========================================================
+   UI HELPERS
+========================================================= */
 
 function openModal(id){
-el(id).classList.add("open");
+  document.getElementById(id).classList.add("show");
 }
-
 
 function closeModal(id){
-el(id).classList.remove("open");
+  document.getElementById(id).classList.remove("show");
+}
+
+function showToast(message){
+  const toast=document.getElementById("toast");
+
+  toast.textContent=message;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3500);
+}
+
+function showStatus(id,message,type=""){
+  const el=document.getElementById(id);
+
+  if(!el)return;
+
+  el.textContent=message;
+
+  if(type==="error"){
+    el.style.color="#ff7773";
+  }else if(type==="success"){
+    el.style.color="#20c77a";
+  }else{
+    el.style.color="#9eacbd";
+  }
+}
+
+function formatMoney(value){
+  const number=Number(value||0);
+
+  return number.toFixed(3)+" د.ت";
+}
+
+function formatDate(date){
+  if(!date)return "-";
+
+  return new Date(date).toLocaleString(
+    "ar-TN",
+    {
+      dateStyle:"short",
+      timeStyle:"short"
+    }
+  );
+}
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
-function openAuth(mode="login"){
-authMode=mode;
-renderAuthMode();
-showStatus("authStatus","");
-openModal("authModal");
+/* =========================================================
+   AUTH
+========================================================= */
+
+async function getCurrentUser(){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.getUser();
+
+  if(error){
+    console.error(error);
+    return null;
+  }
+
+  return data.user || null;
 }
 
 
-function toggleAuthMode(){
-authMode=authMode==="login"?"register":"login";
-renderAuthMode();
-showStatus("authStatus","");
+async function registerUser(){
+
+  const name =
+    document.getElementById("registerName").value.trim();
+
+  const phone =
+    document.getElementById("registerPhone").value.trim();
+
+  const email =
+    document.getElementById("registerEmail").value.trim();
+
+  const password =
+    document.getElementById("registerPassword").value;
+
+  if(!email || !password){
+    showStatus(
+      "registerStatus",
+      "أدخل البريد الإلكتروني وكلمة المرور.",
+      "error"
+    );
+    return;
+  }
+
+  if(password.length < 6){
+    showStatus(
+      "registerStatus",
+      "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+      "error"
+    );
+    return;
+  }
+
+  showStatus(
+    "registerStatus",
+    "جارٍ إنشاء الحساب..."
+  );
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signUp({
+
+    email,
+    password,
+
+    options:{
+      data:{
+        full_name:name,
+        phone:phone
+      }
+    }
+
+  });
+
+  if(error){
+
+    showStatus(
+      "registerStatus",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  if(data.user){
+
+    showStatus(
+      "registerStatus",
+      "تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.",
+      "success"
+    );
+
+    setTimeout(()=>{
+      closeModal("registerModal");
+    },1800);
+
+  }
+
 }
 
 
-function renderAuthMode(){
+async function loginUser(){
 
-const isRegister=authMode==="register";
+  const email =
+    document.getElementById("loginEmail").value.trim();
 
-el("authTitle").textContent=isRegister
-?"إنشاء حساب"
-:"تسجيل الدخول";
+  const password =
+    document.getElementById("loginPassword").value;
 
-el("authDescription").textContent=isRegister
-?"أنشئ حسابًا جديدًا للوصول إلى المنصة."
-:"أدخل بيانات حسابك.";
+  if(!email || !password){
 
-el("registerFields").hidden=!isRegister;
+    showStatus(
+      "loginStatus",
+      "أدخل البريد الإلكتروني وكلمة المرور.",
+      "error"
+    );
 
-el("authSubmit").textContent=isRegister
-?"إنشاء الحساب"
-:"دخول";
+    return;
+  }
 
-el("switchAuthBtn").textContent=isRegister
-?"لدي حساب بالفعل"
-:"إنشاء حساب جديد";
+  showStatus(
+    "loginStatus",
+    "جارٍ تسجيل الدخول..."
+  );
 
-el("password").autocomplete=isRegister
-?"new-password"
-:"current-password";
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error){
+
+    showStatus(
+      "loginStatus",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  currentUser=data.user;
+
+  closeModal("loginModal");
+
+  showToast("تم تسجيل الدخول بنجاح");
+
+  await updateAuthUI();
+  await loadWalletData();
+  await loadWalletHistory();
+  await loadSupport();
 
 }
 
 
-async function getCurrentSessionUser(){
+async function signOutUser(){
 
-const result=await sdnClient.auth.getSession();
+  await supabaseClient.auth.signOut();
 
-if(result.error)throw result.error;
+  currentUser=null;
+  currentProfile=null;
+  currentConversation=null;
 
-return result.data.session?.user||null;
-}
+  await updateAuthUI();
 
+  document.getElementById("historyBody").innerHTML="";
 
-async function ensureProfile(user){
+  document.getElementById("supportMessages").innerHTML=
+    `<div style="color:var(--muted);text-align:center">
+      سجّل الدخول لبدء المحادثة.
+    </div>`;
 
-if(!user)return null;
+  showToast("تم تسجيل الخروج");
 
-const existing=await sdnClient
-.from("profiles")
-.select("*")
-.eq("id",user.id)
-.maybeSingle();
-
-if(existing.error)throw existing.error;
-
-if(existing.data)return existing.data;
-
-const metadata=user.user_metadata||{};
-
-const profile={
-id:user.id,
-username:metadata.username||"مستخدم",
-date_of_birth:metadata.date_of_birth||null,
-phone:metadata.phone||null,
-country_code:metadata.country_code||"+216"
-};
-
-const inserted=await sdnClient
-.from("profiles")
-.insert(profile)
-.select("*")
-.single();
-
-if(inserted.error){
-
-const retry=await sdnClient
-.from("profiles")
-.select("*")
-.eq("id",user.id)
-.maybeSingle();
-
-if(retry.error)throw inserted.error;
-
-return retry.data;
-}
-
-return inserted.data;
-}
-
-
-async function tryEnsureProfile(user){
-
-try{
-return await ensureProfile(user);
-}catch(error){
-console.error("Profile error:",error);
-return null;
-}
-}
-
-
-function fillProfile(profile){
-
-if(!profile)return;
-
-el("profileUsername").value=profile.username||"";
-el("profileDob").value=profile.date_of_birth||"";
-el("profileCountry").value=profile.country_code||"+216";
-el("profilePhone").value=profile.phone||"";
 }
 
 
 async function updateAuthUI(){
 
-try{
+  currentUser=await getCurrentUser();
 
-const user=await getCurrentSessionUser();
+  const authButtons =
+    document.getElementById("authButtons");
 
-const loggedIn=!!user;
+  const userArea =
+    document.getElementById("userArea");
 
-el("loginBtn").hidden=loggedIn;
-el("registerBtn").hidden=loggedIn;
-el("accountBtn").hidden=!loggedIn;
-el("logoutBtn").hidden=!loggedIn;
+  const userName =
+    document.getElementById("userName");
 
-if(loggedIn){
+  if(currentUser){
 
-const profile=await tryEnsureProfile(user);
+    authButtons.classList.add("hidden");
+    userArea.classList.remove("hidden");
 
-if(profile){
-fillProfile(profile);
-}
+    const name =
+      currentUser.user_metadata?.full_name ||
+      currentUser.email ||
+      "حسابك";
 
-el("balanceValue").textContent="0.000 د.ت";
-el("walletBalance").textContent="0.000 د.ت";
-el("heroBalance").textContent="0.000 د.ت";
+    userName.textContent=name;
 
-}else{
+    document.getElementById("heroHint").textContent=
+      "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 
-el("balanceValue").textContent="0.000 د.ت";
-el("walletBalance").textContent="0.000 د.ت";
-el("heroBalance").textContent="0.000 د.ت";
+    await loadWalletData();
 
-}
+  }else{
 
-}catch(error){
+    authButtons.classList.remove("hidden");
+    userArea.classList.add("hidden");
 
-console.error("Auth UI error:",error);
+    document.getElementById("heroBalance").textContent=
+      "0.000 د.ت";
 
-}
+    document.getElementById("walletBalance").textContent=
+      "0.000 د.ت";
 
-}
+    document.getElementById("heroHint").textContent=
+      "سجّل الدخول للوصول إلى بيانات حسابك.";
 
-
-el("authForm").addEventListener(
-"submit",
-async event=>{
-
-event.preventDefault();
-
-const button=el("authSubmit");
-
-button.disabled=true;
-
-showStatus(
-"authStatus",
-authMode==="register"
-?"جارٍ إنشاء الحساب..."
-:"جارٍ تسجيل الدخول..."
-);
-
-try{
-
-const email=el("email").value.trim();
-const password=el("password").value;
-
-if(!email){
-throw new Error("أدخل البريد الإلكتروني.");
-}
-
-if(!password){
-throw new Error("أدخل كلمة المرور.");
-}
-
-
-if(authMode==="register"){
-
-const username=el("username").value.trim();
-const dob=el("dateOfBirth").value;
-const countryCode=el("countryCode").value;
-const phone=el("phone").value.trim();
-
-if(!username){
-throw new Error("أدخل اسم المستخدم.");
-}
-
-if(!dob){
-throw new Error("اختر تاريخ الميلاد.");
-}
-
-if(!phone){
-throw new Error("أدخل رقم الهاتف.");
-}
-
-const result=await sdnClient.auth.signUp({
-
-email,
-password,
-
-options:{
-data:{
-username,
-date_of_birth:dob,
-phone,
-country_code:countryCode
-}
-}
-
-});
-
-if(result.error)throw result.error;
-
-if(result.data.user){
-
-await tryEnsureProfile(result.data.user);
-
-}
-
-showStatus(
-"authStatus",
-"تم إنشاء الحساب بنجاح. إذا طلب منك تأكيد البريد الإلكتروني، تحقق من بريدك الإلكتروني."
-);
-
-}else{
-
-const result=await sdnClient.auth.signInWithPassword({
-email,
-password
-});
-
-if(result.error)throw result.error;
-
-showStatus(
-"authStatus",
-"تم تسجيل الدخول بنجاح."
-);
-
-await updateAuthUI();
-
-setTimeout(()=>{
-closeModal("authModal");
-},700);
-
-}
-
-}catch(error){
-
-console.error("Auth error:",error);
-
-showStatus(
-"authStatus",
-error.message||"حدث خطأ غير معروف.",
-"error"
-);
-
-}finally{
-
-button.disabled=false;
-
-}
-
-}
-);
-
-
-async function logout(){
-
-try{
-
-await sdnClient.auth.signOut();
-
-await updateAuthUI();
-
-await loadWalletHistory();
-
-closeModal("accountModal");
-closeChat();
-
-}catch(error){
-
-console.error("Logout error:",error);
-
-}
+  }
 
 }
 
 
-function openAccount(){
+/* =========================================================
+   PROFILE
+========================================================= */
 
-getCurrentSessionUser()
-.then(async user=>{
+async function loadProfile(){
 
-if(!user){
-openAuth("login");
-return;
-}
+  if(!currentUser)return null;
 
-const profile=await tryEnsureProfile(user);
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id",currentUser.id)
+    .maybeSingle();
 
-if(profile){
-fillProfile(profile);
-}
+  if(error){
 
-el("profileEmail").value=user.email||"";
-el("profileId").value=user.id||"";
-el("profileCreated").value=user.created_at
-?new Date(user.created_at).toLocaleString("ar-TN")
-:"";
+    console.error(
+      "Profile error:",
+      error
+    );
 
-showStatus("profileStatus","");
+    return null;
+  }
 
-openModal("accountModal");
+  currentProfile=data;
 
-})
-.catch(error=>{
-
-console.error(error);
-
-});
-
-}
-
-
-el("profileForm").addEventListener(
-"submit",
-async event=>{
-
-event.preventDefault();
-
-if(profileSaveInProgress)return;
-
-profileSaveInProgress=true;
-
-const button=el("profileForm").querySelector(
-'button[type="submit"]'
-);
-
-button.disabled=true;
-
-showStatus(
-"profileStatus",
-"جارٍ حفظ البيانات..."
-);
-
-try{
-
-const user=await getCurrentSessionUser();
-
-if(!user){
-throw new Error("يرجى تسجيل الدخول.");
-}
-
-const username=el("profileUsername").value.trim();
-const dob=el("profileDob").value||null;
-const countryCode=el("profileCountry").value;
-const phone=el("profilePhone").value.trim();
-
-if(!username){
-throw new Error("اسم المستخدم مطلوب.");
-}
-
-if(!phone){
-throw new Error("رقم الهاتف مطلوب.");
+  return data;
 }
 
 
-const query=await sdnClient
-.from("profiles")
-.upsert({
+/* =========================================================
+   WALLET BALANCE
+========================================================= */
 
-id:user.id,
-username,
-date_of_birth:dob,
-country_code:countryCode,
-phone
+async function loadWalletData(){
 
-},{onConflict:"id"})
-.select("*")
-.single();
+  if(!currentUser){
 
+    document.getElementById("heroBalance").textContent=
+      "0.000 د.ت";
 
-if(query.error)throw query.error;
+    document.getElementById("walletBalance").textContent=
+      "0.000 د.ت";
 
+    return;
+  }
 
-await sdnClient.auth.updateUser({
+  const profile=await loadProfile();
 
-data:{
-username,
-date_of_birth:dob,
-phone,
-country_code:countryCode
-}
+  const balance=
+    profile?.balance ?? 0;
 
-});
+  document.getElementById("heroBalance").textContent=
+    formatMoney(balance);
 
-
-fillProfile(query.data);
-
-showStatus(
-"profileStatus",
-"تم حفظ الملف الشخصي بنجاح."
-);
-
-}catch(error){
-
-showStatus(
-"profileStatus",
-"تعذّر حفظ الملف الشخصي: "+(error.message||"خطأ غير معروف"),
-"error"
-);
-
-}finally{
-
-profileSaveInProgress=false;
-button.disabled=false;
-
-}
-
-}
-);
-
-
-async function openResetRequest(){
-
-const email=prompt(
-"أدخل البريد الإلكتروني المرتبط بالحساب:"
-);
-
-if(!email)return;
-
-try{
-
-const result=await sdnClient.auth.resetPasswordForEmail(
-email.trim(),
-{
-redirectTo:window.location.origin+
-window.location.pathname+
-"?type=recovery"
-}
-);
-
-if(result.error)throw result.error;
-
-alert(
-"تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني."
-);
-
-}catch(error){
-
-alert(
-"تعذر إرسال الرابط: "+
-(error.message||"خطأ غير معروف")
-);
-
-}
+  document.getElementById("walletBalance").textContent=
+    formatMoney(balance);
 
 }
 
 
-function setAmount(value){
-el("amount").value=value;
-}
+/* =========================================================
+   CREATE WALLET REQUEST
+========================================================= */
 
+async function createWalletRequest(){
 
-function selectPaymentMethod(method){
+  if(!currentUser){
 
-paymentMethod=method;
+    showToast("يجب تسجيل الدخول أولًا");
 
-el("methodD17").classList.toggle(
-"active",
-method==="D17"
-);
+    openModal("loginModal");
 
-el("methodFlouci").classList.toggle(
-"active",
-method==="Flouci"
-);
+    return;
+  }
 
+  const type=
+    document.getElementById("walletType").value;
 
-if(method==="D17"){
+  const amount=
+    Number(
+      document.getElementById("walletAmount").value
+    );
 
-el("paymentInfo").innerHTML=
-"<strong>📱 D17</strong><br>"+
-"أدخل رقم الهاتف/الحساب المرتبط بـ D17 ثم رقم العملية أو المرجع.";
+  const method=
+    document.getElementById("paymentMethod").value;
 
-el("paymentAccount").placeholder=
-"رقم الهاتف أو حساب D17";
+  const account=
+    document.getElementById("paymentAccount").value.trim();
 
-}else{
+  const reference=
+    document.getElementById("paymentReference").value.trim();
 
-el("paymentInfo").innerHTML=
-"<strong>💳 Flouci</strong><br>"+
-"أدخل رقم الهاتف/الحساب المرتبط بـ Flouci ثم رقم العملية أو المرجع.";
+  if(!amount || amount<=0){
 
-el("paymentAccount").placeholder=
-"رقم الهاتف أو حساب Flouci";
+    showToast("أدخل مبلغًا صحيحًا");
 
-}
+    return;
+  }
 
-}
+  if(!account){
 
+    showToast("أدخل رقم الحساب أو الهاتف");
 
-function showPayment(action){
+    return;
+  }
 
-paymentAction=action;
+  /*
+    السحب يجب أن يخضع لاحقًا للتحقق من الرصيد
+    والموافقة الإدارية.
+  */
 
-el("modalTitle").textContent=
-action==="deposit"
-?"طلب إيداع"
-:"طلب سحب";
+  if(type==="withdraw"){
 
-el("modalText").textContent=
-action==="deposit"
-?"اختر D17 أو Flouci لإرسال طلب الإيداع."
-:"اختر D17 أو Flouci لإرسال طلب السحب.";
+    const profile=await loadProfile();
 
-el("amount").value="";
-el("paymentAccount").value="";
-el("paymentReference").value="";
+    const balance=
+      Number(profile?.balance || 0);
 
-showStatus("paymentStatus","");
+    if(amount>balance){
 
-selectPaymentMethod("D17");
+      showToast(
+        "الرصيد غير كافٍ لطلب السحب"
+      );
 
-el("paymentModal").classList.add("open");
+      return;
+    }
 
-}
+  }
 
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("wallet_requests")
+    .insert({
 
-function closePayment(){
-el("paymentModal").classList.remove("open");
-}
+      user_id:currentUser.id,
 
+      request_type:type,
 
-async function submitPayment(){
+      amount:amount,
 
-const amount=Number(el("amount").value);
-const account=el("paymentAccount").value.trim();
-const reference=el("paymentReference").value.trim();
+      payment_method:method,
 
-const status=el("paymentStatus");
-const button=el("submitPaymentBtn");
+      payment_account:account,
 
+      payment_reference:reference || null,
 
-if(
-!Number.isFinite(amount)||
-amount<=0||
-amount>100000
-){
+      status:"pending"
 
-status.textContent=
-"أدخل مبلغًا صحيحًا بين 1 و100000 د.ت.";
+    });
 
-return;
+  if(error){
 
-}
+    console.error(error);
 
+    showToast(
+      "تعذر إرسال الطلب: "+error.message
+    );
 
-if(!account){
+    return;
+  }
 
-status.textContent=
-"أدخل رقم الهاتف أو الحساب.";
+  document.getElementById("walletAmount").value="";
+  document.getElementById("paymentAccount").value="";
+  document.getElementById("paymentReference").value="";
 
-el("paymentAccount").focus();
+  showToast(
+    "تم إرسال طلبك بنجاح وهو الآن قيد المراجعة"
+  );
 
-return;
-
-}
-
-
-if(!reference){
-
-status.textContent=
-"أدخل رقم العملية أو المرجع.";
-
-el("paymentReference").focus();
-
-return;
+  await loadWalletHistory();
 
 }
 
 
-button.disabled=true;
-
-status.textContent="جارٍ إرسال الطلب...";
-
-
-try{
-
-const user=await getCurrentSessionUser();
-
-if(!user){
-
-status.textContent=
-"يرجى تسجيل الدخول أولًا.";
-
-return;
-
-}
-
-
-const {error}=await sdnClient
-.from("wallet_requests")
-.insert({
-
-user_id:user.id,
-request_type:paymentAction,
-amount,
-payment_method:paymentMethod,
-payment_account:account,
-payment_reference:reference,
-status:"pending"
-
-});
-
-
-if(error)throw error;
-
-
-status.textContent=
-"✅ تم إرسال طلب "+
-(paymentAction==="deposit"?"الإيداع":"السحب")+
-" عبر "+paymentMethod+
-". سيظهر في سجل المحفظة بعد الحفظ.";
-
-
-await loadWalletHistory();
-
-
-setTimeout(
-closePayment,
-1600
-);
-
-
-}catch(error){
-
-console.error(
-"Wallet request error:",
-error
-);
-
-status.textContent=
-"تعذر إرسال الطلب: "+
-(error.message||"خطأ غير معروف");
-
-}finally{
-
-button.disabled=false;
-
-}
-
-}
-
+/* =========================================================
+   WALLET HISTORY
+========================================================= */
 
 async function loadWalletHistory(){
 
-const status=el("walletHistoryStatus");
-const body=el("walletHistoryBody");
+  const body=
+    document.getElementById("historyBody");
 
-if(!status||!body)return;
+  const message=
+    document.getElementById("historyLoginMessage");
 
-body.replaceChildren();
+  body.innerHTML="";
 
-try{
+  if(!currentUser){
 
-const user=await getCurrentSessionUser();
+    message.classList.remove("hidden");
 
-if(!user){
+    return;
+  }
 
-status.textContent=
-"سجّل الدخول لعرض سجل المحفظة.";
+  message.classList.add("hidden");
 
-return;
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("wallet_requests")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false});
+
+  if(error){
+
+    console.error(error);
+
+    body.innerHTML=
+      `<tr>
+        <td colspan="5">
+          تعذر تحميل السجل.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  if(!data || data.length===0){
+
+    body.innerHTML=
+      `<tr>
+        <td colspan="5">
+          لا توجد معاملات حتى الآن.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  data.forEach(item=>{
+
+    const tr=
+      document.createElement("tr");
+
+    const type=
+      item.request_type==="deposit"
+      ? "إيداع"
+      : "سحب";
+
+    const statusClass=
+      item.status==="approved"
+      ? "status-approved"
+      : item.status==="rejected"
+      ? "status-rejected"
+      : item.status==="cancelled"
+      ? "status-cancelled"
+      : "status-pending";
+
+    const statusText=
+      item.status==="approved"
+      ? "مقبول"
+      : item.status==="rejected"
+      ? "مرفوض"
+      : item.status==="cancelled"
+      ? "ملغى"
+      : "قيد المراجعة";
+
+    tr.innerHTML=`
+
+      <td>${type}</td>
+
+      <td>
+        ${escapeHtml(formatMoney(item.amount))}
+      </td>
+
+      <td>
+        ${escapeHtml(item.payment_method || "-")}
+      </td>
+
+      <td>
+        <span class="status ${statusClass}">
+          ${statusText}
+        </span>
+      </td>
+
+      <td>
+        ${escapeHtml(formatDate(item.created_at))}
+      </td>
+
+    `;
+
+    body.appendChild(tr);
+
+  });
 
 }
 
 
-status.textContent=
-"جارٍ تحميل سجل المحفظة...";
+/* =========================================================
+   SUPPORT
+========================================================= */
 
+async function getOrCreateConversation(){
 
-const {
-data,
-error
-}=await sdnClient
-.from("wallet_requests")
-.select(
-"request_type,amount,payment_method,payment_reference,status,created_at"
-)
-.eq("user_id",user.id)
-.order(
-"created_at",
-{ascending:false}
-)
-.limit(50);
+  if(!currentUser)return null;
 
+  const {
+    data:existing,
+    error:findError
+  } =
+  await supabaseClient
+    .from("support_conversations")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .eq("status","open")
+    .order("created_at",{ascending:false})
+    .limit(1)
+    .maybeSingle();
 
-if(error)throw error;
+  if(findError){
 
+    console.error(findError);
 
-if(!data||!data.length){
+    return null;
+  }
 
-status.textContent=
-"لا توجد طلبات محفوظة حتى الآن.";
+  if(existing){
 
-return;
+    currentConversation=existing;
+
+    return existing;
+  }
+
+  const {
+    data:newConversation,
+    error:createError
+  } =
+  await supabaseClient
+    .from("support_conversations")
+    .insert({
+
+      user_id:currentUser.id,
+
+      visitor_token:currentUser.id,
+
+      status:"open"
+
+    })
+    .select()
+    .single();
+
+  if(createError){
+
+    console.error(createError);
+
+    return null;
+  }
+
+  currentConversation=newConversation;
+
+  return newConversation;
 
 }
 
 
-for(const request of data){
+async function loadSupport(){
 
-const tr=document.createElement("tr");
+  const box=
+    document.getElementById("supportMessages");
 
-const values=[
+  if(!currentUser){
 
-request.request_type==="deposit"
-?"إيداع"
-:request.request_type==="withdraw"
-?"سحب"
-:request.request_type,
+    box.innerHTML=
+      `<div style="color:var(--muted);text-align:center">
+        سجّل الدخول لبدء المحادثة.
+      </div>`;
 
-Number(request.amount||0).toFixed(3)+" د.ت",
+    return;
+  }
 
-request.payment_method||"—",
+  const conversation=
+    await getOrCreateConversation();
 
-request.status==="pending"
-?"معلّق"
-:request.status==="approved"
-?"مقبول"
-:request.status==="rejected"
-?"مرفوض"
-:request.status,
+  if(!conversation){
 
-request.created_at
-?new Date(request.created_at).toLocaleString("ar-TN")
-:"—"
+    box.innerHTML=
+      `<div style="color:#ff7773;text-align:center">
+        تعذر فتح محادثة الدعم.
+      </div>`;
 
-];
+    return;
+  }
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("support_messages")
+    .select("*")
+    .eq("conversation_id",conversation.id)
+    .order("created_at",{ascending:true});
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+  box.innerHTML="";
+
+  if(!data || data.length===0){
+
+    box.innerHTML=
+      `<div style="color:var(--muted);text-align:center">
+        اكتب رسالتك الأولى لفريق الدعم.
+      </div>`;
+
+    return;
+  }
+
+  data.forEach(message=>{
+
+    const div=
+      document.createElement("div");
+
+    div.className=
+      "message "+
+      (
+        message.sender_type==="user"
+        ? "user"
+        : "admin"
+      );
+
+    div.innerHTML=`
+      <div>${escapeHtml(message.message)}</div>
+      <div class="messageTime">
+        ${escapeHtml(formatDate(message.created_at))}
+      </div>
+    `;
+
+    box.appendChild(div);
+
+  });
+
+  box.scrollTop=box.scrollHeight;
+
+}
 
 
-for(const value of values){
+async function sendSupportMessage(){
 
-const td=document.createElement("td");
+  if(!currentUser){
 
-td.style.padding="10px";
+    showToast("يجب تسجيل الدخول أولًا");
 
-td.textContent=String(
-value??"—"
+    openModal("loginModal");
+
+    return;
+  }
+
+  const input=
+    document.getElementById("supportInput");
+
+  const message=
+    input.value.trim();
+
+  if(!message){
+
+    showToast("اكتب رسالة أولًا");
+
+    return;
+  }
+
+  const conversation=
+    await getOrCreateConversation();
+
+  if(!conversation){
+
+    showToast("تعذر فتح المحادثة");
+
+    return;
+  }
+
+  showStatus(
+    "supportStatus",
+    "جارٍ إرسال الرسالة..."
+  );
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("support_messages")
+    .insert({
+
+      conversation_id:conversation.id,
+
+      sender_type:"user",
+
+      message:message
+
+    });
+
+  if(error){
+
+    console.error(error);
+
+    showStatus(
+      "supportStatus",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  input.value="";
+
+  showStatus(
+    "supportStatus",
+    "تم إرسال الرسالة.",
+    "success"
+  );
+
+  await loadSupport();
+
+}
+
+
+/* =========================================================
+   PASSWORD RECOVERY
+========================================================= */
+
+function openRecovery(){
+
+  closeModal("loginModal");
+
+  openModal("recoveryModal");
+
+}
+
+
+async function sendRecovery(){
+
+  const email=
+    document.getElementById("recoveryEmail").value.trim();
+
+  if(!email){
+
+    showStatus(
+      "recoveryStatus",
+      "أدخل بريدك الإلكتروني.",
+      "error"
+    );
+
+    return;
+  }
+
+  const redirectTo=
+    window.location.origin+
+    window.location.pathname+
+    "?type=recovery";
+
+  const {
+    error
+  } =
+  await supabaseClient.auth.resetPasswordForEmail(
+    email,
+    {
+      redirectTo:redirectTo
+    }
+  );
+
+  if(error){
+
+    showStatus(
+      "recoveryStatus",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  showStatus(
+    "recoveryStatus",
+    "تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.",
+    "success"
+  );
+
+}
+
+
+async function changePassword(){
+
+  const password=
+    document.getElementById("newPassword").value;
+
+  if(password.length<6){
+
+    showStatus(
+      "resetStatus",
+      "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+      "error"
+    );
+
+    return;
+  }
+
+  const {
+    error
+  } =
+  await supabaseClient.auth.updateUser({
+    password:password
+  });
+
+  if(error){
+
+    showStatus(
+      "resetStatus",
+      error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  showStatus(
+    "resetStatus",
+    "تم تغيير كلمة المرور بنجاح.",
+    "success"
+  );
+
+  setTimeout(()=>{
+    closeModal("resetModal");
+  },1500);
+
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+  async (event,session)=>{
+
+    currentUser=
+      session?.user || null;
+
+    await updateAuthUI();
+
+    if(currentUser){
+
+      await loadWalletData();
+      await loadWalletHistory();
+      await loadSupport();
+
+    }
+
+  }
 );
 
-tr.appendChild(td);
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+async function initialize(){
+
+  try{
+
+    currentUser=
+      await getCurrentUser();
+
+    await updateAuthUI();
+
+    if(currentUser){
+
+      await loadWalletData();
+      await loadWalletHistory();
+      await loadSupport();
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Initialization error:",
+      error
+    );
+
+  }
 
 }
 
 
-body.appendChild(tr);
+/* =========================================================
+   RECOVERY URL
+========================================================= */
 
-}
-
-
-status.textContent=
-"تم تحميل سجل المحفظة.";
-
-
-}catch(error){
-
-console.error(
-"Wallet history error:",
-error
-);
-
-status.textContent=
-"تعذّر تحميل السجل: "+
-(error.message||
-"تحقق من إعدادات قاعدة البيانات.");
-
-}
-
-}
-
-
-function demoNotice(){
-
-alert(
-"هذه خيارات توضيحية للتصميم فقط، ولا توجد رهانات حقيقية مفعلة."
-);
-
-}
-
-
-function openChat(){
-
-el("chatbox").classList.add("open");
-
-loadCustomerSupportMessages();
-
-if(supportPoll)
-clearInterval(supportPoll);
-
-supportPoll=setInterval(
-()=>{
 if(
-el("chatbox").classList.contains("open")
-)
-loadCustomerSupportMessages();
-},
-7000
+  new URLSearchParams(
+    window.location.search
+  ).get("type")==="recovery"
+){
+
+  setTimeout(()=>{
+    openModal("resetModal");
+  },800);
+
+}
+
+
+initialize();
+
+
+/* =========================================================
+   CLOSE MODALS WHEN CLICK OUTSIDE
+========================================================= */
+
+document.querySelectorAll(".modal")
+.forEach(modal=>{
+
+  modal.addEventListener(
+    "click",
+    event=>{
+
+      if(event.target===modal){
+
+        modal.classList.remove("show");
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   REFRESH WALLET/SUPPORT
+========================================================= */
+
+setInterval(
+  async()=>{
+
+    if(!currentUser)return;
+
+    await loadWalletData();
+    await loadWalletHistory();
+    await loadSupport();
+
+  },
+  10000
 );
 
-}
+</script>
 
-
-function closeChat(){
-
-el("chatbox").classList.remove("open");
-
-if(supportPoll){
-
-clearInterval(supportPoll);
-
-supportPoll=null;
-
-}
-
-}
-
-
-async function loadCustomerSupportMessages(){
-
-if(supportLoadInProgress){
-
-supportLoadAgain=true;
-
-return;
-
-}
-
-supportLoadInProgress=true;
-
-const output=el("conversation");
-
-
-try{
-
-const user=await getCurrentSessionUser();
-
-if(!user){
-
-supportConversationId=null;
-
-output.replaceChildren();
-
-showStatus(
-"chatStatus",
-"سجّل الدخول قبل استخدام الدعم."
-);
-
-return;
-
-}
-
-
-const {
-data:conversation,
-error:conversationError
-}=await sdnClient
-.from("support_conversations")
-.select("id")
-.eq("visitor_token",user.id)
-.maybeSingle();
-
-
-if(conversationError)
-throw conversationError;
-
-
-if(!conversation){
-
-supportConversationId=null;
-
-output.replaceChildren();
-
-showStatus(
-"chatStatus",
-"لا توجد محادثة بعد. اكتب رسالتك لإرسال استفسار جديد."
-);
-
-return;
-
-}
-
-
-supportConversationId=conversation.id;
-
-
-const {
-data:messages,
-error:messagesError
-}=await sdnClient
-.from("support_messages")
-.select(
-"sender_role,message,created_at"
-)
-.eq(
-"conversation_id",
-conversation.id
-)
-.order(
-"created_at",
-{ascending:true}
-)
-.limit(300);
-
-
-if(messagesError)
-throw messagesError;
-
-
-output.replaceChildren();
-
-
-for(const item of messages||[]){
-
-const bubble=document.createElement("div");
-
-bubble.className="bubble";
-
-bubble.textContent=
-(String(item.sender_role||"")==="admin"
-?"الدعم"
-:"أنت")+
-": "+
-(item.message||"");
-
-output.appendChild(bubble);
-
-}
-
-
-showStatus(
-"chatStatus",
-"تم تحديث رسائل الدعم."
-);
-
-
-}catch(error){
-
-console.
+</body>
+  </html>
