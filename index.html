@@ -904,7 +904,6 @@ type="number"
 min="1"
 step="0.001"
 placeholder="مثال: 50"
->
 </div>
 
 <div class="formGroup">
@@ -923,7 +922,6 @@ placeholder="مثال: 50"
 id="paymentAccount"
 type="text"
 placeholder="رقم الهاتف أو الحساب"
->
 </div>
 
 <div class="formGroup">
@@ -933,14 +931,12 @@ placeholder="رقم الهاتف أو الحساب"
 id="paymentReference"
 type="text"
 placeholder="رقم العملية"
->
 </div>
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="createWalletRequest()"
->
 إرسال الطلب
 </button>
 
@@ -1012,21 +1008,18 @@ onclick="createWalletRequest()"
 id="supportInput"
 rows="3"
 placeholder="اكتب رسالتك..."
-></textarea>
 </div>
 
 <button
 class="btn btn-primary"
 style="width:100%"
 onclick="sendSupportMessage()"
->
 إرسال الرسالة
 </button>
 
 <div
 id="supportStatus"
 style="color:var(--muted);margin-top:12px;text-align:center"
-></div>
 
 </div>
 
@@ -1069,7 +1062,6 @@ Sdnbet365 ©
 class="btn btn-primary"
 style="width:100%"
 onclick="loginUser()"
->
 دخول
 </button>
 
@@ -1077,7 +1069,6 @@ onclick="loginUser()"
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="closeModal('loginModal');openModal('registerModal')"
->
 إنشاء حساب
 </button>
 
@@ -1085,7 +1076,6 @@ onclick="closeModal('loginModal');openModal('registerModal')"
 class="btn"
 style="width:100%;margin-top:9px"
 onclick="openRecovery()"
->
 نسيت كلمة المرور؟
 </button>
 
@@ -1129,7 +1119,6 @@ onclick="openRecovery()"
 class="btn btn-primary"
 style="width:100%"
 onclick="registerUser()"
->
 إنشاء الحساب
 </button>
 
@@ -1158,7 +1147,6 @@ onclick="registerUser()"
 class="btn btn-primary"
 style="width:100%"
 onclick="sendRecovery()"
->
 إرسال رابط الاستعادة
 </button>
 
@@ -1186,7 +1174,6 @@ onclick="sendRecovery()"
 class="btn btn-primary"
 style="width:100%"
 onclick="changePassword()"
->
 حفظ كلمة المرور
 </button>
 
@@ -1211,7 +1198,8 @@ const SUPABASE_URL =
 "https://bjzowejwvhicgmphkwkk.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj
+";
 
 
 const supabaseClient =
@@ -1472,7 +1460,7 @@ await updateAuthUI();
 document.getElementById("historyBody").innerHTML="";
 
 document.getElementById("supportMessages").innerHTML=
-<div style="color:var(--muted);text-align:center"&gt; سجّل الدخول لبدء المحادثة. &lt;/div>;
+<div style="color:var(--muted);text-align:center"> سجّل الدخول لبدء المحادثة. </div>;
 
 showToast("تم تسجيل الخروج");
 
@@ -1747,7 +1735,7 @@ if(error){
 console.error(error);
 
 body.innerHTML=
-<tr&gt; &lt;td colspan="5"&gt; تعذر تحميل السجل. &lt;/td&gt; &lt;/tr>;
+<tr> <td colspan="5"> تعذر تحميل السجل. </td> </tr>;
 
 return;
 }
@@ -1755,7 +1743,7 @@ return;
 if(!data || data.length===0){
 
 body.innerHTML=
-<tr&gt; &lt;td colspan="5"&gt; لا توجد معاملات حتى الآن. &lt;/td&gt; &lt;/tr>;
+<tr> <td colspan="5"> لا توجد معاملات حتى الآن. </td> </tr>;
 
 return;
 }
@@ -1790,14 +1778,14 @@ item.status==="approved"
 
 tr.innerHTML=`
 
-<td>$`{type}</td>
+<td>$``{type}</td>
 
 <td>
-`${escapeHtml(formatMoney(item.amount))}
+``${escapeHtml(formatMoney(item.amount))}
 </td>
 
 <td>
-$`{escapeHtml(item.payment_method || "-")}
+$``{escapeHtml(item.payment_method || "-")}
 </td>
 
 <td>
@@ -1806,7 +1794,7 @@ $`{escapeHtml(item.payment_method || "-")}
 </td>
 
 <td>
-`${escapeHtml(formatDate(item.created_at))}
+``${escapeHtml(formatDate(item.created_at))}
 </td>
 
 `;
@@ -1893,7 +1881,7 @@ document.getElementById("supportMessages");
 if(!currentUser){
 
 box.innerHTML=
-<div style="color:var(--muted);text-align:center"&gt; سجّل الدخول لبدء المحادثة. &lt;/div>;
+<div style="color:var(--muted);text-align:center"> سجّل الدخول لبدء المحادثة. </div>;
 
 return;
 }
@@ -1904,7 +1892,7 @@ await getOrCreateConversation();
 if(!conversation){
 
 box.innerHTML=
-<div style="color:#ff7773;text-align:center"&gt; تعذر فتح محادثة الدعم. &lt;/div>;
+<div style="color:#ff7773;text-align:center"> تعذر فتح محادثة الدعم. </div>;
 
 return;
 }
@@ -1931,7 +1919,7 @@ box.innerHTML="";
 if(!data || data.length===0){
 
 box.innerHTML=
-<div style="color:var(--muted);text-align:center"&gt; اكتب رسالتك الأولى لفريق الدعم. &lt;/div>;
+<div style="color:var(--muted);text-align:center"> اكتب رسالتك الأولى لفريق الدعم. </div>;
 
 return;
 }
@@ -1949,9 +1937,7 @@ message.sender_type==="user"
 : "admin"
 );
 
-div.innerHTML=&lt;div&gt;${escapeHtml(message.message)}</div>
-<div class="messageTime">
-${escapeHtml(formatDate(message.created_at))} &lt;/div&gt;;
+div.innerHTML=<div> {escapeHtml(formatDate(message.created_at))} </div>;
 
 box.appendChild(div);
 
@@ -2273,4 +2259,4 @@ await loadSupport();
 </script>
 
 </body>
-</html>
+  </html>
