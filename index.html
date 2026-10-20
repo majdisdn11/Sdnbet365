@@ -5,1899 +5,360 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08111f">
 <title>Sdnbet365 | المنصة الرياضية</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
-:root{
---bg:#07101d;
---panel:#101c2d;
---panel2:#15253a;
---border:#263950;
---text:#f5f7fb;
---muted:#9eacbd;
---green:#20c77a;
---green2:#13a965;
---red:#ef5350;
---yellow:#f4c542;
---blue:#3182f6;
---shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-body{
-font-family:Arial,Tahoma,sans-serif;
-background:var(--bg);
-color:var(--text);
-min-height:100vh;
-}
-
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-
-.container{
-width:min(1180px,92%);
-margin:auto;
-}
-
-header{
-position:sticky;
-top:0;
-z-index:100;
-background:rgba(7,16,29,.96);
-backdrop-filter:blur(14px);
-border-bottom:1px solid var(--border);
-}
-
-.nav{
-min-height:70px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-}
-
-.logo{
-font-size:24px;
-font-weight:900;
-color:var(--green);
-white-space:nowrap;
-}
-
-.navlinks{
-display:flex;
-align-items:center;
-gap:8px;
-overflow:auto;
-}
-
-.navlinks a{
-padding:10px 13px;
-color:#dbe5f1;
-border-radius:9px;
-white-space:nowrap;
-}
-
-.navlinks a:hover{
-background:var(--panel2);
-color:white;
-}
-
-.authButtons{
-display:flex;
-gap:8px;
-white-space:nowrap;
-}
-
-.btn{
-border:0;
-border-radius:10px;
-padding:11px 17px;
-color:white;
-background:var(--panel2);
-border:1px solid var(--border);
-}
-
-.btn:hover{filter:brightness(1.1)}
-
-.btn-primary{
-background:var(--green);
-color:#03140c;
-border-color:var(--green);
-font-weight:800;
-}
-
-.btn-danger{
-background:var(--red);
-border-color:var(--red);
-}
-
-.btn-blue{
-background:var(--blue);
-border-color:var(--blue);
-}
-
-.btn-yellow{
-background:var(--yellow);
-color:#171000;
-border-color:var(--yellow);
-}
-
+:root{--bg:#07101d;--panel:#101c2d;--panel2:#15253a;--border:#263950;--text:#f5f7fb;--muted:#9eacbd;--green:#20c77a;--green2:#13a965;--red:#ef5350;--yellow:#f4c542;--blue:#3182f6;--shadow:0 15px 40px rgba(0,0,0,.25)}
+body{font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(7,16,29,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:24px;font-weight:900;color:var(--green);white-space:nowrap}
+.navlinks{display:flex;align-items:center;gap:8px;overflow:auto}
+.navlinks a{padding:10px 13px;color:#dbe5f1;border-radius:9px;white-space:nowrap}.navlinks a:hover{background:var(--panel2);color:white}
+.authButtons{display:flex;gap:8px;white-space:nowrap}
+.btn{border:1px solid var(--border);border-radius:10px;padding:11px 17px;color:white;background:var(--panel2)}.btn:hover{filter:brightness(1.1)}
+.btn-primary{background:var(--green);color:#03140c;border-color:var(--green);font-weight:800}.btn-danger{background:var(--red);border-color:var(--red)}.btn-blue{background:var(--blue);border-color:var(--blue)}.btn-yellow{background:var(--yellow);color:#171000;border-color:var(--yellow)}
 .hidden{display:none!important}
-
-.hero{
-padding:70px 0 45px;
-}
-
-.heroGrid{
-display:grid;
-grid-template-columns:1.4fr .8fr;
-gap:25px;
-align-items:stretch;
-}
-
-.heroCard,
-.balanceCard{
-background:linear-gradient(145deg,#112238,#0d1828);
-border:1px solid var(--border);
-border-radius:22px;
-padding:30px;
-box-shadow:var(--shadow);
-}
-
-.hero h1{
-font-size:clamp(30px,6vw,54px);
-margin-bottom:15px;
-}
-
-.hero h1 span{color:var(--green)}
-
-.hero p{
-color:var(--muted);
-line-height:1.9;
-font-size:17px;
-}
-
-.heroActions{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-top:25px;
-}
-
-.balanceCard{
-display:flex;
-flex-direction:column;
-justify-content:center;
-text-align:center;
-}
-
-.balanceLabel{
-color:var(--muted);
-margin-bottom:10px;
-}
-
-.balance{
-font-size:40px;
-font-weight:900;
-color:var(--green);
-direction:ltr;
-}
-
-.loginHint{
-color:var(--muted);
-margin-top:14px;
-line-height:1.7;
-}
-
-section{padding:35px 0}
-
-.sectionTitle{margin-bottom:22px}
-
-.sectionTitle h2{
-font-size:28px;
-margin-bottom:7px;
-}
-
-.sectionTitle p{color:var(--muted)}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-}
-
-.card{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:16px;
-padding:22px;
-}
-
-.cardIcon{
-font-size:35px;
-margin-bottom:13px;
-}
-
-.card h3{margin-bottom:8px}
-
-.card p{
-color:var(--muted);
-line-height:1.7;
-}
-
-.card .btn{margin-top:18px}
-
-.matches{
-display:grid;
-gap:12px;
-}
-
-.match{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:15px;
-padding:18px;
-}
-
-.matchTop{
-display:flex;
-justify-content:space-between;
-gap:10px;
-margin-bottom:14px;
-}
-
-.matchLeague{
-color:var(--muted);
-font-size:13px;
-}
-
-.teams{
-display:grid;
-grid-template-columns:1fr auto 1fr;
-align-items:center;
-gap:12px;
-text-align:center;
-font-weight:800;
-}
-
-.vs{color:var(--muted)}
-
-.odds{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-margin-top:15px;
-}
-
-.odd{
-background:#182a40;
-border:1px solid #29415c;
-border-radius:9px;
-padding:10px;
-text-align:center;
-}
-
-.odd span{
-display:block;
-color:var(--muted);
-font-size:12px;
-margin-bottom:4px;
-}
-
-.walletGrid{
-display:grid;
-grid-template-columns:1fr 1.3fr;
-gap:18px;
-}
-
-.walletCard{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:18px;
-padding:23px;
-}
-
-.walletBalance{
-font-size:36px;
-color:var(--green);
-font-weight:900;
-margin:15px 0;
-direction:ltr;
-}
-
-.formGroup{margin-bottom:15px}
-
-.formGroup label{
-display:block;
-color:#d8e0eb;
-margin-bottom:7px;
-}
-
-.formGroup input,
-.formGroup select,
-.formGroup textarea{
-width:100%;
-padding:12px 13px;
-background:#091525;
-border:1px solid var(--border);
-border-radius:10px;
-color:white;
-outline:none;
-}
-
-.formGroup input:focus,
-.formGroup select:focus,
-.formGroup textarea:focus{
-border-color:var(--green);
-}
-
-.walletButtons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.notice{
-background:#182333;
-border:1px solid #33445a;
-color:#c6d0dc;
-padding:13px;
-border-radius:10px;
-line-height:1.7;
-font-size:14px;
-margin-bottom:17px;
-}
-
-.tableWrap{overflow:auto}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:650px;
-}
-
-th,td{
-padding:13px 10px;
-border-bottom:1px solid var(--border);
-text-align:right;
-}
-
-th{
-color:#c9d4e1;
-background:#132237;
-}
-
-td{color:#dce4ee}
-
-.status{
-display:inline-block;
-padding:5px 9px;
-border-radius:999px;
-font-size:12px;
-font-weight:bold;
-}
-
-.status-pending{
-background:rgba(244,197,66,.14);
-color:var(--yellow);
-}
-
-.status-approved{
-background:rgba(32,199,122,.14);
-color:var(--green);
-}
-
-.status-rejected{
-background:rgba(239,83,80,.14);
-color:#ff7d7a;
-}
-
-.status-cancelled{
-background:#26313e;
-color:#adb8c5;
-}
-
-.supportCard{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:18px;
-padding:25px;
-}
-
-.messages{
-height:320px;
-overflow:auto;
-padding:15px;
-background:#091525;
-border-radius:13px;
-margin-bottom:14px;
-}
-
-.message{
-max-width:80%;
-padding:10px 13px;
-margin-bottom:10px;
-border-radius:12px;
-line-height:1.6;
-}
-
-.message.user{
-background:#123c2b;
-margin-right:auto;
-}
-
-.message.admin{
-background:#1a2c42;
-margin-left:auto;
-}
-
-.messageTime{
-color:#8b99aa;
-font-size:11px;
-margin-top:4px;
-}
-
-.modal{
-position:fixed;
-inset:0;
-z-index:1000;
-background:rgba(0,0,0,.7);
-display:none;
-align-items:center;
-justify-content:center;
-padding:15px;
-}
-
-.modal.show{display:flex}
-
-.modalBox{
-width:min(500px,100%);
-max-height:92vh;
-overflow:auto;
-background:#0e1a2b;
-border:1px solid var(--border);
-border-radius:18px;
-padding:25px;
-box-shadow:var(--shadow);
-}
-
-.modalHeader{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.close{
-border:0;
-background:transparent;
-color:#aeb9c7;
-font-size:27px;
-}
-
-.userArea{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.userName{
-color:#dbe6f2;
-font-size:14px;
-}
-
-.toast{
-position:fixed;
-bottom:20px;
-left:20px;
-right:20px;
-max-width:500px;
-margin:auto;
-z-index:2000;
-padding:14px 17px;
-background:#152337;
-border:1px solid var(--border);
-border-radius:12px;
-display:none;
-text-align:center;
-}
-
-.toast.show{display:block}
-
-footer{
-margin-top:45px;
-border-top:1px solid var(--border);
-padding:25px 0;
-color:var(--muted);
-text-align:center;
-}
-
-.siteLink{
-display:inline-block;
-margin-top:12px;
-padding:10px 16px;
-background:var(--panel2);
-border:1px solid var(--border);
-border-radius:10px;
-color:var(--green);
-font-weight:bold;
-}
-
-@media(max-width:850px){
-.heroGrid,
-.walletGrid{
-grid-template-columns:1fr;
-}
-
-.cards{
-grid-template-columns:1fr 1fr;
-}
-
-.nav{
-flex-wrap:wrap;
-padding:10px 0;
-}
-
-.navlinks{
-order:3;
-width:100%;
-}
-}
-
-@media(max-width:560px){
-.cards{
-grid-template-columns:1fr;
-}
-
-.authButtons .btn{
-padding:9px 11px;
-font-size:13px;
-}
-
-.heroCard,
-.balanceCard,
-.walletCard,
-.supportCard{
-padding:18px;
-}
-
-.walletButtons{
-grid-template-columns:1fr;
-}
-
-.teams{
-font-size:14px;
-}
-
-.balance{
-font-size:32px;
-}
-}
+.hero{padding:70px 0 45px}.heroGrid{display:grid;grid-template-columns:1.4fr .8fr;gap:25px;align-items:stretch}
+.heroCard,.balanceCard{background:linear-gradient(145deg,#112238,#0d1828);border:1px solid var(--border);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.hero h1{font-size:clamp(30px,6vw,54px);margin-bottom:15px}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);line-height:1.9;font-size:17px}
+.heroActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.balanceCard{display:flex;flex-direction:column;justify-content:center;text-align:center}.balanceLabel{color:var(--muted);margin-bottom:10px}.balance{font-size:40px;font-weight:900;color:var(--green);direction:ltr}.loginHint{color:var(--muted);margin-top:14px;line-height:1.7}
+section{padding:35px 0}.sectionTitle{margin-bottom:22px}.sectionTitle h2{font-size:28px;margin-bottom:7px}.sectionTitle p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px}.cardIcon{font-size:35px;margin-bottom:13px}.card h3{margin-bottom:8px}.card p{color:var(--muted);line-height:1.7}.card .btn{margin-top:18px}
+.matches{display:grid;gap:12px}.match{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:18px}.matchTop{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px}.matchLeague{color:var(--muted);font-size:13px}.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;text-align:center;font-weight:800}.vs{color:var(--muted)}
+.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.odd{background:#182a40;border:1px solid #29415c;border-radius:9px;padding:10px;text-align:center}.odd span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+.walletGrid{display:grid;grid-template-columns:1fr 1.3fr;gap:18px}.walletCard{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:23px}.walletBalance{font-size:36px;color:var(--green);font-weight:900;margin:15px 0;direction:ltr}
+.formGroup{margin-bottom:15px}.formGroup label{display:block;color:#d8e0eb;margin-bottom:7px}.formGroup input,.formGroup select,.formGroup textarea{width:100%;padding:12px 13px;background:#091525;border:1px solid var(--border);border-radius:10px;color:white;outline:none}.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{border-color:var(--green)}
+.walletButtons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.notice{background:#182333;border:1px solid #33445a;color:#c6d0dc;padding:13px;border-radius:10px;line-height:1.7;font-size:14px;margin-bottom:17px}
+.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:13px 10px;border-bottom:1px solid var(--border);text-align:right}th{color:#c9d4e1;background:#132237}td{color:#dce4ee}
+.status{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:bold}.status-pending{background:rgba(244,197,66,.14);color:var(--yellow)}.status-approved{background:rgba(32,199,122,.14);color:var(--green)}.status-rejected{background:rgba(239,83,80,.14);color:#ff7d7a}.status-cancelled{background:#26313e;color:#adb8c5}
+.supportCard{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:25px}.messages{height:320px;overflow:auto;padding:15px;background:#091525;border-radius:13px;margin-bottom:14px}.message{max-width:80%;padding:10px 13px;margin-bottom:10px;border-radius:12px;line-height:1.6}.message.user{background:#123c2b;margin-right:auto}.message.admin{background:#1a2c42;margin-left:auto}.messageTime{color:#8b99aa;font-size:11px;margin-top:4px}
+.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modalBox{width:min(500px,100%);max-height:92vh;overflow:auto;background:#0e1a2b;border:1px solid var(--border);border-radius:18px;padding:25px}.modalHeader{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{border:0;background:transparent;color:#aeb9c7;font-size:27px}
+.userArea{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.userName{color:#dbe6f2;font-size:14px;max-width:180px;overflow-wrap:anywhere}
+.userBalanceMini{font-size:12px;color:var(--green);border:1px solid #24523f;background:#102a22;padding:7px 9px;border-radius:9px;white-space:nowrap}
+.notificationWrap{position:relative}.notificationButton{position:relative;min-width:42px;padding:9px 11px}.notificationCount{position:absolute;top:-5px;left:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:99px;background:var(--red);color:white;font-size:11px;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}.notificationPanel{position:absolute;top:calc(100% + 12px);left:0;width:min(360px,88vw);max-height:420px;overflow:auto;background:#0e1a2b;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:14px;z-index:500}.notificationHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.notificationHead h3{font-size:17px}.notificationItem{padding:12px 10px;border-bottom:1px solid var(--border);line-height:1.6;font-size:13px}.notificationItem:last-child{border-bottom:0}.notificationItem.unread{background:#142a2a;border-radius:9px}.notificationItem small{display:block;color:var(--muted);margin-top:5px}.notificationEmpty{color:var(--muted);text-align:center;padding:20px 8px;line-height:1.7}
+.toast{position:fixed;bottom:20px;left:20px;right:20px;max-width:500px;margin:auto;z-index:2000;padding:14px 17px;background:#152337;border:1px solid var(--border);border-radius:12px;display:none;text-align:center}.toast.show{display:block}
+footer{margin-top:45px;border-top:1px solid var(--border);padding:25px 0;color:var(--muted);text-align:center}.siteLink{display:inline-block;margin-top:12px;padding:10px 16px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--green);font-weight:bold}
+@media(max-width:850px){.heroGrid,.walletGrid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.nav{flex-wrap:wrap;padding:10px 0}.navlinks{order:3;width:100%}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}.authButtons .btn{padding:9px 11px;font-size:13px}.heroCard,.balanceCard,.walletCard,.supportCard{padding:18px}.walletButtons{grid-template-columns:1fr}.teams{font-size:14px}.balance{font-size:32px}.userArea{justify-content:flex-end}.userName{max-width:120px}.userBalanceMini{order:3}.notificationPanel{left:-55px}}
 </style>
 </head>
-
 <body>
-
 <header>
 <div class="container nav">
-
 <a href="#top" class="logo">Sdnbet365</a>
-
-<nav class="navlinks">
-<a href="#sports">الرياضة</a>
-<a href="#casino">الكازينو</a>
-<a href="#live">مباشر</a>
-<a href="#wallet">المحفظة</a>
-<a href="#history">السجل</a>
-<a href="#support">الدعم</a>
-</nav>
-
-<div class="authButtons" id="authButtons">
-<button class="btn" onclick="openModal('loginModal')">دخول</button>
-<button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button>
-</div>
-
+<nav class="navlinks"><a href="#sports">الرياضة</a><a href="#casino">الكازينو</a><a href="#live">مباشر</a><a href="#wallet">المحفظة</a><a href="#history">السجل</a><a href="#support">الدعم</a></nav>
+<div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">دخول</button><button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button></div>
 <div class="userArea hidden" id="userArea">
 <span class="userName" id="userName"></span>
+<span class="userBalanceMini" id="userBalanceMini">الرصيد: —</span>
+<div class="notificationWrap">
+<button class="btn notificationButton" id="notificationButton" aria-label="الإشعارات" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
+<div class="notificationPanel hidden" id="notificationPanel">
+<div class="notificationHead"><h3>إشعارات حسابك</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()">قراءة الكل</button></div>
+<div id="notificationList"><div class="notificationEmpty">سجّل الدخول لعرض إشعاراتك.</div></div>
+</div>
+</div>
 <button class="btn" onclick="signOutUser()">خروج</button>
 </div>
-
 </div>
 </header>
-
 <main id="top">
-
-<section class="hero">
-<div class="container heroGrid">
-
-<div class="heroCard">
-<h1>منصة <span>Sdnbet365</span></h1>
-<p>
-منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف.
-تابع الأقسام، أدر محفظتك، راجع معاملاتك وتواصل مع الدعم
-من واجهة واحدة.
-</p>
-
-<div class="heroActions">
-<a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
-<a href="#wallet" class="btn">المحفظة</a>
-</div>
-</div>
-
-<div class="balanceCard">
-<div class="balanceLabel">رصيد الحساب</div>
-<div class="balance" id="heroBalance">0.000 د.ت</div>
-<div class="loginHint" id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</div>
-</div>
-
-</div>
-</section>
-
-<section id="sports">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>الرياضة</h2>
-<p>واجهة المباريات الرياضية.</p>
-</div>
-
+<section class="hero"><div class="container heroGrid">
+<div class="heroCard"><h1>منصة <span>Sdnbet365</span></h1><p>منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف. تابع الأقسام، أدر محفظتك، راجع معاملاتك وتواصل مع الدعم من واجهة واحدة.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">استكشف الرياضة</a><a href="#wallet" class="btn">المحفظة</a></div></div>
+<div class="balanceCard"><div class="balanceLabel">رصيد الحساب</div><div class="balance" id="heroBalance">0.000 د.ت</div><div class="loginHint" id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</div></div>
+</div></section>
+<section id="sports"><div class="container"><div class="sectionTitle"><h2>الرياضة</h2><p>واجهة المباريات الرياضية.</p></div>
 <div class="cards">
-
-<div class="card">
-<div class="cardIcon">⚽</div>
-<h3>كرة القدم</h3>
-<p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p>
-<a href="#matches" class="btn">عرض المباريات</a>
+<div class="card"><div class="cardIcon">⚽</div><h3>كرة القدم</h3><p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p><a href="#matches" class="btn">عرض المباريات</a></div>
+<div class="card"><div class="cardIcon">🏀</div><h3>كرة السلة</h3><p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p><button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button></div>
+<div class="card"><div class="cardIcon">🎾</div><h3>التنس</h3><p>تصميم بسيط لمتابعة مباريات التنس.</p><button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button></div>
 </div>
-
-<div class="card">
-<div class="cardIcon">🏀</div>
-<h3>كرة السلة</h3>
-<p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button>
-</div>
-
-<div class="card">
-<div class="cardIcon">🎾</div>
-<h3>التنس</h3>
-<p>تصميم بسيط لمتابعة مباريات التنس.</p>
-<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button>
-</div>
-
-</div>
-
 <div id="matches" class="matches" style="margin-top:18px">
-
-<div class="match">
-<div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>20:00</span>
-</div>
-<div class="teams">
-<span>Real Madrid</span>
-<span class="vs">VS</span>
-<span>Barcelona</span>
-</div>
-<div class="odds">
-<div class="odd"><span>1</span>2.10</div>
-<div class="odd"><span>X</span>3.20</div>
-<div class="odd"><span>2</span>2.80</div>
-</div>
-</div>
-
-<div class="match">
-<div class="matchTop">
-<span class="matchLeague">Football • Demo</span>
-<span>21:30</span>
-</div>
-<div class="teams">
-<span>Liverpool</span>
-<span class="vs">VS</span>
-<span>Arsenal</span>
-</div>
-<div class="odds">
-<div class="odd"><span>1</span>2.25</div>
-<div class="odd"><span>X</span>3.40</div>
-<div class="odd"><span>2</span>2.60</div>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="casino">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>الكازينو</h2>
-<p>أقسام واجهة تجريبية.</p>
-</div>
-
-<div class="cards">
-
-<div class="card">
-<div class="cardIcon">🎰</div>
-<h3>Slots</h3>
-<p>واجهة ألعاب تجريبية.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
-</div>
-
-<div class="card">
-<div class="cardIcon">🃏</div>
-<h3>Cards</h3>
-<p>قسم ألعاب البطاقات.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
-</div>
-
-<div class="card">
-<div class="cardIcon">🎲</div>
-<h3>Games</h3>
-<p>ألعاب إضافية للعرض.</p>
-<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="live">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>مباشر</h2>
-<p>الأحداث المباشرة.</p>
-</div>
-
-<div class="card">
-<div class="cardIcon">🔴</div>
-<h3>البث المباشر</h3>
-<p>
-سيتم عرض الأحداث المباشرة عند ربط المنصة
-بمصدر بيانات أو خدمة بث مرخّصة.
-</p>
-</div>
-
-</div>
-</section>
-
-<section id="wallet">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>المحفظة</h2>
-<p>إدارة طلبات الإيداع والسحب.</p>
-</div>
-
-<div class="walletGrid">
-
-<div class="walletCard">
-<div class="balanceLabel">رصيد الحساب</div>
-<div class="walletBalance" id="walletBalance">0.000 د.ت</div>
-
-<p style="color:var(--muted);line-height:1.8">
-الرصيد المعروض هنا يتم قراءته من حسابك في Supabase.
-لا يمكن للمستخدم تعديل الرصيد من الواجهة.
-</p>
-
-<div style="margin-top:18px">
-<button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button>
-</div>
-</div>
-
-<div class="walletCard">
-
-<div class="notice">
-D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب.
-لا يتم تنفيذ الدفع تلقائيًا من المتصفح.
-</div>
-
-<div class="formGroup">
-<label>نوع العملية</label>
-<select id="walletType">
-<option value="deposit">إيداع</option>
-<option value="withdrawal">سحب</option>
-</select>
-</div>
-
-<div class="formGroup">
-<label>المبلغ بالدينار التونسي</label>
-<input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50">
-</div>
-
-<div class="formGroup">
-<label>طريقة الدفع</label>
-<select id="paymentMethod">
-<option value="D17">D17</option>
-<option value="Flouci">Flouci</option>
-</select>
-</div>
-
-<div class="formGroup">
-<label>رقم الحساب / الهاتف</label>
-<input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب">
-</div>
-
-<div class="formGroup">
-<label>مرجع العملية إن وجد</label>
-<input id="paymentReference" type="text" placeholder="رقم العملية">
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">
-إرسال الطلب
-</button>
-
-</div>
-</div>
-</div>
-</section>
-
-<section id="history">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>سجل المحفظة</h2>
-<p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
-</div>
-
-<div class="walletCard">
-
-<div id="historyLoginMessage" class="notice">
-سجّل الدخول لعرض سجل المحفظة.
-</div>
-
-<div class="tableWrap">
-<table>
-<thead>
-<tr>
-<th>النوع</th>
-<th>المبلغ</th>
-<th>الطريقة</th>
-<th>الحالة</th>
-<th>التاريخ</th>
-</tr>
-</thead>
-<tbody id="historyBody"></tbody>
-</table>
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="support">
-<div class="container">
-
-<div class="sectionTitle">
-<h2>الدعم</h2>
-<p>تواصل مع فريق الدعم من داخل الموقع.</p>
-</div>
-
-<div class="supportCard">
-
-<div id="supportMessages" class="messages">
-<div style="color:var(--muted);text-align:center">
-سجّل الدخول لبدء المحادثة.
-</div>
-</div>
-
-<div class="formGroup">
-<textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea>
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">
-إرسال الرسالة
-</button>
-
-<div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
-
-</div>
-</div>
-</section>
-
+<div class="match"><div class="matchTop"><span class="matchLeague">Football • Demo</span><span>20:00</span></div><div class="teams"><span>Real Madrid</span><span class="vs">VS</span><span>Barcelona</span></div><div class="odds"><div class="odd"><span>1</span>2.10</div><div class="odd"><span>X</span>3.20</div><div class="odd"><span>2</span>2.80</div></div></div>
+<div class="match"><div class="matchTop"><span class="matchLeague">Football • Demo</span><span>21:30</span></div><div class="teams"><span>Liverpool</span><span class="vs">VS</span><span>Arsenal</span></div><div class="odds"><div class="odd"><span>1</span>2.25</div><div class="odd"><span>X</span>3.40</div><div class="odd"><span>2</span>2.60</div></div></div>
+</div></div></section>
+<section id="casino"><div class="container"><div class="sectionTitle"><h2>الكازينو</h2><p>أقسام واجهة تجريبية.</p></div><div class="cards">
+<div class="card"><div class="cardIcon">🎰</div><h3>Slots</h3><p>واجهة ألعاب تجريبية.</p><button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button></div>
+<div class="card"><div class="cardIcon">🃏</div><h3>Cards</h3><p>قسم ألعاب البطاقات.</p><button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button></div>
+<div class="card"><div class="cardIcon">🎲</div><h3>Games</h3><p>ألعاب إضافية للعرض.</p><button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button></div>
+</div></div></section>
+<section id="live"><div class="container"><div class="sectionTitle"><h2>مباشر</h2><p>الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
+<section id="wallet"><div class="container"><div class="sectionTitle"><h2>المحفظة</h2><p>إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
+<div class="walletCard"><div class="balanceLabel">رصيد الحساب</div><div class="walletBalance" id="walletBalance">0.000 د.ت</div><p style="color:var(--muted);line-height:1.8">الرصيد المعروض هنا يتم قراءته من حسابك في Supabase. لا يمكن للمستخدم تعديل الرصيد من الواجهة.</p><div style="margin-top:18px"><button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button></div></div>
+<div class="walletCard"><div class="notice">D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب. لا يتم تنفيذ الدفع تلقائيًا من المتصفح.</div>
+<div class="formGroup"><label>نوع العملية</label><select id="walletType"><option value="deposit">إيداع</option><option value="withdrawal">سحب</option></select></div>
+<div class="formGroup"><label>المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50"></div>
+<div class="formGroup"><label>طريقة الدفع</label><select id="paymentMethod"><option value="D17">D17</option><option value="Flouci">Flouci</option></select></div>
+<div class="formGroup"><label>رقم الحساب / الهاتف</label><input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب"></div>
+<div class="formGroup"><label>مرجع العملية إن وجد</label><input id="paymentReference" type="text" placeholder="رقم العملية"></div>
+<button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">إرسال الطلب</button></div>
+</div></div></section>
+<section id="history"><div class="container"><div class="sectionTitle"><h2>سجل المحفظة</h2><p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p></div><div class="walletCard">
+<div id="historyLoginMessage" class="notice">سجّل الدخول لعرض سجل المحفظة.</div><div class="tableWrap"><table><thead><tr><th>النوع</th><th>المبلغ</th><th>الطريقة</th><th>الحالة</th><th>التاريخ</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+</div></div></section>
+<section id="support"><div class="container"><div class="sectionTitle"><h2>الدعم</h2><p>تواصل مع فريق الدعم من داخل الموقع.</p></div><div class="supportCard">
+<div id="supportMessages" class="messages"><div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div></div>
+<div class="formGroup"><textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea></div><button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">إرسال الرسالة</button><div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
+</div></div></section>
 </main>
+<footer><div class="container">Sdnbet365 ©<br>منصة تجريبية قيد التطوير.<br><a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">🌐 فتح موقع Sdnbet365</a></div></footer>
 
-<footer>
-<div class="container">
-Sdnbet365 ©
-<br>
-منصة تجريبية قيد التطوير.
-<br>
-<a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">
-🌐 فتح موقع Sdnbet365
-</a>
-</div>
-</footer>
-
-<!-- LOGIN -->
-<div class="modal" id="loginModal">
-<div class="modalBox">
-
-<div class="modalHeader">
-<h2>تسجيل الدخول</h2>
-<button class="close" onclick="closeModal('loginModal')">×</button>
-</div>
-
-<div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="loginEmail" type="email" autocomplete="email">
-</div>
-
-<div class="formGroup">
-<label>كلمة المرور</label>
-<input id="loginPassword" type="password" autocomplete="current-password">
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="loginUser()">دخول</button>
-
-<button class="btn" style="width:100%;margin-top:9px" onclick="closeModal('loginModal');openModal('registerModal')">
-إنشاء حساب
-</button>
-
-<button class="btn" style="width:100%;margin-top:9px" onclick="openRecovery()">
-نسيت كلمة المرور؟
-</button>
-
-<div id="loginStatus" style="margin-top:12px"></div>
-</div>
-</div>
-
-<!-- REGISTER -->
-<div class="modal" id="registerModal">
-<div class="modalBox">
-
-<div class="modalHeader">
-<h2>إنشاء حساب</h2>
-<button class="close" onclick="closeModal('registerModal')">×</button>
-</div>
-
-<div class="formGroup">
-<label>الاسم</label>
-<input id="registerName" type="text" autocomplete="name">
-</div>
-
-<div class="formGroup">
-<label>رقم الهاتف</label>
-<input id="registerPhone" type="text" autocomplete="tel">
-</div>
-
-<div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="registerEmail" type="email" autocomplete="email">
-</div>
-
-<div class="formGroup">
-<label>كلمة المرور</label>
-<input id="registerPassword" type="password" autocomplete="new-password">
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button>
-<div id="registerStatus" style="margin-top:12px"></div>
-
-</div>
-</div>
-
-<!-- RECOVERY -->
-<div class="modal" id="recoveryModal">
-<div class="modalBox">
-
-<div class="modalHeader">
-<h2>استعادة كلمة المرور</h2>
-<button class="close" onclick="closeModal('recoveryModal')">×</button>
-</div>
-
-<div class="formGroup">
-<label>البريد الإلكتروني</label>
-<input id="recoveryEmail" type="email" autocomplete="email">
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="sendRecovery()">إرسال رابط الاستعادة</button>
-<div id="recoveryStatus" style="margin-top:12px"></div>
-
-</div>
-</div>
-
-<!-- RESET PASSWORD -->
-<div class="modal" id="resetModal">
-<div class="modalBox">
-
-<div class="modalHeader">
-<h2>تغيير كلمة المرور</h2>
-</div>
-
-<div class="formGroup">
-<label>كلمة المرور الجديدة</label>
-<input id="newPassword" type="password" autocomplete="new-password">
-</div>
-
-<button class="btn btn-primary" style="width:100%" onclick="changePassword()">حفظ كلمة المرور</button>
-<div id="resetStatus" style="margin-top:12px"></div>
-
-</div>
-</div>
-
+<div class="modal" id="loginModal"><div class="modalBox"><div class="modalHeader"><h2>تسجيل الدخول</h2><button class="close" onclick="closeModal('loginModal')">×</button></div>
+<div class="formGroup"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="loginPassword" type="password" autocomplete="current-password"></div>
+<button class="btn btn-primary" style="width:100%" onclick="loginUser()">دخول</button><button class="btn" style="width:100%;margin-top:9px" onclick="closeModal('loginModal');openModal('registerModal')">إنشاء حساب</button><button class="btn" style="width:100%;margin-top:9px" onclick="openRecovery()">نسيت كلمة المرور؟</button><div id="loginStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="registerModal"><div class="modalBox"><div class="modalHeader"><h2>إنشاء حساب</h2><button class="close" onclick="closeModal('registerModal')">×</button></div>
+<div class="formGroup"><label>الاسم</label><input id="registerName" type="text" autocomplete="name"></div><div class="formGroup"><label>رقم الهاتف</label><input id="registerPhone" type="text" autocomplete="tel"></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="registerEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="registerPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button><div id="registerStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="recoveryModal"><div class="modalBox"><div class="modalHeader"><h2>استعادة كلمة المرور</h2><button class="close" onclick="closeModal('recoveryModal')">×</button></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="recoveryEmail" type="email" autocomplete="email"></div><button class="btn btn-primary" style="width:100%" onclick="sendRecovery()">إرسال رابط الاستعادة</button><div id="recoveryStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="resetModal"><div class="modalBox"><div class="modalHeader"><h2>تغيير كلمة المرور</h2></div><div class="formGroup"><label>كلمة المرور الجديدة</label><input id="newPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="changePassword()">حفظ كلمة المرور</button><div id="resetStatus" style="margin-top:12px"></div></div></div>
 <div class="toast" id="toast"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-/* =========================================================
-SUPABASE
-========================================================= */
+"use strict";
+const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let currentUser=null,currentProfile=null,currentConversation=null;
+let walletRequestsCache=[];
+let notificationRefreshBusy=false;
 
-const SUPABASE_URL =
-"https://bjzowejwvhicgmphkwkk.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
-
-const supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY
-);
-
-/* =========================================================
-GLOBALS
-========================================================= */
-
-let currentUser = null;
-let currentProfile = null;
-let currentConversation = null;
-
-/* =========================================================
-UI
-========================================================= */
-
-function openModal(id){
-const el = document.getElementById(id);
-if(el){
-el.classList.add("show");
-}
-}
-
-function closeModal(id){
-const el = document.getElementById(id);
-if(el){
-el.classList.remove("show");
-}
-}
-
-function showToast(message){
-const toast = document.getElementById("toast");
-if(!toast)return;
-toast.textContent = message;
-toast.classList.add("show");
-setTimeout(()=>{
-toast.classList.remove("show");
-},3500);
-}
-
-function showStatus(id,message,type=""){
-const el = document.getElementById(id);
-if(!el)return;
-el.textContent = message;
-if(type==="error"){
-el.style.color = "#ff7773";
-}else if(type==="success"){
-el.style.color = "#20c77a";
+function $(id){return document.getElementById(id)}
+function openModal(id){const el=$(id);if(el)el.classList.add("show")}
+function closeModal(id){const el=$(id);if(el)el.classList.remove("show")}
+function showToast(message){const toast=$("toast");if(!toast)return;toast.textContent=message;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3500)}
+function showStatus(id,message,type=""){const el=$(id);if(!el)return;el.textContent=message;el.style.color=type==="error"?"#ff7773":type==="success"?"#20c77a":"#9eacbd"}
+function formatMoney(value){return Number(value||0).toFixed(3)+" د.ت"}
+function formatDate(date){if(!date)return "-";try{return new Date(date).toLocaleString("ar-TN",{dateStyle:"short",timeStyle:"short"})}catch(e){return "-"}}
+function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function notificationStorageKey(){return currentUser?"sdnbet365_read_notifications_"+currentUser.id:"sdnbet365_read_notifications_guest"}
+function getReadNotifications(){try{return JSON.parse(localStorage.getItem(notificationStorageKey())||"[]")}catch(e){return []}}
+function setReadNotifications(ids){try{localStorage.setItem(notificationStorageKey(),JSON.stringify(ids))}catch(e){console.warn("Could not save notification read state",e)}}
+function getRequestNotification(item){
+const type=item.request_type==="deposit"?"deposit":"withdrawal";
+const amount=formatMoney(item.amount);
+const status=String(item.status||"pending").toLowerCase();
+let title="",message="";
+if(type==="deposit"){
+if(status==="approved"){title="تم تأكيد الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND est confirmée.`}
+else if(status==="rejected"){title="تم رفض الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été refusée.`}
+else if(status==="cancelled"){title="تم إلغاء طلب الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été annulée.`}
+else{title="طلب إيداع قيد المراجعة";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND est en cours de traitement.`}
 }else{
-el.style.color = "#9eacbd";
+if(status==="approved"){title="تمت الموافقة على السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été approuvée.`}
+else if(status==="rejected"){title="تم رفض السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été refusée.`}
+else if(status==="cancelled"){title="تم إلغاء طلب السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été annulée.`}
+else{title="طلب سحب قيد المراجعة";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND est en cours de traitement.`}
 }
+return {title,message,amount,type,status,date:item.updated_at||item.created_at||null,id:String(item.id??[type,item.amount,item.created_at].join("_"))};
 }
-
-function formatMoney(value){
-const number = Number(value || 0);
-return number.toFixed(3) + " د.ت";
+function toggleNotifications(){
+const panel=$("notificationPanel"),button=$("notificationButton");
+if(!panel||!button)return;
+const opening=panel.classList.contains("hidden");
+panel.classList.toggle("hidden");
+button.setAttribute("aria-expanded",String(opening));
+if(opening){renderNotifications();markNotificationsRead(false)}
 }
-
-function formatDate(date){
-if(!date)return "-";
-try{
-return new Date(date).toLocaleString(
-"ar-TN",
-{
-dateStyle:"short",
-timeStyle:"short"
+function markNotificationsRead(refresh=true){
+if(!currentUser)return;
+const ids=walletRequestsCache.map(item=>getRequestNotification(item).id);
+setReadNotifications(Array.from(new Set([...getReadNotifications(),...ids])));
+updateNotificationBadge();
+if(refresh)renderNotifications();
 }
-);
-}catch(e){
-return "-";
+function updateNotificationBadge(){
+const badge=$("notificationCount");
+if(!badge)return;
+if(!currentUser){badge.classList.add("hidden");badge.textContent="0";return}
+const read=new Set(getReadNotifications());
+const unread=walletRequestsCache.filter(item=>!read.has(getRequestNotification(item).id)).length;
+badge.textContent=unread>99?"99+":String(unread);
+badge.classList.toggle("hidden",unread===0);
 }
+function renderNotifications(){
+const list=$("notificationList");
+if(!list)return;
+if(!currentUser){list.innerHTML='<div class="notificationEmpty">سجّل الدخول لعرض إشعاراتك.</div>';return}
+if(!walletRequestsCache.length){list.innerHTML='<div class="notificationEmpty">لا توجد إشعارات لمحفظتك حتى الآن.</div>';return}
+const read=new Set(getReadNotifications());
+list.innerHTML=walletRequestsCache.slice(0,30).map(item=>{
+const n=getRequestNotification(item),unread=!read.has(n.id);
+return `<div class="notificationItem ${unread?"unread":""}"><strong>${escapeHtml(n.title)}</strong><div>${escapeHtml(n.message)}</div><small>${escapeHtml(formatDate(n.date))} · ${escapeHtml(item.payment_method||"")}</small></div>`;
+}).join("");
 }
-
-/* =========================================================
-HTML SECURITY
-========================================================= */
-
-function escapeHtml(value){
-return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
-
-/* =========================================================
-AUTH
-========================================================= */
-
-async function getCurrentUser(){
-try{
-const {data,error} = await supabaseClient.auth.getUser();
-if(error){
-console.error("getCurrentUser:",error);
-return null;
-}
-return data?.user || null;
-}catch(error){
-console.error("getCurrentUser exception:",error);
-return null;
-}
-}
-
-/* =========================================================
-REGISTER
-========================================================= */
-
+async function getCurrentUser(){try{const {data,error}=await supabaseClient.auth.getUser();if(error){console.error("getCurrentUser:",error);return null}return data?.user||null}catch(error){console.error("getCurrentUser exception:",error);return null}}
 async function registerUser(){
-const name = document.getElementById("registerName").value.trim();
-const phone = document.getElementById("registerPhone").value.trim();
-const email = document.getElementById("registerEmail").value.trim();
-const password = document.getElementById("registerPassword").value;
-
-if(!email || !password){
-showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
-return;
-}
-
-if(password.length < 6){
-showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
-return;
-}
-
+const name=$("registerName").value.trim(),phone=$("registerPhone").value.trim(),email=$("registerEmail").value.trim(),password=$("registerPassword").value;
+if(!email||!password){showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
+if(password.length<6){showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");return}
 showStatus("registerStatus","جارٍ إنشاء الحساب...");
-
 try{
-const {data,error} = await supabaseClient.auth.signUp({
-email,
-password,
-options:{
-data:{
-full_name:name,
-phone:phone
+const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name:name,phone}}});
+if(error){console.error("Register error:",error);showStatus("registerStatus",error.message,"error");return}
+if(data?.user){showStatus("registerStatus","تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.","success");setTimeout(()=>closeModal("registerModal"),1800)}
+}catch(error){console.error("Register exception:",error);showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error")}
 }
-}
-});
-
-if(error){
-console.error("Register error:",error);
-showStatus("registerStatus",error.message,"error");
-return;
-}
-
-if(data?.user){
-showStatus(
-"registerStatus",
-"تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.",
-"success"
-);
-setTimeout(()=>{
-closeModal("registerModal");
-},1800);
-}
-
-}catch(error){
-console.error("Register exception:",error);
-showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error");
-}
-}
-
-/* =========================================================
-LOGIN
-========================================================= */
-
 async function loginUser(){
-const email = document.getElementById("loginEmail").value.trim();
-const password = document.getElementById("loginPassword").value;
-
-if(!email || !password){
-showStatus("loginStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
-return;
-}
-
+const email=$("loginEmail").value.trim(),password=$("loginPassword").value;
+if(!email||!password){showStatus("loginStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
 showStatus("loginStatus","جارٍ تسجيل الدخول...");
-
 try{
-const {data,error} = await supabaseClient.auth.signInWithPassword({
-email,
-password
-});
-
-if(error){
-console.error("Login error:",error);
-showStatus("loginStatus",error.message,"error");
-return;
+const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+if(error){console.error("Login error:",error);showStatus("loginStatus",error.message,"error");return}
+currentUser=data?.user||null;closeModal("loginModal");showToast("تم تسجيل الدخول بنجاح");await updateAuthUI(currentUser);
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}
+}catch(error){console.error("Login exception:",error);showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error")}
 }
-
-currentUser = data?.user || null;
-closeModal("loginModal");
-showToast("تم تسجيل الدخول بنجاح");
-await updateAuthUI(currentUser);
-
-if(currentUser){
-await loadWalletData();
-await loadWalletHistory();
-await loadSupport();
-}
-
-}catch(error){
-console.error("Login exception:",error);
-showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error");
-}
-}
-
-/* =========================================================
-SIGN OUT
-========================================================= */
-
 async function signOutUser(){
-try{
-await supabaseClient.auth.signOut();
-}catch(error){
-console.error("Sign out:",error);
-}
-
-currentUser = null;
-currentProfile = null;
-currentConversation = null;
-
+try{await supabaseClient.auth.signOut()}catch(error){console.error("Sign out:",error)}
+currentUser=null;currentProfile=null;currentConversation=null;walletRequestsCache=[];
 await updateAuthUI(null);
-
-const historyBody = document.getElementById("historyBody");
-if(historyBody){
-historyBody.innerHTML = "";
-}
-
-const supportMessages = document.getElementById("supportMessages");
-if(supportMessages){
-supportMessages.innerHTML =
-'<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-}
-
+$("historyBody").innerHTML="";
+$("supportMessages").innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
+$("notificationPanel").classList.add("hidden");
 showToast("تم تسجيل الخروج");
 }
-
-/* =========================================================
-AUTH UI
-========================================================= */
-
 async function updateAuthUI(userOverride){
-if(arguments.length > 0){
-currentUser = userOverride;
-}else{
-currentUser = await getCurrentUser();
-}
-
-const authButtons = document.getElementById("authButtons");
-const userArea = document.getElementById("userArea");
-const userName = document.getElementById("userName");
-
+if(arguments.length>0)currentUser=userOverride;else currentUser=await getCurrentUser();
+const authButtons=$("authButtons"),userArea=$("userArea"),userName=$("userName");
 if(currentUser){
-authButtons.classList.add("hidden");
-userArea.classList.remove("hidden");
-
-const name =
-currentUser.user_metadata?.full_name ||
-currentUser.email ||
-"حسابك";
-
-userName.textContent = name;
-
-document.getElementById("heroHint").textContent =
-"أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
-
+authButtons.classList.add("hidden");userArea.classList.remove("hidden");
+userName.textContent=currentUser.user_metadata?.full_name||currentUser.email||"حسابك";
+$("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 }else{
-authButtons.classList.remove("hidden");
-userArea.classList.add("hidden");
-
-document.getElementById("heroBalance").textContent = "0.000 د.ت";
-document.getElementById("walletBalance").textContent = "0.000 د.ت";
-document.getElementById("heroHint").textContent =
-"سجّل الدخول للوصول إلى بيانات حسابك.";
+authButtons.classList.remove("hidden");userArea.classList.add("hidden");
+$("heroBalance").textContent="0.000 د.ت";$("walletBalance").textContent="0.000 د.ت";$("userBalanceMini").textContent="الرصيد: —";
+$("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
+walletRequestsCache=[];renderNotifications();updateNotificationBadge();
 }
 }
-
-/* =========================================================
-PROFILE
-========================================================= */
-
 async function loadProfile(){
-if(!currentUser){
-return null;
+if(!currentUser)return null;
+const {data,error}=await supabaseClient.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
+if(error){console.error("Profile error:",error);return null}currentProfile=data||null;return data||null;
 }
-
-const {data,error} = await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.maybeSingle();
-
-if(error){
-console.error("Profile error:",error);
-return null;
-}
-
-currentProfile = data || null;
-return data || null;
-}
-
-/* =========================================================
-WALLET
-========================================================= */
-
 async function loadWalletData(){
-const heroBalance = document.getElementById("heroBalance");
-const walletBalance = document.getElementById("walletBalance");
-
-if(!currentUser){
-if(heroBalance)heroBalance.textContent = "0.000 د.ت";
-if(walletBalance)walletBalance.textContent = "0.000 د.ت";
-return;
-}
-
-if(heroBalance)heroBalance.textContent = "جاري التحميل...";
-if(walletBalance)walletBalance.textContent = "جاري التحميل...";
-
+const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("userBalanceMini");
+if(!currentUser){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent="الرصيد: —";return}
+if(heroBalance)heroBalance.textContent="جاري التحميل...";if(walletBalance)walletBalance.textContent="جاري التحميل...";if(miniBalance)miniBalance.textContent="الرصيد: جاري التحميل...";
 try{
-const {data:userData,error:userError} =
-await supabaseClient.auth.getUser();
-
-if(userError){
-console.error("Auth user error:",userError);
-if(heroBalance)heroBalance.textContent = "تعذر قراءة الحساب";
-if(walletBalance)walletBalance.textContent = "تعذر قراءة الحساب";
-return;
+const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+if(userError||!userData?.user){if(userError)console.error("Auth user error:",userError);if(heroBalance)heroBalance.textContent="تعذر قراءة الحساب";if(walletBalance)walletBalance.textContent="تعذر قراءة الحساب";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
+const user=userData.user;currentUser=user;
+const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("user_id,balance,currency").eq("user_id",user.id).limit(1);
+if(walletError){console.error("Wallet account error:",walletError);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
+const wallet=Array.isArray(walletRows)?walletRows[0]:null;
+if(!wallet){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent="الرصيد: 0.000 د.ت";return}
+const balance=Number(wallet.balance??0),currency=String(wallet.currency||"TND").toUpperCase();
+const formatted=balance.toFixed(3)+(currency==="TND"?" د.ت":" "+currency);
+if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.textContent=formatted;if(miniBalance)miniBalance.textContent="الرصيد: "+formatted;
+}catch(error){console.error("loadWalletData exception:",error);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح"}
 }
-
-const user = userData?.user;
-
-if(!user){
-if(heroBalance)heroBalance.textContent = "0.000 د.ت";
-if(walletBalance)walletBalance.textContent = "0.000 د.ت";
-return;
-}
-
-currentUser = user;
-
-console.log("Current Auth User ID:",user.id);
-
-const {data:walletRows,error:walletError} =
-await supabaseClient
-.from("wallet_accounts")
-.select("user_id,balance,currency")
-.eq("user_id",user.id)
-.limit(1);
-
-if(walletError){
-console.error("Wallet account error:",walletError);
-console.error("Wallet user ID searched:",user.id);
-console.error("Wallet error code:",walletError.code);
-console.error("Wallet error message:",walletError.message);
-console.error("Wallet error details:",walletError.details);
-console.error("Wallet error hint:",walletError.hint);
-
-const errorCode =
-walletError.code
-? " (" + walletError.code + ")"
-: "";
-
-if(heroBalance)heroBalance.textContent = "خطأ المحفظة" + errorCode;
-if(walletBalance)walletBalance.textContent = "خطأ المحفظة" + errorCode;
-return;
-}
-
-const wallet = Array.isArray(walletRows) ? walletRows[0] : null;
-
-console.log("Wallet account:",wallet);
-
-if(!wallet){
-console.warn("لا يوجد حساب محفظة لهذا المستخدم:",user.id);
-if(heroBalance)heroBalance.textContent = "0.000 د.ت";
-if(walletBalance)walletBalance.textContent = "0.000 د.ت";
-return;
-}
-
-const balance = Number(wallet.balance ?? 0);
-const currency = String(wallet.currency || "TND").toUpperCase();
-
-const formatted =
-balance.toFixed(3) +
-(currency === "TND" ? " د.ت" : " " + currency);
-
-if(heroBalance)heroBalance.textContent = formatted;
-if(walletBalance)walletBalance.textContent = formatted;
-
-console.log("Displayed wallet balance:",formatted);
-
-}catch(error){
-console.error("loadWalletData exception:",error);
-if(heroBalance)heroBalance.textContent = "تعذر قراءة الرصيد";
-if(walletBalance)walletBalance.textContent = "تعذر قراءة الرصيد";
-}
-}
-
-/* =========================================================
-CREATE WALLET REQUEST
-========================================================= */
-
 async function createWalletRequest(){
-if(!currentUser){
-showToast("يجب تسجيل الدخول أولًا");
-openModal("loginModal");
-return;
+if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
+const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value,account=$("paymentAccount").value.trim(),reference=$("paymentReference").value.trim();
+if(!Number.isFinite(amount)||amount<=0){showToast("أدخل مبلغًا صحيحًا");return}
+if(!account){showToast("أدخل رقم الحساب أو الهاتف");return}
+if(type==="withdrawal"){
+const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
+if(walletError){console.error("Wallet balance error:",walletError);showToast("تعذر التحقق من الرصيد");return}
+const walletAccount=Array.isArray(walletRows)?walletRows[0]:null,balance=Number(walletAccount?.balance||0);
+if(amount>balance){showToast("الرصيد غير كافٍ لطلب السحب");return}
 }
-
-const type = document.getElementById("walletType").value;
-const amount = Number(document.getElementById("walletAmount").value);
-const method = document.getElementById("paymentMethod").value;
-const account = document.getElementById("paymentAccount").value.trim();
-const reference = document.getElementById("paymentReference").value.trim();
-
-if(!amount || amount <= 0){
-showToast("أدخل مبلغًا صحيحًا");
-return;
-}
-
-if(!account){
-showToast("أدخل رقم الحساب أو الهاتف");
-return;
-}
-
-/* تم تصحيح القيمة لتطابق قيد قاعدة البيانات: withdrawal */
-if(type === "withdrawal"){
-const {data:walletRows,error:walletError} =
-await supabaseClient
-.from("wallet_accounts")
-.select("balance")
-.eq("user_id",currentUser.id)
-.limit(1);
-
-if(walletError){
-console.error("Wallet balance error:",walletError);
-showToast("تعذر التحقق من الرصيد");
-return;
-}
-
-const walletAccount = Array.isArray(walletRows) ? walletRows[0] : null;
-const balance = Number(walletAccount?.balance || 0);
-
-if(amount > balance){
-showToast("الرصيد غير كافٍ لطلب السحب");
-return;
-}
-}
-
-const {error} = await supabaseClient
-.from("wallet_requests")
-.insert({
-user_id:currentUser.id,
-request_type:type,
-amount:amount,
-payment_method:method,
-payment_account:account,
-payment_reference:reference || null,
-status:"pending"
-});
-
-if(error){
-console.error("Wallet request:",error);
-showToast("تعذر إرسال الطلب: " + error.message);
-return;
-}
-
-document.getElementById("walletAmount").value = "";
-document.getElementById("paymentAccount").value = "";
-document.getElementById("paymentReference").value = "";
-
+const {error}=await supabaseClient.from("wallet_requests").insert({user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,status:"pending"});
+if(error){console.error("Wallet request:",error);showToast("تعذر إرسال الطلب: "+error.message);return}
+$("walletAmount").value="";$("paymentAccount").value="";$("paymentReference").value="";
 showToast("تم إرسال طلبك بنجاح وهو الآن قيد المراجعة");
-
 await loadWalletHistory();
 }
-
-/* =========================================================
-WALLET HISTORY
-========================================================= */
-
 async function loadWalletHistory(){
-const body = document.getElementById("historyBody");
-const message = document.getElementById("historyLoginMessage");
-
-if(!body)return;
-
-body.innerHTML = "";
-
-if(!currentUser){
-message.classList.remove("hidden");
-return;
-}
-
+const body=$("historyBody"),message=$("historyLoginMessage");if(!body)return;body.innerHTML="";
+if(!currentUser){message.classList.remove("hidden");walletRequestsCache=[];renderNotifications();updateNotificationBadge();return}
 message.classList.add("hidden");
-
-const {data,error} = await supabaseClient
-.from("wallet_requests")
-.select("*")
-.eq("user_id",currentUser.id)
-.order("created_at",{ascending:false});
-
-if(error){
-console.error("Wallet history:",error);
-body.innerHTML = '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
-return;
-}
-
-if(!data || data.length === 0){
-body.innerHTML = '<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
-return;
-}
-
-data.forEach(item=>{
-const tr = document.createElement("tr");
-
-const type =
-item.request_type === "deposit"
-? "إيداع"
-: "سحب";
-
-const status = String(item.status || "pending").toLowerCase();
-
-const statusClass =
-status === "approved"
-? "status-approved"
-: status === "rejected"
-? "status-rejected"
-: status === "cancelled"
-? "status-cancelled"
-: "status-pending";
-
-const statusText =
-status === "approved"
-? "مقبول"
-: status === "rejected"
-? "مرفوض"
-: status === "cancelled"
-? "ملغى"
-: "قيد المراجعة";
-
-tr.innerHTML = `
-<td>${escapeHtml(type)}</td>
-<td>${escapeHtml(formatMoney(item.amount))}</td>
-<td>${escapeHtml(item.payment_method || "-")}</td>
-<td><span class="status ${statusClass}">${escapeHtml(statusText)}</span></td>
-<td>${escapeHtml(formatDate(item.created_at))}</td>
-`;
-
+const {data,error}=await supabaseClient.from("wallet_requests").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});
+if(error){console.error("Wallet history:",error);body.innerHTML='<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';return}
+walletRequestsCache=Array.isArray(data)?data:[];
+if(!walletRequestsCache.length){body.innerHTML='<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>'}
+else walletRequestsCache.forEach(item=>{
+const tr=document.createElement("tr"),type=item.request_type==="deposit"?"إيداع":"سحب",status=String(item.status||"pending").toLowerCase();
+const statusClass=status==="approved"?"status-approved":status==="rejected"?"status-rejected":status==="cancelled"?"status-cancelled":"status-pending";
+const statusText=status==="approved"?"مقبول":status==="rejected"?"مرفوض":status==="cancelled"?"ملغى":"قيد المراجعة";
+tr.innerHTML=`<td>${escapeHtml(type)}</td><td>${escapeHtml(formatMoney(item.amount))}</td><td>${escapeHtml(item.payment_method||"-")}</td><td><span class="status ${statusClass}">${escapeHtml(statusText)}</span></td><td>${escapeHtml(formatDate(item.updated_at||item.created_at))}</td>`;
 body.appendChild(tr);
 });
+updateNotificationBadge();renderNotifications();
 }
-
-/* =========================================================
-SUPPORT
-========================================================= */
-
 async function getOrCreateConversation(){
-if(!currentUser){
-return null;
+if(!currentUser)return null;
+const {data:existing,error:findError}=await supabaseClient.from("support_conversations").select("*").eq("user_id",currentUser.id).eq("status","open").order("created_at",{ascending:false}).limit(1).maybeSingle();
+if(findError){console.error("Support conversation search error:",findError);return null}
+if(existing){currentConversation=existing;return existing}
+let result=await supabaseClient.from("support_conversations").insert({user_id:currentUser.id,status:"open"}).select("*").single();
+if(result.error)result=await supabaseClient.from("support_conversations").insert({user_id:currentUser.id,visitor_name:currentUser.user_metadata?.full_name||currentUser.email||"عميل",topic:"دعم من الموقع",status:"open"}).select("*").single();
+if(result.error){console.error("Support conversation create error:",result.error);return null}currentConversation=result.data;return result.data;
 }
-
-const {data:existing,error:findError} = await supabaseClient
-.from("support_conversations")
-.select("*")
-.eq("user_id",currentUser.id)
-.eq("status","open")
-.order("created_at",{ascending:false})
-.limit(1)
-.maybeSingle();
-
-if(findError){
-console.error("Support conversation search error:",findError);
-return null;
-}
-
-if(existing){
-currentConversation = existing;
-return existing;
-}
-
-let result = await supabaseClient
-.from("support_conversations")
-.insert({
-user_id:currentUser.id,
-status:"open"
-})
-.select("*")
-.single();
-
-if(result.error){
-result = await supabaseClient
-.from("support_conversations")
-.insert({
-user_id:currentUser.id,
-visitor_name:
-currentUser.user_metadata?.full_name ||
-currentUser.email ||
-"عميل",
-topic:"دعم من الموقع",
-status:"open"
-})
-.select("*")
-.single();
-}
-
-if(result.error){
-console.error("Support conversation create error:",result.error);
-return null;
-}
-
-currentConversation = result.data;
-return result.data;
-}
-
 async function loadSupport(){
-const box = document.getElementById("supportMessages");
-
-if(!box)return;
-
-if(!currentUser){
-box.innerHTML =
-'<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-return;
+const box=$("supportMessages");if(!box)return;
+if(!currentUser){box.innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';return}
+const conversation=await getOrCreateConversation();
+if(!conversation){box.innerHTML='<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';return}
+const {data,error}=await supabaseClient.from("support_messages").select("*").eq("conversation_id",conversation.id).order("created_at",{ascending:true});
+if(error){console.error("Support messages:",error);box.innerHTML='<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';return}
+box.innerHTML="";
+if(!data||data.length===0){box.innerHTML='<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';return}
+data.forEach(message=>{const div=document.createElement("div"),role=String(message.sender_role||"").toLowerCase(),isUser=role==="visitor";div.className="message "+(isUser?"user":"admin");div.innerHTML=`<div>${escapeHtml(message.message||"")}</div><div class="messageTime">${escapeHtml(formatDate(message.created_at))}</div>`;box.appendChild(div)});
+box.scrollTop=box.scrollHeight;
 }
-
-const conversation = await getOrCreateConversation();
-
-if(!conversation){
-box.innerHTML =
-'<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
-return;
-}
-
-const {data,error} = await supabaseClient
-.from("support_messages")
-.select("*")
-.eq("conversation_id",conversation.id)
-.order("created_at",{ascending:true});
-
-if(error){
-console.error("Support messages:",error);
-box.innerHTML =
-'<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
-return;
-}
-
-box.innerHTML = "";
-
-if(!data || data.length === 0){
-box.innerHTML =
-'<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
-return;
-}
-
-data.forEach(message=>{
-const div = document.createElement("div");
-const role = String(message.sender_role || "").toLowerCase();
-const isUser = role === "visitor";
-
-div.className = "message " + (isUser ? "user" : "admin");
-
-div.innerHTML = `
-<div>${escapeHtml(message.message || "")}</div>
-<div class="messageTime">${escapeHtml(formatDate(message.created_at))}</div>
-`;
-
-box.appendChild(div);
-});
-
-box.scrollTop = box.scrollHeight;
-}
-
 async function sendSupportMessage(){
-if(!currentUser){
-showToast("يجب تسجيل الدخول أولًا");
-openModal("loginModal");
-return;
-}
-
-const input = document.getElementById("supportInput");
-const message = input.value.trim();
-
-if(!message){
-showToast("اكتب رسالة أولًا");
-return;
-}
-
-const conversation = await getOrCreateConversation();
-
-if(!conversation){
-showToast("تعذر فتح المحادثة");
-return;
-}
-
+if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
+const input=$("supportInput"),message=input.value.trim();if(!message){showToast("اكتب رسالة أولًا");return}
+const conversation=await getOrCreateConversation();if(!conversation){showToast("تعذر فتح المحادثة");return}
 showStatus("supportStatus","جارٍ إرسال الرسالة...");
-
-const {error} = await supabaseClient
-.from("support_messages")
-.insert({
-conversation_id:conversation.id,
-sender_role:"visitor",
-message:message
-});
-
-if(error){
-console.error("Send support message:",error);
-showStatus("supportStatus","تعذر إرسال الرسالة: " + error.message,"error");
-return;
+const {error}=await supabaseClient.from("support_messages").insert({conversation_id:conversation.id,sender_role:"visitor",message});
+if(error){console.error("Send support message:",error);showStatus("supportStatus","تعذر إرسال الرسالة: "+error.message,"error");return}
+input.value="";showStatus("supportStatus","تم إرسال الرسالة بنجاح.","success");await loadSupport();
 }
-
-input.value = "";
-
-showStatus("supportStatus","تم إرسال الرسالة بنجاح.","success");
-
-await loadSupport();
-}
-
-/* =========================================================
-PASSWORD RECOVERY
-========================================================= */
-
-function openRecovery(){
-closeModal("loginModal");
-openModal("recoveryModal");
-}
-
+function openRecovery(){closeModal("loginModal");openModal("recoveryModal")}
 async function sendRecovery(){
-const email = document.getElementById("recoveryEmail").value.trim();
-
-if(!email){
-showStatus("recoveryStatus","أدخل بريدك الإلكتروني.","error");
-return;
-}
-
-const redirectTo =
-window.location.origin +
-window.location.pathname +
-"?type=recovery";
-
-const {error} = await supabaseClient.auth.resetPasswordForEmail(
-email,
-{redirectTo:redirectTo}
-);
-
-if(error){
-showStatus("recoveryStatus",error.message,"error");
-return;
-}
-
+const email=$("recoveryEmail").value.trim();if(!email){showStatus("recoveryStatus","أدخل بريدك الإلكتروني.","error");return}
+const redirectTo=window.location.origin+window.location.pathname+"?type=recovery";
+const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo});
+if(error){showStatus("recoveryStatus",error.message,"error");return}
 showStatus("recoveryStatus","تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.","success");
 }
-
 async function changePassword(){
-const password = document.getElementById("newPassword").value;
-
-if(password.length < 6){
-showStatus("resetStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
-return;
+const password=$("newPassword").value;if(password.length<6){showStatus("resetStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");return}
+const {error}=await supabaseClient.auth.updateUser({password});
+if(error){showStatus("resetStatus",error.message,"error");return}
+showStatus("resetStatus","تم تغيير كلمة المرور بنجاح.","success");setTimeout(()=>closeModal("resetModal"),1500);
 }
-
-const {error} = await supabaseClient.auth.updateUser({
-password:password
-});
-
-if(error){
-showStatus("resetStatus",error.message,"error");
-return;
-}
-
-showStatus("resetStatus","تم تغيير كلمة المرور بنجاح.","success");
-
-setTimeout(()=>{
-closeModal("resetModal");
-},1500);
-}
-
-/* =========================================================
-AUTH STATE
-========================================================= */
-
 supabaseClient.auth.onAuthStateChange((event,session)=>{
-currentUser = session?.user || null;
-
+currentUser=session?.user||null;
 setTimeout(async()=>{
 await updateAuthUI(currentUser);
-
-if(currentUser){
-await loadWalletData();
-await loadWalletHistory();
-await loadSupport();
-}else{
-currentConversation = null;
-}
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}else{currentConversation=null;walletRequestsCache=[];renderNotifications();updateNotificationBadge()}
 },0);
-
-if(event === "PASSWORD_RECOVERY"){
-setTimeout(()=>{
-openModal("resetModal");
-},300);
-}
+if(event==="PASSWORD_RECOVERY")setTimeout(()=>openModal("resetModal"),300);
 });
-
-/* =========================================================
-INITIALIZATION
-========================================================= */
-
 async function initialize(){
 try{
-const {data,error} = await supabaseClient.auth.getUser();
-
-if(error){
-console.error("Initial auth error:",error);
-await updateAuthUI(null);
-return;
+const {data,error}=await supabaseClient.auth.getUser();
+if(error){console.error("Initial auth error:",error);await updateAuthUI(null);return}
+currentUser=data?.user||null;await updateAuthUI(currentUser);
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}
+}catch(error){console.error("Initialization error:",error)}
 }
-
-currentUser = data?.user || null;
-
-await updateAuthUI(currentUser);
-
-if(currentUser){
-await loadWalletData();
-await loadWalletHistory();
-await loadSupport();
-}
-}catch(error){
-console.error("Initialization error:",error);
-}
-}
-
-/* =========================================================
-RECOVERY URL
-========================================================= */
-
-if(
-new URLSearchParams(window.location.search).get("type") === "recovery"
-){
-setTimeout(()=>{
-openModal("resetModal");
-},800);
-}
-
+if(new URLSearchParams(window.location.search).get("type")==="recovery")setTimeout(()=>openModal("resetModal"),800);
 initialize();
-
-/* =========================================================
-CLOSE MODALS
-========================================================= */
-
-document.querySelectorAll(".modal").forEach(modal=>{
-modal.addEventListener("click",event=>{
-if(event.target === modal){
-modal.classList.remove("show");
-}
+document.querySelectorAll(".modal").forEach(modal=>modal.addEventListener("click",event=>{if(event.target===modal)modal.classList.remove("show")}));
+document.addEventListener("click",event=>{
+const wrap=document.querySelector(".notificationWrap"),panel=$("notificationPanel"),button=$("notificationButton");
+if(wrap&&panel&&!wrap.contains(event.target)){panel.classList.add("hidden");if(button)button.setAttribute("aria-expanded","false")}
 });
-});
-
-/* =========================================================
-AUTO REFRESH
-========================================================= */
-
-setInterval(async()=>{
-if(!currentUser)return;
-await loadWalletData();
-await loadWalletHistory();
-},15000);
-
+setInterval(async()=>{if(!currentUser||notificationRefreshBusy)return;notificationRefreshBusy=true;try{await loadWalletData();await loadWalletHistory()}finally{notificationRefreshBusy=false}},15000);
 </script>
-
 </body>
-  </html>
+</html>
