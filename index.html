@@ -2037,6 +2037,10 @@ walletBalance.textContent = "جاري التحميل...";
 
 try{
 
+/*
+  نقرأ المستخدم من جلسة Supabase
+*/
+
 const {
 data:userData,
 error:userError
@@ -2052,11 +2056,11 @@ userError
 );
 
 if(heroBalance){
-heroBalance.textContent = "0.000 د.ت";
+heroBalance.textContent = "تعذر قراءة الحساب";
 }
 
 if(walletBalance){
-walletBalance.textContent = "0.000 د.ت";
+walletBalance.textContent = "تعذر قراءة الحساب";
 }
 
 return;
@@ -2064,7 +2068,8 @@ return;
 }
 
 
-const user = userData?.user;
+const user =
+userData?.user;
 
 
 if(!user){
@@ -2084,21 +2089,35 @@ return;
 
 currentUser = user;
 
+
 console.log(
 "Current Auth User ID:",
 user.id
 );
 
 
+/*
+  قراءة المحفظة.
+
+  استخدمنا limit(1) بدل maybeSingle()
+  حتى لا يفشل الاستعلام إذا كان هناك أكثر
+  من سجل بالخطأ لنفس المستخدم.
+*/
+
 const {
-data:wallet,
+data:walletRows,
 error:walletError
 } =
 await supabaseClient
 .from("wallet_accounts")
-.select("user_id,balance,currency")
-.eq("user_id",user.id)
-.maybeSingle();
+.select(
+"user_id,balance,currency"
+)
+.eq(
+"user_id",
+user.id
+)
+.limit(1);
 
 
 if(walletError){
@@ -2113,21 +2132,62 @@ console.error(
 user.id
 );
 
+console.error(
+"Wallet error code:",
+walletError.code
+);
+
+console.error(
+"Wallet error message:",
+walletError.message
+);
+
+console.error(
+"Wallet error details:",
+walletError.details
+);
+
+console.error(
+"Wallet error hint:",
+walletError.hint
+);
+
+
 /*
-لا نعرض تفاصيل خطأ Supabase للعميل.
+  نعرض كود الخطأ فقط للمساعدة في تشخيص
+  مشكلة Supabase.
 */
 
+const errorCode =
+walletError.code
+? " (" + walletError.code + ")"
+: "";
+
+
 if(heroBalance){
-heroBalance.textContent = "تعذر قراءة الرصيد";
+heroBalance.textContent =
+"خطأ المحفظة" + errorCode;
 }
 
 if(walletBalance){
-walletBalance.textContent = "تعذر قراءة الرصيد";
+walletBalance.textContent =
+"خطأ المحفظة" + errorCode;
 }
 
 return;
 
 }
+
+
+/*
+  limit(1) يرجع مصفوفة.
+  نأخذ أول حساب فقط.
+*/
+
+const wallet =
+Array.isArray(walletRows)
+? walletRows[0]
+: null;
 
 
 console.log(
@@ -2136,31 +2196,45 @@ wallet
 );
 
 
+/*
+  لا يوجد حساب محفظة
+*/
+
 if(!wallet){
-
-if(heroBalance){
-heroBalance.textContent = "0.000 د.ت";
-}
-
-if(walletBalance){
-walletBalance.textContent = "0.000 د.ت";
-}
 
 console.warn(
 "لا يوجد حساب محفظة لهذا المستخدم:",
 user.id
 );
 
+if(heroBalance){
+heroBalance.textContent =
+"0.000 د.ت";
+}
+
+if(walletBalance){
+walletBalance.textContent =
+"0.000 د.ت";
+}
+
 return;
 
 }
 
 
+/*
+  تحويل الرصيد إلى رقم
+*/
+
 const balance =
 Number(wallet.balance ?? 0);
 
+
 const currency =
-String(wallet.currency || "TND").toUpperCase();
+String(
+wallet.currency || "TND"
+).toUpperCase();
+
 
 const formatted =
 balance.toFixed(3) +
@@ -2171,13 +2245,20 @@ currency === "TND"
 );
 
 
+/*
+  عرض الرصيد في المكانين
+*/
+
 if(heroBalance){
-heroBalance.textContent = formatted;
+heroBalance.textContent =
+formatted;
 }
 
 if(walletBalance){
-walletBalance.textContent = formatted;
+walletBalance.textContent =
+formatted;
 }
+
 
 console.log(
 "Displayed wallet balance:",
@@ -2193,11 +2274,13 @@ error
 );
 
 if(heroBalance){
-heroBalance.textContent = "تعذر قراءة الرصيد";
+heroBalance.textContent =
+"تعذر قراءة الرصيد";
 }
 
 if(walletBalance){
-walletBalance.textContent = "تعذر قراءة الرصيد";
+walletBalance.textContent =
+"تعذر قراءة الرصيد";
 }
 
 }
@@ -2267,14 +2350,14 @@ return;
 if(type === "withdraw"){
 
 const {
-data:walletAccount,
+data:walletRows,
 error:walletError
 } =
 await supabaseClient
 .from("wallet_accounts")
 .select("balance")
 .eq("user_id",currentUser.id)
-.maybeSingle();
+.limit(1);
 
 
 if(walletError){
@@ -2291,6 +2374,12 @@ showToast(
 return;
 
 }
+
+
+const walletAccount =
+Array.isArray(walletRows)
+? walletRows[0]
+: null;
 
 
 const balance =
