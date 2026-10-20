@@ -1698,11 +1698,11 @@ HTML SECURITY
 function escapeHtml(value){
 
 return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+.replace(/&/g,"&")
+.replace(/</g,"<")
+.replace(/>/g,">")
+.replace(/"/g,""")
+.replace(/'/g,"'");
 
 }
 
@@ -2214,9 +2214,21 @@ walletBalance.textContent =
 "خطأ في قراءة الرصيد";
 }
 
-showToast(
-"تعذر قراءة رصيد المحفظة من Supabase"
-);
+const errorMessage =
+walletError.message ||
+walletError.code ||
+"خطأ غير معروف";
+
+if (heroBalance) {
+heroBalance.textContent = errorMessage;
+}
+
+if (walletBalance) {
+walletBalance.textContent = errorMessage;
+}
+
+console.error("Wallet error details:", walletError);
+
 
 return;
 
@@ -2627,25 +2639,24 @@ status === "approved"
 tr.innerHTML = `
 
 <td>
-${escapeHtml(type)}
+$`{escapeHtml(type)}
 </td>
 
 <td>
-${escapeHtml(formatMoney(item.amount))}
+`${escapeHtml(formatMoney(item.amount))}
 </td>
 
 <td>
-${escapeHtml(item.payment_method || "-")}
+$`{escapeHtml(item.payment_method || "-")}
 </td>
 
 <td>
-<span class="status ${statusClass}">
-${escapeHtml(statusText)}
+<span class="status ${statusClass}"&gt; ${escapeHtml(statusText)}
 </span>
 </td>
 
 <td>
-${escapeHtml(formatDate(item.created_at))}
+`${escapeHtml(formatDate(item.created_at))}
 </td>
 
 `;
@@ -2886,11 +2897,11 @@ isUser
 div.innerHTML = `
 
 <div>
-${escapeHtml(message.message || "")}
+$`{escapeHtml(message.message || "")}
 </div>
 
 <div class="messageTime">
-${escapeHtml(formatDate(message.created_at))}
+`${escapeHtml(formatDate(message.created_at))}
 </div>
 
 `;
@@ -3285,7 +3296,6 @@ if(
 new URLSearchParams(
 window.location.search
 ).get("type")
-===
 "recovery"
 ){
 
@@ -3351,4 +3361,5 @@ await loadWalletHistory();
 </script>
 
 </body>
-  </html>
+</html>
+
