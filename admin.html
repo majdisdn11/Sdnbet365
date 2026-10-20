@@ -1,633 +1,2470 @@
 <!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>Sdnbet365 | لوحة الإدارة</title>
 
-<html lang="ar" dir="rtl">  
-<head>  
-<meta charset="utf-8">  
-<meta name="viewport" content="width=device-width,initial-scale=1">  
-<meta name="theme-color" content="#0b1220">  
-<title>Sdnbet365 | لوحة الإدارة</title>  
-<style>  
-:root{  
-  --bg:#0b1220;--panel:#121d30;--panel2:#17253b;  
-  --line:#263750;--text:#f3f6fb;--muted:#a6b4c8;  
-  --green:#20c783;--gold:#f4c15d;--red:#ff7272;  
-}  
-*{box-sizing:border-box}  
-body{margin:0;background:var(--bg);color:var(--text);  
-font-family:Tahoma,Arial,sans-serif}  
-button,input,textarea,select{font:inherit}  
-button{cursor:pointer}  
-button:disabled{opacity:.5;cursor:not-allowed}  
-header{padding:18px;border-bottom:1px solid var(--line);  
-background:#0e192a;position:sticky;top:0;z-index:3}  
-.wrap{max-width:1200px;margin:auto;padding:0 16px}  
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}  
-.brand{font-size:21px;font-weight:bold}  
-.brand span{color:var(--green)}  
-.small{font-size:12px;color:var(--muted);line-height:1.8}  
-button,.btn{border:0;border-radius:9px;padding:11px 14px;font-weight:bold}  
-.primary{background:var(--green);color:#06251b}  
-.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}  
-.danger{background:#51272d;color:#ffdede;border:1px solid #743840}  
-main{padding-top:22px;padding-bottom:50px}  
-.card{background:var(--panel);border:1px solid var(--line);  
-border-radius:15px;padding:17px;margin-bottom:16px;min-width:0}  
-h1{font-size:25px;margin:0 0 8px}  
-h2{font-size:19px;margin:0 0 14px}  
-h3{font-size:16px}  
-input,textarea,select{width:100%;padding:12px;margin:7px 0;  
-border:1px solid var(--line);border-radius:9px;  
-background:#0c1524;color:var(--text)}  
-textarea{min-height:95px;resize:vertical}  
-label{font-size:13px;color:var(--muted)}  
-.login{max-width:440px;margin:35px auto}  
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}  
-.stat{background:var(--panel2);border:1px solid var(--line);  
-padding:16px;border-radius:12px;overflow-wrap:anywhere}  
-.stat strong{display:block;font-size:25px;color:var(--green);margin-top:8px}  
-.tabs{display:flex;gap:8px;overflow-x:auto;margin:20px 0}  
-.tabs button{white-space:nowrap}  
-.tabs button.active{background:var(--green);color:#06251b}  
-.table-wrap{overflow-x:auto}  
-table{width:100%;border-collapse:collapse;text-align:right;font-size:13px}  
-th,td{padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}  
-th{color:var(--muted)}  
-td button{margin:3px;padding:8px 10px;font-size:12px}  
-.status{font-size:13px;line-height:1.9;overflow-wrap:anywhere;  
-white-space:pre-wrap;color:var(--muted);margin-top:10px}  
-.error{color:var(--red)}  
-.good{color:var(--green)}  
-.badge{display:inline-block;padding:5px 8px;border-radius:7px;  
-background:var(--panel2);font-size:12px}  
-.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:15px}  
-.item{padding:12px;border:1px solid var(--line);border-radius:10px;  
-margin-bottom:9px;overflow-wrap:anywhere}  
-.item button{margin-top:8px}  
-.hidden{display:none!important}  
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}  
-@media(max-width:760px){  
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}  
- .layout{grid-template-columns:1fr}  
- header{position:static}  
- .card{padding:13px}  
- h1{font-size:22px}  
-}  
-</style>  
-</head>  
-<body>  
-<header>  
- <div class="wrap header-row">  
-  <div>  
-   <div class="brand">Sdn<span>bet365</span> | الإدارة</div>  
-   <div class="small" id="accountLabel">التحقق من الحساب...</div>  
-  </div>  
-  <button id="logoutBtn" class="secondary hidden" type="button">تسجيل الخروج</button>  
- </div>  
-</header>  <main class="wrap">  
- <section id="loginPanel" class="card login hidden">  
-  <h1>دخول المدير</h1>  
-  <p class="small">سجّل الدخول بحساب المدير الموجود في Supabase.</p>  
-  <form id="loginForm">  
-   <label for="email">البريد الإلكتروني</label>  
-   <input id="email" type="email" autocomplete="username" required>  
-   <label for="password">كلمة المرور</label>  
-   <input id="password" type="password" autocomplete="current-password" required>  
-   <button class="primary" id="loginBtn" type="submit">دخول</button>  
-  </form>  
-  <div id="loginStatus" class="status" role="status"></div>  
- </section>   <section id="deniedPanel" class="card hidden">  
-  <h2>لا توجد صلاحية إدارية</h2>  
-  <p id="deniedText" class="status error"></p>  
-  <p class="small">تأكد من وجود حسابك في جدول admin_users ومن أن سياسات قاعدة البيانات تسمح للمدير بالوصول.</p>  
-  <button id="deniedLogout" class="secondary" type="button">تسجيل الخروج</button>  
- </section>   <section id="dashboard" class="hidden">  
-  <div class="card">  
-   <h1>لوحة تحكم المدير</h1>  
-   <p class="small">إدارة الطلبات ومحادثات الدعم. كل إجراء يعرض نتيجته من قاعدة البيانات.</p>  
-   <div class="actions">  
-    <button id="refreshBtn" class="primary" type="button">تحديث البيانات</button>  
-   </div>  
-   <div id="mainStatus" class="status" role="status"></div>  
-  </div>    <div class="stats">  
-   <div class="stat">طلبات الإيداع<strong id="depositCount">—</strong></div>  
-   <div class="stat">طلبات السحب<strong id="withdrawCount">—</strong></div>  
-   <div class="stat">المحادثات<strong id="conversationCount">—</strong></div>  
-   <div class="stat">بانتظار المراجعة<strong id="pendingCount">—</strong></div>  
-  </div>    <nav class="tabs" aria-label="أقسام لوحة الإدارة">  
-   <button class="secondary active" data-tab="overview" type="button">الرئيسية</button>  
-   <button class="secondary" data-tab="wallet" type="button">الإيداع والسحب</button>  
-   <button class="secondary" data-tab="support" type="button">الدعم الفني</button>  
-  </nav>    <section id="tab-overview" class="card">  
-   <h2>نظرة عامة</h2>  
-   <p class="small">الأرقام التالية تعتمد على السجلات التي تسمح صلاحياتك بقراءتها.</p>  
-   <div id="overviewStatus" class="status">اضغط تحديث البيانات.</div>  
-  </section>    <section id="tab-wallet" class="card hidden">  
-   <h2>طلبات المحفظة</h2>  
-   <p class="small">راجع بيانات الطلب قبل تغيير حالته. تغيير الحالة هنا ليس تحويلًا ماليًا.</p>  
-   <div class="actions">  
-    <button class="secondary" id="allWalletBtn" type="button">كل الطلبات</button>  
-    <button class="secondary" id="pendingWalletBtn" type="button">المعلّقة فقط</button>  
-   </div>  
-   <div id="walletStatus" class="status"></div>  
-   <div class="table-wrap">  
-    <table>  
-     <thead><tr>  
-      <th>المستخدم</th><th>النوع</th><th>المبلغ</th>  
-      <th>الوسيلة</th><th>الحالة</th><th>التاريخ</th><th>الإجراء</th>  
-     </tr></thead>  
-     <tbody id="walletBody"></tbody>  
-    </table>  
-   </div>  
-  </section>    <section id="tab-support" class="card hidden">  
-   <h2>محادثات الدعم الفني</h2>  
-   <div class="layout">  
-    <div>  
-     <button id="refreshSupportBtn" class="secondary" type="button">تحديث المحادثات</button>  
-     <div id="supportStatus" class="status"></div>  
-     <div id="conversationList"></div>  
-    </div>  
-    <div>  
-     <h3 id="selectedConversationTitle">اختر محادثة</h3>  
-     <div id="messagesList"></div>  
-     <form id="replyForm">  
-      <label for="replyText">الرد على العميل</label>  
-      <textarea id="replyText" required placeholder="اكتب ردك هنا"></textarea>  
-      <button class="primary" id="replyBtn" type="submit" disabled>إرسال الرد</button>  
-     </form>  
-     <div id="replyStatus" class="status"></div>  
-    </div>  
-   </div>  
-  </section>  
- </section>  
-</main>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>  
-"use strict";  
-  
-const SUPABASE_URL = "https://bjzowejwvhicgmphkwkk.supabase.co";  
-const SUPABASE_PUBLISHABLE_KEY =  
- "sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";  
-  
-const db = window.supabase.createClient(  
- SUPABASE_URL,  
- SUPABASE_PUBLISHABLE_KEY  
-);  
-  
-const $ = id => document.getElementById(id);  
-let currentUser = null;  
-let selectedConversationId = null;  
-let walletCache = [];  
-let conversationsCache = [];  
-let walletPendingOnly = false;  
-let busy = false;  
-  
-function message(id, text, isError=false) {  
- const node = $(id);  
- if (!node) return;  
- node.textContent = text || "";  
- node.classList.toggle("error", !!isError);  
- node.classList.toggle("good", !isError && !!text);  
-}  
-  
-function show(id, visible) {  
- $(id).classList.toggle("hidden", !visible);  
-}  
-  
-function safeDate(value) {  
- if (!value) return "—";  
- const date = new Date(value);  
- return Number.isNaN(date.getTime())  
-  ? "—" : date.toLocaleString("ar-TN");  
-}  
-  
-function amountText(value) {  
- const number = Number(value);  
- return Number.isFinite(number) ? number.toFixed(3) + " د.ت" : "—";  
-}  
-  
-function requestType(value) {  
- if (value === "deposit") return "إيداع";  
- if (value === "withdraw") return "سحب";  
- return value || "غير محدد";  
-}  
-  
-function statusText(value) {  
- const labels = {  
-  pending:"قيد المراجعة",  
-  approved:"مقبول",  
-  rejected:"مرفوض",  
-  completed:"مكتمل",  
-  open:"مفتوحة",  
-  closed:"مغلقة"  
- };  
- return labels[value] || value || "غير محدد";  
-}  
-  
-function addCell(row, value) {  
- const cell = document.createElement("td");  
- cell.textContent = String(value ?? "—");  
- row.appendChild(cell);  
- return cell;  
-}  
-  
-function addButton(parent, label, className, handler) {  
- const button = document.createElement("button");  
- button.type = "button";  
- button.textContent = label;  
- button.className = className;  
- button.addEventListener("click", handler);  
- parent.appendChild(button);  
- return button;  
-}  
-  
-async function checkAdmin(user) {  
- // يفترض هذا الجزء أن admin_users يحتوي على عمود user_id.  
- const { data, error } = await db  
-  .from("admin_users")  
-  .select("user_id")  
-  .eq("user_id", user.id)  
-  .maybeSingle();  
-  
- if (error) throw error;  
- return !!data;  
-}  
-  
-async function start() {  
- show("dashboard", false);  
- show("deniedPanel", false);  
- show("loginPanel", false);  
- show("logoutBtn", false);  
- message("mainStatus", "");  
-  
- const { data, error } = await db.auth.getSession();  
- if (error) {  
-  show("loginPanel", true);  
-  message("loginStatus", "تعذر التحقق من الجلسة: " + error.message, true);  
-  return;  
- }  
-  
- const user = data.session?.user;  
- if (!user) {  
-  currentUser = null;  
-  $("accountLabel").textContent = "يرجى تسجيل الدخول";  
-  show("loginPanel", true);  
-  return;  
- }  
-  
- currentUser = user;  
- $("accountLabel").textContent = "التحقق من صلاحيات: " + (user.email || user.id);  
- show("logoutBtn", true);  
-  
- try {  
-  const isAdmin = await checkAdmin(user);  
-  if (!isAdmin) {  
-   show("deniedPanel", true);  
-   message("deniedText", "هذا الحساب غير موجود كمدير في admin_users.", true);  
-   return;  
-  }  
-  
-  show("dashboard", true);  
-  message("mainStatus", "تم التحقق من وجود حساب المدير. جارٍ تحميل البيانات...");  
-  await refreshAll();  
- } catch (error) {  
-  show("deniedPanel", true);  
-  message("deniedText",  
-   "تعذر التحقق من صلاحيات المدير.\n" +  
-   (error.message || String(error)) +  
-   "\nتحقق من اسم عمود user_id وسياسات RLS في جدول admin_users.", true);  
- }  
-}  
-  
-async function refreshAll() {  
- if (!currentUser || busy) return;  
- busy = true;  
- $("refreshBtn").disabled = true;  
- message("mainStatus", "جارٍ تحديث البيانات...");  
-  
- try {  
-  await Promise.all([loadWallet(), loadConversations()]);  
-  message("mainStatus", "انتهى التحديث. راجع رسائل الأقسام لأي أخطاء.");  
-  updateStats();  
- } catch (error) {  
-  message("mainStatus", "تعذر تحديث بعض البيانات: " + (error.message || error), true);  
- } finally {  
-  busy = false;  
-  $("refreshBtn").disabled = false;  
- }  
-}  
-  
-async function loadWallet() {  
- message("walletStatus", "جارٍ تحميل طلبات المحفظة...");  
- $("walletBody").replaceChildren();  
-  
- const { data, error } = await db  
-  .from("wallet_requests")  
-  .select("id,user_id,request_type,amount,payment_method,status,created_at")  
-  .order("created_at", { ascending:false })  
-  .limit(200);  
-  
- if (error) {  
-  walletCache = [];  
-  message("walletStatus",  
-   "تعذر قراءة طلبات المحفظة: " + error.message +  
-   "\nقد تحتاج إلى مراجعة سياسات RLS وصلاحية قراءة الجدول.", true);  
-  updateStats();  
-  return;  
- }  
-  
- walletCache = data || [];  
- renderWallet();  
- updateStats();  
-}  
-  
-function renderWallet() {  
- const body = $("walletBody");  
- body.replaceChildren();  
-  
- const rows = walletPendingOnly  
-  ? walletCache.filter(item => item.status === "pending")  
-  : walletCache;  
-  
- if (!rows.length) {  
-  message("walletStatus", "لا توجد طلبات مطابقة للعرض.");  
-  return;  
- }  
-  
- message("walletStatus", "عدد الطلبات المعروضة: " + rows.length);  
-  
- for (const item of rows) {  
-  const tr = document.createElement("tr");  
-  addCell(tr, item.user_id);  
-  addCell(tr, requestType(item.request_type));  
-  addCell(tr, amountText(item.amount));  
-  addCell(tr, item.payment_method || "—");  
-  addCell(tr, statusText(item.status));  
-  addCell(tr, safeDate(item.created_at));  
-  
-  const actions = document.createElement("td");  
-  
-  if (item.status === "pending") {  
-   addButton(actions, "قبول", "primary", () =>  
-    updateWalletStatus(item, "approved"));  
-   addButton(actions, "رفض", "danger", () =>  
-    updateWalletStatus(item, "rejected"));  
-  } else {  
-   actions.textContent = "لا يوجد إجراء";  
-  }  
-  
-  tr.appendChild(actions);  
-  body.appendChild(tr);  
- }  
-}  
-  
-async function updateWalletStatus(item, nextStatus) {  
- const actionLabel = nextStatus === "approved" ? "قبول" : "رفض";  
- if (!confirm("هل تريد " + actionLabel + " الطلب؟\n" +  
-  "المبلغ: " + amountText(item.amount) +  
-  "\nهذا يغيّر حالة السجل فقط، ولا ينفذ تحويلًا ماليًا.")) return;  
-  
- message("walletStatus", "جارٍ تحديث الطلب...");  
- try {  
-  const { data, error } = await db  
-   .from("wallet_requests")  
-   .update({status:nextStatus})  
-   .eq("id", item.id)  
-   .eq("status", "pending")  
-   .select("id,status");  
-  
-  if (error) throw error;  
-  if (!data || data.length === 0) {  
-   throw new Error("لم يتغير الطلب. قد لا تملك صلاحية التحديث أو أن حالته تغيرت.");  
-  }  
-  
-  message("walletStatus", "تم تحديث حالة الطلب إلى: " + statusText(nextStatus));  
-  await loadWallet();  
- } catch (error) {  
-  message("walletStatus",  
-   "فشل تحديث الطلب: " + (error.message || String(error)) +  
-   "\nلم يتم تأكيد أي تحويل مالي.", true);  
- }  
-}  
-  
-async function loadConversations() {  
- message("supportStatus", "جارٍ تحميل المحادثات...");  
- $("conversationList").replaceChildren();  
-  
- const { data, error } = await db  
-  .from("support_conversations")  
-  .select("id,visitor_token,visitor_name,topic,status,created_at,updated_at")  
-  .order("updated_at", {ascending:false})  
-  .limit(100);  
-  
- if (error) {  
-  conversationsCache = [];  
-  message("supportStatus", "تعذر قراءة المحادثات: " + error.message, true);  
-  updateStats();  
-  return;  
- }  
-  
- conversationsCache = data || [];  
- renderConversations();  
- updateStats();  
-}  
-  
-function renderConversations() {  
- const list = $("conversationList");  
- list.replaceChildren();  
-  
- if (!conversationsCache.length) {  
-  message("supportStatus", "لا توجد محادثات، أو لا توجد سجلات يمكن عرضها.");  
-  return;  
- }  
-  
- message("supportStatus", "عدد المحادثات: " + conversationsCache.length);  
-  
- for (const conv of conversationsCache) {  
-  const item = document.createElement("div");  
-  item.className = "item";  
-  
-  const title = document.createElement("strong");  
-  title.textContent = conv.visitor_name || "العميل";  
-  item.appendChild(title);  
-  
-  const details = document.createElement("p");  
-  details.className = "small";  
-  details.textContent =  
-   (conv.topic || "استفسار عام") + " · " +  
-   statusText(conv.status) + "\n" + safeDate(conv.created_at);  
-  item.appendChild(details);  
-  
-  addButton(item, "فتح المحادثة", "secondary", () => openConversation(conv));  
-  list.appendChild(item);  
- }  
-}  
-  
-async function openConversation(conv) {  
- selectedConversationId = conv.id;  
- $("selectedConversationTitle").textContent =  
-  (conv.visitor_name || "العميل") + " — " + (conv.topic || "استفسار عام");  
- $("replyBtn").disabled = false;  
- $("messagesList").replaceChildren();  
- message("replyStatus", "جارٍ تحميل الرسائل...");  
-  
- const { data, error } = await db  
-  .from("support_messages")  
-  .select("id,sender_role,message,created_at")  
-  .eq("conversation_id", conv.id)  
-  .order("created_at", {ascending:true})  
-  .limit(300);  
-  
- if (error) {  
-  message("replyStatus", "تعذر تحميل الرسائل: " + error.message, true);  
-  return;  
- }  
-  
- $("messagesList").replaceChildren();  
-  
- for (const msg of data || []) {  
-  const bubble = document.createElement("div");  
-  bubble.className = "item";  
-  
-  const sender = document.createElement("strong");  
-  sender.textContent = msg.sender_role === "admin" ? "الدعم" :  
-   msg.sender_role === "visitor" ? "العميل" : (msg.sender_role || "مرسل");  
-  bubble.appendChild(sender);  
-  
-  const content = document.createElement("p");  
-  content.textContent = msg.message || "";  
-  content.style.whiteSpace = "pre-wrap";  
-  bubble.appendChild(content);  
-  
-  const time = document.createElement("div");  
-  time.className = "small";  
-  time.textContent = safeDate(msg.created_at);  
-  bubble.appendChild(time);  
-  
-  $("messagesList").appendChild(bubble);  
- }  
-  
- message("replyStatus", "تم تحميل الرسائل.");  
-}  
-  
-$("replyForm").addEventListener("submit", async event => {  
- event.preventDefault();  
-  
- if (!selectedConversationId || !currentUser) {  
-  message("replyStatus", "اختر محادثة أولًا.", true);  
-  return;  
- }  
-  
- const text = $("replyText").value.trim();  
- if (!text) {  
-  message("replyStatus", "اكتب الرد أولًا.", true);  
-  return;  
- }  
-  
- $("replyBtn").disabled = true;  
- message("replyStatus", "جارٍ إرسال الرد...");  
-  
- try {  
-  const { error } = await db  
-   .from("support_messages")  
-   .insert({  
-    conversation_id:selectedConversationId,  
-    sender_role:"admin",  
-    message:text  
-   });  
-  
-  if (error) throw error;  
-  
-  $("replyText").value = "";  
-  message("replyStatus", "تم حفظ الرد في قاعدة البيانات.");  
-  const conv = conversationsCache.find(c => c.id === selectedConversationId);  
-  if (conv) await openConversation(conv);  
- } catch (error) {  
-  message("replyStatus",  
-   "تعذر إرسال الرد: " + (error.message || String(error)) +  
-   "\nتحقق من سياسة الإدراج في support_messages.", true);  
- } finally {  
-  $("replyBtn").disabled = !selectedConversationId;  
- }  
-});  
-  
-function updateStats() {  
- $("depositCount").textContent =  
-  walletCache.filter(x => x.request_type === "deposit").length;  
- $("withdrawCount").textContent =  
-  walletCache.filter(x => x.request_type === "withdraw").length;  
- $("conversationCount").textContent = conversationsCache.length;  
- $("pendingCount").textContent =  
-  walletCache.filter(x => x.status === "pending").length;  
-  
- $("overviewStatus").textContent =  
-  "طلبات المحفظة المحمّلة: " + walletCache.length +  
-  "\nطلبات الإيداع: " +  
-  walletCache.filter(x => x.request_type === "deposit").length +  
-  "\nطلبات السحب: " +  
-  walletCache.filter(x => x.request_type === "withdraw").length +  
-  "\nالطلبات المعلّقة: " +  
-  walletCache.filter(x => x.status === "pending").length +  
-  "\nمحادثات الدعم: " + conversationsCache.length;  
-}  
-  
-document.querySelectorAll("[data-tab]").forEach(button => {  
- button.addEventListener("click", () => {  
-  document.querySelectorAll("[data-tab]").forEach(b =>  
-   b.classList.toggle("active", b === button));  
-  
-  ["overview","wallet","support"].forEach(tab =>  
-   show("tab-" + tab, button.dataset.tab === tab));  
- });  
-});  
-  
-$("allWalletBtn").addEventListener("click", () => {  
- walletPendingOnly = false;  
- renderWallet();  
-});  
-  
-$("pendingWalletBtn").addEventListener("click", () => {  
- walletPendingOnly = true;  
- renderWallet();  
-});  
-  
-$("refreshBtn").addEventListener("click", refreshAll);  
-$("refreshSupportBtn").addEventListener("click", loadConversations);  
-  
-$("loginForm").addEventListener("submit", async event => {  
- event.preventDefault();  
- const button = $("loginBtn");  
- button.disabled = true;  
- message("loginStatus", "جارٍ تسجيل الدخول...");  
-  
- try {  
-  const { error } = await db.auth.signInWithPassword({  
-   email:$("email").value.trim(),  
-   password:$("password").value  
-  });  
-  
-  if (error) throw error;  
-  await start();  
- } catch (error) {  
-  message("loginStatus", "فشل تسجيل الدخول: " +  
-   (error.message || String(error)), true);  
- } finally {  
-  button.disabled = false;  
- }  
-});  
-  
-async function logout() {  
- await db.auth.signOut();  
- currentUser = null;  
- selectedConversationId = null;  
- await start();  
-}  
-  
-$("logoutBtn").addEventListener("click", logout);  
-$("deniedLogout").addEventListener("click", logout);  
-  
-db.auth.onAuthStateChange(() => {  
- // تأخير قصير لتجنب استدعاءات متزامنة مع تحديث الجلسة.  
- setTimeout(() => start(), 0);  
-});  
-  
-start();  
-</script>  </body>  
-</html>  
+<style>
+:root{
+  --bg:#0b1220;
+  --panel:#121d30;
+  --panel2:#17253b;
+  --line:#263750;
+  --text:#f3f6fb;
+  --muted:#a6b4c8;
+  --green:#20c783;
+  --gold:#f4c15d;
+  --red:#ff7272;
+  --blue:#5da9ff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+header{
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  background:#0e192a;
+  position:sticky;
+  top:0;
+  z-index:3;
+}
+
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:0 16px;
+}
+
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.brand{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.brand span{
+  color:var(--green);
+}
+
+.small{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+button,.btn{
+  border:0;
+  border-radius:9px;
+  padding:11px 14px;
+  font-weight:bold;
+}
+
+.primary{
+  background:var(--green);
+  color:#06251b;
+}
+
+.secondary{
+  background:var(--panel2);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+.danger{
+  background:#51272d;
+  color:#ffdede;
+  border:1px solid #743840;
+}
+
+.warning{
+  background:#4d3d1d;
+  color:#ffe6a6;
+  border:1px solid #80652c;
+}
+
+.info{
+  background:#173453;
+  color:#cfe7ff;
+  border:1px solid #28537f;
+}
+
+main{
+  padding-top:22px;
+  padding-bottom:50px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:17px;
+  margin-bottom:16px;
+  min-width:0;
+}
+
+h1{
+  font-size:25px;
+  margin:0 0 8px;
+}
+
+h2{
+  font-size:19px;
+  margin:0 0 14px;
+}
+
+h3{
+  font-size:16px;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#0c1524;
+  color:var(--text);
+}
+
+textarea{
+  min-height:95px;
+  resize:vertical;
+}
+
+label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.login{
+  max-width:440px;
+  margin:35px auto;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+
+.stat{
+  background:var(--panel2);
+  border:1px solid var(--line);
+  padding:16px;
+  border-radius:12px;
+  overflow-wrap:anywhere;
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+  color:var(--green);
+  margin-top:8px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin:20px 0;
+}
+
+.tabs button{
+  white-space:nowrap;
+}
+
+.tabs button.active{
+  background:var(--green);
+  color:#06251b;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  text-align:right;
+  font-size:13px;
+}
+
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+
+th{
+  color:var(--muted);
+}
+
+td button{
+  margin:3px;
+  padding:8px 10px;
+  font-size:12px;
+}
+
+.status{
+  font-size:13px;
+  line-height:1.9;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+  color:var(--muted);
+  margin-top:10px;
+}
+
+.error{
+  color:var(--red);
+}
+
+.good{
+  color:var(--green);
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:7px;
+  background:var(--panel2);
+  font-size:12px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:15px;
+}
+
+.item{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin-bottom:9px;
+  overflow-wrap:anywhere;
+}
+
+.item button{
+  margin-top:8px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.notice{
+  border:1px solid #80652c;
+  background:#302817;
+  color:#ffe5a2;
+  padding:12px;
+  border-radius:10px;
+  line-height:1.8;
+  margin:10px 0;
+}
+
+.balance{
+  color:var(--green);
+  font-weight:bold;
+}
+
+.credit{
+  color:var(--green);
+  font-weight:bold;
+}
+
+.debit{
+  color:var(--red);
+  font-weight:bold;
+}
+
+@media(max-width:760px){
+
+  .stats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    position:static;
+  }
+
+  .card{
+    padding:13px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap header-row">
+
+<div>
+<div class="brand">
+Sdn<span>bet365</span> | الإدارة
+</div>
+
+<div class="small" id="accountLabel">
+التحقق من الحساب...
+</div>
+</div>
+
+<button
+id="logoutBtn"
+class="secondary hidden"
+type="button">
+تسجيل الخروج
+</button>
+
+</div>
+</header>
+
+
+<main class="wrap">
+
+<!-- LOGIN -->
+
+<section id="loginPanel" class="card login hidden">
+
+<h1>دخول المدير</h1>
+
+<p class="small">
+سجّل الدخول بحساب المدير الموجود في Supabase.
+</p>
+
+<form id="loginForm">
+
+<label for="email">
+البريد الإلكتروني
+</label>
+
+<input
+id="email"
+type="email"
+autocomplete="username"
+required
+>
+
+<label for="password">
+كلمة المرور
+</label>
+
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+required
+>
+
+<button
+class="primary"
+id="loginBtn"
+type="submit">
+دخول
+</button>
+
+</form>
+
+<div
+id="loginStatus"
+class="status"
+role="status">
+</div>
+
+</section>
+
+
+<!-- DENIED -->
+
+<section id="deniedPanel" class="card hidden">
+
+<h2>
+لا توجد صلاحية إدارية
+</h2>
+
+<p
+id="deniedText"
+class="status error">
+</p>
+
+<p class="small">
+تأكد من وجود حسابك في admin_users.
+</p>
+
+<button
+id="deniedLogout"
+class="secondary"
+type="button">
+تسجيل الخروج
+</button>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+<div class="card">
+
+<h1>
+لوحة تحكم المدير
+</h1>
+
+<p class="small">
+لوحة الإدارة المتصلة بقاعدة البيانات والـLedger المالي.
+</p>
+
+<div class="notice">
+<strong>تنبيه أمني:</strong>
+اعتماد الإيداع يحدّث رصيد المحفظة ويسجل العملية في Ledger بشكل ذري.
+أما السحب فلا يجب اعتماده كتحويل مالي حقيقي قبل ربط مزود الدفع الرسمي.
+</div>
+
+<div class="actions">
+
+<button
+id="refreshBtn"
+class="primary"
+type="button">
+تحديث البيانات
+</button>
+
+</div>
+
+<div
+id="mainStatus"
+class="status">
+</div>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+طلبات الإيداع
+<strong id="depositCount">—</strong>
+</div>
+
+<div class="stat">
+طلبات السحب
+<strong id="withdrawCount">—</strong>
+</div>
+
+<div class="stat">
+المحادثات
+<strong id="conversationCount">—</strong>
+</div>
+
+<div class="stat">
+بانتظار المراجعة
+<strong id="pendingCount">—</strong>
+</div>
+
+</div>
+
+
+<!-- TABS -->
+
+<nav class="tabs">
+
+<button
+class="secondary active"
+data-tab="overview"
+type="button">
+الرئيسية
+</button>
+
+<button
+class="secondary"
+data-tab="wallet"
+type="button">
+الإيداع والسحب
+</button>
+
+<button
+class="secondary"
+data-tab="ledger"
+type="button">
+السجل المالي
+</button>
+
+<button
+class="secondary"
+data-tab="support"
+type="button">
+الدعم الفني
+</button>
+
+</nav>
+
+
+<!-- OVERVIEW -->
+
+<section
+id="tab-overview"
+class="card">
+
+<h2>
+نظرة عامة
+</h2>
+
+<div
+id="overviewStatus"
+class="status">
+جارٍ التحميل...
+</div>
+
+</section>
+
+
+<!-- WALLET -->
+
+<section
+id="tab-wallet"
+class="card hidden">
+
+<h2>
+طلبات المحفظة
+</h2>
+
+<p class="small">
+الإيداع المعتمد يغيّر الرصيد ويُنشئ سجلًا ماليًا.
+الرفض لا يغيّر الرصيد.
+</p>
+
+<div class="actions">
+
+<button
+class="secondary"
+id="allWalletBtn"
+type="button">
+كل الطلبات
+</button>
+
+<button
+class="secondary"
+id="pendingWalletBtn"
+type="button">
+المعلّقة فقط
+</button>
+
+</div>
+
+<div
+id="walletStatus"
+class="status">
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>المستخدم</th>
+<th>النوع</th>
+<th>المبلغ</th>
+<th>الوسيلة</th>
+<th>الحساب</th>
+<th>المرجع</th>
+<th>الحالة</th>
+<th>التاريخ</th>
+<th>الإجراء</th>
+
+</tr>
+
+</thead>
+
+<tbody id="walletBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- LEDGER -->
+
+<section
+id="tab-ledger"
+class="card hidden">
+
+<h2>
+السجل المالي
+</h2>
+
+<p class="small">
+كل حركة مالية ناتجة عن اعتماد محفظة تظهر هنا.
+</p>
+
+<div
+id="ledgerStatus"
+class="status">
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>المستخدم</th>
+<th>النوع</th>
+<th>الاتجاه</th>
+<th>المبلغ</th>
+<th>قبل</th>
+<th>بعد</th>
+<th>الملاحظة</th>
+<th>التاريخ</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ledgerBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section
+id="tab-support"
+class="card hidden">
+
+<h2>
+محادثات الدعم الفني
+</h2>
+
+<div class="layout">
+
+<div>
+
+<button
+id="refreshSupportBtn"
+class="secondary"
+type="button">
+تحديث المحادثات
+</button>
+
+<div
+id="supportStatus"
+class="status">
+</div>
+
+<div id="conversationList"></div>
+
+</div>
+
+
+<div>
+
+<h3 id="selectedConversationTitle">
+اختر محادثة
+</h3>
+
+<div id="messagesList"></div>
+
+<form id="replyForm">
+
+<label for="replyText">
+الرد على العميل
+</label>
+
+<textarea
+id="replyText"
+required
+placeholder="اكتب ردك هنا">
+</textarea>
+
+<button
+class="primary"
+id="replyBtn"
+type="submit"
+disabled>
+إرسال الرد
+</button>
+
+</form>
+
+<div
+id="replyStatus"
+class="status">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+"use strict";
+
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+"https://bjzowejwvhicgmphkwkk.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+
+const db =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+const $ = id =>
+document.getElementById(id);
+
+let currentUser = null;
+
+let selectedConversationId = null;
+
+let walletCache = [];
+
+let conversationsCache = [];
+
+let ledgerCache = [];
+
+let walletPendingOnly = false;
+
+let busy = false;
+
+
+function message(id,text,isError=false){
+
+const node=$(id);
+
+if(!node)return;
+
+node.textContent=text||"";
+
+node.classList.toggle(
+"error",
+!!isError
+);
+
+node.classList.toggle(
+"good",
+!isError&&!!text
+);
+
+}
+
+
+function show(id,visible){
+
+const node=$(id);
+
+if(node)
+node.classList.toggle(
+"hidden",
+!visible
+);
+
+}
+
+
+function safeDate(value){
+
+if(!value)return "—";
+
+const date=new Date(value);
+
+return Number.isNaN(date.getTime())
+?"—"
+:date.toLocaleString("ar-TN");
+
+}
+
+
+function amountText(value){
+
+const number=Number(value);
+
+return Number.isFinite(number)
+?number.toFixed(3)+" د.ت"
+:"—";
+
+}
+
+
+function requestType(value){
+
+if(value==="deposit")
+return "إيداع";
+
+if(
+value==="withdraw" ||
+value==="withdrawal"
+)
+return "سحب";
+
+return value||"غير محدد";
+
+}
+
+
+function statusText(value){
+
+const labels={
+
+pending:"قيد المراجعة",
+
+approved:"مقبول",
+
+rejected:"مرفوض",
+
+completed:"مكتمل",
+
+open:"مفتوحة",
+
+closed:"مغلقة"
+
+};
+
+return labels[value]||
+value||
+"غير محدد";
+
+}
+
+
+function ledgerType(value){
+
+if(value==="deposit")
+return "إيداع";
+
+if(value==="withdrawal")
+return "سحب";
+
+if(value==="adjustment")
+return "تعديل";
+
+return value||"—";
+
+}
+
+
+function addCell(row,value){
+
+const cell=
+document.createElement("td");
+
+cell.textContent=
+String(value??"—");
+
+row.appendChild(cell);
+
+return cell;
+
+}
+
+
+function addButton(
+parent,
+label,
+className,
+handler
+){
+
+const button=
+document.createElement("button");
+
+button.type="button";
+
+button.textContent=label;
+
+button.className=className;
+
+button.addEventListener(
+"click",
+handler
+);
+
+parent.appendChild(button);
+
+return button;
+
+}
+
+
+/* =========================================
+   ADMIN CHECK
+========================================= */
+
+async function checkAdmin(user){
+
+const {data,error}=await db
+
+.from("admin_users")
+
+.select("user_id")
+
+.eq("user_id",user.id)
+
+.maybeSingle();
+
+if(error)
+throw error;
+
+return !!data;
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+async function start(){
+
+show("dashboard",false);
+
+show("deniedPanel",false);
+
+show("loginPanel",false);
+
+show("logoutBtn",false);
+
+message("mainStatus","");
+
+
+const {
+data,
+error
+}=await db.auth.getSession();
+
+
+if(error){
+
+show("loginPanel",true);
+
+message(
+"loginStatus",
+"تعذر التحقق من الجلسة: "+
+error.message,
+true
+);
+
+return;
+
+}
+
+
+const user=
+data.session?.user;
+
+
+if(!user){
+
+currentUser=null;
+
+$("accountLabel").textContent=
+"يرجى تسجيل الدخول";
+
+show("loginPanel",true);
+
+return;
+
+}
+
+
+currentUser=user;
+
+$("accountLabel").textContent=
+"المدير: "+
+(user.email||user.id);
+
+show("logoutBtn",true);
+
+
+try{
+
+const isAdmin=
+await checkAdmin(user);
+
+
+if(!isAdmin){
+
+show("deniedPanel",true);
+
+message(
+"deniedText",
+"هذا الحساب غير موجود كمدير.",
+true
+);
+
+return;
+
+}
+
+
+show("dashboard",true);
+
+message(
+"mainStatus",
+"تم التحقق من صلاحيات المدير."
+);
+
+await refreshAll();
+
+
+}catch(error){
+
+show("deniedPanel",true);
+
+message(
+"deniedText",
+"تعذر التحقق من صلاحيات المدير.\n"+
+(error.message||String(error)),
+true
+);
+
+}
+
+}
+
+
+/* =========================================
+   REFRESH
+========================================= */
+
+async function refreshAll(){
+
+if(!currentUser||busy)
+return;
+
+busy=true;
+
+$("refreshBtn").disabled=true;
+
+message(
+"mainStatus",
+"جارٍ تحديث البيانات..."
+);
+
+
+try{
+
+await Promise.all([
+
+loadWallet(),
+
+loadConversations(),
+
+loadLedger()
+
+]);
+
+updateStats();
+
+message(
+"mainStatus",
+"تم تحديث البيانات بنجاح."
+);
+
+
+}catch(error){
+
+message(
+"mainStatus",
+"تعذر تحديث البيانات: "+
+(error.message||String(error)),
+true
+);
+
+
+}finally{
+
+busy=false;
+
+$("refreshBtn").disabled=false;
+
+}
+
+}
+
+
+/* =========================================
+   WALLET REQUESTS
+========================================= */
+
+async function loadWallet(){
+
+message(
+"walletStatus",
+"جارٍ تحميل الطلبات..."
+);
+
+$("walletBody").replaceChildren();
+
+
+const {
+data,
+error
+}=await db
+
+.from("wallet_requests")
+
+.select(`
+id,
+user_id,
+request_type,
+amount,
+payment_method,
+payment_account,
+payment_reference,
+admin_note,
+status,
+created_at,
+updated_at
+`)
+
+.order(
+"created_at",
+{ascending:false}
+)
+
+.limit(200);
+
+
+if(error){
+
+walletCache=[];
+
+message(
+"walletStatus",
+"تعذر قراءة الطلبات: "+
+error.message,
+true
+);
+
+updateStats();
+
+return;
+
+}
+
+
+walletCache=data||[];
+
+renderWallet();
+
+updateStats();
+
+}
+
+
+/* =========================================
+   RENDER WALLET
+========================================= */
+
+function renderWallet(){
+
+const body=
+$("walletBody");
+
+body.replaceChildren();
+
+
+const rows=
+walletPendingOnly
+?walletCache.filter(
+x=>x.status==="pending"
+)
+:walletCache;
+
+
+if(!rows.length){
+
+message(
+"walletStatus",
+"لا توجد طلبات مطابقة."
+);
+
+return;
+
+}
+
+
+message(
+"walletStatus",
+"عدد الطلبات: "+
+rows.length
+);
+
+
+for(
+const item of rows
+){
+
+const tr=
+document.createElement("tr");
+
+
+addCell(
+tr,
+item.user_id
+);
+
+
+addCell(
+tr,
+requestType(
+item.request_type
+)
+);
+
+
+addCell(
+tr,
+amountText(item.amount)
+);
+
+
+addCell(
+tr,
+item.payment_method||"—"
+);
+
+
+addCell(
+tr,
+item.payment_account||"—"
+);
+
+
+addCell(
+tr,
+item.payment_reference||"—"
+);
+
+
+addCell(
+tr,
+statusText(item.status)
+);
+
+
+addCell(
+tr,
+safeDate(item.created_at)
+);
+
+
+const actions=
+document.createElement("td");
+
+
+if(item.status==="pending"){
+
+/*
+   الإيداع:
+   نستخدم RPC الآمنة التي أنشأناها.
+*/
+
+if(
+item.request_type==="deposit"
+){
+
+addButton(
+actions,
+"اعتماد الإيداع",
+"primary",
+()=>approveDeposit(item)
+);
+
+}
+
+/*
+   السحب:
+   لا ننفذ اعتمادًا ماليًا حقيقيًا
+   قبل ربط مزود الدفع.
+*/
+
+else if(
+item.request_type==="withdraw" ||
+item.request_type==="withdrawal"
+){
+
+addButton(
+actions,
+"تجهيز السحب",
+"warning",
+()=>withdrawWarning(item)
+);
+
+}
+
+
+addButton(
+actions,
+"رفض",
+"danger",
+()=>rejectWalletRequest(item)
+);
+
+
+}else{
+
+actions.textContent=
+statusText(item.status);
+
+}
+
+
+tr.appendChild(actions);
+
+body.appendChild(tr);
+
+}
+
+}
+
+
+/* =========================================
+   APPROVE DEPOSIT
+========================================= */
+
+async function approveDeposit(item){
+
+const confirmed=
+confirm(
+
+"تأكيد إيداع؟\n\n"+
+
+"المبلغ: "+
+amountText(item.amount)+
+
+"\n\nسيتم:\n"+
+"1. إضافة المبلغ للمحفظة\n"+
+"2. إنشاء سجل في Ledger\n"+
+"3. تغيير الطلب إلى approved\n\n"+
+
+"تأكد أولًا من استلام الدفع فعليًا."
+
+);
+
+
+if(!confirmed)
+return;
+
+
+message(
+"walletStatus",
+"جارٍ اعتماد الإيداع..."
+);
+
+
+try{
+
+const {
+data,
+error
+}=await db.rpc(
+"admin_process_wallet_request",
+{
+p_request_id:item.id
+}
+);
+
+
+if(error)
+throw error;
+
+
+if(
+!data||
+data.success!==true
+){
+
+throw new Error(
+"لم يتم تأكيد العملية من قاعدة البيانات."
+);
+
+}
+
+
+message(
+"walletStatus",
+
+"تم اعتماد الإيداع بنجاح.\n"+
+"الرصيد قبل: "+
+amountText(data.balance_before)+
+"\nالرصيد بعد: "+
+amountText(data.balance_after)
+);
+
+
+await Promise.all([
+
+loadWallet(),
+
+loadLedger()
+
+]);
+
+
+}catch(error){
+
+message(
+"walletStatus",
+
+"فشل اعتماد الإيداع:\n"+
+(error.message||String(error)),
+
+true
+);
+
+}
+
+}
+
+
+/* =========================================
+   WITHDRAW WARNING
+========================================= */
+
+function withdrawWarning(item){
+
+alert(
+
+"السحب الحقيقي لم يتم ربطه بعد بمزود دفع خارجي.\n\n"+
+
+"لا نريد خصم رصيد العميل قبل وجود تحويل فعلي.\n\n"+
+
+"سنربط D17 / Flouci أو مزود الدفع الرسمي في المرحلة التالية."
+
+);
+
+}
+
+
+/* =========================================
+   REJECT REQUEST
+========================================= */
+
+async function rejectWalletRequest(item){
+
+const reason=
+prompt(
+"سبب رفض الطلب؟",
+"لم يتم تأكيد عملية الدفع"
+);
+
+
+if(reason===null)
+return;
+
+
+message(
+"walletStatus",
+"جارٍ رفض الطلب..."
+);
+
+
+try{
+
+const {
+data,
+error
+}=await db
+
+.from("wallet_requests")
+
+.update({
+
+status:"rejected",
+
+admin_note:
+reason.trim()||"تم رفض الطلب",
+
+updated_at:
+new Date().toISOString()
+
+})
+
+.eq("id",item.id)
+
+.eq("status","pending")
+
+.select("id,status");
+
+
+if(error)
+throw error;
+
+
+if(!data||!data.length){
+
+throw new Error(
+"لم يتغير الطلب. ربما تم التعامل معه مسبقًا."
+);
+
+}
+
+
+message(
+"walletStatus",
+"تم رفض الطلب."
+);
+
+
+await loadWallet();
+
+
+}catch(error){
+
+message(
+"walletStatus",
+"فشل رفض الطلب:\n"+
+(error.message||String(error)),
+true
+);
+
+}
+
+}
+
+
+/* =========================================
+   LEDGER
+========================================= */
+
+async function loadLedger(){
+
+message(
+"ledgerStatus",
+"جارٍ تحميل السجل المالي..."
+);
+
+$("ledgerBody").replaceChildren();
+
+
+const {
+data,
+error
+}=await db
+
+.from("wallet_ledger")
+
+.select(`
+id,
+user_id,
+request_id,
+entry_type,
+direction,
+amount,
+balance_before,
+balance_after,
+note,
+created_at
+`)
+
+.order(
+"created_at",
+{ascending:false}
+)
+
+.limit(300);
+
+
+if(error){
+
+ledgerCache=[];
+
+message(
+"ledgerStatus",
+"تعذر قراءة Ledger: "+
+error.message,
+true
+);
+
+return;
+
+}
+
+
+ledgerCache=data||[];
+
+renderLedger();
+
+}
+
+
+/* =========================================
+   RENDER LEDGER
+========================================= */
+
+function renderLedger(){
+
+const body=
+$("ledgerBody");
+
+body.replaceChildren();
+
+
+if(!ledgerCache.length){
+
+message(
+"ledgerStatus",
+"لا توجد حركات مالية حتى الآن."
+);
+
+return;
+
+}
+
+
+message(
+"ledgerStatus",
+"عدد الحركات: "+
+ledgerCache.length
+);
+
+
+for(
+const item of ledgerCache
+){
+
+const tr=
+document.createElement("tr");
+
+
+addCell(
+tr,
+item.user_id
+);
+
+
+addCell(
+tr,
+ledgerType(item.entry_type)
+);
+
+
+const directionCell=
+addCell(
+tr,
+item.direction==="credit"
+?"إضافة"
+:"خصم"
+);
+
+
+directionCell.className=
+item.direction==="credit"
+?"credit"
+:"debit";
+
+
+addCell(
+tr,
+amountText(item.amount)
+);
+
+
+addCell(
+tr,
+amountText(item.balance_before)
+);
+
+
+const afterCell=
+addCell(
+tr,
+amountText(item.balance_after)
+);
+
+afterCell.className="balance";
+
+
+addCell(
+tr,
+item.note||"—"
+);
+
+
+addCell(
+tr,
+safeDate(item.created_at)
+);
+
+
+body.appendChild(tr);
+
+}
+
+}
+
+
+/* =========================================
+   SUPPORT
+========================================= */
+
+async function loadConversations(){
+
+message(
+"supportStatus",
+"جارٍ تحميل المحادثات..."
+);
+
+$("conversationList")
+.replaceChildren();
+
+
+const {
+data,
+error
+}=await db
+
+.from("support_conversations")
+
+.select(`
+id,
+visitor_token,
+visitor_name,
+topic,
+status,
+created_at,
+updated_at
+`)
+
+.order(
+"updated_at",
+{ascending:false}
+)
+
+.limit(100);
+
+
+if(error){
+
+conversationsCache=[];
+
+message(
+"supportStatus",
+"تعذر قراءة المحادثات: "+
+error.message,
+true
+);
+
+updateStats();
+
+return;
+
+}
+
+
+conversationsCache=data||[];
+
+renderConversations();
+
+updateStats();
+
+}
+
+
+/* =========================================
+   CONVERSATIONS
+========================================= */
+
+function renderConversations(){
+
+const list=
+$("conversationList");
+
+list.replaceChildren();
+
+
+if(!conversationsCache.length){
+
+message(
+"supportStatus",
+"لا توجد محادثات."
+);
+
+return;
+
+}
+
+
+message(
+"supportStatus",
+"عدد المحادثات: "+
+conversationsCache.length
+);
+
+
+for(
+const conv of conversationsCache
+){
+
+const item=
+document.createElement("div");
+
+item.className="item";
+
+
+const title=
+document.createElement("strong");
+
+title.textContent=
+conv.visitor_name||
+"العميل";
+
+item.appendChild(title);
+
+
+const details=
+document.createElement("p");
+
+details.className="small";
+
+details.textContent=
+
+(conv.topic||
+"استفسار عام")+
+
+" · "+
+
+statusText(conv.status)+
+
+"\n"+
+
+safeDate(conv.created_at);
+
+item.appendChild(details);
+
+
+addButton(
+item,
+"فتح المحادثة",
+"secondary",
+()=>openConversation(conv)
+);
+
+
+list.appendChild(item);
+
+}
+
+}
+
+
+/* =========================================
+   OPEN CONVERSATION
+========================================= */
+
+async function openConversation(conv){
+
+selectedConversationId=
+conv.id;
+
+
+$("selectedConversationTitle")
+.textContent=
+
+(conv.visitor_name||
+"العميل")+
+
+" — "+
+
+(conv.topic||
+"استفسار عام");
+
+
+$("replyBtn").disabled=false;
+
+
+$("messagesList")
+.replaceChildren();
+
+
+message(
+"replyStatus",
+"جارٍ تحميل الرسائل..."
+);
+
+
+const {
+data,
+error
+}=await db
+
+.from("support_messages")
+
+.select(`
+id,
+sender_role,
+message,
+created_at
+`)
+
+.eq(
+"conversation_id",
+conv.id
+)
+
+.order(
+"created_at",
+{ascending:true}
+)
+
+.limit(300);
+
+
+if(error){
+
+message(
+"replyStatus",
+"تعذر تحميل الرسائل: "+
+error.message,
+true
+);
+
+return;
+
+}
+
+
+for(
+const msg of data||[]
+){
+
+const bubble=
+document.createElement("div");
+
+bubble.className="item";
+
+
+const sender=
+document.createElement("strong");
+
+sender.textContent=
+
+msg.sender_role==="admin"
+?"الدعم"
+:
+msg.sender_role==="visitor"
+?"العميل"
+:
+msg.sender_role||"مرسل";
+
+
+bubble.appendChild(sender);
+
+
+const content=
+document.createElement("p");
+
+content.textContent=
+msg.message||"";
+
+content.style.whiteSpace=
+"pre-wrap";
+
+bubble.appendChild(content);
+
+
+const time=
+document.createElement("div");
+
+time.className="small";
+
+time.textContent=
+safeDate(msg.created_at);
+
+bubble.appendChild(time);
+
+
+$("messagesList")
+.appendChild(bubble);
+
+}
+
+
+message(
+"replyStatus",
+"تم تحميل الرسائل."
+);
+
+}
+
+
+/* =========================================
+   REPLY
+========================================= */
+
+$("replyForm")
+.addEventListener(
+"submit",
+async event=>{
+
+event.preventDefault();
+
+
+if(
+!selectedConversationId||
+!currentUser
+){
+
+message(
+"replyStatus",
+"اختر محادثة أولًا.",
+true
+);
+
+return;
+
+}
+
+
+const text=
+$("replyText")
+.value.trim();
+
+
+if(!text){
+
+message(
+"replyStatus",
+"اكتب الرد أولًا.",
+true
+);
+
+return;
+
+}
+
+
+$("replyBtn").disabled=true;
+
+
+message(
+"replyStatus",
+"جارٍ إرسال الرد..."
+);
+
+
+try{
+
+const {
+error
+}=await db
+
+.from("support_messages")
+
+.insert({
+
+conversation_id:
+selectedConversationId,
+
+sender_role:
+"admin",
+
+message:
+text
+
+});
+
+
+if(error)
+throw error;
+
+
+$("replyText").value="";
+
+
+message(
+"replyStatus",
+"تم إرسال الرد."
+);
+
+
+const conv=
+conversationsCache.find(
+c=>c.id===
+selectedConversationId
+);
+
+
+if(conv)
+await openConversation(conv);
+
+
+}catch(error){
+
+message(
+"replyStatus",
+"تعذر إرسال الرد:\n"+
+(error.message||String(error)),
+true
+);
+
+}finally{
+
+$("replyBtn").disabled=
+!selectedConversationId;
+
+}
+
+});
+
+
+/* =========================================
+   STATS
+========================================= */
+
+function updateStats(){
+
+$("depositCount")
+.textContent=
+
+walletCache.filter(
+x=>x.request_type==="deposit"
+).length;
+
+
+$("withdrawCount")
+.textContent=
+
+walletCache.filter(
+x=>
+x.request_type==="withdraw"||
+x.request_type==="withdrawal"
+).length;
+
+
+$("conversationCount")
+.textContent=
+conversationsCache.length;
+
+
+$("pendingCount")
+.textContent=
+
+walletCache.filter(
+x=>x.status==="pending"
+).length;
+
+
+$("overviewStatus")
+.textContent=
+
+"طلبات المحفظة: "+
+walletCache.length+
+
+"\nالإيداعات: "+
+walletCache.filter(
+x=>x.request_type==="deposit"
+).length+
+
+"\nالسحوبات: "+
+walletCache.filter(
+x=>
+x.request_type==="withdraw"||
+x.request_type==="withdrawal"
+).length+
+
+"\nالمعلّقة: "+
+walletCache.filter(
+x=>x.status==="pending"
+).length+
+
+"\nحركات Ledger: "+
+ledgerCache.length+
+
+"\nمحادثات الدعم: "+
+conversationsCache.length;
+
+}
+
+
+/* =========================================
+   TABS
+========================================= */
+
+document
+.querySelectorAll("[data-tab]")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll("[data-tab]")
+.forEach(
+b=>
+b.classList.toggle(
+"active",
+b===button
+)
+);
+
+
+[
+"overview",
+"wallet",
+"ledger",
+"support"
+]
+.forEach(tab=>{
+
+show(
+"tab-"+tab,
+button.dataset.tab===tab
+);
+
+});
+
+}
+
+);
+
+});
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+$("allWalletBtn")
+.addEventListener(
+"click",
+()=>{
+
+walletPendingOnly=false;
+
+renderWallet();
+
+});
+
+
+$("pendingWalletBtn")
+.addEventListener(
+"click",
+()=>{
+
+walletPendingOnly=true;
+
+renderWallet();
+
+});
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+$("refreshBtn")
+.addEventListener(
+"click",
+refreshAll
+);
+
+
+$("refreshSupportBtn")
+.addEventListener(
+"click",
+loadConversations
+);
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+$("loginForm")
+.addEventListener(
+"submit",
+async event=>{
+
+event.preventDefault();
+
+
+const button=
+$("loginBtn");
+
+
+button.disabled=true;
+
+
+message(
+"loginStatus",
+"جارٍ تسجيل الدخول..."
+);
+
+
+try{
+
+const {
+error
+}=await db.auth.signInWithPassword({
+
+email:
+$("email").value.trim(),
+
+password:
+$("password").value
+
+});
+
+
+if(error)
+throw error;
+
+
+await start();
+
+
+}catch(error){
+
+message(
+"loginStatus",
+"فشل تسجيل الدخول:\n"+
+(error.message||String(error)),
+true
+);
+
+}finally{
+
+button.disabled=false;
+
+}
+
+});
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+async function logout(){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+selectedConversationId=null;
+
+await start();
+
+}
+
+
+$("logoutBtn")
+.addEventListener(
+"click",
+logout
+);
+
+
+$("deniedLogout")
+.addEventListener(
+"click",
+logout
+);
+
+
+/* =========================================
+   AUTH STATE
+========================================= */
+
+db.auth.onAuthStateChange(
+()=>{
+
+setTimeout(
+()=>start(),
+0
+);
+
+});
+
+
+/* =========================================
+   START APP
+========================================= */
+
+start();
+
+</script>
+
+</body>
+  </html>
