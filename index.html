@@ -1660,7 +1660,8 @@ UI
 
 function openModal(id){
 
-const el = document.getElementById(id);
+const el =
+document.getElementById(id);
 
 if(el){
 el.classList.add("show");
@@ -1671,7 +1672,8 @@ el.classList.add("show");
 
 function closeModal(id){
 
-const el = document.getElementById(id);
+const el =
+document.getElementById(id);
 
 if(el){
 el.classList.remove("show");
@@ -1687,7 +1689,8 @@ document.getElementById("toast");
 
 if(!toast)return;
 
-toast.textContent = message;
+toast.textContent =
+message;
 
 toast.classList.add("show");
 
@@ -1700,26 +1703,34 @@ toast.classList.remove("show");
 }
 
 
-function showStatus(id,message,type=""){
+function showStatus(
+id,
+message,
+type=""
+){
 
 const el =
 document.getElementById(id);
 
 if(!el)return;
 
-el.textContent = message;
+el.textContent =
+message;
 
 if(type==="error"){
 
-el.style.color="#ff7773";
+el.style.color =
+"#ff7773";
 
 }else if(type==="success"){
 
-el.style.color="#20c77a";
+el.style.color =
+"#20c77a";
 
 }else{
 
-el.style.color="#9eacbd";
+el.style.color =
+"#9eacbd";
 
 }
 
@@ -1728,9 +1739,11 @@ el.style.color="#9eacbd";
 
 function formatMoney(value){
 
-const number = Number(value || 0);
+const number =
+Number(value || 0);
 
-return number.toFixed(3)+" د.ت";
+return number.toFixed(3) +
+" د.ت";
 
 }
 
@@ -1758,7 +1771,9 @@ return "-";
 }
 
 
-/* إصلاح حماية HTML */
+/* =========================================================
+HTML SECURITY
+========================================================= */
 
 function escapeHtml(value){
 
@@ -1783,7 +1798,8 @@ try{
 const {
 data,
 error
-} = await supabaseClient.auth.getUser();
+} =
+await supabaseClient.auth.getUser();
 
 if(error){
 
@@ -1984,7 +2000,9 @@ showToast(
 "تم تسجيل الدخول بنجاح"
 );
 
-await updateAuthUI(currentUser);
+await updateAuthUI(
+currentUser
+);
 
 if(currentUser){
 
@@ -2034,34 +2052,48 @@ showToast(
 }
 
 
-async function updateAuthUI(userOverride){
+async function updateAuthUI(
+userOverride
+){
 
 if(arguments.length > 0){
 
-currentUser = userOverride;
+currentUser =
+userOverride;
 
 }else{
 
-currentUser = await getCurrentUser();
+currentUser =
+await getCurrentUser();
 
 }
 
 
 const authButtons =
-document.getElementById("authButtons");
+document.getElementById(
+"authButtons"
+);
 
 const userArea =
-document.getElementById("userArea");
+document.getElementById(
+"userArea"
+);
 
 const userName =
-document.getElementById("userName");
+document.getElementById(
+"userName"
+);
 
 
 if(currentUser){
 
-authButtons.classList.add("hidden");
+authButtons.classList.add(
+"hidden"
+);
 
-userArea.classList.remove("hidden");
+userArea.classList.remove(
+"hidden"
+);
 
 
 const name =
@@ -2069,7 +2101,8 @@ currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "حسابك";
 
-userName.textContent = name;
+userName.textContent =
+name;
 
 
 document.getElementById(
@@ -2079,9 +2112,13 @@ document.getElementById(
 
 }else{
 
-authButtons.classList.remove("hidden");
+authButtons.classList.remove(
+"hidden"
+);
 
-userArea.classList.add("hidden");
+userArea.classList.add(
+"hidden"
+);
 
 
 document.getElementById(
@@ -2110,7 +2147,11 @@ PROFILE
 
 async function loadProfile(){
 
-if(!currentUser)return null;
+if(!currentUser){
+
+return null;
+
+}
 
 
 const {
@@ -2146,46 +2187,146 @@ return data || null;
 
 /* =========================================================
 WALLET
+الرصيد الحقيقي من wallet_accounts
 ========================================================= */
 
 async function loadWalletData(){
 
-if(!currentUser){
-
+const heroBalance =
 document.getElementById(
 "heroBalance"
-).textContent =
-"0.000 د.ت";
+);
 
+const walletBalance =
 document.getElementById(
 "walletBalance"
-).textContent =
+);
+
+
+if(!currentUser){
+
+if(heroBalance){
+
+heroBalance.textContent =
 "0.000 د.ت";
+
+}
+
+if(walletBalance){
+
+walletBalance.textContent =
+"0.000 د.ت";
+
+}
 
 return;
 
 }
 
 
-const profile =
-await loadProfile();
+try{
 
-const balance =
-profile?.balance ?? 0;
+const {
+data,
+error
+} =
+await supabaseClient
+.from("wallet_accounts")
+.select("balance,currency")
+.eq("user_id",currentUser.id)
+.maybeSingle();
 
 
-document.getElementById(
-"heroBalance"
-).textContent =
-formatMoney(balance);
+if(error){
 
-document.getElementById(
-"walletBalance"
-).textContent =
-formatMoney(balance);
+console.error(
+"Wallet account error:",
+error
+);
+
+if(heroBalance){
+
+heroBalance.textContent =
+"0.000 د.ت";
 
 }
 
+if(walletBalance){
+
+walletBalance.textContent =
+"0.000 د.ت";
+
+}
+
+return;
+
+}
+
+
+const balance =
+Number(
+data?.balance ?? 0
+);
+
+const currency =
+String(
+data?.currency || "TND"
+).toUpperCase();
+
+
+const formatted =
+balance.toFixed(3) +
+(
+currency === "TND"
+? " د.ت"
+: " " + currency
+);
+
+
+if(heroBalance){
+
+heroBalance.textContent =
+formatted;
+
+}
+
+if(walletBalance){
+
+walletBalance.textContent =
+formatted;
+
+}
+
+
+}catch(error){
+
+console.error(
+"loadWalletData exception:",
+error
+);
+
+if(heroBalance){
+
+heroBalance.textContent =
+"0.000 د.ت";
+
+}
+
+if(walletBalance){
+
+walletBalance.textContent =
+"0.000 د.ت";
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+CREATE WALLET REQUEST
+========================================================= */
 
 async function createWalletRequest(){
 
@@ -2195,7 +2336,9 @@ showToast(
 "يجب تسجيل الدخول أولًا"
 );
 
-openModal("loginModal");
+openModal(
+"loginModal"
+);
 
 return;
 
@@ -2252,15 +2395,45 @@ return;
 }
 
 
+/*
+التحقق من رصيد السحب من wallet_accounts
+وليس profiles
+*/
+
 if(type === "withdraw"){
 
-const profile =
-await loadProfile();
+const {
+data:walletAccount,
+error:walletError
+} =
+await supabaseClient
+.from("wallet_accounts")
+.select("balance")
+.eq("user_id",currentUser.id)
+.maybeSingle();
+
+
+if(walletError){
+
+console.error(
+"Wallet balance error:",
+walletError
+);
+
+showToast(
+"تعذر التحقق من الرصيد"
+);
+
+return;
+
+}
+
 
 const balance =
 Number(
-profile?.balance || 0
+walletAccount?.balance || 0
 );
+
 
 if(amount > balance){
 
@@ -2275,6 +2448,8 @@ return;
 }
 
 
+/* إنشاء الطلب */
+
 const {
 error
 } =
@@ -2282,20 +2457,26 @@ await supabaseClient
 .from("wallet_requests")
 .insert({
 
-user_id:currentUser.id,
+user_id:
+currentUser.id,
 
-request_type:type,
+request_type:
+type,
 
-amount:amount,
+amount:
+amount,
 
-payment_method:method,
+payment_method:
+method,
 
-payment_account:account,
+payment_account:
+account,
 
 payment_reference:
 reference || null,
 
-status:"pending"
+status:
+"pending"
 
 });
 
@@ -2340,6 +2521,10 @@ await loadWalletHistory();
 }
 
 
+/* =========================================================
+WALLET HISTORY
+========================================================= */
+
 async function loadWalletHistory(){
 
 const body =
@@ -2357,14 +2542,18 @@ body.innerHTML = "";
 
 if(!currentUser){
 
-message.classList.remove("hidden");
+message.classList.remove(
+"hidden"
+);
 
 return;
 
 }
 
 
-message.classList.add("hidden");
+message.classList.add(
+"hidden"
+);
 
 
 const {
@@ -2375,7 +2564,12 @@ await supabaseClient
 .from("wallet_requests")
 .select("*")
 .eq("user_id",currentUser.id)
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
 
 if(error){
@@ -2403,7 +2597,8 @@ return;
 }
 
 
-data.forEach(item=>{
+data.forEach(
+item=>{
 
 const tr =
 document.createElement("tr");
@@ -2448,11 +2643,15 @@ ${escapeHtml(type)}
 </td>
 
 <td>
-${escapeHtml(formatMoney(item.amount))}
+${escapeHtml(
+formatMoney(item.amount)
+)}
 </td>
 
 <td>
-${escapeHtml(item.payment_method || "-")}
+${escapeHtml(
+item.payment_method || "-"
+)}
 </td>
 
 <td>
@@ -2462,7 +2661,9 @@ ${escapeHtml(statusText)}
 </td>
 
 <td>
-${escapeHtml(formatDate(item.created_at))}
+${escapeHtml(
+formatDate(item.created_at)
+)}
 </td>
 
 `;
@@ -2470,7 +2671,8 @@ ${escapeHtml(formatDate(item.created_at))}
 
 body.appendChild(tr);
 
-});
+}
+);
 
 }
 
@@ -2488,8 +2690,6 @@ return null;
 }
 
 
-/* البحث عن محادثة مفتوحة */
-
 const {
 data:existing,
 error:findError
@@ -2499,7 +2699,12 @@ await supabaseClient
 .select("*")
 .eq("user_id",currentUser.id)
 .eq("status","open")
-.order("created_at",{ascending:false})
+.order(
+"created_at",
+{
+ascending:false
+}
+)
 .limit(1)
 .maybeSingle();
 
@@ -2518,23 +2723,26 @@ return null;
 
 if(existing){
 
-currentConversation = existing;
+currentConversation =
+existing;
 
 return existing;
 
 }
 
 
-/* محاولة إنشاء محادثة بالحقول الأساسية */
+/* محاولة إنشاء محادثة */
 
 let result =
 await supabaseClient
 .from("support_conversations")
 .insert({
 
-user_id:currentUser.id,
+user_id:
+currentUser.id,
 
-status:"open"
+status:
+"open"
 
 })
 .select("*")
@@ -2543,7 +2751,7 @@ status:"open"
 
 /*
 إذا كان جدول المحادثات يحتاج visitor_name/topic
-نحاول مرة ثانية بالحقول الإضافية.
+نحاول مرة ثانية
 */
 
 if(result.error){
@@ -2553,16 +2761,19 @@ await supabaseClient
 .from("support_conversations")
 .insert({
 
-user_id:currentUser.id,
+user_id:
+currentUser.id,
 
 visitor_name:
 currentUser.user_metadata?.full_name ||
 currentUser.email ||
 "عميل",
 
-topic:"دعم من الموقع",
+topic:
+"دعم من الموقع",
 
-status:"open"
+status:
+"open"
 
 })
 .select("*")
@@ -2633,8 +2844,16 @@ error
 await supabaseClient
 .from("support_messages")
 .select("*")
-.eq("conversation_id",conversation.id)
-.order("created_at",{ascending:true});
+.eq(
+"conversation_id",
+conversation.id
+)
+.order(
+"created_at",
+{
+ascending:true
+}
+);
 
 
 if(error){
@@ -2665,7 +2884,8 @@ return;
 }
 
 
-data.forEach(message=>{
+data.forEach(
+message=>{
 
 const div =
 document.createElement("div");
@@ -2677,29 +2897,31 @@ message.sender_role || ""
 ).toLowerCase();
 
 
-/*
-قاعدة البيانات عندك تستخدم:
-visitor = العميل
-admin = الإدارة
-*/
-
 const isUser =
 role === "visitor";
 
 
 div.className =
 "message " +
-(isUser ? "user" : "admin");
+(
+isUser
+? "user"
+: "admin"
+);
 
 
 div.innerHTML = `
 
 <div>
-${escapeHtml(message.message || "")}
+${escapeHtml(
+message.message || ""
+)}
 </div>
 
 <div class="messageTime">
-${escapeHtml(formatDate(message.created_at))}
+${escapeHtml(
+formatDate(message.created_at)
+)}
 </div>
 
 `;
@@ -2724,7 +2946,9 @@ showToast(
 "يجب تسجيل الدخول أولًا"
 );
 
-openModal("loginModal");
+openModal(
+"loginModal"
+);
 
 return;
 
@@ -2779,11 +3003,14 @@ await supabaseClient
 .from("support_messages")
 .insert({
 
-conversation_id:conversation.id,
+conversation_id:
+conversation.id,
 
-sender_role:"visitor",
+sender_role:
+"visitor",
 
-message:message
+message:
+message
 
 });
 
@@ -2828,9 +3055,13 @@ PASSWORD RECOVERY
 
 function openRecovery(){
 
-closeModal("loginModal");
+closeModal(
+"loginModal"
+);
 
-openModal("recoveryModal");
+openModal(
+"recoveryModal"
+);
 
 }
 
@@ -2838,9 +3069,11 @@ openModal("recoveryModal");
 async function sendRecovery(){
 
 const email =
-document.getElementById(
+document
+.getElementById(
 "recoveryEmail"
-).value.trim();
+)
+.value.trim();
 
 
 if(!email){
@@ -2869,7 +3102,8 @@ await supabaseClient.auth
 .resetPasswordForEmail(
 email,
 {
-redirectTo:redirectTo
+redirectTo:
+redirectTo
 }
 );
 
@@ -2899,9 +3133,11 @@ showStatus(
 async function changePassword(){
 
 const password =
-document.getElementById(
+document
+.getElementById(
 "newPassword"
-).value;
+)
+.value;
 
 
 if(password.length < 6){
@@ -2922,7 +3158,8 @@ error
 } =
 await supabaseClient.auth
 .updateUser({
-password:password
+password:
+password
 });
 
 
@@ -2948,7 +3185,9 @@ showStatus(
 
 setTimeout(()=>{
 
-closeModal("resetModal");
+closeModal(
+"resetModal"
+);
 
 },1500);
 
@@ -2966,9 +3205,12 @@ currentUser =
 session?.user || null;
 
 
-setTimeout(async()=>{
+setTimeout(
+async()=>{
 
-await updateAuthUI(currentUser);
+await updateAuthUI(
+currentUser
+);
 
 if(currentUser){
 
@@ -2980,23 +3222,27 @@ await loadSupport();
 
 }else{
 
-currentConversation = null;
+currentConversation =
+null;
 
 }
 
-},0);
+},
+0
+);
 
 
 /*
 فتح نافذة تغيير كلمة المرور
-عند وصول رابط الاستعادة.
 */
 
 if(event === "PASSWORD_RECOVERY"){
 
 setTimeout(()=>{
 
-openModal("resetModal");
+openModal(
+"resetModal"
+);
 
 },300);
 
@@ -3017,7 +3263,9 @@ try{
 currentUser =
 await getCurrentUser();
 
-await updateAuthUI(currentUser);
+await updateAuthUI(
+currentUser
+);
 
 if(currentUser){
 
@@ -3048,12 +3296,16 @@ RECOVERY URL
 if(
 new URLSearchParams(
 window.location.search
-).get("type") === "recovery"
+).get("type")
+===
+"recovery"
 ){
 
 setTimeout(()=>{
 
-openModal("resetModal");
+openModal(
+"resetModal"
+);
 
 },800);
 
@@ -3069,7 +3321,8 @@ CLOSE MODALS
 
 document
 .querySelectorAll(".modal")
-.forEach(modal=>{
+.forEach(
+modal=>{
 
 modal.addEventListener(
 "click",
@@ -3077,7 +3330,9 @@ event=>{
 
 if(event.target === modal){
 
-modal.classList.remove("show");
+modal.classList.remove(
+"show"
+);
 
 }
 
