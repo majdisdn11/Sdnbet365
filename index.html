@@ -525,7 +525,6 @@ font-weight:bold;
 }
 
 @media(max-width:850px){
-
 .heroGrid,
 .walletGrid{
 grid-template-columns:1fr;
@@ -544,11 +543,9 @@ padding:10px 0;
 order:3;
 width:100%;
 }
-
 }
 
 @media(max-width:560px){
-
 .cards{
 grid-template-columns:1fr;
 }
@@ -576,7 +573,6 @@ font-size:14px;
 .balance{
 font-size:32px;
 }
-
 }
 </style>
 </head>
@@ -598,25 +594,13 @@ font-size:32px;
 </nav>
 
 <div class="authButtons" id="authButtons">
-
-<button class="btn" onclick="openModal('loginModal')">
-دخول
-</button>
-
-<button class="btn btn-primary" onclick="openModal('registerModal')">
-إنشاء حساب
-</button>
-
+<button class="btn" onclick="openModal('loginModal')">دخول</button>
+<button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button>
 </div>
 
 <div class="userArea hidden" id="userArea">
-
 <span class="userName" id="userName"></span>
-
-<button class="btn" onclick="signOutUser()">
-خروج
-</button>
-
+<button class="btn" onclick="signOutUser()">خروج</button>
 </div>
 
 </div>
@@ -625,15 +609,10 @@ font-size:32px;
 <main id="top">
 
 <section class="hero">
-
 <div class="container heroGrid">
 
 <div class="heroCard">
-
-<h1>
-منصة <span>Sdnbet365</span>
-</h1>
-
+<h1>منصة <span>Sdnbet365</span></h1>
 <p>
 منصة رياضية حديثة وسريعة بتصميم متجاوب مع الهاتف.
 تابع الأقسام، أدر محفظتك، راجع معاملاتك وتواصل مع الدعم
@@ -641,105 +620,49 @@ font-size:32px;
 </p>
 
 <div class="heroActions">
-
-<a href="#sports" class="btn btn-primary">
-استكشف الرياضة
-</a>
-
-<a href="#wallet" class="btn">
-المحفظة
-</a>
-
+<a href="#sports" class="btn btn-primary">استكشف الرياضة</a>
+<a href="#wallet" class="btn">المحفظة</a>
 </div>
-
 </div>
 
 <div class="balanceCard">
-
-<div class="balanceLabel">
-رصيد الحساب
-</div>
-
-<div class="balance" id="heroBalance">
-0.000 د.ت
-</div>
-
-<div class="loginHint" id="heroHint">
-سجّل الدخول للوصول إلى بيانات حسابك.
+<div class="balanceLabel">رصيد الحساب</div>
+<div class="balance" id="heroBalance">0.000 د.ت</div>
+<div class="loginHint" id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</div>
 </div>
 
 </div>
-
-</div>
-
 </section>
 
 <section id="sports">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>الرياضة</h2>
-
-<p>
-واجهة المباريات الرياضية.
-</p>
-
+<p>واجهة المباريات الرياضية.</p>
 </div>
 
 <div class="cards">
 
 <div class="card">
-
 <div class="cardIcon">⚽</div>
-
 <h3>كرة القدم</h3>
-
-<p>
-تابع المباريات والبطولات في واجهة مرتبة وسريعة.
-</p>
-
-<a href="#matches" class="btn">
-عرض المباريات
-</a>
-
+<p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p>
+<a href="#matches" class="btn">عرض المباريات</a>
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🏀</div>
-
 <h3>كرة السلة</h3>
-
-<p>
-واجهة متجاوبة لمتابعة الفرق والمواجهات.
-</p>
-
-<button
-class="btn"
-onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
-عرض الخيارات
-</button>
-
+<p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p>
+<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button>
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🎾</div>
-
 <h3>التنس</h3>
-
-<p>
-تصميم بسيط لمتابعة مباريات التنس.
-</p>
-
-<button
-class="btn"
-onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">
-عرض الخيارات
-</button>
-
+<p>تصميم بسيط لمتابعة مباريات التنس.</p>
+<button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button>
 </div>
 
 </div>
@@ -747,225 +670,111 @@ onclick="showToast('سيتم ربط البيانات الرياضية لاحقً
 <div id="matches" class="matches" style="margin-top:18px">
 
 <div class="match">
-
 <div class="matchTop">
-
-<span class="matchLeague">
-Football • Demo
-</span>
-
-<span>
-20:00
-</span>
-
+<span class="matchLeague">Football • Demo</span>
+<span>20:00</span>
 </div>
-
 <div class="teams">
-
 <span>Real Madrid</span>
-
 <span class="vs">VS</span>
-
 <span>Barcelona</span>
-
 </div>
-
 <div class="odds">
-
-<div class="odd">
-<span>1</span>
-2.10
+<div class="odd"><span>1</span>2.10</div>
+<div class="odd"><span>X</span>3.20</div>
+<div class="odd"><span>2</span>2.80</div>
 </div>
-
-<div class="odd">
-<span>X</span>
-3.20
-</div>
-
-<div class="odd">
-<span>2</span>
-2.80
-</div>
-
-</div>
-
 </div>
 
 <div class="match">
-
 <div class="matchTop">
-
-<span class="matchLeague">
-Football • Demo
-</span>
-
-<span>
-21:30
-</span>
-
+<span class="matchLeague">Football • Demo</span>
+<span>21:30</span>
 </div>
-
 <div class="teams">
-
 <span>Liverpool</span>
-
 <span class="vs">VS</span>
-
 <span>Arsenal</span>
-
 </div>
-
 <div class="odds">
-
-<div class="odd">
-<span>1</span>
-2.25
+<div class="odd"><span>1</span>2.25</div>
+<div class="odd"><span>X</span>3.40</div>
+<div class="odd"><span>2</span>2.60</div>
 </div>
-
-<div class="odd">
-<span>X</span>
-3.40
-</div>
-
-<div class="odd">
-<span>2</span>
-2.60
 </div>
 
 </div>
-
 </div>
-
-</div>
-
-</div>
-
 </section>
 
 <section id="casino">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>الكازينو</h2>
-
-<p>
-أقسام واجهة تجريبية.
-</p>
-
+<p>أقسام واجهة تجريبية.</p>
 </div>
 
 <div class="cards">
 
 <div class="card">
-
 <div class="cardIcon">🎰</div>
-
 <h3>Slots</h3>
-
 <p>واجهة ألعاب تجريبية.</p>
-
-<button
-class="btn"
-onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
-فتح
-</button>
-
+<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🃏</div>
-
 <h3>Cards</h3>
-
 <p>قسم ألعاب البطاقات.</p>
-
-<button
-class="btn"
-onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
-فتح
-</button>
-
+<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🎲</div>
-
 <h3>Games</h3>
-
 <p>ألعاب إضافية للعرض.</p>
-
-<button
-class="btn"
-onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">
-فتح
-</button>
-
+<button class="btn" onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعاب مرخّص')">فتح</button>
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section id="live">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>مباشر</h2>
-
 <p>الأحداث المباشرة.</p>
-
 </div>
 
 <div class="card">
-
 <div class="cardIcon">🔴</div>
-
 <h3>البث المباشر</h3>
-
 <p>
 سيتم عرض الأحداث المباشرة عند ربط المنصة
 بمصدر بيانات أو خدمة بث مرخّصة.
 </p>
-
 </div>
 
 </div>
-
 </section>
 
 <section id="wallet">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>المحفظة</h2>
-
-<p>
-إدارة طلبات الإيداع والسحب.
-</p>
-
+<p>إدارة طلبات الإيداع والسحب.</p>
 </div>
 
 <div class="walletGrid">
 
 <div class="walletCard">
-
-<div class="balanceLabel">
-رصيد الحساب
-</div>
-
-<div class="walletBalance" id="walletBalance">
-0.000 د.ت
-</div>
+<div class="balanceLabel">رصيد الحساب</div>
+<div class="walletBalance" id="walletBalance">0.000 د.ت</div>
 
 <p style="color:var(--muted);line-height:1.8">
 الرصيد المعروض هنا يتم قراءته من حسابك في Supabase.
@@ -973,15 +782,8 @@ onclick="showToast('الكازينو الحقيقي يحتاج مزود ألعا
 </p>
 
 <div style="margin-top:18px">
-
-<button
-class="btn btn-primary"
-onclick="loadWalletData()">
-تحديث الرصيد
-</button>
-
+<button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button>
 </div>
-
 </div>
 
 <div class="walletCard">
@@ -992,111 +794,62 @@ D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو 
 </div>
 
 <div class="formGroup">
-
 <label>نوع العملية</label>
-
 <select id="walletType">
-
 <option value="deposit">إيداع</option>
-
-<option value="withdraw">سحب</option>
-
+<option value="withdrawal">سحب</option>
 </select>
-
 </div>
 
 <div class="formGroup">
-
 <label>المبلغ بالدينار التونسي</label>
-
-<input
-id="walletAmount"
-type="number"
-min="1"
-step="0.001"
-placeholder="مثال: 50">
-
+<input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50">
 </div>
 
 <div class="formGroup">
-
 <label>طريقة الدفع</label>
-
 <select id="paymentMethod">
-
 <option value="D17">D17</option>
-
 <option value="Flouci">Flouci</option>
-
 </select>
-
 </div>
 
 <div class="formGroup">
-
 <label>رقم الحساب / الهاتف</label>
-
-<input
-id="paymentAccount"
-type="text"
-placeholder="رقم الهاتف أو الحساب">
-
+<input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب">
 </div>
 
 <div class="formGroup">
-
 <label>مرجع العملية إن وجد</label>
-
-<input
-id="paymentReference"
-type="text"
-placeholder="رقم العملية">
-
+<input id="paymentReference" type="text" placeholder="رقم العملية">
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="createWalletRequest()">
+<button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">
 إرسال الطلب
 </button>
 
 </div>
-
 </div>
-
 </div>
-
 </section>
 
 <section id="history">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>سجل المحفظة</h2>
-
-<p>
-جميع طلبات الإيداع والسحب الخاصة بحسابك.
-</p>
-
+<p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p>
 </div>
 
 <div class="walletCard">
 
-<div
-id="historyLoginMessage"
-class="notice">
+<div id="historyLoginMessage" class="notice">
 سجّل الدخول لعرض سجل المحفظة.
 </div>
 
 <div class="tableWrap">
-
 <table>
-
 <thead>
-
 <tr>
 <th>النوع</th>
 <th>المبلغ</th>
@@ -1104,330 +857,164 @@ class="notice">
 <th>الحالة</th>
 <th>التاريخ</th>
 </tr>
-
 </thead>
-
 <tbody id="historyBody"></tbody>
-
 </table>
-
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section id="support">
-
 <div class="container">
 
 <div class="sectionTitle">
-
 <h2>الدعم</h2>
-
-<p>
-تواصل مع فريق الدعم من داخل الموقع.
-</p>
-
+<p>تواصل مع فريق الدعم من داخل الموقع.</p>
 </div>
 
 <div class="supportCard">
 
-<div
-id="supportMessages"
-class="messages">
-
+<div id="supportMessages" class="messages">
 <div style="color:var(--muted);text-align:center">
 سجّل الدخول لبدء المحادثة.
 </div>
-
 </div>
 
 <div class="formGroup">
-
-<textarea
-id="supportInput"
-rows="3"
-placeholder="اكتب رسالتك..."></textarea>
-
+<textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea>
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="sendSupportMessage()">
+<button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">
 إرسال الرسالة
 </button>
 
-<div
-id="supportStatus"
-style="color:var(--muted);margin-top:12px;text-align:center">
-</div>
+<div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
 
 </div>
-
 </div>
-
 </section>
 
 </main>
 
 <footer>
-
 <div class="container">
-
 Sdnbet365 ©
-
 <br>
-
 منصة تجريبية قيد التطوير.
-
 <br>
-
-<a
-class="siteLink"
-href="https://majdisdn11.github.io/Sdnbet365/"
-target="_blank"
-rel="noopener">
+<a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">
 🌐 فتح موقع Sdnbet365
 </a>
-
 </div>
-
 </footer>
 
 <!-- LOGIN -->
-
 <div class="modal" id="loginModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>تسجيل الدخول</h2>
-
-<button
-class="close"
-onclick="closeModal('loginModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('loginModal')">×</button>
 </div>
 
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="loginEmail"
-type="email"
-autocomplete="email">
-
+<input id="loginEmail" type="email" autocomplete="email">
 </div>
 
 <div class="formGroup">
-
 <label>كلمة المرور</label>
-
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password">
-
+<input id="loginPassword" type="password" autocomplete="current-password">
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="loginUser()">
-دخول
-</button>
+<button class="btn btn-primary" style="width:100%" onclick="loginUser()">دخول</button>
 
-<button
-class="btn"
-style="width:100%;margin-top:9px"
-onclick="closeModal('loginModal');openModal('registerModal')">
+<button class="btn" style="width:100%;margin-top:9px" onclick="closeModal('loginModal');openModal('registerModal')">
 إنشاء حساب
 </button>
 
-<button
-class="btn"
-style="width:100%;margin-top:9px"
-onclick="openRecovery()">
+<button class="btn" style="width:100%;margin-top:9px" onclick="openRecovery()">
 نسيت كلمة المرور؟
 </button>
 
-<div
-id="loginStatus"
-style="margin-top:12px">
+<div id="loginStatus" style="margin-top:12px"></div>
 </div>
-
-</div>
-
 </div>
 
 <!-- REGISTER -->
-
 <div class="modal" id="registerModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>إنشاء حساب</h2>
-
-<button
-class="close"
-onclick="closeModal('registerModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('registerModal')">×</button>
 </div>
 
 <div class="formGroup">
-
 <label>الاسم</label>
-
-<input
-id="registerName"
-type="text"
-autocomplete="name">
-
+<input id="registerName" type="text" autocomplete="name">
 </div>
 
 <div class="formGroup">
-
 <label>رقم الهاتف</label>
-
-<input
-id="registerPhone"
-type="text"
-autocomplete="tel">
-
+<input id="registerPhone" type="text" autocomplete="tel">
 </div>
 
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="registerEmail"
-type="email"
-autocomplete="email">
-
+<input id="registerEmail" type="email" autocomplete="email">
 </div>
 
 <div class="formGroup">
-
 <label>كلمة المرور</label>
-
-<input
-id="registerPassword"
-type="password"
-autocomplete="new-password">
-
+<input id="registerPassword" type="password" autocomplete="new-password">
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="registerUser()">
-إنشاء الحساب
-</button>
-
-<div
-id="registerStatus"
-style="margin-top:12px">
-</div>
+<button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button>
+<div id="registerStatus" style="margin-top:12px"></div>
 
 </div>
-
 </div>
 
 <!-- RECOVERY -->
-
 <div class="modal" id="recoveryModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>استعادة كلمة المرور</h2>
-
-<button
-class="close"
-onclick="closeModal('recoveryModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('recoveryModal')">×</button>
 </div>
 
 <div class="formGroup">
-
 <label>البريد الإلكتروني</label>
-
-<input
-id="recoveryEmail"
-type="email"
-autocomplete="email">
-
+<input id="recoveryEmail" type="email" autocomplete="email">
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="sendRecovery()">
-إرسال رابط الاستعادة
-</button>
-
-<div
-id="recoveryStatus"
-style="margin-top:12px">
-</div>
+<button class="btn btn-primary" style="width:100%" onclick="sendRecovery()">إرسال رابط الاستعادة</button>
+<div id="recoveryStatus" style="margin-top:12px"></div>
 
 </div>
-
 </div>
 
 <!-- RESET PASSWORD -->
-
 <div class="modal" id="resetModal">
-
 <div class="modalBox">
 
 <div class="modalHeader">
-
 <h2>تغيير كلمة المرور</h2>
-
 </div>
 
 <div class="formGroup">
-
 <label>كلمة المرور الجديدة</label>
-
-<input
-id="newPassword"
-type="password"
-autocomplete="new-password">
-
+<input id="newPassword" type="password" autocomplete="new-password">
 </div>
 
-<button
-class="btn btn-primary"
-style="width:100%"
-onclick="changePassword()">
-حفظ كلمة المرور
-</button>
-
-<div
-id="resetStatus"
-style="margin-top:12px">
-</div>
+<button class="btn btn-primary" style="width:100%" onclick="changePassword()">حفظ كلمة المرور</button>
+<div id="resetStatus" style="margin-top:12px"></div>
 
 </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1435,7 +1022,6 @@ style="margin-top:12px">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
 /* =========================================================
 SUPABASE
 ========================================================= */
@@ -1452,7 +1038,6 @@ SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
 
-
 /* =========================================================
 GLOBALS
 ========================================================= */
@@ -1461,92 +1046,55 @@ let currentUser = null;
 let currentProfile = null;
 let currentConversation = null;
 
-
 /* =========================================================
 UI
 ========================================================= */
 
 function openModal(id){
-
 const el = document.getElementById(id);
-
 if(el){
 el.classList.add("show");
 }
-
 }
 
-
 function closeModal(id){
-
 const el = document.getElementById(id);
-
 if(el){
 el.classList.remove("show");
 }
-
 }
-
 
 function showToast(message){
-
 const toast = document.getElementById("toast");
-
 if(!toast)return;
-
 toast.textContent = message;
-
 toast.classList.add("show");
-
 setTimeout(()=>{
-
 toast.classList.remove("show");
-
 },3500);
-
 }
-
 
 function showStatus(id,message,type=""){
-
 const el = document.getElementById(id);
-
 if(!el)return;
-
 el.textContent = message;
-
 if(type==="error"){
-
 el.style.color = "#ff7773";
-
 }else if(type==="success"){
-
 el.style.color = "#20c77a";
-
 }else{
-
 el.style.color = "#9eacbd";
-
 }
-
 }
-
 
 function formatMoney(value){
-
 const number = Number(value || 0);
-
 return number.toFixed(3) + " د.ت";
-
 }
 
-
 function formatDate(date){
-
 if(!date)return "-";
-
 try{
-
 return new Date(date).toLocaleString(
 "ar-TN",
 {
@@ -1554,309 +1102,152 @@ dateStyle:"short",
 timeStyle:"short"
 }
 );
-
 }catch(e){
-
 return "-";
-
 }
-
 }
-
 
 /* =========================================================
 HTML SECURITY
 ========================================================= */
 
 function escapeHtml(value){
-
 return String(value ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
-
 }
-
 
 /* =========================================================
 AUTH
 ========================================================= */
 
 async function getCurrentUser(){
-
 try{
-
-const {
-data,
-error
-} = await supabaseClient.auth.getUser();
-
+const {data,error} = await supabaseClient.auth.getUser();
 if(error){
-
 console.error("getCurrentUser:",error);
-
 return null;
-
 }
-
 return data?.user || null;
-
 }catch(error){
-
-console.error(
-"getCurrentUser exception:",
-error
-);
-
+console.error("getCurrentUser exception:",error);
 return null;
-
 }
-
 }
-
 
 /* =========================================================
 REGISTER
 ========================================================= */
 
 async function registerUser(){
-
-const name =
-document.getElementById("registerName").value.trim();
-
-const phone =
-document.getElementById("registerPhone").value.trim();
-
-const email =
-document.getElementById("registerEmail").value.trim();
-
-const password =
-document.getElementById("registerPassword").value;
-
+const name = document.getElementById("registerName").value.trim();
+const phone = document.getElementById("registerPhone").value.trim();
+const email = document.getElementById("registerEmail").value.trim();
+const password = document.getElementById("registerPassword").value;
 
 if(!email || !password){
-
-showStatus(
-"registerStatus",
-"أدخل البريد الإلكتروني وكلمة المرور.",
-"error"
-);
-
+showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
 return;
-
 }
-
 
 if(password.length < 6){
-
-showStatus(
-"registerStatus",
-"كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
-"error"
-);
-
+showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
 return;
-
 }
 
-
-showStatus(
-"registerStatus",
-"جارٍ إنشاء الحساب..."
-);
-
+showStatus("registerStatus","جارٍ إنشاء الحساب...");
 
 try{
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.signUp({
-
+const {data,error} = await supabaseClient.auth.signUp({
 email,
 password,
-
 options:{
 data:{
 full_name:name,
 phone:phone
 }
 }
-
 });
 
-
 if(error){
-
-console.error(
-"Register error:",
-error
-);
-
-showStatus(
-"registerStatus",
-error.message,
-"error"
-);
-
+console.error("Register error:",error);
+showStatus("registerStatus",error.message,"error");
 return;
-
 }
 
-
 if(data?.user){
-
 showStatus(
 "registerStatus",
 "تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.",
 "success"
 );
-
 setTimeout(()=>{
-
 closeModal("registerModal");
-
 },1800);
-
 }
 
 }catch(error){
-
-console.error(
-"Register exception:",
-error
-);
-
-showStatus(
-"registerStatus",
-"حدث خطأ أثناء إنشاء الحساب.",
-"error"
-);
-
+console.error("Register exception:",error);
+showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error");
 }
-
 }
-
 
 /* =========================================================
 LOGIN
 ========================================================= */
 
 async function loginUser(){
-
-const email =
-document.getElementById("loginEmail").value.trim();
-
-const password =
-document.getElementById("loginPassword").value;
-
+const email = document.getElementById("loginEmail").value.trim();
+const password = document.getElementById("loginPassword").value;
 
 if(!email || !password){
-
-showStatus(
-"loginStatus",
-"أدخل البريد الإلكتروني وكلمة المرور.",
-"error"
-);
-
+showStatus("loginStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
 return;
-
 }
 
-
-showStatus(
-"loginStatus",
-"جارٍ تسجيل الدخول..."
-);
-
+showStatus("loginStatus","جارٍ تسجيل الدخول...");
 
 try{
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.signInWithPassword({
-
+const {data,error} = await supabaseClient.auth.signInWithPassword({
 email,
 password
-
 });
 
-
 if(error){
-
-console.error(
-"Login error:",
-error
-);
-
-showStatus(
-"loginStatus",
-error.message,
-"error"
-);
-
+console.error("Login error:",error);
+showStatus("loginStatus",error.message,"error");
 return;
-
 }
 
-
-currentUser =
-data?.user || null;
-
+currentUser = data?.user || null;
 closeModal("loginModal");
-
 showToast("تم تسجيل الدخول بنجاح");
-
 await updateAuthUI(currentUser);
 
 if(currentUser){
-
 await loadWalletData();
 await loadWalletHistory();
 await loadSupport();
-
 }
 
 }catch(error){
-
-console.error(
-"Login exception:",
-error
-);
-
-showStatus(
-"loginStatus",
-"حدث خطأ أثناء تسجيل الدخول.",
-"error"
-);
-
+console.error("Login exception:",error);
+showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error");
 }
-
 }
-
 
 /* =========================================================
 SIGN OUT
 ========================================================= */
 
 async function signOutUser(){
-
 try{
-
 await supabaseClient.auth.signOut();
-
 }catch(error){
-
-console.error(
-"Sign out:",
-error
-);
-
+console.error("Sign out:",error);
 }
 
 currentUser = null;
@@ -1865,59 +1256,37 @@ currentConversation = null;
 
 await updateAuthUI(null);
 
-const historyBody =
-document.getElementById("historyBody");
-
+const historyBody = document.getElementById("historyBody");
 if(historyBody){
 historyBody.innerHTML = "";
 }
 
-const supportMessages =
-document.getElementById("supportMessages");
-
+const supportMessages = document.getElementById("supportMessages");
 if(supportMessages){
-
 supportMessages.innerHTML =
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-
 }
 
 showToast("تم تسجيل الخروج");
-
 }
-
 
 /* =========================================================
 AUTH UI
 ========================================================= */
 
 async function updateAuthUI(userOverride){
-
 if(arguments.length > 0){
-
 currentUser = userOverride;
-
 }else{
-
 currentUser = await getCurrentUser();
-
 }
 
-
-const authButtons =
-document.getElementById("authButtons");
-
-const userArea =
-document.getElementById("userArea");
-
-const userName =
-document.getElementById("userName");
-
+const authButtons = document.getElementById("authButtons");
+const userArea = document.getElementById("userArea");
+const userName = document.getElementById("userName");
 
 if(currentUser){
-
 authButtons.classList.add("hidden");
-
 userArea.classList.remove("hidden");
 
 const name =
@@ -1927,485 +1296,193 @@ currentUser.email ||
 
 userName.textContent = name;
 
-document.getElementById(
-"heroHint"
-).textContent =
+document.getElementById("heroHint").textContent =
 "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 
 }else{
-
 authButtons.classList.remove("hidden");
-
 userArea.classList.add("hidden");
 
-document.getElementById(
-"heroBalance"
-).textContent =
-"0.000 د.ت";
-
-document.getElementById(
-"walletBalance"
-).textContent =
-"0.000 د.ت";
-
-document.getElementById(
-"heroHint"
-).textContent =
+document.getElementById("heroBalance").textContent = "0.000 د.ت";
+document.getElementById("walletBalance").textContent = "0.000 د.ت";
+document.getElementById("heroHint").textContent =
 "سجّل الدخول للوصول إلى بيانات حسابك.";
-
 }
-
 }
-
 
 /* =========================================================
 PROFILE
 ========================================================= */
 
 async function loadProfile(){
-
 if(!currentUser){
-
 return null;
-
 }
 
-const {
-data,
-error
-} =
-await supabaseClient
+const {data,error} = await supabaseClient
 .from("profiles")
 .select("*")
 .eq("id",currentUser.id)
 .maybeSingle();
 
 if(error){
-
-console.error(
-"Profile error:",
-error
-);
-
+console.error("Profile error:",error);
 return null;
-
 }
 
 currentProfile = data || null;
-
 return data || null;
-
 }
-
 
 /* =========================================================
 WALLET
 ========================================================= */
 
 async function loadWalletData(){
-
-const heroBalance =
-document.getElementById("heroBalance");
-
-const walletBalance =
-document.getElementById("walletBalance");
-
+const heroBalance = document.getElementById("heroBalance");
+const walletBalance = document.getElementById("walletBalance");
 
 if(!currentUser){
-
-if(heroBalance){
-heroBalance.textContent = "0.000 د.ت";
-}
-
-if(walletBalance){
-walletBalance.textContent = "0.000 د.ت";
-}
-
+if(heroBalance)heroBalance.textContent = "0.000 د.ت";
+if(walletBalance)walletBalance.textContent = "0.000 د.ت";
 return;
-
 }
 
-
-if(heroBalance){
-heroBalance.textContent = "جاري التحميل...";
-}
-
-if(walletBalance){
-walletBalance.textContent = "جاري التحميل...";
-}
-
+if(heroBalance)heroBalance.textContent = "جاري التحميل...";
+if(walletBalance)walletBalance.textContent = "جاري التحميل...";
 
 try{
-
-/*
-  نقرأ المستخدم من جلسة Supabase
-*/
-
-const {
-data:userData,
-error:userError
-} =
+const {data:userData,error:userError} =
 await supabaseClient.auth.getUser();
 
-
 if(userError){
-
-console.error(
-"Auth user error:",
-userError
-);
-
-if(heroBalance){
-heroBalance.textContent = "تعذر قراءة الحساب";
-}
-
-if(walletBalance){
-walletBalance.textContent = "تعذر قراءة الحساب";
-}
-
+console.error("Auth user error:",userError);
+if(heroBalance)heroBalance.textContent = "تعذر قراءة الحساب";
+if(walletBalance)walletBalance.textContent = "تعذر قراءة الحساب";
 return;
-
 }
 
-
-const user =
-userData?.user;
-
+const user = userData?.user;
 
 if(!user){
-
-if(heroBalance){
-heroBalance.textContent = "0.000 د.ت";
-}
-
-if(walletBalance){
-walletBalance.textContent = "0.000 د.ت";
-}
-
+if(heroBalance)heroBalance.textContent = "0.000 د.ت";
+if(walletBalance)walletBalance.textContent = "0.000 د.ت";
 return;
-
 }
-
 
 currentUser = user;
 
+console.log("Current Auth User ID:",user.id);
 
-console.log(
-"Current Auth User ID:",
-user.id
-);
-
-
-/*
-  قراءة المحفظة.
-
-  استخدمنا limit(1) بدل maybeSingle()
-  حتى لا يفشل الاستعلام إذا كان هناك أكثر
-  من سجل بالخطأ لنفس المستخدم.
-*/
-
-const {
-data:walletRows,
-error:walletError
-} =
+const {data:walletRows,error:walletError} =
 await supabaseClient
 .from("wallet_accounts")
-.select(
-"user_id,balance,currency"
-)
-.eq(
-"user_id",
-user.id
-)
+.select("user_id,balance,currency")
+.eq("user_id",user.id)
 .limit(1);
 
-
 if(walletError){
-
-console.error(
-"Wallet account error:",
-walletError
-);
-
-console.error(
-"Wallet user ID searched:",
-user.id
-);
-
-console.error(
-"Wallet error code:",
-walletError.code
-);
-
-console.error(
-"Wallet error message:",
-walletError.message
-);
-
-console.error(
-"Wallet error details:",
-walletError.details
-);
-
-console.error(
-"Wallet error hint:",
-walletError.hint
-);
-
-
-/*
-  نعرض كود الخطأ فقط للمساعدة في تشخيص
-  مشكلة Supabase.
-*/
+console.error("Wallet account error:",walletError);
+console.error("Wallet user ID searched:",user.id);
+console.error("Wallet error code:",walletError.code);
+console.error("Wallet error message:",walletError.message);
+console.error("Wallet error details:",walletError.details);
+console.error("Wallet error hint:",walletError.hint);
 
 const errorCode =
 walletError.code
 ? " (" + walletError.code + ")"
 : "";
 
-
-if(heroBalance){
-heroBalance.textContent =
-"خطأ المحفظة" + errorCode;
-}
-
-if(walletBalance){
-walletBalance.textContent =
-"خطأ المحفظة" + errorCode;
-}
-
+if(heroBalance)heroBalance.textContent = "خطأ المحفظة" + errorCode;
+if(walletBalance)walletBalance.textContent = "خطأ المحفظة" + errorCode;
 return;
-
 }
 
+const wallet = Array.isArray(walletRows) ? walletRows[0] : null;
 
-/*
-  limit(1) يرجع مصفوفة.
-  نأخذ أول حساب فقط.
-*/
-
-const wallet =
-Array.isArray(walletRows)
-? walletRows[0]
-: null;
-
-
-console.log(
-"Wallet account:",
-wallet
-);
-
-
-/*
-  لا يوجد حساب محفظة
-*/
+console.log("Wallet account:",wallet);
 
 if(!wallet){
-
-console.warn(
-"لا يوجد حساب محفظة لهذا المستخدم:",
-user.id
-);
-
-if(heroBalance){
-heroBalance.textContent =
-"0.000 د.ت";
-}
-
-if(walletBalance){
-walletBalance.textContent =
-"0.000 د.ت";
-}
-
+console.warn("لا يوجد حساب محفظة لهذا المستخدم:",user.id);
+if(heroBalance)heroBalance.textContent = "0.000 د.ت";
+if(walletBalance)walletBalance.textContent = "0.000 د.ت";
 return;
-
 }
 
-
-/*
-  تحويل الرصيد إلى رقم
-*/
-
-const balance =
-Number(wallet.balance ?? 0);
-
-
-const currency =
-String(
-wallet.currency || "TND"
-).toUpperCase();
-
+const balance = Number(wallet.balance ?? 0);
+const currency = String(wallet.currency || "TND").toUpperCase();
 
 const formatted =
 balance.toFixed(3) +
-(
-currency === "TND"
-? " د.ت"
-: " " + currency
-);
+(currency === "TND" ? " د.ت" : " " + currency);
 
+if(heroBalance)heroBalance.textContent = formatted;
+if(walletBalance)walletBalance.textContent = formatted;
 
-/*
-  عرض الرصيد في المكانين
-*/
-
-if(heroBalance){
-heroBalance.textContent =
-formatted;
-}
-
-if(walletBalance){
-walletBalance.textContent =
-formatted;
-}
-
-
-console.log(
-"Displayed wallet balance:",
-formatted
-);
-
+console.log("Displayed wallet balance:",formatted);
 
 }catch(error){
-
-console.error(
-"loadWalletData exception:",
-error
-);
-
-if(heroBalance){
-heroBalance.textContent =
-"تعذر قراءة الرصيد";
+console.error("loadWalletData exception:",error);
+if(heroBalance)heroBalance.textContent = "تعذر قراءة الرصيد";
+if(walletBalance)walletBalance.textContent = "تعذر قراءة الرصيد";
 }
-
-if(walletBalance){
-walletBalance.textContent =
-"تعذر قراءة الرصيد";
 }
-
-}
-
-}
-
 
 /* =========================================================
 CREATE WALLET REQUEST
 ========================================================= */
 
 async function createWalletRequest(){
-
 if(!currentUser){
-
-showToast(
-"يجب تسجيل الدخول أولًا"
-);
-
+showToast("يجب تسجيل الدخول أولًا");
 openModal("loginModal");
-
 return;
-
 }
 
-
-const type =
-document.getElementById("walletType").value;
-
-const amount =
-Number(
-document.getElementById("walletAmount").value
-);
-
-const method =
-document.getElementById("paymentMethod").value;
-
-const account =
-document.getElementById("paymentAccount").value.trim();
-
-const reference =
-document.getElementById("paymentReference").value.trim();
-
+const type = document.getElementById("walletType").value;
+const amount = Number(document.getElementById("walletAmount").value);
+const method = document.getElementById("paymentMethod").value;
+const account = document.getElementById("paymentAccount").value.trim();
+const reference = document.getElementById("paymentReference").value.trim();
 
 if(!amount || amount <= 0){
-
-showToast(
-"أدخل مبلغًا صحيحًا"
-);
-
+showToast("أدخل مبلغًا صحيحًا");
 return;
-
 }
-
 
 if(!account){
-
-showToast(
-"أدخل رقم الحساب أو الهاتف"
-);
-
+showToast("أدخل رقم الحساب أو الهاتف");
 return;
-
 }
 
-
-if(type === "withdraw"){
-
-const {
-data:walletRows,
-error:walletError
-} =
+/* تم تصحيح القيمة لتطابق قيد قاعدة البيانات: withdrawal */
+if(type === "withdrawal"){
+const {data:walletRows,error:walletError} =
 await supabaseClient
 .from("wallet_accounts")
 .select("balance")
 .eq("user_id",currentUser.id)
 .limit(1);
 
-
 if(walletError){
-
-console.error(
-"Wallet balance error:",
-walletError
-);
-
-showToast(
-"تعذر التحقق من الرصيد"
-);
-
+console.error("Wallet balance error:",walletError);
+showToast("تعذر التحقق من الرصيد");
 return;
-
 }
 
-
-const walletAccount =
-Array.isArray(walletRows)
-? walletRows[0]
-: null;
-
-
-const balance =
-Number(walletAccount?.balance || 0);
-
+const walletAccount = Array.isArray(walletRows) ? walletRows[0] : null;
+const balance = Number(walletAccount?.balance || 0);
 
 if(amount > balance){
-
-showToast(
-"الرصيد غير كافٍ لطلب السحب"
-);
-
+showToast("الرصيد غير كافٍ لطلب السحب");
 return;
-
+}
 }
 
-}
-
-
-const {
-error
-} =
-await supabaseClient
+const {error} = await supabaseClient
 .from("wallet_requests")
 .insert({
-
 user_id:currentUser.id,
 request_type:type,
 amount:amount,
@@ -2413,136 +1490,68 @@ payment_method:method,
 payment_account:account,
 payment_reference:reference || null,
 status:"pending"
-
 });
 
-
 if(error){
-
-console.error(
-"Wallet request:",
-error
-);
-
-showToast(
-"تعذر إرسال الطلب: " + error.message
-);
-
+console.error("Wallet request:",error);
+showToast("تعذر إرسال الطلب: " + error.message);
 return;
-
 }
 
+document.getElementById("walletAmount").value = "";
+document.getElementById("paymentAccount").value = "";
+document.getElementById("paymentReference").value = "";
 
-document.getElementById(
-"walletAmount"
-).value = "";
-
-document.getElementById(
-"paymentAccount"
-).value = "";
-
-document.getElementById(
-"paymentReference"
-).value = "";
-
-
-showToast(
-"تم إرسال طلبك بنجاح وهو الآن قيد المراجعة"
-);
-
+showToast("تم إرسال طلبك بنجاح وهو الآن قيد المراجعة");
 
 await loadWalletHistory();
-
 }
-
 
 /* =========================================================
 WALLET HISTORY
 ========================================================= */
 
 async function loadWalletHistory(){
-
-const body =
-document.getElementById("historyBody");
-
-const message =
-document.getElementById("historyLoginMessage");
+const body = document.getElementById("historyBody");
+const message = document.getElementById("historyLoginMessage");
 
 if(!body)return;
 
 body.innerHTML = "";
 
-
 if(!currentUser){
-
 message.classList.remove("hidden");
-
 return;
-
 }
-
 
 message.classList.add("hidden");
 
-
-const {
-data,
-error
-} =
-await supabaseClient
+const {data,error} = await supabaseClient
 .from("wallet_requests")
 .select("*")
 .eq("user_id",currentUser.id)
-.order(
-"created_at",
-{
-ascending:false
-}
-);
-
+.order("created_at",{ascending:false});
 
 if(error){
-
-console.error(
-"Wallet history:",
-error
-);
-
-body.innerHTML =
-'<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
-
+console.error("Wallet history:",error);
+body.innerHTML = '<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';
 return;
-
 }
-
 
 if(!data || data.length === 0){
-
-body.innerHTML =
-'<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
-
+body.innerHTML = '<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>';
 return;
-
 }
 
-
 data.forEach(item=>{
-
-const tr =
-document.createElement("tr");
-
+const tr = document.createElement("tr");
 
 const type =
 item.request_type === "deposit"
 ? "إيداع"
 : "سحب";
 
-
-const status =
-String(
-item.status || "pending"
-).toLowerCase();
-
+const status = String(item.status || "pending").toLowerCase();
 
 const statusClass =
 status === "approved"
@@ -2553,7 +1562,6 @@ status === "approved"
 ? "status-cancelled"
 : "status-pending";
 
-
 const statusText =
 status === "approved"
 ? "مقبول"
@@ -2563,114 +1571,59 @@ status === "approved"
 ? "ملغى"
 : "قيد المراجعة";
 
-
 tr.innerHTML = `
-
-<td>
-${escapeHtml(type)}
-</td>
-
-<td>
-${escapeHtml(formatMoney(item.amount))}
-</td>
-
-<td>
-${escapeHtml(item.payment_method || "-")}
-</td>
-
-<td>
-<span class="status ${statusClass}">
-${escapeHtml(statusText)}
-</span>
-</td>
-
-<td>
-${escapeHtml(formatDate(item.created_at))}
-</td>
-
+<td>${escapeHtml(type)}</td>
+<td>${escapeHtml(formatMoney(item.amount))}</td>
+<td>${escapeHtml(item.payment_method || "-")}</td>
+<td><span class="status ${statusClass}">${escapeHtml(statusText)}</span></td>
+<td>${escapeHtml(formatDate(item.created_at))}</td>
 `;
 
-
 body.appendChild(tr);
-
 });
-
 }
-
 
 /* =========================================================
 SUPPORT
 ========================================================= */
 
 async function getOrCreateConversation(){
-
 if(!currentUser){
-
 return null;
-
 }
 
-
-const {
-data:existing,
-error:findError
-} =
-await supabaseClient
+const {data:existing,error:findError} = await supabaseClient
 .from("support_conversations")
 .select("*")
 .eq("user_id",currentUser.id)
 .eq("status","open")
-.order(
-"created_at",
-{
-ascending:false
-}
-)
+.order("created_at",{ascending:false})
 .limit(1)
 .maybeSingle();
 
-
 if(findError){
-
-console.error(
-"Support conversation search error:",
-findError
-);
-
+console.error("Support conversation search error:",findError);
 return null;
-
 }
-
 
 if(existing){
-
 currentConversation = existing;
-
 return existing;
-
 }
 
-
-let result =
-await supabaseClient
+let result = await supabaseClient
 .from("support_conversations")
 .insert({
-
 user_id:currentUser.id,
 status:"open"
-
 })
 .select("*")
 .single();
 
-
 if(result.error){
-
-result =
-await supabaseClient
+result = await supabaseClient
 .from("support_conversations")
 .insert({
-
 user_id:currentUser.id,
 visitor_name:
 currentUser.user_metadata?.full_name ||
@@ -2678,565 +1631,271 @@ currentUser.email ||
 "عميل",
 topic:"دعم من الموقع",
 status:"open"
-
 })
 .select("*")
 .single();
-
 }
-
 
 if(result.error){
-
-console.error(
-"Support conversation create error:",
-result.error
-);
-
+console.error("Support conversation create error:",result.error);
 return null;
-
 }
-
 
 currentConversation = result.data;
-
 return result.data;
-
 }
 
-
 async function loadSupport(){
-
-const box =
-document.getElementById("supportMessages");
-
+const box = document.getElementById("supportMessages");
 
 if(!box)return;
 
-
 if(!currentUser){
-
 box.innerHTML =
 '<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-
 return;
-
 }
 
-
-const conversation =
-await getOrCreateConversation();
-
+const conversation = await getOrCreateConversation();
 
 if(!conversation){
-
 box.innerHTML =
 '<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';
-
 return;
-
 }
 
-
-const {
-data,
-error
-} =
-await supabaseClient
+const {data,error} = await supabaseClient
 .from("support_messages")
 .select("*")
-.eq(
-"conversation_id",
-conversation.id
-)
-.order(
-"created_at",
-{
-ascending:true
-}
-);
-
+.eq("conversation_id",conversation.id)
+.order("created_at",{ascending:true});
 
 if(error){
-
-console.error(
-"Support messages:",
-error
-);
-
+console.error("Support messages:",error);
 box.innerHTML =
 '<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';
-
 return;
-
 }
-
 
 box.innerHTML = "";
 
-
 if(!data || data.length === 0){
-
 box.innerHTML =
 '<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';
-
 return;
-
 }
-
 
 data.forEach(message=>{
+const div = document.createElement("div");
+const role = String(message.sender_role || "").toLowerCase();
+const isUser = role === "visitor";
 
-const div =
-document.createElement("div");
-
-
-const role =
-String(
-message.sender_role || ""
-).toLowerCase();
-
-
-const isUser =
-role === "visitor";
-
-
-div.className =
-"message " +
-(
-isUser
-? "user"
-: "admin"
-);
-
+div.className = "message " + (isUser ? "user" : "admin");
 
 div.innerHTML = `
-
-<div>
-${escapeHtml(message.message || "")}
-</div>
-
-<div class="messageTime">
-${escapeHtml(formatDate(message.created_at))}
-</div>
-
+<div>${escapeHtml(message.message || "")}</div>
+<div class="messageTime">${escapeHtml(formatDate(message.created_at))}</div>
 `;
 
-
 box.appendChild(div);
-
 });
 
-
-box.scrollTop =
-box.scrollHeight;
-
+box.scrollTop = box.scrollHeight;
 }
-
 
 async function sendSupportMessage(){
-
 if(!currentUser){
-
-showToast(
-"يجب تسجيل الدخول أولًا"
-);
-
+showToast("يجب تسجيل الدخول أولًا");
 openModal("loginModal");
-
 return;
-
 }
 
-
-const input =
-document.getElementById("supportInput");
-
-const message =
-input.value.trim();
-
+const input = document.getElementById("supportInput");
+const message = input.value.trim();
 
 if(!message){
-
-showToast(
-"اكتب رسالة أولًا"
-);
-
+showToast("اكتب رسالة أولًا");
 return;
-
 }
 
-
-const conversation =
-await getOrCreateConversation();
-
+const conversation = await getOrCreateConversation();
 
 if(!conversation){
-
-showToast(
-"تعذر فتح المحادثة"
-);
-
+showToast("تعذر فتح المحادثة");
 return;
-
 }
 
+showStatus("supportStatus","جارٍ إرسال الرسالة...");
 
-showStatus(
-"supportStatus",
-"جارٍ إرسال الرسالة..."
-);
-
-
-const {
-error
-} =
-await supabaseClient
+const {error} = await supabaseClient
 .from("support_messages")
 .insert({
-
 conversation_id:conversation.id,
 sender_role:"visitor",
 message:message
-
 });
 
-
 if(error){
-
-console.error(
-"Send support message:",
-error
-);
-
-showStatus(
-"supportStatus",
-"تعذر إرسال الرسالة: " + error.message,
-"error"
-);
-
+console.error("Send support message:",error);
+showStatus("supportStatus","تعذر إرسال الرسالة: " + error.message,"error");
 return;
-
 }
-
 
 input.value = "";
 
-
-showStatus(
-"supportStatus",
-"تم إرسال الرسالة بنجاح.",
-"success"
-);
-
+showStatus("supportStatus","تم إرسال الرسالة بنجاح.","success");
 
 await loadSupport();
-
 }
-
 
 /* =========================================================
 PASSWORD RECOVERY
 ========================================================= */
 
 function openRecovery(){
-
 closeModal("loginModal");
-
 openModal("recoveryModal");
-
 }
-
 
 async function sendRecovery(){
-
-const email =
-document
-.getElementById("recoveryEmail")
-.value.trim();
-
+const email = document.getElementById("recoveryEmail").value.trim();
 
 if(!email){
-
-showStatus(
-"recoveryStatus",
-"أدخل بريدك الإلكتروني.",
-"error"
-);
-
+showStatus("recoveryStatus","أدخل بريدك الإلكتروني.","error");
 return;
-
 }
-
 
 const redirectTo =
 window.location.origin +
 window.location.pathname +
 "?type=recovery";
 
-
-const {
-error
-} =
-await supabaseClient.auth.resetPasswordForEmail(
+const {error} = await supabaseClient.auth.resetPasswordForEmail(
 email,
-{
-redirectTo:redirectTo
-}
+{redirectTo:redirectTo}
 );
-
 
 if(error){
-
-showStatus(
-"recoveryStatus",
-error.message,
-"error"
-);
-
+showStatus("recoveryStatus",error.message,"error");
 return;
-
 }
 
-
-showStatus(
-"recoveryStatus",
-"تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.",
-"success"
-);
-
+showStatus("recoveryStatus","تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.","success");
 }
-
 
 async function changePassword(){
-
-const password =
-document
-.getElementById("newPassword")
-.value;
-
+const password = document.getElementById("newPassword").value;
 
 if(password.length < 6){
-
-showStatus(
-"resetStatus",
-"كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
-"error"
-);
-
+showStatus("resetStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
 return;
-
 }
 
-
-const {
-error
-} =
-await supabaseClient.auth.updateUser({
+const {error} = await supabaseClient.auth.updateUser({
 password:password
 });
 
-
 if(error){
-
-showStatus(
-"resetStatus",
-error.message,
-"error"
-);
-
+showStatus("resetStatus",error.message,"error");
 return;
-
 }
 
-
-showStatus(
-"resetStatus",
-"تم تغيير كلمة المرور بنجاح.",
-"success"
-);
-
+showStatus("resetStatus","تم تغيير كلمة المرور بنجاح.","success");
 
 setTimeout(()=>{
-
 closeModal("resetModal");
-
 },1500);
-
 }
-
 
 /* =========================================================
 AUTH STATE
 ========================================================= */
 
-supabaseClient.auth.onAuthStateChange(
-(event,session)=>{
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+currentUser = session?.user || null;
 
-currentUser =
-session?.user || null;
-
-
-setTimeout(
-async()=>{
-
+setTimeout(async()=>{
 await updateAuthUI(currentUser);
 
 if(currentUser){
-
 await loadWalletData();
-
 await loadWalletHistory();
-
 await loadSupport();
-
 }else{
-
 currentConversation = null;
-
 }
-
-},
-0
-);
-
+},0);
 
 if(event === "PASSWORD_RECOVERY"){
-
 setTimeout(()=>{
-
 openModal("resetModal");
-
 },300);
-
 }
-
-}
-);
-
+});
 
 /* =========================================================
 INITIALIZATION
 ========================================================= */
 
 async function initialize(){
-
 try{
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.getUser();
-
+const {data,error} = await supabaseClient.auth.getUser();
 
 if(error){
-
-console.error(
-"Initial auth error:",
-error
-);
-
+console.error("Initial auth error:",error);
 await updateAuthUI(null);
-
 return;
-
 }
 
-
-currentUser =
-data?.user || null;
-
+currentUser = data?.user || null;
 
 await updateAuthUI(currentUser);
 
-
 if(currentUser){
-
 await loadWalletData();
-
 await loadWalletHistory();
-
 await loadSupport();
-
 }
-
 }catch(error){
-
-console.error(
-"Initialization error:",
-error
-);
-
+console.error("Initialization error:",error);
 }
-
 }
-
 
 /* =========================================================
 RECOVERY URL
 ========================================================= */
 
 if(
-new URLSearchParams(
-window.location.search
-).get("type") === "recovery"
+new URLSearchParams(window.location.search).get("type") === "recovery"
 ){
-
 setTimeout(()=>{
-
 openModal("resetModal");
-
 },800);
-
 }
 
-
 initialize();
-
 
 /* =========================================================
 CLOSE MODALS
 ========================================================= */
 
-document
-.querySelectorAll(".modal")
-.forEach(
-modal=>{
-
-modal.addEventListener(
-"click",
-event=>{
-
+document.querySelectorAll(".modal").forEach(modal=>{
+modal.addEventListener("click",event=>{
 if(event.target === modal){
-
 modal.classList.remove("show");
-
 }
-
-}
-
-);
-
 });
-
+});
 
 /* =========================================================
 AUTO REFRESH
 ========================================================= */
 
-setInterval(
-async()=>{
-
+setInterval(async()=>{
 if(!currentUser)return;
-
 await loadWalletData();
-
 await loadWalletHistory();
-
-},
-15000
-);
+},15000);
 
 </script>
 
