@@ -7,7 +7,7 @@
 <title>SDNBet365 | Black & Gold</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#07101d;--panel:#101c2d;--panel2:#15253a;--border:#263950;--text:#f5f7fb;--muted:#9eacbd;--green:#20c77a;--green2:#13a965;--red:#ef5350;--yellow:#f4c542;--blue:#3182f6;--shadow:0 15px 40px rgba(0,0,0,.25)}
+:root{--bg:#080808;--panel:#151515;--panel2:#201b11;--border:#4a3a1d;--text:#f5f0e4;--muted:#b9b1a1;--green:#dfb84f;--green2:#b88a2c;--red:#ef5350;--yellow:#f0d887;--blue:#b88a2c;--shadow:0 15px 40px rgba(0,0,0,.38)}
 body{font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
 .container{width:min(1180px,92%);margin:auto}
@@ -224,32 +224,72 @@ footer{background:#070707;border-top-color:#49391c}
 }
 @media(max-width:380px){.cards{grid-template-columns:1fr}.logo{font-size:20px}}
 
+
+/* Final black-and-gold layout: compact top bar and expandable left-side account menu */
+.headerRight{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.menuTrigger{font-size:23px;line-height:1;min-width:44px;min-height:44px;padding:7px 12px;color:#e6c76f;border-color:#665124}
+.nav{display:flex;align-items:center;justify-content:flex-start;gap:14px;min-height:68px;flex-wrap:nowrap}
+.navlinks{display:none!important}
+.logo{color:#e4bd5b;font-size:24px}
+.userArea{align-items:center;justify-content:flex-end}
+.userArea .userBalanceMini{display:none!important}
+.hero{padding:24px 0 14px}
+.heroGrid{display:block}
+.heroCard{max-width:none;padding:clamp(22px,4vw,42px);min-height:185px}
+.heroEyebrow{font-size:11px;letter-spacing:2px;color:#d9b65a;margin-bottom:13px;font-weight:800}
+.hero h1{font-size:clamp(28px,5vw,44px)}
+.sideMenuBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:1200;opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease}
+.sideMenu{position:fixed;z-index:1201;top:0;bottom:0;left:0;width:min(330px,86vw);padding:20px 16px calc(20px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#17140d,#090909 45%);border-right:1px solid #6b5425;box-shadow:18px 0 45px rgba(0,0,0,.48);transform:translateX(-105%);transition:transform .24s ease;display:flex;flex-direction:column;gap:7px;overflow-y:auto}
+body.menu-open .sideMenuBackdrop{opacity:1;visibility:visible}
+body.menu-open .sideMenu{transform:translateX(0)}
+.sideMenuHead{display:flex;align-items:center;justify-content:space-between;padding:5px 4px 18px;border-bottom:1px solid #40331b}
+.closeMenu{background:transparent;border:0;color:#e6c76f;font-size:32px;line-height:1;padding:0 7px}
+.sideMenuUser{padding:14px 9px;color:#c9c0ae;font-size:13px;line-height:1.7;border-bottom:1px solid #302719;margin-bottom:5px}
+.sideMenu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;border:1px solid transparent;border-radius:9px;color:#f1e8d1;font-weight:700;direction:ltr;text-align:left}
+.sideMenu>a span{width:25px;text-align:center;color:#e4bd5b;font-size:18px}
+.sideMenu>a:hover,.sideMenu>a:focus{background:#292112;border-color:#5b4722;color:#f2d77e}
+.sideMenuSpacer{flex:1;min-height:20px}
+.sideLogout{width:100%;text-align:left;direction:ltr;padding:13px 12px;border:1px solid #503326;border-radius:9px;background:#21130f;color:#f2a59b;font-weight:800}
+.walletBalanceCard{display:none}
+#heroHint{display:none}
+body.authenticated .walletBalanceCard{display:block}
+@media(max-width:600px){.nav{gap:10px;min-height:62px}.headerRight{gap:6px;margin-left:auto}.logo{font-size:21px}.authButtons .btn{padding:9px 10px;font-size:12px}.hero{padding-top:14px}.heroCard{min-height:0}.heroActions .btn{flex:1;text-align:center}.userName{display:none}}
+
 </style>
 </head>
 <body>
 <header>
 <div class="container nav">
+<button class="btn menuTrigger" id="menuTrigger" aria-label="فتح القائمة" aria-expanded="false" onclick="toggleSideMenu(true)">☰</button>
 <a href="#sports" class="logo" aria-label="SDNBet365 home">SDNBet365</a>
-<nav class="navlinks" aria-label="Main navigation"><a href="#sports" data-i18n="navSports">الرياضة</a><a href="#casino" data-i18n="navCasino">الكازينو</a><a href="#live" data-i18n="navLive">مباشر</a><a href="#wallet" data-i18n="navWallet">المحفظة</a><a href="#history" data-i18n="navHistory">السجل</a><a href="#account" data-i18n="myAccount">حسابي</a><a href="#support" data-i18n="support">الدعم</a></nav><select id="languageSelect" aria-label="Language / اللغة" class="btn" style="padding:9px 10px;width:auto" onchange="setLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option></select>
+<div class="headerRight">
+<select id="languageSelect" aria-label="Language / اللغة" class="btn" style="padding:9px 10px;width:auto" onchange="setLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option></select>
 <div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">دخول</button><button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button></div>
 <div class="userArea hidden" id="userArea">
-<button class="btn" onclick="openAccount()" data-i18n="myAccount">حسابي</button>
-<span class="userBalanceMini" id="userBalanceMini" aria-live="polite">الرصيد: —</span>
+<span class="userName" id="userName"></span>
 <div class="notificationWrap">
 <button class="btn notificationButton" id="notificationButton" aria-label="الإشعارات" title="الإشعارات" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
-<div class="notificationPanel hidden" id="notificationPanel">
-<div class="notificationHead"><h3 data-i18n="notificationTitle">إشعارات حسابك</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()" data-i18n="markRead">قراءة الكل</button></div>
-<div id="notificationList"><div class="notificationEmpty"><span data-i18n="loginNotifications">سجّل الدخول لعرض إشعاراتك.</span></div></div>
-</div>
+<div class="notificationPanel hidden" id="notificationPanel"><div class="notificationHead"><h3 data-i18n="notificationTitle">إشعارات حسابك</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()" data-i18n="markRead">قراءة الكل</button></div><div id="notificationList"><div class="notificationEmpty"><span data-i18n="loginNotifications">سجّل الدخول لعرض إشعاراتك.</span></div></div></div>
 </div>
 <button class="btn" onclick="signOutUser()">خروج</button>
-</div>
+</div></div>
 </div>
 </header>
+<div class="sideMenuBackdrop" id="sideMenuBackdrop" onclick="toggleSideMenu(false)" aria-hidden="true"></div>
+<aside class="sideMenu" id="sideMenu" aria-label="القائمة الداخلية" aria-hidden="true">
+<div class="sideMenuHead"><span class="logo">SDNBet365</span><button class="closeMenu" aria-label="إغلاق القائمة" onclick="toggleSideMenu(false)">×</button></div>
+<div class="sideMenuUser" id="sideMenuUser">مرحبًا بك — سجّل الدخول للوصول إلى حسابك</div>
+<a href="#account" onclick="toggleSideMenu(false)"><span>👤</span> Account</a>
+<a href="#wallet" onclick="openWalletAction('deposit');toggleSideMenu(false)"><span>＋</span> Deposit</a>
+<a href="#wallet" onclick="openWalletAction('withdrawal');toggleSideMenu(false)"><span>↗</span> Withdraw</a>
+<a href="#history" onclick="toggleSideMenu(false)"><span>↻</span> Transaction History</a>
+<a href="#account" onclick="toggleSideMenu(false)"><span>🎟</span> My Bets</a>
+<div class="sideMenuSpacer"></div>
+<button class="sideLogout" id="sideLogout" onclick="toggleSideMenu(false);signOutUser()">↪ &nbsp; Logout</button>
+</aside>
 <main id="top">
 <section class="hero"><div class="container heroGrid">
-<div class="heroCard"><h1>منصة <span>Sdnbet365</span></h1><p>واجهة رياضية منظمة وسريعة على الهاتف. تنقّل بين الأقسام، تابع محفظتك وطلباتك، وواصل مع الدعم من مكان واحد.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">استكشف الرياضة</a><a href="#wallet" class="btn">المحفظة</a></div></div>
-<div class="balanceCard"><div class="balanceLabel">رصيد الحساب</div><div class="balance" id="heroBalance">0.000 د.ت</div><div class="loginHint" id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</div></div>
+<div class="heroCard"><div class="heroEyebrow">SPORTSBOOK · ENTERTAINMENT</div><h1>منصة <span>SDNBet365</span></h1><p>واجهة رئيسية واضحة وسريعة، مع انتقال مستقل إلى الرياضة والألعاب والحساب الشخصي. سجّل الدخول لإدارة حسابك ومحفظتك.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">استكشف الرياضة</a><a href="#casino" class="btn">استكشف Slots</a></div></div>
 </div></section>
 <section id="sports"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionSports">الرياضة</h2><p data-i18n="sportsIntro">واجهة المباريات الرياضية.</p></div>
 <div class="cards">
@@ -267,7 +307,7 @@ footer{background:#070707;border-top-color:#49391c}
 </div></div></section>
 <section id="live"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionLive">مباشر</h2><p data-i18n="liveIntro">الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
 <section id="wallet"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionWallet">المحفظة</h2><p data-i18n="walletIntro">إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
-<div class="walletCard"><div class="balanceLabel">رصيد الحساب</div><div class="walletBalance" id="walletBalance">0.000 د.ت</div><p style="color:var(--muted);line-height:1.8">الرصيد المعروض هنا يتم قراءته من حسابك في Supabase. لا يمكن للمستخدم تعديل الرصيد من الواجهة.</p><div style="margin-top:18px"><button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button></div></div>
+<div class="walletCard walletBalanceCard"><div class="balanceLabel">رصيد الحساب</div><div class="walletBalance" id="walletBalance">0.000 د.ت</div><p style="color:var(--muted);line-height:1.8">الرصيد المعروض هنا يتم قراءته من حسابك في Supabase. لا يمكن للمستخدم تعديل الرصيد من الواجهة.</p><div style="margin-top:18px"><button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button></div></div>
 <div class="walletCard"><div class="notice">وسائل الدفع تسجل طلبك فقط. لن يُضاف أي رصيد تلقائيًا؛ سيراجع المدير التحويل وإثبات الدفع يدويًا.</div>
 <div class="formGroup"><label data-i18n="walletTypeLabel">نوع العملية</label><select id="walletType"><option value="deposit" data-i18n="deposit">إيداع</option><option value="withdrawal" data-i18n="withdrawal">سحب</option></select></div>
 <div class="formGroup"><label data-i18n="amountLabel">المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50"></div>
@@ -287,6 +327,7 @@ footer{background:#070707;border-top-color:#49391c}
 <div id="supportMessages" class="messages"><div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div></div>
 <div class="formGroup"><textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea></div><button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">إرسال الرسالة</button><div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
 </div></div></section>
+<div class="hidden" aria-hidden="true"><span id="heroBalance">0.000 د.ت</span><span id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</span></div>
 </main>
 <footer><div class="container">SDNBet365 © 2026 — <span data-i18n="rights">جميع الحقوق محفوظة.</span><br><a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">🌐 فتح موقع Sdnbet365</a></div></footer>
 
@@ -441,10 +482,12 @@ async function updateAuthUI(userOverride){
 if(arguments.length>0)currentUser=userOverride;else currentUser=await getCurrentUser();
 const authButtons=$("authButtons"),userArea=$("userArea"),userName=$("userName");
 if(currentUser){
+document.body.classList.add("authenticated");
 authButtons.classList.add("hidden");userArea.classList.remove("hidden");
 userName.textContent=currentUser.user_metadata?.full_name||"حسابي";
 $("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 }else{
+document.body.classList.remove("authenticated");
 authButtons.classList.remove("hidden");userArea.classList.add("hidden");
 $("heroBalance").textContent="0.000 د.ت";$("walletBalance").textContent="0.000 د.ت";$("userBalanceMini").textContent="الرصيد: —";
 $("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
@@ -595,6 +638,21 @@ setInterval(async()=>{if(!currentUser||notificationRefreshBusy)return;notificati
 </script>
 
 <script>
+function toggleSideMenu(open){
+  document.body.classList.toggle("menu-open",!!open);
+  const trigger=document.getElementById("menuTrigger"),menu=document.getElementById("sideMenu");
+  if(trigger)trigger.setAttribute("aria-expanded",String(!!open));
+  if(menu)menu.setAttribute("aria-hidden",String(!open));
+  if(open){const userLabel=document.getElementById("sideMenuUser");if(userLabel)userLabel.textContent=currentUser?(currentUser.user_metadata?.full_name||currentUser.email||"Account"):"Sign in to access your account";}
+}
+function openWalletAction(type){
+  if(!currentUser){openModal("loginModal");showToast("سجّل الدخول أولًا للوصول إلى المحفظة");return;}
+  location.hash="#wallet";
+  setTimeout(()=>{const select=document.getElementById("walletType");if(select)select.value=type;},80);
+}
+document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMenu(false)});
+</script>
+<script>
 (function(){
   const ids=["sports","casino","live","wallet","history","account","support"];
   const hero=document.querySelector("main>.hero");
@@ -625,4 +683,4 @@ setInterval(async()=>{if(!currentUser||notificationRefreshBusy)return;notificati
 </script>
 
 </body>
-  </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </html>
