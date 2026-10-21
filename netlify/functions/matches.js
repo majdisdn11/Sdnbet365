@@ -13,7 +13,7 @@ exports.handler = async function () {
 
   try {
     const response = await fetch(
-      "https://api.soccersapi.com/v2.2/leagues/?t=list",
+      "https://api.soccersapi.com/v2.2/livescores/?t=today&utc=1",
       {
         headers: {
           Authorization: `Bearer ${apiKey}`
@@ -27,7 +27,7 @@ exports.handler = async function () {
       statusCode: response.ok ? 200 : response.status,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=300"
+        "Cache-Control": "public, max-age=120"
       },
       body: JSON.stringify(data)
     };
@@ -35,7 +35,7 @@ exports.handler = async function () {
     return {
       statusCode: 502,
       body: JSON.stringify({
-        error: "Could not retrieve sports data"
+        error: "Could not retrieve match data"
       })
     };
   }
