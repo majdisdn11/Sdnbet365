@@ -91,13 +91,15 @@ footer{margin-top:45px;border-top:1px solid var(--border);padding:25px 0;color:v
 <section id="live"><div class="container"><div class="sectionTitle"><h2>مباشر</h2><p>الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
 <section id="wallet"><div class="container"><div class="sectionTitle"><h2>المحفظة</h2><p>إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
 <div class="walletCard"><div class="balanceLabel">رصيد الحساب</div><div class="walletBalance" id="walletBalance">0.000 د.ت</div><p style="color:var(--muted);line-height:1.8">الرصيد المعروض هنا يتم قراءته من حسابك في Supabase. لا يمكن للمستخدم تعديل الرصيد من الواجهة.</p><div style="margin-top:18px"><button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button></div></div>
-<div class="walletCard"><div class="notice">D17 وFlouci في هذه المرحلة يسجلان طلب الإيداع أو السحب. لا يتم تنفيذ الدفع تلقائيًا من المتصفح.</div>
+<div class="walletCard"><div class="notice">وسائل الدفع تسجل طلبك فقط. لن يُضاف أي رصيد تلقائيًا؛ سيراجع المدير التحويل وإثبات الدفع يدويًا.</div>
 <div class="formGroup"><label>نوع العملية</label><select id="walletType"><option value="deposit">إيداع</option><option value="withdrawal">سحب</option></select></div>
 <div class="formGroup"><label>المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50"></div>
-<div class="formGroup"><label>طريقة الدفع</label><select id="paymentMethod" onchange="updatePaymentInstructions()"><option value="D17">D17</option><option value="Flouci">Flouci</option></select></div>
-<div id="flouciPaymentInstructions" class="flouciInfo hidden" aria-live="polite">رقم محفظة Flouci: <strong id="flouciWalletDisplay">جارٍ تحميل الرقم...</strong><div style="color:var(--muted);font-size:13px;margin-top:5px">تحقق من الرقم قبل إجراء التحويل. إرسال الطلب لا يؤكد وصول الدفع تلقائيًا.</div></div>
+<div class="formGroup"><label>طريقة الدفع</label><select id="paymentMethod" onchange="updatePaymentInstructions()"><option value="D17">D17</option><option value="Flouci">Flouci</option><option value="Izi Zaytouna">Izi Zaytouna</option><option value="Ooredoo Recharge">Ooredoo Recharge</option><option value="Orange">Orange</option><option value="Tunisie Telecom">Tunisie Telecom</option></select></div>
+<div id="paymentInstructions" class="flouciInfo" aria-live="polite">بيانات الاستقبال: <strong id="paymentDestinationDisplay">جارٍ تحميل البيانات...</strong><div style="color:var(--muted);font-size:13px;margin-top:5px">تحقق من بيانات الاستقبال قبل التحويل. إرسال الطلب لا يؤكد وصول الدفع تلقائيًا.</div></div>
 <div class="formGroup"><label>رقم الحساب / الهاتف</label><input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب"></div>
 <div class="formGroup"><label>مرجع العملية إن وجد</label><input id="paymentReference" type="text" placeholder="رقم العملية"></div>
+<div class="formGroup"><label>كود العرض (اختياري)</label><input id="promoCode" type="text" maxlength="80" placeholder="أدخل كود العرض إن وجد"></div>
+<div class="formGroup" id="proofUploadGroup"><label for="paymentProof">صورة إثبات الدفع (مطلوبة للإيداع)</label><input id="paymentProof" type="file" accept="image/*"><small style="display:block;color:var(--muted);margin-top:6px">صورة فقط، بحد أقصى 5 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع.</small></div>
 <button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">إرسال الطلب</button></div>
 </div></div></section>
 <section id="history"><div class="container"><div class="sectionTitle"><h2>سجل المحفظة</h2><p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p></div><div class="walletCard">
@@ -128,6 +130,7 @@ let currentUser=null,currentProfile=null,currentConversation=null;
 let walletRequestsCache=[];
 let notificationRefreshBusy=false;
 let flouciWalletNumber=null;
+let paymentSettingsCache={};
 
 function $(id){return document.getElementById(id)}
 function openModal(id){const el=$(id);if(el)el.classList.add("show")}
@@ -139,27 +142,27 @@ function formatDate(date){if(!date)return "-";try{return new Date(date).toLocale
 function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function updatePaymentInstructions(){
 const method=$("paymentMethod")?.value;
-const box=$("flouciPaymentInstructions");
-if(!box)return;
-box.classList.toggle("hidden",method!=="Flouci");
-if(method==="Flouci")loadFlouciWallet();
+const display=$("paymentDestinationDisplay");
+const type=$("walletType")?.value;
+const proofGroup=$("proofUploadGroup");
+if(proofGroup)proofGroup.classList.toggle("hidden",type==="withdrawal");
+const accountLabel=document.querySelector('label[for="paymentAccount"]');
+if(accountLabel)accountLabel.textContent=type==="withdrawal"?"حساب / هاتف السحب":"رقم الحساب / الهاتف المحوّل منه";
+if(display){
+ const keys={"Flouci":"flouci_wallet_number","D17":"d17_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};
+ display.textContent=String(paymentSettingsCache[keys[method]]||"لم يتم إعداد بيانات هذه الوسيلة بعد").trim();
 }
-async function loadFlouciWallet(){
-const display=$("flouciWalletDisplay");
-if(!display)return;
-display.textContent="جارٍ تحميل الرقم...";
+}
+async function loadPaymentSettings(){
+const display=$("paymentDestinationDisplay");if(display)display.textContent="جارٍ تحميل البيانات...";
 try{
-const {data,error}=await supabaseClient.from("site_payment_settings").select("flouci_wallet_number").limit(1).maybeSingle();
+const {data,error}=await supabaseClient.from("site_payment_settings").select("flouci_wallet_number,d17_wallet_number,izi_zaytouna_account,ooredoo_number,orange_number,tunisie_telecom_number").limit(1).maybeSingle();
 if(error)throw error;
-const number=String(data?.flouci_wallet_number||"").trim();
-flouciWalletNumber=number||null;
-display.textContent=number||"لم يتم إعداد الرقم بعد";
-}catch(error){
-console.error("Load Flouci wallet number:",error);
-flouciWalletNumber=null;
-display.textContent="تعذر تحميل الرقم؛ يرجى التواصل مع الدعم";
+paymentSettingsCache=data||{};flouciWalletNumber=String(paymentSettingsCache.flouci_wallet_number||"").trim()||null;
+updatePaymentInstructions();
+}catch(error){console.error("Load payment settings:",error);paymentSettingsCache={};if(display)display.textContent="تعذر تحميل بيانات الاستقبال؛ يرجى التواصل مع الدعم";}
 }
-}
+async function loadFlouciWallet(){return loadPaymentSettings()}
 function notificationStorageKey(){return currentUser?"sdnbet365_read_notifications_"+currentUser.id:"sdnbet365_read_notifications_guest"}
 function getReadNotifications(){try{return JSON.parse(localStorage.getItem(notificationStorageKey())||"[]")}catch(e){return []}}
 function setReadNotifications(ids){try{localStorage.setItem(notificationStorageKey(),JSON.stringify(ids))}catch(e){console.warn("Could not save notification read state",e)}}
@@ -286,19 +289,33 @@ if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.
 }
 async function createWalletRequest(){
 if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
-const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value,account=$("paymentAccount").value.trim(),reference=$("paymentReference").value.trim();
+const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value,account=$("paymentAccount").value.trim(),reference=$("paymentReference").value.trim(),promoCode=$("promoCode")?.value.trim()||"";
 if(!Number.isFinite(amount)||amount<=0){showToast("أدخل مبلغًا صحيحًا");return}
 if(!account){showToast("أدخل رقم الحساب أو الهاتف");return}
+let proofPath=null;
+if(type==="deposit"){
+ const file=$("paymentProof")?.files?.[0];
+ if(!file){showToast("أرفق صورة إثبات الدفع قبل إرسال طلب الإيداع");return}
+ if(!file.type||!file.type.startsWith("image/")){showToast("يرجى اختيار ملف صورة فقط");return}
+ if(file.size>5*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 5 ميغابايت");return}
+}
 if(type==="withdrawal"){
 const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
 if(walletError){console.error("Wallet balance error:",walletError);showToast("تعذر التحقق من الرصيد");return}
 const walletAccount=Array.isArray(walletRows)?walletRows[0]:null,balance=Number(walletAccount?.balance||0);
 if(amount>balance){showToast("الرصيد غير كافٍ لطلب السحب");return}
+}else{
+ const file=$("paymentProof").files[0];
+ const safeName=String(file.name||"proof").replace(/[^a-zA-Z0-9._-]/g,"_").slice(-80);
+ proofPath=currentUser.id+"/"+Date.now()+"_"+safeName;
+ const {error:uploadError}=await supabaseClient.storage.from("payment-proofs").upload(proofPath,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+ if(uploadError){console.error("Payment proof upload:",uploadError);showToast("تعذر رفع إثبات الدفع: "+uploadError.message);return}
 }
-const {error}=await supabaseClient.from("wallet_requests").insert({user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,status:"pending"});
+const payload={user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,promo_code:promoCode||null,proof_storage_path:proofPath,status:"pending"};
+const {error}=await supabaseClient.from("wallet_requests").insert(payload);
 if(error){console.error("Wallet request:",error);showToast("تعذر إرسال الطلب: "+error.message);return}
-$("walletAmount").value="";$("paymentAccount").value="";$("paymentReference").value="";
-showToast("تم إرسال طلبك بنجاح وهو الآن قيد المراجعة");
+$("walletAmount").value="";$("paymentAccount").value="";$("paymentReference").value="";if($("promoCode"))$("promoCode").value="";if($("paymentProof"))$("paymentProof").value="";
+showToast("تم إرسال طلبك بنجاح وهو قيد المراجعة اليدوية؛ لن يُضاف الرصيد تلقائيًا");
 await loadWalletHistory();
 }
 async function loadWalletHistory(){
@@ -380,7 +397,8 @@ if(currentUser){await loadWalletData();await loadWalletHistory();await loadSuppo
 }
 if(new URLSearchParams(window.location.search).get("type")==="recovery")setTimeout(()=>openModal("resetModal"),800);
 initialize();
-updatePaymentInstructions();
+loadPaymentSettings();
+$("walletType")?.addEventListener("change",updatePaymentInstructions);
 document.querySelectorAll(".modal").forEach(modal=>modal.addEventListener("click",event=>{if(event.target===modal)modal.classList.remove("show")}));
 document.addEventListener("click",event=>{
 const wrap=document.querySelector(".notificationWrap"),panel=$("notificationPanel"),button=$("notificationButton");
