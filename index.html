@@ -245,6 +245,8 @@ body.menu-open .sideMenu{transform:translateX(0)}
 .sideMenuHead{display:flex;align-items:center;justify-content:space-between;padding:5px 4px 18px;border-bottom:1px solid #40331b}
 .closeMenu{background:transparent;border:0;color:#e6c76f;font-size:32px;line-height:1;padding:0 7px}
 .sideMenuUser{padding:14px 9px;color:#c9c0ae;font-size:13px;line-height:1.7;border-bottom:1px solid #302719;margin-bottom:5px}
+.sideMenuBalance{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 11px;margin:2px 0 9px;border:1px solid #695426;border-radius:10px;background:linear-gradient(135deg,#211b10,#12110d);color:#e4bd5b;font-size:13px}
+.sideMenuBalance strong{font-size:15px;color:#fff0bd;direction:ltr;white-space:nowrap}
 .sideMenu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;border:1px solid transparent;border-radius:9px;color:#f1e8d1;font-weight:700;direction:ltr;text-align:left}
 .sideMenu>a span{width:25px;text-align:center;color:#e4bd5b;font-size:18px}
 .sideMenu>a:hover,.sideMenu>a:focus{background:#292112;border-color:#5b4722;color:#f2d77e}
@@ -309,6 +311,7 @@ body.authenticated .walletBalanceCard{display:block}
 <aside class="sideMenu" id="sideMenu" aria-label="القائمة الداخلية" aria-hidden="true">
 <div class="sideMenuHead"><span class="logo">SDNBet365</span><button class="closeMenu" aria-label="إغلاق القائمة" onclick="toggleSideMenu(false)">×</button></div>
 <div class="sideMenuUser" id="sideMenuUser">مرحبًا بك — سجّل الدخول للوصول إلى حسابك</div>
+<div class="sideMenuBalance hidden" id="sideMenuBalance" aria-label="رصيد اللاعب"><span>رصيد اللاعب</span><strong id="sideMenuBalanceValue">— د.ت</strong></div>
 <a href="#account" onclick="toggleSideMenu(false);openAccount()"><span>♙</span> Account</a>
 <a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('deposit')"><span>＋</span> Dépôt</a>
 <a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('withdrawal')"><span>↗</span> Retrait</a>
@@ -338,7 +341,7 @@ body.authenticated .walletBalanceCard{display:block}
 </div></div></section>
 <section id="live"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionLive">مباشر</h2><p data-i18n="liveIntro">الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
 <section id="wallet"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionWallet">المحفظة</h2><p data-i18n="walletIntro">إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
-<div class="walletCard walletBalanceCard"><div class="balanceLabel">رصيد الحساب</div><div class="walletBalance" id="walletBalance">0.000 د.ت</div><p style="color:var(--muted);line-height:1.8">الرصيد المعروض هنا يتم قراءته من حسابك في Supabase. لا يمكن للمستخدم تعديل الرصيد من الواجهة.</p><div style="margin-top:18px"><button class="btn btn-primary" onclick="loadWalletData()">تحديث الرصيد</button></div></div>
+<span id="walletBalance" class="hidden" aria-hidden="true">0.000 د.ت</span>
 <div class="walletCard"><div class="notice">وسائل الدفع تسجل طلبك فقط. لن يُضاف أي رصيد تلقائيًا؛ سيراجع المدير التحويل وإثبات الدفع يدويًا.</div>
 <div class="formGroup"><label data-i18n="walletTypeLabel">نوع العملية</label><select id="walletType"><option value="deposit" data-i18n="deposit">إيداع</option><option value="withdrawal" data-i18n="withdrawal">سحب</option></select></div>
 <div class="formGroup"><label data-i18n="amountLabel">المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50"></div>
@@ -519,7 +522,7 @@ userName.textContent=currentUser.user_metadata?.full_name||"حسابي";
 $("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
 }else{
 document.body.classList.remove("authenticated");
-authButtons.classList.remove("hidden");userArea.classList.add("hidden");
+authButtons.classList.remove("hidden");userArea.classList.add("hidden");if($("sideMenuBalance"))$("sideMenuBalance").classList.add("hidden");
 $("heroBalance").textContent="0.000 د.ت";$("walletBalance").textContent="0.000 د.ت";$("userBalanceMini").textContent="الرصيد: —";
 $("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
 walletRequestsCache=[];renderNotifications();updateNotificationBadge();
@@ -531,8 +534,8 @@ const {data,error}=await supabaseClient.from("profiles").select("*").eq("id",cur
 if(error){console.error("Profile error:",error);return null}currentProfile=data||null;return data||null;
 }
 async function loadWalletData(){
-const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("userBalanceMini");
-if(!currentUser){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : —":currentLanguage==="en"?"Balance: —":"الرصيد: —");return}
+const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("userBalanceMini"),sideBalance=$("sideMenuBalance"),sideBalanceValue=$("sideMenuBalanceValue");
+if(!currentUser){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : —":currentLanguage==="en"?"Balance: —":"الرصيد: —");if(sideBalance)sideBalance.classList.add("hidden");if(sideBalanceValue)sideBalanceValue.textContent="— د.ت";return}
 if(heroBalance)heroBalance.textContent="جاري التحميل...";if(walletBalance)walletBalance.textContent="جاري التحميل...";if(miniBalance)miniBalance.textContent="الرصيد: جاري التحميل...";
 try{
 const {data:userData,error:userError}=await supabaseClient.auth.getUser();
@@ -544,7 +547,7 @@ const wallet=Array.isArray(walletRows)?walletRows[0]:null;
 if(!wallet){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+"0.000 TND";return}
 const balance=Number(wallet.balance??0),currency=String(wallet.currency||"TND").toUpperCase();
 const formatted=balance.toFixed(3)+(currency==="TND"?" د.ت":" "+currency);
-if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.textContent=formatted;if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+formatted;
+if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.textContent=formatted;if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+formatted;if(sideBalanceValue)sideBalanceValue.textContent=formatted;if(sideBalance&&currentUser)sideBalance.classList.remove("hidden");
 }catch(error){console.error("loadWalletData exception:",error);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح"}
 }
 async function createWalletRequest(){
@@ -714,4 +717,4 @@ document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMe
 </script>
 
 </body>
-                                                                                                                                                                                                                                                                                                   </html>
+                                                                                                                                                                                                                                        </html>
