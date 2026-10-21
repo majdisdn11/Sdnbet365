@@ -52,10 +52,10 @@ footer{margin-top:45px;border-top:1px solid var(--border);padding:25px 0;color:v
 <header>
 <div class="container nav">
 <a href="#top" class="logo">Sdnbet365</a>
-<nav class="navlinks"><a href="#sports">الرياضة</a><a href="#casino">الكازينو</a><a href="#live">مباشر</a><a href="#wallet">المحفظة</a><a href="#history">السجل</a><a href="#support">الدعم</a></nav>
+<nav class="navlinks"><a href="#sports">الرياضة</a><a href="#casino">الكازينو</a><a href="#live">مباشر</a><a href="#wallet">المحفظة</a><a href="#history">السجل</a><a href="#support" data-i18n="support">الدعم</a></nav><select id="languageSelect" aria-label="Language / اللغة" class="btn" style="padding:9px 10px;width:auto" onchange="setLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option></select>
 <div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">دخول</button><button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button></div>
 <div class="userArea hidden" id="userArea">
-<span class="userName" id="userName"></span>
+<span class="userName" id="userName"></span><button class="btn" onclick="openAccount()" data-i18n="myAccount">حسابي</button>
 <span class="userBalanceMini" id="userBalanceMini">الرصيد: —</span>
 <div class="notificationWrap">
 <button class="btn notificationButton" id="notificationButton" aria-label="الإشعارات" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
@@ -99,18 +99,19 @@ footer{margin-top:45px;border-top:1px solid var(--border);padding:25px 0;color:v
 <div class="formGroup"><label>رقم الحساب / الهاتف</label><input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب"></div>
 <div class="formGroup"><label>مرجع العملية إن وجد</label><input id="paymentReference" type="text" placeholder="رقم العملية"></div>
 <div class="formGroup"><label>كود العرض (اختياري)</label><input id="promoCode" type="text" maxlength="80" placeholder="أدخل كود العرض إن وجد"></div>
-<div class="formGroup" id="proofUploadGroup"><label for="paymentProof">صورة إثبات الدفع (مطلوبة للإيداع)</label><input id="paymentProof" type="file" accept="image/*"><small style="display:block;color:var(--muted);margin-top:6px">صورة فقط، بحد أقصى 5 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع.</small></div>
+<div id="rechargeFields" class="hidden"><div class="notice" id="rechargeLimit">Carte de recharge — Min 5 TND · Max 100 TND</div><div class="formGroup"><label for="cardCode1">Code de carte num 1</label><input id="cardCode1" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode2">Code de carte num 2</label><input id="cardCode2" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode3">Code de carte num 3</label><input id="cardCode3" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode4">Code de carte num 4</label><input id="cardCode4" inputmode="numeric" autocomplete="off"></div></div><div class="formGroup" id="proofUploadGroup"><label for="paymentProof" id="proofLabel">Photo de paiement / Photo de carte</label><input id="paymentProof" type="file" accept="image/jpeg,image/png,image/webp"><small id="proofHint" style="display:block;color:var(--muted);margin-top:6px">Image uniquement, taille maximale 4 MB. L’envoi ne confirme pas automatiquement le paiement.</small></div>
 <button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">إرسال الطلب</button></div>
 </div></div></section>
 <section id="history"><div class="container"><div class="sectionTitle"><h2>سجل المحفظة</h2><p>جميع طلبات الإيداع والسحب الخاصة بحسابك.</p></div><div class="walletCard">
 <div id="historyLoginMessage" class="notice">سجّل الدخول لعرض سجل المحفظة.</div><div class="tableWrap"><table><thead><tr><th>النوع</th><th>المبلغ</th><th>الطريقة</th><th>الحالة</th><th>التاريخ</th></tr></thead><tbody id="historyBody"></tbody></table></div>
 </div></div></section>
+<section id="account"><div class="container"><div class="sectionTitle"><h2 data-i18n="accountTitle">حسابي / My Account / Mon compte</h2><p data-i18n="accountIntro">ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.</p></div><div class="cards" style="margin-bottom:18px"><div class="card"><h3 data-i18n="profileTitle">الملف الشخصي</h3><div class="formGroup"><label data-i18n="fullName">الاسم الكامل</label><input id="profileName" autocomplete="name"></div><div class="formGroup"><label data-i18n="phone">رقم الهاتف</label><input id="profilePhone" autocomplete="tel"></div><div class="formGroup"><label data-i18n="email">البريد الإلكتروني</label><input id="profileEmail" type="email" readonly></div><button class="btn btn-primary" onclick="saveProfile()" data-i18n="saveProfile">حفظ بيانات الملف</button><div id="profileStatus" style="margin-top:10px"></div></div><div class="card"><h3 data-i18n="requestStatusTitle">حالة الإيداع والسحب</h3><p data-i18n="requestStatusInfo">تظهر حالات الطلبات في سجل المحفظة أدناه. يمكن طلب إلغاء السحب فقط عبر الدعم إلى أن تتوفر عملية إلغاء آمنة داخل قاعدة البيانات.</p><button class="btn" onclick="location.hash='#history'" data-i18n="viewHistory">عرض سجل المعاملات</button></div><div class="card"><h3>My Bets</h3><p data-i18n="betsInfo">لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.</p><div id="betsNotice" class="notice" data-i18n="betsNotice">يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.</div></div></div></div></section>
 <section id="support"><div class="container"><div class="sectionTitle"><h2>الدعم</h2><p>تواصل مع فريق الدعم من داخل الموقع.</p></div><div class="supportCard">
 <div id="supportMessages" class="messages"><div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div></div>
 <div class="formGroup"><textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea></div><button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">إرسال الرسالة</button><div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
 </div></div></section>
 </main>
-<footer><div class="container">Sdnbet365 ©<br>منصة تجريبية قيد التطوير.<br><a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">🌐 فتح موقع Sdnbet365</a></div></footer>
+<footer><div class="container">SDNBet365 © 2026<br><span data-i18n="rights">جميع الحقوق محفوظة.</span><br><a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">🌐 فتح موقع Sdnbet365</a></div></footer>
 
 <div class="modal" id="loginModal"><div class="modalBox"><div class="modalHeader"><h2>تسجيل الدخول</h2><button class="close" onclick="closeModal('loginModal')">×</button></div>
 <div class="formGroup"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="loginPassword" type="password" autocomplete="current-password"></div>
@@ -141,17 +142,15 @@ function formatMoney(value){return Number(value||0).toFixed(3)+" د.ت"}
 function formatDate(date){if(!date)return "-";try{return new Date(date).toLocaleString("ar-TN",{dateStyle:"short",timeStyle:"short"})}catch(e){return "-"}}
 function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function updatePaymentInstructions(){
-const method=$("paymentMethod")?.value;
-const display=$("paymentDestinationDisplay");
-const type=$("walletType")?.value;
-const proofGroup=$("proofUploadGroup");
-if(proofGroup)proofGroup.classList.toggle("hidden",type==="withdrawal");
-const accountLabel=document.querySelector('label[for="paymentAccount"]');
-if(accountLabel)accountLabel.textContent=type==="withdrawal"?"حساب / هاتف السحب":"رقم الحساب / الهاتف المحوّل منه";
-if(display){
- const keys={"Flouci":"flouci_wallet_number","D17":"d17_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};
- display.textContent=String(paymentSettingsCache[keys[method]]||"لم يتم إعداد بيانات هذه الوسيلة بعد").trim();
-}
+const method=$("paymentMethod")?.value;const display=$("paymentDestinationDisplay");const type=$("walletType")?.value;
+const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);
+const proofGroup=$("proofUploadGroup");if(proofGroup)proofGroup.classList.toggle("hidden",type==="withdrawal");
+const rechargeFields=$("rechargeFields");if(rechargeFields)rechargeFields.classList.toggle("hidden",type==="withdrawal"||!recharge);
+const accountLabel=document.querySelector('label[for="paymentAccount"]');if(accountLabel)accountLabel.textContent=type==="withdrawal"?t("withdrawAccount"):recharge?t("rechargePhone"):t("paymentAccount");
+if(display){const keys={"Flouci":"flouci_wallet_number","D17":"d17_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};display.textContent=String(paymentSettingsCache[keys[method]]||t("notConfigured")).trim();}
+if($("rechargeLimit"))$("rechargeLimit").textContent=(method==="Ooredoo Recharge"?"Carte de recharge Ooredoo":method==="Orange"?"Carte de recharge Orange":"Carte de recharge Tunisie Telecom")+" — Min 5 TND · Max 100 TND";
+if($("proofLabel"))$("proofLabel").textContent=recharge?t("cardPhoto"):t("paymentProof");
+if($("proofHint"))$("proofHint").textContent=t("proofHint");
 }
 async function loadPaymentSettings(){
 const display=$("paymentDestinationDisplay");if(display)display.textContent="جارٍ تحميل البيانات...";
@@ -163,6 +162,16 @@ updatePaymentInstructions();
 }catch(error){console.error("Load payment settings:",error);paymentSettingsCache={};if(display)display.textContent="تعذر تحميل بيانات الاستقبال؛ يرجى التواصل مع الدعم";}
 }
 async function loadFlouciWallet(){return loadPaymentSettings()}
+const translations={
+ar:{support:"الدعم",myAccount:"حسابي",accountTitle:"حسابي / My Account / Mon compte",accountIntro:"ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.",profileTitle:"الملف الشخصي",fullName:"الاسم الكامل",phone:"رقم الهاتف",email:"البريد الإلكتروني",saveProfile:"حفظ بيانات الملف",requestStatusTitle:"حالة الإيداع والسحب",requestStatusInfo:"تظهر حالات الطلبات في سجل المحفظة أدناه. لا يمكن إلغاء السحب من الواجهة قبل تجهيز إجراء آمن في قاعدة البيانات.",viewHistory:"عرض سجل المعاملات",betsInfo:"لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.",betsNotice:"يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.",rights:"جميع الحقوق محفوظة.",withdrawAccount:"حساب / هاتف السحب",rechargePhone:"رقم الهاتف المرتبط ببطاقة التعبئة",paymentAccount:"رقم الحساب / الهاتف",notConfigured:"لم يتم إعداد بيانات هذه الوسيلة بعد",cardPhoto:"صورة بطاقة التعبئة",paymentProof:"صورة إثبات الدفع",proofHint:"صورة JPEG أو PNG أو WebP فقط، بحد أقصى 4 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع."},
+en:{support:"Support",myAccount:"My Account",accountTitle:"My Account",accountIntro:"Your profile, request statuses, transaction history and bets.",profileTitle:"Personal profile",fullName:"Full name",phone:"Phone number",email:"Email address",saveProfile:"Save profile",requestStatusTitle:"Deposit and withdrawal status",requestStatusInfo:"Request statuses appear in wallet history below. Withdrawal cancellation is not enabled until a safe database procedure is available.",viewHistory:"View transaction history",betsInfo:"No bets data source is connected in the current database; no fake bets will be shown.",betsNotice:"A real bets table is required before this section can show actual data.",rights:"All rights reserved.",withdrawAccount:"Withdrawal account / phone",rechargePhone:"Phone number associated with recharge card",paymentAccount:"Account / phone number",notConfigured:"Payment details have not been configured yet",cardPhoto:"Recharge card photo",paymentProof:"Payment proof image",proofHint:"JPEG, PNG or WebP image only, maximum 4 MB. Uploading does not approve a deposit."},
+fr:{support:"Assistance",myAccount:"Mon compte",accountTitle:"Mon compte",accountIntro:"Votre profil, l’état des demandes, l’historique et les paris.",profileTitle:"Profil personnel",fullName:"Nom complet",phone:"Numéro de téléphone",email:"Adresse e-mail",saveProfile:"Enregistrer le profil",requestStatusTitle:"État des dépôts et retraits",requestStatusInfo:"L’état des demandes apparaît dans l’historique du portefeuille. L’annulation d’un retrait reste désactivée jusqu’à la mise en place d’une procédure sécurisée en base de données.",viewHistory:"Voir l’historique",betsInfo:"Aucune source de paris n’est connectée à la base actuelle ; aucun pari fictif ne sera affiché.",betsNotice:"Une vraie table de paris est nécessaire pour afficher des données réelles.",rights:"Tous droits réservés.",withdrawAccount:"Compte / téléphone de retrait",rechargePhone:"Numéro associé à la carte de recharge",paymentAccount:"Numéro de compte / téléphone",notConfigured:"Les informations de paiement ne sont pas encore configurées",cardPhoto:"Photo de la carte de recharge",paymentProof:"Image de preuve de paiement",proofHint:"Image JPEG, PNG ou WebP uniquement, maximum 4 Mo. Le dépôt n’est pas approuvé automatiquement."}};
+let currentLanguage=localStorage.getItem("sdnbet365_language")||"ar";
+function t(key){return (translations[currentLanguage]&&translations[currentLanguage][key])||translations.ar[key]||key}
+function setLanguage(lang){if(!translations[lang])return;currentLanguage=lang;localStorage.setItem("sdnbet365_language",lang);document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";const sel=$("languageSelect");if(sel)sel.value=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t(k))el.textContent=t(k)});updatePaymentInstructions();}
+function openAccount(){if(!currentUser){showToast(currentLanguage==="fr"?"Veuillez vous connecter d’abord":currentLanguage==="en"?"Please log in first":"يرجى تسجيل الدخول أولًا");openModal("loginModal");return}location.hash="#account";loadProfileForm()}
+async function loadProfileForm(){if(!currentUser)return;const profile=await loadProfile();$("profileName").value=profile?.username||currentUser.user_metadata?.full_name||"";$("profilePhone").value=profile?.phone||currentUser.user_metadata?.phone||"";$("profileEmail").value=currentUser.email||"";}
+async function saveProfile(){if(!currentUser){openModal("loginModal");return}const username=$("profileName").value.trim(),phone=$("profilePhone").value.trim();if(!username){showStatus("profileStatus",currentLanguage==="fr"?"Entrez votre nom complet":currentLanguage==="en"?"Enter your full name":"أدخل الاسم الكامل","error");return}const payload={id:currentUser.id,username,phone,updated_at:new Date().toISOString()};const {error}=await supabaseClient.from("profiles").upsert(payload,{onConflict:"id"});if(error){console.error("Save profile:",error);showStatus("profileStatus",error.message,"error");return}currentProfile=payload;showStatus("profileStatus",currentLanguage==="fr"?"Profil enregistré":currentLanguage==="en"?"Profile saved":"تم حفظ الملف الشخصي","success")}
 function notificationStorageKey(){return currentUser?"sdnbet365_read_notifications_"+currentUser.id:"sdnbet365_read_notifications_guest"}
 function getReadNotifications(){try{return JSON.parse(localStorage.getItem(notificationStorageKey())||"[]")}catch(e){return []}}
 function setReadNotifications(ids){try{localStorage.setItem(notificationStorageKey(),JSON.stringify(ids))}catch(e){console.warn("Could not save notification read state",e)}}
@@ -239,7 +248,7 @@ try{
 const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
 if(error){console.error("Login error:",error);showStatus("loginStatus",error.message,"error");return}
 currentUser=data?.user||null;closeModal("loginModal");showToast("تم تسجيل الدخول بنجاح");await updateAuthUI(currentUser);
-if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}
 }catch(error){console.error("Login exception:",error);showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error")}
 }
 async function signOutUser(){
@@ -289,15 +298,15 @@ if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.
 }
 async function createWalletRequest(){
 if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
-const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value,account=$("paymentAccount").value.trim(),reference=$("paymentReference").value.trim(),promoCode=$("promoCode")?.value.trim()||"";
+const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value;let account=$("paymentAccount").value.trim();const reference=$("paymentReference").value.trim(),promoCode=$("promoCode")?.value.trim()||"";const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);const cardCodes=[1,2,3,4].map(n=>$("cardCode"+n)?.value.trim()||"");if(type==="deposit"&&recharge){if(amount<5||amount>100){showToast("حدود بطاقة التعبئة من 5 إلى 100 د.ت");return}if(!cardCodes.some(Boolean)){showToast("أدخل رمز بطاقة التعبئة في خانة واحدة على الأقل");return}account="Codes: "+cardCodes.map((c,i)=>c?`Carte ${i+1}: ${c}`:"").filter(Boolean).join(" | ")+ (account?" | Téléphone: "+account:"");}
 if(!Number.isFinite(amount)||amount<=0){showToast("أدخل مبلغًا صحيحًا");return}
 if(!account){showToast("أدخل رقم الحساب أو الهاتف");return}
 let proofPath=null;
 if(type==="deposit"){
  const file=$("paymentProof")?.files?.[0];
  if(!file){showToast("أرفق صورة إثبات الدفع قبل إرسال طلب الإيداع");return}
- if(!file.type||!file.type.startsWith("image/")){showToast("يرجى اختيار ملف صورة فقط");return}
- if(file.size>5*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 5 ميغابايت");return}
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type)){showToast("اختر صورة JPEG أو PNG أو WebP فقط");return}
+ if(file.size>4*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 4 ميغابايت");return}
 }
 if(type==="withdrawal"){
 const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
@@ -383,7 +392,7 @@ supabaseClient.auth.onAuthStateChange((event,session)=>{
 currentUser=session?.user||null;
 setTimeout(async()=>{
 await updateAuthUI(currentUser);
-if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}else{currentConversation=null;walletRequestsCache=[];renderNotifications();updateNotificationBadge()}
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}else{currentConversation=null;walletRequestsCache=[];renderNotifications();updateNotificationBadge()}
 },0);
 if(event==="PASSWORD_RECOVERY")setTimeout(()=>openModal("resetModal"),300);
 });
@@ -392,10 +401,11 @@ try{
 const {data,error}=await supabaseClient.auth.getUser();
 if(error){console.error("Initial auth error:",error);await updateAuthUI(null);return}
 currentUser=data?.user||null;await updateAuthUI(currentUser);
-if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport()}
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}
 }catch(error){console.error("Initialization error:",error)}
 }
 if(new URLSearchParams(window.location.search).get("type")==="recovery")setTimeout(()=>openModal("resetModal"),800);
+setLanguage(currentLanguage);
 initialize();
 loadPaymentSettings();
 $("walletType")?.addEventListener("change",updatePaymentInstructions);
@@ -407,4 +417,4 @@ if(wrap&&panel&&!wrap.contains(event.target)){panel.classList.add("hidden");if(b
 setInterval(async()=>{if(!currentUser||notificationRefreshBusy)return;notificationRefreshBusy=true;try{await loadWalletData();await loadWalletHistory()}finally{notificationRefreshBusy=false}},15000);
 </script>
 </body>
-  </html>
+ </html>
