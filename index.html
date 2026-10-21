@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08111f">
-<title>SDNBet365 | الواجهة المنظمة</title>
+<meta name="theme-color" content="#080808">
+<title>SDNBet365 | Black & Gold</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#07101d;--panel:#101c2d;--panel2:#15253a;--border:#263950;--text:#f5f7fb;--muted:#9eacbd;--green:#20c77a;--green2:#13a965;--red:#ef5350;--yellow:#f4c542;--blue:#3182f6;--shadow:0 15px 40px rgba(0,0,0,.25)}
@@ -133,6 +133,96 @@ footer{margin-top:30px;background:#060c15}
 @media(max-width:950px){.nav{flex-wrap:wrap;padding:10px 0}.navlinks{order:5;width:100%;padding:4px 0 7px}.heroGrid{grid-template-columns:1fr}.balanceCard{min-height:155px}.authButtons{margin-inline-start:auto}}
 @media(max-width:560px){.container{width:92%}.nav{gap:9px}.logo{font-size:22px}.logo:before{width:28px;height:28px}.hero{padding:18px 0 10px}.heroGrid{gap:12px}.heroCard,.balanceCard,.walletCard,.supportCard{padding:17px;border-radius:16px}.hero h1{font-size:30px}.hero p{font-size:14px}.heroActions .btn{flex:1;text-align:center;padding:11px 10px}.sectionTitle h2{font-size:23px}.section-active .sectionTitle{padding:15px 16px}.cards{grid-template-columns:1fr;gap:11px}.card{padding:18px}.dataStatusCard{padding:17px;gap:12px}.dataStatusIcon{flex-basis:43px;width:43px;height:43px;font-size:23px}.userArea{gap:6px}.userBalanceMini{font-size:11px;padding:7px 9px}.notificationButton{min-width:39px;min-height:39px}.navlinks a{font-size:13px;padding:9px 11px}section{padding:18px 0 24px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* SDNBet365 Black & Gold visual refresh inspired by sportsbook layout conventions */
+:root{
+ --bg:#080808;--panel:#121212;--panel2:#1b1b1b;--border:#393021;--text:#f7f3e8;--muted:#b8b0a0;
+ --green:#d7ad45;--green2:#b88922;--red:#e05252;--yellow:#e5bd59;--blue:#c6a04b;
+ --shadow:0 16px 42px rgba(0,0,0,.42)
+}
+body{background:radial-gradient(ellipse at 50% -15%,rgba(215,173,69,.10),transparent 45%),var(--bg);color:var(--text)}
+header{background:rgba(8,8,8,.97);border-bottom:1px solid #4a3a1d;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.nav{min-height:78px;gap:13px}
+.logo{color:#e3bd61;letter-spacing:.2px;text-shadow:0 0 20px rgba(215,173,69,.12)}
+.logo:before{background:linear-gradient(135deg,#f1d98a,#b88922);color:#171108;box-shadow:0 4px 18px rgba(215,173,69,.22)}
+.navlinks{gap:4px}
+.navlinks a{color:#e4dece;border-radius:7px;font-weight:700}
+.navlinks a:hover{background:#282114;color:#f6d980}
+.navlinks a[aria-current="page"]{background:linear-gradient(135deg,#efd887,#b88a2c);color:#171108;box-shadow:0 5px 18px rgba(215,173,69,.15)}
+.btn{background:#1a1916;border-color:#514226;color:#f5efdf;border-radius:8px}
+.btn:hover{border-color:#d7ad45;background:#252016}
+.btn-primary{background:linear-gradient(135deg,#f0d887,#bd902f);border-color:#d9b454;color:#181207;font-weight:900}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-yellow{background:linear-gradient(135deg,#f0d887,#bd902f);border-color:#d9b454;color:#181207}
+.hero{padding:34px 0 25px}
+.heroGrid{grid-template-columns:minmax(0,1.45fr) minmax(250px,.72fr);gap:16px}
+.heroCard,.balanceCard{background:linear-gradient(135deg,#1b1914,#101010 72%);border:1px solid #594522;border-radius:13px;box-shadow:var(--shadow)}
+.heroCard{position:relative;overflow:hidden}
+.heroCard:after{content:'◆';position:absolute;left:20px;bottom:-46px;font-size:170px;color:rgba(215,173,69,.055);pointer-events:none}
+.hero h1 span,.balance,.walletBalance,.userBalanceMini{color:#e4bd5b}
+.balanceCard{border-top:3px solid #d7ad45}
+section{padding:26px 0}
+.section-active .sectionTitle{background:linear-gradient(100deg,#211b10,#111);border-color:#4e3d20;border-radius:10px}
+.section-active .sectionTitle:before{background:linear-gradient(#f0d887,#b88922)}
+.sectionTitle h2{letter-spacing:.1px}
+.cards{gap:12px}
+.card,.walletCard,.supportCard,.match{background:linear-gradient(145deg,#171717,#101010);border-color:#3d3424;border-radius:11px;box-shadow:0 7px 22px rgba(0,0,0,.22);transition:transform .16s ease,border-color .16s ease}
+.card:hover{transform:translateY(-2px);border-color:#a98538}
+.cardIcon{display:inline-grid;place-items:center;width:48px;height:48px;margin-bottom:14px;border:1px solid #574521;border-radius:12px;background:linear-gradient(145deg,#2a2416,#17140e)}
+.card h3{color:#f5e6b6}
+.card p,.hero p{color:#bdb5a5}
+.matches{gap:10px}
+.dataStatusCard{background:linear-gradient(120deg,#1d1a12,#101010);border-color:#5b4824;border-radius:12px}
+.dataStatusPill{color:#e5c36c;background:rgba(215,173,69,.10);border-color:#5a4827}
+.odd{background:#201c13;border-color:#594827}
+.odd:hover{border-color:#d7ad45}
+.walletGrid{gap:13px}
+.walletCard{padding:22px}
+.formGroup input,.formGroup select,.formGroup textarea{background:#0c0c0c;border-color:#49402e;color:#f7f1e3}
+.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{border-color:#d7ad45;box-shadow:0 0 0 2px rgba(215,173,69,.1)}
+.notice{background:#211c12;border-color:#594723;color:#e2d7bd}
+.tableWrap{border-color:#4b3d25}
+th{background:#272012;color:#f2d57e}
+td,th{border-bottom-color:#332b1c}
+.status-pending{background:rgba(229,189,89,.14);color:#f0d17a}
+.status-approved{background:rgba(215,173,69,.13);color:#e9c96e}
+.message.user{background:#3a2c12;color:#f7e5b1}
+.message.admin{background:#1c1c1c}
+.messages{background:#0c0c0c;border:1px solid #393021}
+.modalBox{background:#12110e;border-color:#5b4824}
+.userBalanceMini{border-color:#5b4824;background:#211b10}
+.notificationPanel{background:#14130f;border-color:#4e3e22}
+.notificationHead{border-bottom-color:#3e321d}
+.siteLink{background:#201b11;border-color:#5b4824;color:#e5c36c}
+footer{background:#070707;border-top-color:#49391c}
+.flouciInfo strong{color:#e5c36c}
+/* Compact, bookmaker-like category strip on smaller screens */
+@media(max-width:950px){
+ .nav{padding:10px 0;gap:9px}
+ .navlinks{order:5;width:100%;padding:7px 2px 9px;border-top:1px solid #292216;margin-top:3px}
+ .navlinks a{border:1px solid transparent}
+ .navlinks a[aria-current="page"]{border-color:#e2bd5a}
+ .heroGrid{grid-template-columns:1fr}
+ .balanceCard{min-height:135px}
+}
+@media(min-width:951px){
+ .navlinks{flex:1;justify-content:center}
+ .heroCard,.balanceCard{min-height:210px}
+ .sectionTitle{margin-bottom:16px}
+}
+@media(max-width:560px){
+ .hero{padding:16px 0 8px}
+ .heroCard,.balanceCard,.walletCard,.supportCard{padding:16px;border-radius:11px}
+ .hero h1{font-size:28px}
+ .sectionTitle h2{font-size:22px}
+ .cards{grid-template-columns:1fr 1fr;gap:9px}
+ .card{padding:14px}
+ .cardIcon{width:42px;height:42px;font-size:29px}
+ .navlinks a{padding:8px 10px;font-size:12px}
+ .authButtons .btn{padding:9px 11px}
+}
+@media(max-width:380px){.cards{grid-template-columns:1fr}.logo{font-size:20px}}
 
 </style>
 </head>
