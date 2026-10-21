@@ -5,6 +5,7 @@ exports.handler = async function () {
   if (!apiKey) {
     return {
       statusCode: 500,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         error: "API key is not configured"
       })
@@ -12,14 +13,16 @@ exports.handler = async function () {
   }
 
   try {
-    const response = await fetch(
-      "https://api.soccersapi.com/v2.2/livescores/?t=today&utc=1",
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`
-        }
+    const today = new Date().toISOString().slice(0, 10);
+
+    const url =
+      `https://api.soccersapi.com/v2.2/fixtures/?t=schedule&d=${today}&utc=1`;
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`
       }
-    );
+    });
 
     const data = await response.json();
 
@@ -34,6 +37,7 @@ exports.handler = async function () {
   } catch (error) {
     return {
       statusCode: 502,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         error: "Could not retrieve match data"
       })
