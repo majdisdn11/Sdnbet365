@@ -12,16 +12,13 @@ exports.handler = async function () {
     };
   }
 
-  try {
-    const today = new Date().toISOString().slice(0, 10);
-
+  async function getMatches(day) {
     const url = new URL(
-      "https://api.soccersapi.com/v2.2/fixtures/"
+      "https://api.soccersapi.com/v2.2/livescores/"
     );
 
     url.search = new URLSearchParams({
-      t: "schedule",
-      d: today,
+      t: day,
       utc: "1",
       page: "1"
     }).toString();
@@ -34,15 +31,66 @@ exports.handler = async function () {
 
     const data = await response.json();
 
+    if (!response.ok) {
+      return {
+        error: true,
+        status: response.status,
+        data
+      };
+    }
+
     return {
-      statusCode: response.ok ? 200 : response.status,
+      error: false,
+      data
+    };
+  }
+
+  try {
+    const today = await getMatches("today");
+
+    if (today.error) {
+      return {
+        statusCode: today.status,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(today.data)
+      };
+    }
+
+    let result = today.data;
+    let requestedDay = "today";
+
+    if (
+      !Array.isArray(result.data) ||
+      result.data.length === 0
+    ) {
+      const tomorrow = await getMatches("tomorrow");
+
+      if (tomorrow.error) {
+        return {
+          statusCode: tomorrow.status,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(tomorrow.data)
+        };
+      }
+
+      if (
+        Array.isArray(tomorrow.data.data) &&
+        tomorrow.data.data.length > 0
+      ) {
+        result = tomorrow.data;
+        requestedDay = "tomorrow";
+      }
+    }
+
+    return {
+      statusCode: 200,
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": "public, max-age=120"
       },
       body: JSON.stringify({
-        ...data,
-        requested_date: today
+        ...result,
+        requested_day: requestedDay
       })
     };
   } catch (error) {
