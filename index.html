@@ -253,7 +253,36 @@ body.menu-open .sideMenu{transform:translateX(0)}
 .walletBalanceCard{display:none}
 #heroHint{display:none}
 body.authenticated .walletBalanceCard{display:block}
-@media(max-width:600px){.nav{gap:10px;min-height:62px}.headerRight{gap:6px;margin-left:auto}.logo{font-size:21px}.authButtons .btn{padding:9px 10px;font-size:12px}.hero{padding-top:14px}.heroCard{min-height:0}.heroActions .btn{flex:1;text-align:center}.userName{display:none}}
+
+/* Final header, navigation and service-strip polish */
+.nav{display:flex;align-items:center;gap:clamp(8px,1.8vw,18px);min-height:70px;flex-wrap:nowrap}
+.menuTrigger{flex:0 0 44px;order:0;border-radius:10px;background:#17140e;border-color:#695426;color:#f0d27a}
+.logo{order:1;flex:0 0 auto;font-size:clamp(19px,2.5vw,25px);letter-spacing:.2px}
+.headerRight{order:2;display:flex;align-items:center;gap:clamp(5px,1vw,10px);margin-inline-start:auto;min-width:0}
+.authButtons{display:flex;align-items:center;gap:7px}
+.authButtons .btn{padding:9px 12px;white-space:nowrap}
+.userArea{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.userArea.hidden{display:none!important}
+.userBalanceMini{display:inline-flex!important;align-items:center;justify-content:center;background:#201a0d;border:1px solid #695426;border-radius:9px;color:#f0d27a;padding:9px 11px;font-size:13px;font-weight:900;direction:ltr;white-space:nowrap}
+.notificationWrap{position:relative;flex:0 0 auto}
+.notificationButton{width:42px;height:42px;min-width:42px;padding:8px;border-radius:9px;background:#17140e;border-color:#4b3b1d}
+.languageCompact{width:auto!important;min-width:45px;padding:9px 7px!important;text-align:center;order:3}
+.hero{padding:20px 0 12px}
+.heroCard{min-height:0;padding:clamp(22px,4vw,38px);background:radial-gradient(ellipse at 88% 0,rgba(215,173,69,.13),transparent 42%),linear-gradient(135deg,#1b1914,#101010 72%)}
+.heroEyebrow{letter-spacing:1.5px}
+.hero h1{margin-bottom:12px}
+.heroActions{display:flex;gap:10px;margin-top:22px}
+.serviceStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}
+.serviceItem{display:flex;align-items:center;gap:11px;min-width:0;padding:14px 15px;border:1px solid #41351f;border-radius:11px;background:linear-gradient(145deg,#18160f,#101010)}
+.serviceItem>span{flex:0 0 35px;width:35px;height:35px;display:grid;place-items:center;border-radius:9px;background:#2a2212;border:1px solid #5a4723;color:#f0d27a;font-size:20px}
+.serviceItem strong{display:block;color:#f0dca5;font-size:13px;line-height:1.5}
+.serviceItem small{display:block;color:#b9b0a0;font-size:11px;line-height:1.5;margin-top:2px}
+.sideMenu>a{direction:ltr;text-align:left;min-height:48px}
+.sideLogout{margin-top:8px}
+#heroBalance,#heroHint{display:none!important}
+@media(max-width:650px){.nav{min-height:62px;gap:7px}.logo{font-size:18px}.headerRight{gap:5px}.authButtons{gap:5px}.authButtons .btn{padding:8px 9px;font-size:11px}.languageCompact{min-width:38px;padding:8px 5px!important;font-size:11px}.menuTrigger{min-width:40px;min-height:40px;flex-basis:40px;padding:6px 9px}.userBalanceMini{font-size:11px;padding:8px 7px;max-width:100px;overflow:hidden;text-overflow:ellipsis}.notificationButton{width:38px;height:38px;min-width:38px}.serviceStrip{grid-template-columns:1fr;gap:8px}.serviceItem{padding:11px 12px}.serviceItem small{font-size:11px}.hero{padding-top:13px}.heroActions .btn{flex:1;text-align:center;padding:11px 9px}}
+@media(max-width:390px){.logo{font-size:16px}.authButtons .btn{padding:7px 7px;font-size:10px}.userBalanceMini{max-width:80px;font-size:10px}.headerRight{gap:4px}.languageCompact{min-width:32px}}
+@media(min-width:651px){.serviceStrip{margin-bottom:4px}}
 
 </style>
 </head>
@@ -263,33 +292,35 @@ body.authenticated .walletBalanceCard{display:block}
 <button class="btn menuTrigger" id="menuTrigger" aria-label="فتح القائمة" aria-expanded="false" onclick="toggleSideMenu(true)">☰</button>
 <a href="#sports" class="logo" aria-label="SDNBet365 home">SDNBet365</a>
 <div class="headerRight">
-<select id="languageSelect" aria-label="Language / اللغة" class="btn" style="padding:9px 10px;width:auto" onchange="setLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option></select>
-<div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">دخول</button><button class="btn btn-primary" onclick="openModal('registerModal')">إنشاء حساب</button></div>
+<div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">Connexion</button><button class="btn btn-primary" onclick="openModal('registerModal')">Inscription</button></div>
 <div class="userArea hidden" id="userArea">
-<span class="userName" id="userName"></span>
+<span class="userName hidden" id="userName" aria-hidden="true"></span>
+<span class="userBalanceMini" id="userBalanceMini" aria-label="Solde du compte">Solde : —</span>
 <div class="notificationWrap">
-<button class="btn notificationButton" id="notificationButton" aria-label="الإشعارات" title="الإشعارات" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
-<div class="notificationPanel hidden" id="notificationPanel"><div class="notificationHead"><h3 data-i18n="notificationTitle">إشعارات حسابك</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()" data-i18n="markRead">قراءة الكل</button></div><div id="notificationList"><div class="notificationEmpty"><span data-i18n="loginNotifications">سجّل الدخول لعرض إشعاراتك.</span></div></div></div>
+<button class="btn notificationButton" id="notificationButton" aria-label="Notifications" title="Notifications" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
+<div class="notificationPanel hidden" id="notificationPanel"><div class="notificationHead"><h3 data-i18n="notificationTitle">Notifications du compte</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()" data-i18n="markRead">Tout marquer comme lu</button></div><div id="notificationList"><div class="notificationEmpty"><span data-i18n="loginNotifications">Connectez-vous pour voir vos notifications.</span></div></div></div>
 </div>
-<button class="btn" onclick="signOutUser()">خروج</button>
-</div></div>
+</div>
+<select id="languageSelect" aria-label="Language / langue" class="btn languageCompact" onchange="setLanguage(this.value)"><option value="fr">FR</option><option value="ar">ع</option><option value="en">EN</option></select>
+</div>
 </div>
 </header>
 <div class="sideMenuBackdrop" id="sideMenuBackdrop" onclick="toggleSideMenu(false)" aria-hidden="true"></div>
 <aside class="sideMenu" id="sideMenu" aria-label="القائمة الداخلية" aria-hidden="true">
 <div class="sideMenuHead"><span class="logo">SDNBet365</span><button class="closeMenu" aria-label="إغلاق القائمة" onclick="toggleSideMenu(false)">×</button></div>
 <div class="sideMenuUser" id="sideMenuUser">مرحبًا بك — سجّل الدخول للوصول إلى حسابك</div>
-<a href="#account" onclick="toggleSideMenu(false)"><span>👤</span> Account</a>
-<a href="#wallet" onclick="openWalletAction('deposit');toggleSideMenu(false)"><span>＋</span> Deposit</a>
-<a href="#wallet" onclick="openWalletAction('withdrawal');toggleSideMenu(false)"><span>↗</span> Withdraw</a>
-<a href="#history" onclick="toggleSideMenu(false)"><span>↻</span> Transaction History</a>
-<a href="#account" onclick="toggleSideMenu(false)"><span>🎟</span> My Bets</a>
+<a href="#account" onclick="toggleSideMenu(false);openAccount()"><span>♙</span> Account</a>
+<a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('deposit')"><span>＋</span> Dépôt</a>
+<a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('withdrawal')"><span>↗</span> Retrait</a>
+<a href="#history" onclick="toggleSideMenu(false)"><span>↻</span> Historique des transactions</a>
+<a href="#account" onclick="toggleSideMenu(false)"><span>♧</span> My Bets</a>
 <div class="sideMenuSpacer"></div>
 <button class="sideLogout" id="sideLogout" onclick="toggleSideMenu(false);signOutUser()">↪ &nbsp; Logout</button>
 </aside>
 <main id="top">
 <section class="hero"><div class="container heroGrid">
-<div class="heroCard"><div class="heroEyebrow">SPORTSBOOK · ENTERTAINMENT</div><h1>منصة <span>SDNBet365</span></h1><p>واجهة رئيسية واضحة وسريعة، مع انتقال مستقل إلى الرياضة والألعاب والحساب الشخصي. سجّل الدخول لإدارة حسابك ومحفظتك.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">استكشف الرياضة</a><a href="#casino" class="btn">استكشف Slots</a></div></div>
+<div class="heroCard"><span id="heroBalance" class="hidden">0.000 د.ت</span><span id="heroHint" class="hidden">سجّل الدخول للوصول إلى بيانات حسابك.</span><div class="heroEyebrow">SPORTSBOOK · ENTERTAINMENT</div><h1>منصة <span>SDNBet365</span></h1><p>واجهة رئيسية واضحة وسريعة، مع انتقال مستقل إلى الرياضة والألعاب والحساب الشخصي. سجّل الدخول لإدارة حسابك ومحفظتك.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">⚽ SPORT</a><a href="#casino" class="btn">🎰 SLOTS</a></div></div>
+<div class="serviceStrip" aria-label="Services"><div class="serviceItem"><span>◷</span><div><strong>Assistance 7j/7</strong><small>Une équipe à votre écoute</small></div></div><div class="serviceItem"><span>♧</span><div><strong>Dépôts & retraits sécurisés</strong><small>Traitement des demandes vérifié</small></div></div><div class="serviceItem"><span>✓</span><div><strong>Sans frais de plateforme*</strong><small>*Des frais du prestataire peuvent s’appliquer</small></div></div></div>
 </div></section>
 <section id="sports"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionSports">الرياضة</h2><p data-i18n="sportsIntro">واجهة المباريات الرياضية.</p></div>
 <div class="cards">
@@ -643,7 +674,7 @@ function toggleSideMenu(open){
   const trigger=document.getElementById("menuTrigger"),menu=document.getElementById("sideMenu");
   if(trigger)trigger.setAttribute("aria-expanded",String(!!open));
   if(menu)menu.setAttribute("aria-hidden",String(!open));
-  if(open){const userLabel=document.getElementById("sideMenuUser");if(userLabel)userLabel.textContent=currentUser?(currentUser.user_metadata?.full_name||currentUser.email||"Account"):"Sign in to access your account";}
+  if(open){const userLabel=document.getElementById("sideMenuUser");if(userLabel)userLabel.textContent=currentUser?(currentUser.user_metadata?.full_name||currentUser.email||"Account"):"Connectez-vous pour accéder à votre compte";}
 }
 function openWalletAction(type){
   if(!currentUser){openModal("loginModal");showToast("سجّل الدخول أولًا للوصول إلى المحفظة");return;}
@@ -683,4 +714,4 @@ document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMe
 </script>
 
 </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </html>
+                                                                                                                                                                                                                                                                                                   </html>
