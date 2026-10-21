@@ -15,10 +15,18 @@ exports.handler = async function () {
   try {
     const today = new Date().toISOString().slice(0, 10);
 
-    const url =
-      `https://api.soccersapi.com/v2.2/fixtures/?t=schedule&d=${today}&utc=1`;
+    const url = new URL(
+      "https://api.soccersapi.com/v2.2/fixtures/"
+    );
 
-    const response = await fetch(url, {
+    url.search = new URLSearchParams({
+      t: "schedule",
+      d: today,
+      utc: "1",
+      page: "1"
+    }).toString();
+
+    const response = await fetch(url.toString(), {
       headers: {
         Authorization: `Bearer ${apiKey}`
       }
@@ -32,7 +40,10 @@ exports.handler = async function () {
         "Content-Type": "application/json",
         "Cache-Control": "public, max-age=120"
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        ...data,
+        requested_date: today
+      })
     };
   } catch (error) {
     return {
