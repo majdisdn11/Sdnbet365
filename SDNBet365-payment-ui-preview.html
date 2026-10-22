@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>SDNBet365 | Deposit & Payment UI Preview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07110c;--panel:#0d1c14;--panel2:#12251a;--border:#244b34;--text:#eef8f0;--muted:#a7c0ae;--green:#29c56a;--green2:#168847;--red:#ef5350;--yellow:#8ee6a9;--blue:#b88a2c;--shadow:0 15px 40px rgba(0,0,0,.38)}
+body{font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(7,16,29,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:24px;font-weight:900;color:var(--green);white-space:nowrap}
+.navlinks{display:flex;align-items:center;gap:8px;overflow:auto}
+.navlinks a{padding:10px 13px;color:#dbe5f1;border-radius:9px;white-space:nowrap}.navlinks a:hover{background:var(--panel2);color:white}
+.authButtons{display:flex;gap:8px;white-space:nowrap}
+.btn{border:1px solid var(--border);border-radius:10px;padding:11px 17px;color:white;background:var(--panel2)}.btn:hover{filter:brightness(1.1)}
+.btn-primary{background:var(--green);color:#03140c;border-color:var(--green);font-weight:800}.btn-danger{background:var(--red);border-color:var(--red)}.btn-blue{background:var(--blue);border-color:var(--blue)}.btn-yellow{background:var(--yellow);color:#171000;border-color:var(--yellow)}
+.hidden{display:none!important}
+.hero{padding:70px 0 45px}.heroGrid{display:grid;grid-template-columns:1.4fr .8fr;gap:25px;align-items:stretch}
+.heroCard,.balanceCard{background:linear-gradient(145deg,#112238,#0d1828);border:1px solid var(--border);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.hero h1{font-size:clamp(30px,6vw,54px);margin-bottom:15px}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);line-height:1.9;font-size:17px}
+.heroActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.balanceCard{display:flex;flex-direction:column;justify-content:center;text-align:center}.balanceLabel{color:var(--muted);margin-bottom:10px}.balance{font-size:40px;font-weight:900;color:var(--green);direction:ltr}.loginHint{color:var(--muted);margin-top:14px;line-height:1.7}
+section{padding:35px 0}
+/* Organized single-section navigation */
+body.section-mode main>section{display:none}
+body.section-mode main>section.section-active{display:block}
+body.section-mode main>.hero{display:none}
+body.section-mode main>.hero.section-active{display:block}
+.navlinks a[aria-current="page"]{background:var(--green);color:#06170e;font-weight:800}
+.navlinks{scrollbar-width:thin}
+.navlinks a{flex:0 0 auto}
+.section-active .sectionTitle{padding:18px 20px;background:linear-gradient(100deg,#12243a,#0d1929);border:1px solid var(--border);border-radius:14px}
+@media(max-width:850px){.navlinks{padding:6px 0 9px;gap:6px}.navlinks a{padding:9px 11px;font-size:13px}}.sectionTitle{margin-bottom:22px}.sectionTitle h2{font-size:28px;margin-bottom:7px}.sectionTitle p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px}.cardIcon{font-size:35px;margin-bottom:13px}.card h3{margin-bottom:8px}.card p{color:var(--muted);line-height:1.7}.card .btn{margin-top:18px}
+.matches{display:grid;gap:12px}.match{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:18px}.matchTop{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px}.matchLeague{color:var(--muted);font-size:13px}.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;text-align:center;font-weight:800}.vs{color:var(--muted)}
+.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.odd{background:#182a40;border:1px solid #29415c;border-radius:9px;padding:10px;text-align:center}.odd span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+.walletGrid{display:grid;grid-template-columns:1fr 1.3fr;gap:18px}.walletCard{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:23px}.walletBalance{font-size:36px;color:var(--green);font-weight:900;margin:15px 0;direction:ltr}
+.formGroup{margin-bottom:15px}.formGroup label{display:block;color:#d8e0eb;margin-bottom:7px}.formGroup input,.formGroup select,.formGroup textarea{width:100%;padding:12px 13px;background:#091525;border:1px solid var(--border);border-radius:10px;color:white;outline:none}.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{border-color:var(--green)}
+.walletButtons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.notice{background:#182333;border:1px solid #33445a;color:#c6d0dc;padding:13px;border-radius:10px;line-height:1.7;font-size:14px;margin-bottom:17px}
+.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:650px}th,td{padding:13px 10px;border-bottom:1px solid var(--border);text-align:right}th{color:#c9d4e1;background:#132237}td{color:#dce4ee}
+.status{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:bold}.status-pending{background:rgba(244,197,66,.14);color:var(--yellow)}.status-approved{background:rgba(32,199,122,.14);color:var(--green)}.status-rejected{background:rgba(239,83,80,.14);color:#ff7d7a}.status-cancelled{background:#26313e;color:#adb8c5}
+.supportCard{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:25px}.messages{height:320px;overflow:auto;padding:15px;background:#091525;border-radius:13px;margin-bottom:14px}.message{max-width:80%;padding:10px 13px;margin-bottom:10px;border-radius:12px;line-height:1.6}.message.user{background:#123c2b;margin-right:auto}.message.admin{background:#1a2c42;margin-left:auto}.messageTime{color:#8b99aa;font-size:11px;margin-top:4px}
+.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modalBox{width:min(500px,100%);max-height:92vh;overflow:auto;background:#0e1a2b;border:1px solid var(--border);border-radius:18px;padding:25px}.modalHeader{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{border:0;background:transparent;color:#aeb9c7;font-size:27px}
+.userArea{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.userName{color:#dbe6f2;font-size:14px;max-width:180px;overflow-wrap:anywhere}
+.userBalanceMini{font-size:12px;color:var(--green);border:1px solid #24523f;background:#102a22;padding:7px 9px;border-radius:9px;white-space:nowrap}
+.notificationWrap{position:relative}.notificationButton{position:relative;min-width:42px;padding:9px 11px}.notificationCount{position:absolute;top:-5px;left:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:99px;background:var(--red);color:white;font-size:11px;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}.notificationPanel{position:absolute;top:calc(100% + 12px);left:0;width:min(360px,88vw);max-height:420px;overflow:auto;background:#0e1a2b;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:14px;z-index:500}.notificationHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.notificationHead h3{font-size:17px}.notificationItem{padding:12px 10px;border-bottom:1px solid var(--border);line-height:1.6;font-size:13px}.notificationItem:last-child{border-bottom:0}.notificationItem.unread{background:#142a2a;border-radius:9px}.notificationItem small{display:block;color:var(--muted);margin-top:5px}.notificationEmpty{color:var(--muted);text-align:center;padding:20px 8px;line-height:1.7}
+.toast{position:fixed;bottom:20px;left:20px;right:20px;max-width:500px;margin:auto;z-index:2000;padding:14px 17px;background:#152337;border:1px solid var(--border);border-radius:12px;display:none;text-align:center}.toast.show{display:block}
+footer{margin-top:45px;border-top:1px solid var(--border);padding:25px 0;color:var(--muted);text-align:center}.siteLink{display:inline-block;margin-top:12px;padding:10px 16px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--green);font-weight:bold}
+.flouciInfo{margin-top:12px;padding:14px;border:1px solid #24523f;background:#102a22;border-radius:10px;line-height:1.8}
+.flouciInfo strong{color:var(--green)}
+@media(max-width:850px){.heroGrid,.walletGrid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.nav{flex-wrap:wrap;padding:10px 0}.navlinks{order:3;width:100%}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}.authButtons .btn{padding:9px 11px;font-size:13px}.heroCard,.balanceCard,.walletCard,.supportCard{padding:18px}.walletButtons{grid-template-columns:1fr}.teams{font-size:14px}.balance{font-size:32px}.userArea{justify-content:flex-end}.userName{max-width:120px}.userBalanceMini{order:3}.notificationPanel{left:-55px}}
+
+/* Professional header refinements */
+.logo{font-weight:950;letter-spacing:.2px;white-space:nowrap}
+.userArea{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.userBalanceMini{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid var(--border);border-radius:999px;color:var(--green);font-weight:850;white-space:nowrap;direction:rtl}
+.notificationButton{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px}
+.authButtons{display:flex;align-items:center;gap:8px}
+@media(max-width:850px){
+  .nav{align-items:center}
+  .navlinks{order:5}
+  #languageSelect{order:4}
+  .userArea{order:3;margin-inline-start:auto}
+}
+@media(max-width:560px){
+  .userArea{width:100%;justify-content:space-between;gap:6px}
+  .userBalanceMini{font-size:12px;padding:8px}
+  .notificationButton{min-width:38px;padding:8px}
+  .navlinks{order:6}
+}
+
+
+
+/* SDNBet365 redesign pass: clearer hierarchy, compact sport-book layout, mobile-first spacing */
+:root{--bg:#060d18;--panel:#0e1a2a;--panel2:#15263a;--border:#26384e;--green:#20d486;--green2:#0eb56a;--shadow:0 18px 45px rgba(0,0,0,.28)}
+body{background:radial-gradient(ellipse at 50% -20%,rgba(32,212,134,.08),transparent 42%),var(--bg);line-height:1.5}
+.container{width:min(1240px,94%)}
+header{background:rgba(6,13,24,.97);border-bottom-color:#22334a;box-shadow:0 8px 25px rgba(0,0,0,.16)}
+.nav{gap:12px;min-height:76px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-size:25px;letter-spacing:-.5px}
+.logo:before{content:'◆';display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--green);color:#062014;font-size:17px;box-shadow:0 5px 18px rgba(32,212,134,.18)}
+.navlinks{gap:5px;max-width:100%}
+.navlinks a{font-size:14px;padding:10px 12px;transition:background .18s ease,color .18s ease}
+.navlinks a[aria-current="page"]{box-shadow:0 5px 16px rgba(32,212,134,.12)}
+.btn{transition:transform .16s ease,filter .16s ease,border-color .16s ease}
+.btn:hover{transform:translateY(-1px);border-color:#3b5876}
+.btn-primary:hover{filter:brightness(1.04)}
+.hero{padding:36px 0 24px}
+.heroGrid{grid-template-columns:minmax(0,1.55fr) minmax(250px,.72fr);gap:18px}
+.heroCard,.balanceCard{border-radius:20px;background:linear-gradient(145deg,rgba(18,37,59,.98),rgba(11,23,38,.98));padding:clamp(20px,3vw,32px)}
+.heroCard{position:relative;overflow:hidden}
+.heroCard:after{content:'SDN';position:absolute;inset-inline-end:-5px;bottom:-44px;font-size:clamp(90px,15vw,180px);font-weight:1000;letter-spacing:-10px;color:rgba(255,255,255,.025);pointer-events:none}
+.hero h1{line-height:1.2;letter-spacing:-1px}
+.hero p{max-width:650px;font-size:16px}
+.heroActions{position:relative;z-index:1}
+.balanceCard{border-color:rgba(32,212,134,.25)}
+.balance{font-size:clamp(30px,4vw,42px)}
+section{padding:22px 0 30px;scroll-margin-top:95px}
+.sectionTitle{margin-bottom:18px}
+.sectionTitle h2{font-size:clamp(23px,3vw,29px);letter-spacing:-.4px}
+.sectionTitle p{font-size:14px;line-height:1.7}
+.section-active .sectionTitle{position:relative;overflow:hidden;background:linear-gradient(105deg,#12243a,#0d1929);border-color:#2a4059;padding:17px 20px}
+.section-active .sectionTitle:before{content:'';position:absolute;inset-block:15px;inset-inline-start:0;width:4px;background:var(--green);border-radius:8px}
+.cards{gap:14px}
+.card{position:relative;overflow:hidden;background:linear-gradient(155deg,#101e30,#0c1726);border-color:#263950;border-radius:17px;padding:21px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);border-color:#3b5b78;box-shadow:0 12px 28px rgba(0,0,0,.16)}
+.cardIcon{display:grid;place-items:center;width:54px;height:54px;border:1px solid rgba(32,212,134,.2);border-radius:15px;background:rgba(32,212,134,.08);font-size:29px;margin-bottom:15px}
+.card h3{font-size:18px}
+.card p{font-size:14px}
+.card .btn{min-width:120px}
+.matches{gap:12px}
+.dataStatusCard{display:flex;align-items:flex-start;gap:16px;padding:22px;border:1px solid #2a4058;border-radius:17px;background:linear-gradient(120deg,#112238,#0d1827)}
+.dataStatusIcon{flex:0 0 52px;display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:rgba(32,212,134,.1);font-size:27px}
+.dataStatusCard h3{font-size:18px;margin-bottom:5px}
+.dataStatusCard p{color:var(--muted);font-size:14px;line-height:1.8;max-width:760px}
+.dataStatusPill{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:6px 10px;border:1px solid #3b4656;border-radius:999px;color:#cbd5e1;background:rgba(255,255,255,.025);font-size:12px}
+.dataStatusPill i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--yellow)}
+.walletGrid{gap:15px}
+.walletCard,.supportCard{background:linear-gradient(155deg,#101e30,#0c1726);border-color:#263950;border-radius:17px}
+.formGroup input,.formGroup select,.formGroup textarea{min-height:45px;border-color:#2a4058}
+.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{box-shadow:0 0 0 3px rgba(32,212,134,.09)}
+.notice{border-color:#35465a;background:#131f2f}
+.tableWrap{border:1px solid var(--border);border-radius:12px}
+table{min-width:590px}th{background:#15263b}td,th{padding:12px}
+footer{margin-top:30px;background:#060c15}
+@media(max-width:950px){.nav{flex-wrap:wrap;padding:10px 0}.navlinks{order:5;width:100%;padding:4px 0 7px}.heroGrid{grid-template-columns:1fr}.balanceCard{min-height:155px}.authButtons{margin-inline-start:auto}}
+@media(max-width:560px){.container{width:92%}.nav{gap:9px}.logo{font-size:22px}.logo:before{width:28px;height:28px}.hero{padding:18px 0 10px}.heroGrid{gap:12px}.heroCard,.balanceCard,.walletCard,.supportCard{padding:17px;border-radius:16px}.hero h1{font-size:30px}.hero p{font-size:14px}.heroActions .btn{flex:1;text-align:center;padding:11px 10px}.sectionTitle h2{font-size:23px}.section-active .sectionTitle{padding:15px 16px}.cards{grid-template-columns:1fr;gap:11px}.card{padding:18px}.dataStatusCard{padding:17px;gap:12px}.dataStatusIcon{flex-basis:43px;width:43px;height:43px;font-size:23px}.userArea{gap:6px}.userBalanceMini{font-size:11px;padding:7px 9px}.notificationButton{min-width:39px;min-height:39px}.navlinks a{font-size:13px;padding:9px 11px}section{padding:18px 0 24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* SDNBet365 Black & Gold visual refresh inspired by sportsbook layout conventions */
+:root{
+ --bg:#07110c;--panel:#121212;--panel2:#1b1b1b;--border:#393021;--text:#f7f3e8;--muted:#b8b0a0;
+ --green:#d7ad45;--green2:#b88922;--red:#e05252;--yellow:#e5bd59;--blue:#c6a04b;
+ --shadow:0 16px 42px rgba(0,0,0,.42)
+}
+body{background:radial-gradient(ellipse at 50% -15%,rgba(215,173,69,.10),transparent 45%),var(--bg);color:var(--text)}
+header{background:rgba(8,8,8,.97);border-bottom:1px solid #4a3a1d;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.nav{min-height:78px;gap:13px}
+.logo{color:#e3bd61;letter-spacing:.2px;text-shadow:0 0 20px rgba(215,173,69,.12)}
+.logo:before{background:linear-gradient(135deg,#f1d98a,#b88922);color:#171108;box-shadow:0 4px 18px rgba(215,173,69,.22)}
+.navlinks{gap:4px}
+.navlinks a{color:#e4dece;border-radius:7px;font-weight:700}
+.navlinks a:hover{background:#282114;color:#f6d980}
+.navlinks a[aria-current="page"]{background:linear-gradient(135deg,#efd887,#b88a2c);color:#171108;box-shadow:0 5px 18px rgba(215,173,69,.15)}
+.btn{background:#1a1916;border-color:#514226;color:#f5efdf;border-radius:8px}
+.btn:hover{border-color:#d7ad45;background:#252016}
+.btn-primary{background:linear-gradient(135deg,#f0d887,#bd902f);border-color:#d9b454;color:#181207;font-weight:900}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-yellow{background:linear-gradient(135deg,#f0d887,#bd902f);border-color:#d9b454;color:#181207}
+.hero{padding:34px 0 25px}
+.heroGrid{grid-template-columns:minmax(0,1.45fr) minmax(250px,.72fr);gap:16px}
+.heroCard,.balanceCard{background:linear-gradient(135deg,#1b1914,#101010 72%);border:1px solid #594522;border-radius:13px;box-shadow:var(--shadow)}
+.heroCard{position:relative;overflow:hidden}
+.heroCard:after{content:'◆';position:absolute;left:20px;bottom:-46px;font-size:170px;color:rgba(215,173,69,.055);pointer-events:none}
+.hero h1 span,.balance,.walletBalance,.userBalanceMini{color:#e4bd5b}
+.balanceCard{border-top:3px solid #d7ad45}
+section{padding:26px 0}
+.section-active .sectionTitle{background:linear-gradient(100deg,#211b10,#111);border-color:#4e3d20;border-radius:10px}
+.section-active .sectionTitle:before{background:linear-gradient(#f0d887,#b88922)}
+.sectionTitle h2{letter-spacing:.1px}
+.cards{gap:12px}
+.card,.walletCard,.supportCard,.match{background:linear-gradient(145deg,#171717,#101010);border-color:#3d3424;border-radius:11px;box-shadow:0 7px 22px rgba(0,0,0,.22);transition:transform .16s ease,border-color .16s ease}
+.card:hover{transform:translateY(-2px);border-color:#a98538}
+.cardIcon{display:inline-grid;place-items:center;width:48px;height:48px;margin-bottom:14px;border:1px solid #574521;border-radius:12px;background:linear-gradient(145deg,#2a2416,#17140e)}
+.card h3{color:#f5e6b6}
+.card p,.hero p{color:#bdb5a5}
+.matches{gap:10px}
+.dataStatusCard{background:linear-gradient(120deg,#1d1a12,#101010);border-color:#5b4824;border-radius:12px}
+.dataStatusPill{color:#e5c36c;background:rgba(215,173,69,.10);border-color:#5a4827}
+.odd{background:#201c13;border-color:#594827}
+.odd:hover{border-color:#d7ad45}
+.walletGrid{gap:13px}
+.walletCard{padding:22px}
+.formGroup input,.formGroup select,.formGroup textarea{background:#0c0c0c;border-color:#49402e;color:#f7f1e3}
+.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{border-color:#d7ad45;box-shadow:0 0 0 2px rgba(215,173,69,.1)}
+.notice{background:#211c12;border-color:#594723;color:#e2d7bd}
+.tableWrap{border-color:#4b3d25}
+th{background:#272012;color:#f2d57e}
+td,th{border-bottom-color:#332b1c}
+.status-pending{background:rgba(229,189,89,.14);color:#f0d17a}
+.status-approved{background:rgba(215,173,69,.13);color:#e9c96e}
+.message.user{background:#3a2c12;color:#f7e5b1}
+.message.admin{background:#1c1c1c}
+.messages{background:#0c0c0c;border:1px solid #393021}
+.modalBox{background:#12110e;border-color:#5b4824}
+.userBalanceMini{border-color:#5b4824;background:#211b10}
+.notificationPanel{background:#14130f;border-color:#4e3e22}
+.notificationHead{border-bottom-color:#3e321d}
+.siteLink{background:#201b11;border-color:#5b4824;color:#e5c36c}
+footer{background:#070707;border-top-color:#49391c}
+.flouciInfo strong{color:#e5c36c}
+/* Compact, bookmaker-like category strip on smaller screens */
+@media(max-width:950px){
+ .nav{padding:10px 0;gap:9px}
+ .navlinks{order:5;width:100%;padding:7px 2px 9px;border-top:1px solid #292216;margin-top:3px}
+ .navlinks a{border:1px solid transparent}
+ .navlinks a[aria-current="page"]{border-color:#e2bd5a}
+ .heroGrid{grid-template-columns:1fr}
+ .balanceCard{min-height:135px}
+}
+@media(min-width:951px){
+ .navlinks{flex:1;justify-content:center}
+ .heroCard,.balanceCard{min-height:210px}
+ .sectionTitle{margin-bottom:16px}
+}
+@media(max-width:560px){
+ .hero{padding:16px 0 8px}
+ .heroCard,.balanceCard,.walletCard,.supportCard{padding:16px;border-radius:11px}
+ .hero h1{font-size:28px}
+ .sectionTitle h2{font-size:22px}
+ .cards{grid-template-columns:1fr 1fr;gap:9px}
+ .card{padding:14px}
+ .cardIcon{width:42px;height:42px;font-size:29px}
+ .navlinks a{padding:8px 10px;font-size:12px}
+ .authButtons .btn{padding:9px 11px}
+}
+@media(max-width:380px){.cards{grid-template-columns:1fr}.logo{font-size:20px}}
+
+
+/* Final black-and-gold layout: compact top bar and expandable left-side account menu */
+.headerRight{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.menuTrigger{font-size:23px;line-height:1;min-width:44px;min-height:44px;padding:7px 12px;color:#e6c76f;border-color:#665124}
+.nav{display:flex;align-items:center;justify-content:flex-start;gap:14px;min-height:68px;flex-wrap:nowrap}
+.navlinks{display:none!important}
+.logo{color:#e4bd5b;font-size:24px}
+.userArea{align-items:center;justify-content:flex-end}
+.userArea .userBalanceMini{display:none!important}
+.hero{padding:24px 0 14px}
+.heroGrid{display:block}
+.heroCard{max-width:none;padding:clamp(22px,4vw,42px);min-height:185px}
+.heroEyebrow{font-size:11px;letter-spacing:2px;color:#d9b65a;margin-bottom:13px;font-weight:800}
+.hero h1{font-size:clamp(28px,5vw,44px)}
+.sideMenuBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:1200;opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease}
+.sideMenu{position:fixed;z-index:1201;top:0;bottom:0;left:0;width:min(330px,86vw);padding:20px 16px calc(20px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#17140d,#090909 45%);border-right:1px solid #6b5425;box-shadow:18px 0 45px rgba(0,0,0,.48);transform:translateX(-105%);transition:transform .24s ease;display:flex;flex-direction:column;gap:7px;overflow-y:auto}
+body.menu-open .sideMenuBackdrop{opacity:1;visibility:visible}
+body.menu-open .sideMenu{transform:translateX(0)}
+.sideMenuHead{display:flex;align-items:center;justify-content:space-between;padding:5px 4px 18px;border-bottom:1px solid #40331b}
+.closeMenu{background:transparent;border:0;color:#e6c76f;font-size:32px;line-height:1;padding:0 7px}
+.sideMenuUser{padding:14px 9px;color:#c9c0ae;font-size:13px;line-height:1.7;border-bottom:1px solid #302719;margin-bottom:5px}
+.sideMenuBalance{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 11px;margin:2px 0 9px;border:1px solid #695426;border-radius:10px;background:linear-gradient(135deg,#211b10,#12110d);color:#e4bd5b;font-size:13px}
+.sideMenuBalance strong{font-size:15px;color:#fff0bd;direction:ltr;white-space:nowrap}
+.sideMenu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;border:1px solid transparent;border-radius:9px;color:#f1e8d1;font-weight:700;direction:ltr;text-align:left}
+.sideMenu>a span{width:25px;text-align:center;color:#e4bd5b;font-size:18px}
+.sideMenu>a:hover,.sideMenu>a:focus{background:#292112;border-color:#5b4722;color:#f2d77e}
+.sideMenuSpacer{flex:1;min-height:20px}
+.sideLogout{width:100%;text-align:left;direction:ltr;padding:13px 12px;border:1px solid #503326;border-radius:9px;background:#21130f;color:#f2a59b;font-weight:800}
+.walletBalanceCard{display:none}
+#heroHint{display:none}
+body.authenticated .walletBalanceCard{display:block}
+
+/* Final header, navigation and service-strip polish */
+.nav{display:flex;align-items:center;gap:clamp(8px,1.8vw,18px);min-height:70px;flex-wrap:nowrap}
+.menuTrigger{flex:0 0 44px;order:0;border-radius:10px;background:#17140e;border-color:#695426;color:#f0d27a}
+.logo{order:1;flex:0 0 auto;font-size:clamp(19px,2.5vw,25px);letter-spacing:.2px}
+.headerRight{order:2;display:flex;align-items:center;gap:clamp(5px,1vw,10px);margin-inline-start:auto;min-width:0}
+.authButtons{display:flex;align-items:center;gap:7px}
+.authButtons .btn{padding:9px 12px;white-space:nowrap}
+.userArea{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.userArea.hidden{display:none!important}
+.userBalanceMini{display:inline-flex!important;align-items:center;justify-content:center;background:#201a0d;border:1px solid #695426;border-radius:9px;color:#f0d27a;padding:9px 11px;font-size:13px;font-weight:900;direction:ltr;white-space:nowrap}
+.notificationWrap{position:relative;flex:0 0 auto}
+.notificationButton{width:42px;height:42px;min-width:42px;padding:8px;border-radius:9px;background:#17140e;border-color:#4b3b1d}
+.languageCompact{width:auto!important;min-width:45px;padding:9px 7px!important;text-align:center;order:3}
+.hero{padding:20px 0 12px}
+.heroCard{min-height:0;padding:clamp(22px,4vw,38px);background:radial-gradient(ellipse at 88% 0,rgba(215,173,69,.13),transparent 42%),linear-gradient(135deg,#1b1914,#101010 72%)}
+.heroEyebrow{letter-spacing:1.5px}
+.hero h1{margin-bottom:12px}
+.heroActions{display:flex;gap:10px;margin-top:22px}
+.serviceStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}
+.serviceItem{display:flex;align-items:center;gap:11px;min-width:0;padding:14px 15px;border:1px solid #41351f;border-radius:11px;background:linear-gradient(145deg,#18160f,#101010)}
+.serviceItem>span{flex:0 0 35px;width:35px;height:35px;display:grid;place-items:center;border-radius:9px;background:#2a2212;border:1px solid #5a4723;color:#f0d27a;font-size:20px}
+.serviceItem strong{display:block;color:#f0dca5;font-size:13px;line-height:1.5}
+.serviceItem small{display:block;color:#b9b0a0;font-size:11px;line-height:1.5;margin-top:2px}
+.sideMenu>a{direction:ltr;text-align:left;min-height:48px}
+.sideLogout{margin-top:8px}
+#heroBalance,#heroHint{display:none!important}
+@media(max-width:650px){.nav{min-height:62px;gap:7px}.logo{font-size:18px}.headerRight{gap:5px}.authButtons{gap:5px}.authButtons .btn{padding:8px 9px;font-size:11px}.languageCompact{min-width:38px;padding:8px 5px!important;font-size:11px}.menuTrigger{min-width:40px;min-height:40px;flex-basis:40px;padding:6px 9px}.userBalanceMini{font-size:11px;padding:8px 7px;max-width:100px;overflow:hidden;text-overflow:ellipsis}.notificationButton{width:38px;height:38px;min-width:38px}.serviceStrip{grid-template-columns:1fr;gap:8px}.serviceItem{padding:11px 12px}.serviceItem small{font-size:11px}.hero{padding-top:13px}.heroActions .btn{flex:1;text-align:center;padding:11px 9px}}
+@media(max-width:390px){.logo{font-size:16px}.authButtons .btn{padding:7px 7px;font-size:10px}.userBalanceMini{max-width:80px;font-size:10px}.headerRight{gap:4px}.languageCompact{min-width:32px}}
+@media(min-width:651px){.serviceStrip{margin-bottom:4px}}
+
+
+.offerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 18px}
+.offerCard{border:1px solid rgba(212,175,55,.35);background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(18,28,43,.92));border-radius:14px;padding:14px}
+.offerCard strong{display:block;color:var(--gold,#d4af37);font-size:17px;margin-bottom:5px}
+.offerCard small{color:var(--muted);line-height:1.5}
+.paymentFields{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;margin:12px 0}
+.paymentFieldsTitle{font-weight:700;margin-bottom:10px}
+
+/* Payment UI refinement: dark charcoal + green, preserving the existing site layout */
+:root{--bg:#101010;--panel:#1a1a1a;--panel2:#252525;--border:#343434;--text:#f5f5f5;--muted:#a7a7a7;--green:#62e65b;--green2:#38b932;--yellow:#62e65b;--blue:#252525;--shadow:0 12px 28px rgba(0,0,0,.32)}
+body,header{background-color:#101010}header{background:rgba(16,16,16,.97)}
+.heroCard,.balanceCard,.modalBox,.notificationPanel,.toast{background:#191919}
+.section-active .sectionTitle{background:#1d1d1d;border-color:#303030}
+.card,.walletCard,.supportCard,.match{background:#191919;border-color:#333;border-radius:12px}
+.formGroup input,.formGroup select,.formGroup textarea,.messages{background:#141414;border-color:#383838}
+.notice{background:#202020;border-color:#373737;color:#d0d0d0}
+.deposit-ui-head{margin:4px 0 14px}.deposit-kicker{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--green)}.deposit-ui-head h3{font-size:21px;margin:7px 0}.deposit-ui-head p{color:var(--muted);font-size:13px;line-height:1.7}
+.payment-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 1px 12px;margin-bottom:10px;scrollbar-width:thin}.payment-tab{flex:0 0 auto;border:1px solid #383838;background:#202020;color:#ddd;border-radius:8px;padding:9px 13px;font-size:12px}.payment-tab.active{background:var(--green);border-color:var(--green);color:#0a1609;font-weight:800}
+.payment-method-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:18px}.payment-method{display:flex;align-items:center;gap:10px;min-width:0;text-align:start;background:#202020;border:1px solid #383838;border-radius:10px;padding:12px;color:#f5f5f5}.payment-method.selected{border-color:var(--green);box-shadow:inset 0 0 0 1px rgba(98,230,91,.2);background:#1b281b}.method-logo{display:flex;align-items:center;justify-content:center;flex:0 0 42px;height:42px;border-radius:9px;background:#303030;color:var(--green);font-size:13px;font-weight:900}.payment-method strong,.payment-method small{display:block}.payment-method strong{font-size:13px;line-height:1.5}.payment-method small{font-size:11px;color:#aaa;margin-top:3px}.method-check{display:none;margin-inline-start:auto;color:var(--green);font-weight:900}.payment-method.selected .method-check{display:block}
+.paymentFields{border-color:#393939;background:#181818}.paymentFieldsTitle{color:var(--green)}.btn-primary{background:var(--green);border-color:var(--green);color:#0b1609}.siteLink{background:#202020}
+@media(max-width:560px){.payment-method-grid{grid-template-columns:1fr}.payment-method{padding:11px}.deposit-ui-head h3{font-size:19px}.payment-tabs{margin-inline:-2px}}
+
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<button class="btn menuTrigger" id="menuTrigger" aria-label="فتح القائمة" aria-expanded="false" onclick="toggleSideMenu(true)">☰</button>
+<a href="#sports" class="logo" aria-label="SDNBet365 home">SDNBet365</a>
+<div class="headerRight">
+<div class="authButtons" id="authButtons"><button class="btn" onclick="openModal('loginModal')">Connexion</button><button class="btn btn-primary" onclick="openModal('registerModal')">Inscription</button></div>
+<div class="userArea hidden" id="userArea">
+<span class="userName hidden" id="userName" aria-hidden="true"></span>
+<span class="userBalanceMini" id="userBalanceMini" aria-label="Solde du compte">Solde : —</span>
+<div class="notificationWrap">
+<button class="btn notificationButton" id="notificationButton" aria-label="Notifications" title="Notifications" aria-expanded="false" onclick="toggleNotifications()">🔔<span class="notificationCount hidden" id="notificationCount">0</span></button>
+<div class="notificationPanel hidden" id="notificationPanel"><div class="notificationHead"><h3 data-i18n="notificationTitle">Notifications du compte</h3><button class="btn" style="padding:6px 8px;font-size:12px" onclick="markNotificationsRead()" data-i18n="markRead">Tout marquer comme lu</button></div><div id="notificationList"><div class="notificationEmpty"><span data-i18n="loginNotifications">Connectez-vous pour voir vos notifications.</span></div></div></div>
+</div>
+</div>
+<select id="languageSelect" aria-label="Language / langue" class="btn languageCompact" onchange="setLanguage(this.value)"><option value="fr">FR</option><option value="ar">ع</option><option value="en">EN</option></select>
+</div>
+</div>
+</header>
+<div class="sideMenuBackdrop" id="sideMenuBackdrop" onclick="toggleSideMenu(false)" aria-hidden="true"></div>
+<aside class="sideMenu" id="sideMenu" aria-label="القائمة الداخلية" aria-hidden="true">
+<div class="sideMenuHead"><span class="logo">SDNBet365</span><button class="closeMenu" aria-label="إغلاق القائمة" onclick="toggleSideMenu(false)">×</button></div>
+<div class="sideMenuUser" id="sideMenuUser">مرحبًا بك — سجّل الدخول للوصول إلى حسابك</div>
+<div class="sideMenuBalance hidden" id="sideMenuBalance" aria-label="رصيد اللاعب"><span>رصيد اللاعب</span><strong id="sideMenuBalanceValue">— د.ت</strong></div>
+<a href="#account" onclick="toggleSideMenu(false);openAccount()"><span>♙</span> Account</a>
+<a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('deposit')"><span>＋</span> Dépôt</a>
+<a href="#wallet" onclick="toggleSideMenu(false);openWalletAction('withdrawal')"><span>↗</span> Retrait</a>
+<a href="#history" onclick="toggleSideMenu(false)"><span>↻</span> Historique des transactions</a>
+<a href="#account" onclick="toggleSideMenu(false)"><span>♧</span> My Bets</a>
+<div class="sideMenuSpacer"></div>
+<button class="sideLogout" id="sideLogout" onclick="toggleSideMenu(false);signOutUser()">↪ &nbsp; Logout</button>
+</aside>
+<main id="top">
+<section class="hero"><div class="container heroGrid">
+<div class="heroCard"><span id="heroBalance" class="hidden">0.000 د.ت</span><span id="heroHint" class="hidden">سجّل الدخول للوصول إلى بيانات حسابك.</span><div class="heroEyebrow">SPORTSBOOK · ENTERTAINMENT</div><h1>منصة <span>SDNBet365</span></h1><p>واجهة رئيسية واضحة وسريعة، مع انتقال مستقل إلى الرياضة والألعاب والحساب الشخصي. سجّل الدخول لإدارة حسابك ومحفظتك.</p><div class="heroActions"><a href="#sports" class="btn btn-primary">⚽ SPORT</a><a href="#casino" class="btn">🎰 SLOTS</a></div></div>
+<div class="serviceStrip" aria-label="Services"><div class="serviceItem"><span>◷</span><div><strong>Assistance 7j/7</strong><small>Une équipe à votre écoute</small></div></div><div class="serviceItem"><span>♧</span><div><strong>Dépôts & retraits sécurisés</strong><small>Traitement des demandes vérifié</small></div></div><div class="serviceItem"><span>✓</span><div><strong>Sans frais de plateforme*</strong><small>*Des frais du prestataire peuvent s’appliquer</small></div></div></div>
+</div></section>
+<section id="sports"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionSports">الرياضة</h2><p data-i18n="sportsIntro">واجهة المباريات الرياضية.</p></div>
+<div class="cards">
+<div class="card"><div class="cardIcon">⚽</div><h3>كرة القدم</h3><p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p><a href="#matches" class="btn">عرض المباريات</a></div>
+<div class="card"><div class="cardIcon">🏀</div><h3>كرة السلة</h3><p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p><button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button></div>
+<div class="card"><div class="cardIcon">🎾</div><h3>التنس</h3><p>تصميم بسيط لمتابعة مباريات التنس.</p><button class="btn" onclick="showToast('سيتم ربط البيانات الرياضية لاحقًا')">عرض الخيارات</button></div>
+</div>
+<div id="matches" class="matches" style="margin-top:18px">
+<section id="live-matches" style="width:100%;margin:20px auto;padding:10px 0;">
+<h2 style="color:#d4af37;text-align:center;margin-bottom:15px;">⚽ المباريات والنتائج المباشرة</h2>
+<iframe src="https://embed.soccersapi.com/widgets/ls-soccersapi/free.html?uid=6ad863ddb21c82f8ef0eeff4&widget-id=livescore&locale=fr" style="width:100%;height:1200px;min-height:1200px;border:0;display:block;" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" data-soccersapi-widget="v2-free"></iframe>
+</section>
+                                                                                                                                                                                                                                    
+</div></div></section>
+<section id="casino"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionCasino">الكازينو</h2><p data-i18n="casinoIntro">الألعاب والعروض المتاحة على المنصة.</p></div><div class="cards">
+<div class="card"><div class="cardIcon">🎰</div><h3>Slots</h3><p>تابع الألعاب المتاحة في المنصة.</p><button class="btn" onclick="showToast('سيتم الإعلان عن الألعاب المتاحة هنا')">عرض الألعاب</button></div>
+<div class="card"><div class="cardIcon">🃏</div><h3>Cards</h3><p>قسم ألعاب البطاقات.</p><button class="btn" onclick="showToast('سيتم الإعلان عن الألعاب المتاحة هنا')">عرض الألعاب</button></div>
+<div class="card"><div class="cardIcon">🎲</div><h3>Games</h3><p>ألعاب إضافية للعرض.</p><button class="btn" onclick="showToast('سيتم الإعلان عن الألعاب المتاحة هنا')">عرض الألعاب</button></div>
+</div></div></section>
+<section id="live"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionLive">مباشر</h2><p data-i18n="liveIntro">الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
+<section id="wallet"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionWallet">المحفظة</h2><p data-i18n="walletIntro">إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
+<span id="walletBalance" class="hidden" aria-hidden="true">0.000 د.ت</span>
+<div class="offerGrid" aria-label="Promotional offers">
+<div class="offerCard"><strong>15% Cashback quotidien</strong><small>Cashback quotidien, selon les conditions de l’offre et après vérification.</small></div>
+<div class="offerCard"><strong>20% Sport Bonus</strong><small>Bonus sportif soumis aux conditions applicables.</small></div>
+<div class="offerCard"><strong>Freespin</strong><small>Offre disponible selon les conditions de la promotion.</small></div><div class="offerCard"><strong>Service 24/24</strong><small>Assistance et suivi des demandes sur la plateforme.</small></div>
+</div>
+<div class="walletCard"><div class="notice">طلبات الإيداع تُراجع يدويًا. إرسال النموذج أو صورة الإثبات لا يعني اعتماد الدفع أو إضافة الرصيد تلقائيًا.</div>
+<div class="deposit-ui-head"><span class="deposit-kicker">DÉPÔT / طرق الدفع</span><h3>اختر طريقة الإيداع</h3><p>اختر الفئة ثم طريقة الدفع لعرض الحقول المناسبة.</p></div>
+<div class="payment-tabs" role="group" aria-label="فئات الدفع">
+<button type="button" class="payment-tab active" data-filter="all">Tout</button><button type="button" class="payment-tab" data-filter="other">Autre</button><button type="button" class="payment-tab" data-filter="mobile">Mobile Payment</button><button type="button" class="payment-tab" data-filter="cards">Cartes</button><button type="button" class="payment-tab" data-filter="crypto">Crypto</button><button type="button" class="payment-tab" data-filter="more">Plus</button>
+</div>
+<div class="payment-method-grid" id="paymentMethodCards">
+<button type="button" class="payment-method selected" data-method="D17" data-category="mobile other"><span class="method-logo">D17</span><span><strong>D17 Deposit</strong><small>Mobile Payment</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="Flouci" data-category="mobile other"><span class="method-logo">F</span><span><strong>Flouci Deposit</strong><small>Mobile Payment</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="Tunisie Telecom" data-category="other"><span class="method-logo">TT</span><span><strong>Tunisie Télécom</strong><small>Recharge</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="Orange" data-category="other"><span class="method-logo">O</span><span><strong>Orange Recharge</strong><small>Recharge</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="Ooredoo Recharge" data-category="other"><span class="method-logo">OO</span><span><strong>Ooredoo Recharge</strong><small>Recharge</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="Bank Cards" data-category="cards more"><span class="method-logo">VISA</span><span><strong>Visa / Mastercard</strong><small>Cartes bancaires</small></span><span class="method-check">✓</span></button>
+<button type="button" class="payment-method" data-method="All Crypto (FulgurPay)" data-category="crypto more"><span class="method-logo">₿</span><span><strong>All Crypto</strong><small>FulgurPay</small></span><span class="method-check">✓</span></button>
+</div>
+<div class="formGroup"><label data-i18n="walletTypeLabel">نوع العملية</label><select id="walletType"><option value="deposit" data-i18n="deposit">إيداع</option><option value="withdrawal" data-i18n="withdrawal">سحب</option></select></div>
+<div class="formGroup"><label data-i18n="amountLabel">المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="1" step="0.001" placeholder="مثال: 50"></div>
+<div class="formGroup"><label data-i18n="methodLabel">طريقة الدفع</label><select id="paymentMethod" onchange="updatePaymentInstructions()"><option value="D17">D17</option><option value="Flouci">Flouci</option><option value="Izi Zaytouna">Izi</option><option value="Ooredoo Recharge">Ooredoo</option><option value="Orange">Orange</option><option value="Tunisie Telecom">Tunisie Telecom</option><option value="Bank Cards">Visa / Mastercard</option><option value="All Crypto (FulgurPay)">All Crypto (FulgurPay)</option></select></div>
+
+<div id="paymentInstructions" class="flouciInfo" aria-live="polite">Données de réception : <strong id="paymentDestinationDisplay">Chargement…</strong><div style="color:var(--muted);font-size:13px;margin-top:5px">Vérifiez les informations avant le transfert. La demande sera vérifiée manuellement.</div></div>
+<div id="standardPaymentFields" class="paymentFields"><div class="paymentFieldsTitle" id="standardFieldsTitle">Dépôt D17</div>
+<div class="formGroup" id="paymentAccountGroup"><label for="paymentAccount" id="paymentAccountLabel">Numéro de téléphone</label><input id="paymentAccount" type="text" autocomplete="tel" placeholder="Numéro de téléphone"></div>
+<div class="formGroup hidden" id="flouciNameGroup"><label for="flouciAccountName">Votre nom sur Flouci</label><input id="flouciAccountName" type="text" autocomplete="name" placeholder="الاسم المسجل في Flouci"></div><div class="formGroup" id="paymentReferenceGroup"><label for="paymentReference" id="paymentReferenceLabel">Numéro d’autorisation</label><input id="paymentReference" type="text" placeholder="Numéro d’autorisation"></div></div>
+<div id="rechargeFields" class="paymentFields hidden"><div class="paymentFieldsTitle" id="rechargeTitle">Recharge opérateur</div><div class="notice" id="rechargeLimit">Carte Ooredoo — Min 5 TND · Max 80 TND (Orange et Tunisie Telecom selon conditions opérateur)</div>
+<div class="formGroup"><label for="paymentAccountRecharge">Numéro de téléphone</label><input id="paymentAccountRecharge" type="tel" autocomplete="tel" placeholder="Numéro de téléphone associé à la carte"></div>
+<div class="formGroup"><label for="cardCode1">Numéro de carte 1</label><input id="cardCode1" inputmode="numeric" autocomplete="off"></div>
+<div class="formGroup"><label for="cardCode2">Numéro de carte 2 (facultatif)</label><input id="cardCode2" inputmode="numeric" autocomplete="off"></div>
+<div class="formGroup" id="promoCodeGroup"><label for="promoCode">Code promo (facultatif)</label><input id="promoCode" type="text" maxlength="80" placeholder="Code promo"></div>
+<div class="formGroup"><label for="cardCode3">Code de recharge 3 (facultatif)</label><input id="cardCode3" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode4">Code de recharge 4 (facultatif)</label><input id="cardCode4" inputmode="numeric" autocomplete="off"></div></div>
+<div class="formGroup" id="proofUploadGroup"><label for="paymentProof" id="proofLabel">Photo de paiement</label><input id="paymentProof" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.heif,.heic,.webp,image/jpeg,image/png,image/gif,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><small id="proofHint" style="display:block;color:var(--muted);margin-top:6px">PDF, DOC, DOCX, JPG, JPEG, PNG, GIF, HEIF/HEIC ou WebP, maximum 4 MB. La photo ne confirme pas automatiquement le paiement.</small></div>
+<button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()" data-i18n="submitRequest">إرسال الطلب</button></div>
+</div></div></section>
+<section id="history"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionHistory">سجل المحفظة</h2><p data-i18n="historyIntro">جميع طلبات الإيداع والسحب الخاصة بحسابك.</p></div><div class="walletCard">
+<div id="historyLoginMessage" class="notice">سجّل الدخول لعرض سجل المحفظة.</div><div class="tableWrap"><table><thead><tr><th data-i18n="colType">النوع</th><th data-i18n="colAmount">المبلغ</th><th data-i18n="colMethod">الطريقة</th><th data-i18n="colStatus">الحالة</th><th data-i18n="colDate">التاريخ</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+</div></div></section>
+<section id="account"><div class="container"><div class="sectionTitle"><h2 data-i18n="accountTitle">حسابي / My Account / Mon compte</h2><p data-i18n="accountIntro">ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.</p></div><div class="cards" style="margin-bottom:18px"><div class="card"><h3 data-i18n="profileTitle">الملف الشخصي</h3><div class="formGroup"><label data-i18n="fullName">الاسم الكامل</label><input id="profileName" autocomplete="name"></div><div class="formGroup"><label data-i18n="phone">رقم الهاتف</label><input id="profilePhone" autocomplete="tel"></div><div class="formGroup"><label data-i18n="email">البريد الإلكتروني</label><input id="profileEmail" type="email" readonly></div><button class="btn btn-primary" onclick="saveProfile()" data-i18n="saveProfile">حفظ بيانات الملف</button><div id="profileStatus" style="margin-top:10px"></div></div><div class="card"><h3 data-i18n="requestStatusTitle">حالة الإيداع والسحب</h3><p data-i18n="requestStatusInfo">تظهر حالات الطلبات في سجل المحفظة أدناه. يمكن طلب إلغاء السحب فقط عبر الدعم إلى أن تتوفر عملية إلغاء آمنة داخل قاعدة البيانات.</p><button class="btn" onclick="location.hash='#history'" data-i18n="viewHistory">عرض سجل المعاملات</button></div><div class="card"><h3 data-i18n="myBets">رهاناتي / My Bets</h3><p data-i18n="betsInfo">لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.</p><div id="betsNotice" class="notice" data-i18n="betsNotice">يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.</div></div></div></div></section>
+<section id="support"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionSupport">الدعم</h2><p data-i18n="supportIntro">تواصل مع فريق الدعم من داخل الموقع.</p></div><div class="supportCard">
+<div id="supportMessages" class="messages"><div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div></div>
+<div class="formGroup"><textarea id="supportInput" rows="3" placeholder="اكتب رسالتك..."></textarea></div><button class="btn btn-primary" style="width:100%" onclick="sendSupportMessage()">إرسال الرسالة</button><div id="supportStatus" style="color:var(--muted);margin-top:12px;text-align:center"></div>
+</div></div></section>
+<div class="hidden" aria-hidden="true"><span id="heroBalance">0.000 د.ت</span><span id="heroHint">سجّل الدخول للوصول إلى بيانات حسابك.</span></div>
+</main>
+<footer><div class="container">SDNBet365 © 2026 — <span data-i18n="rights">جميع الحقوق محفوظة.</span><br><a class="siteLink" href="https://majdisdn11.github.io/Sdnbet365/" target="_blank" rel="noopener">🌐 فتح موقع Sdnbet365</a></div></footer>
+
+<div class="modal" id="loginModal"><div class="modalBox"><div class="modalHeader"><h2>تسجيل الدخول</h2><button class="close" onclick="closeModal('loginModal')">×</button></div>
+<div class="formGroup"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="loginPassword" type="password" autocomplete="current-password"></div>
+<button class="btn btn-primary" style="width:100%" onclick="loginUser()">دخول</button><button class="btn" style="width:100%;margin-top:9px" onclick="closeModal('loginModal');openModal('registerModal')">إنشاء حساب</button><button class="btn" style="width:100%;margin-top:9px" onclick="openRecovery()">نسيت كلمة المرور؟</button><div id="loginStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="registerModal"><div class="modalBox"><div class="modalHeader"><h2>إنشاء حساب</h2><button class="close" onclick="closeModal('registerModal')">×</button></div>
+<div class="formGroup"><label>الاسم</label><input id="registerName" type="text" autocomplete="name"></div><div class="formGroup"><label>رقم الهاتف</label><input id="registerPhone" type="text" autocomplete="tel"></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="registerEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="registerPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button><div id="registerStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="recoveryModal"><div class="modalBox"><div class="modalHeader"><h2>استعادة كلمة المرور</h2><button class="close" onclick="closeModal('recoveryModal')">×</button></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="recoveryEmail" type="email" autocomplete="email"></div><button class="btn btn-primary" style="width:100%" onclick="sendRecovery()">إرسال رابط الاستعادة</button><div id="recoveryStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="resetModal"><div class="modalBox"><div class="modalHeader"><h2>تغيير كلمة المرور</h2></div><div class="formGroup"><label>كلمة المرور الجديدة</label><input id="newPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="changePassword()">حفظ كلمة المرور</button><div id="resetStatus" style="margin-top:12px"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
+const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let currentUser=null,currentProfile=null,currentConversation=null;
+let walletRequestsCache=[];
+let notificationRefreshBusy=false;
+let flouciWalletNumber=null;
+let paymentSettingsCache={};
+
+function $(id){return document.getElementById(id)}
+function openModal(id){const el=$(id);if(el)el.classList.add("show")}
+function closeModal(id){const el=$(id);if(el)el.classList.remove("show")}
+function showToast(message){const toast=$("toast");if(!toast)return;toast.textContent=message;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3500)}
+function showStatus(id,message,type=""){const el=$(id);if(!el)return;el.textContent=message;el.style.color=type==="error"?"#ff7773":type==="success"?"#20c77a":"#9eacbd"}
+function formatMoney(value){const amount=Number(value||0).toFixed(3);return currentLanguage==="ar"?amount+" د.ت":amount+" TND"}
+function formatDate(date){if(!date)return "-";try{return new Date(date).toLocaleString("ar-TN",{dateStyle:"short",timeStyle:"short"})}catch(e){return "-"}}
+function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function updatePaymentInstructions(){
+const method=$("paymentMethod")?.value;const display=$("paymentDestinationDisplay");const type=$("walletType")?.value||"deposit";
+const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);
+const deposit=type==="deposit";
+const rechargeFields=$("rechargeFields"),standardFields=$("standardPaymentFields"),proofGroup=$("proofUploadGroup");
+if(rechargeFields)rechargeFields.classList.toggle("hidden",!deposit||!recharge);
+if(standardFields)standardFields.classList.toggle("hidden",deposit&&recharge);
+if(proofGroup)proofGroup.classList.toggle("hidden",!deposit);
+const accountGroup=$("paymentAccountGroup"),referenceGroup=$("paymentReferenceGroup");
+if(accountGroup)accountGroup.classList.toggle("hidden",deposit&&recharge);
+if(referenceGroup)referenceGroup.classList.toggle("hidden",!deposit||!(["D17","Flouci"].includes(method)));
+if($("standardFieldsTitle"))$("standardFieldsTitle").textContent=method==="D17"?"Dépôt D17":method==="Flouci"?"Dépôt Flouci":method==="Bank Cards"?"Visa / Mastercard — intégration à configurer":method==="All Crypto (FulgurPay)"?"FulgurPay — intégration à configurer":"Dépôt Izi";
+if($("flouciNameGroup"))$("flouciNameGroup").classList.toggle("hidden",method!=="Flouci");
+if($("paymentAccountLabel"))$("paymentAccountLabel").textContent=method==="D17"||method==="Flouci"||method==="Izi Zaytouna"?"Numéro de téléphone":"Numéro de compte";
+if($("paymentReferenceLabel"))$("paymentReferenceLabel").textContent=method==="D17"?"Numéro d’autorisation":"Référence de transaction";
+if($("rechargeTitle"))$("rechargeTitle").textContent="Recharge "+(method==="Ooredoo Recharge"?"Ooredoo":method==="Orange"?"Orange":"Tunisie Telecom");
+if(display){const keys={"Flouci":"flouci_wallet_number","D17":"d17_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};display.textContent=String(paymentSettingsCache[keys[method]]||t("notConfigured")).trim();}
+if($("rechargeLimit"))$("rechargeLimit").textContent=(method==="Ooredoo Recharge"?"Carte de recharge Ooredoo":method==="Orange"?"Carte de recharge Orange":"Carte de recharge Tunisie Telecom")+" — Min 5 TND · Max 100 TND";
+if($("proofLabel"))$("proofLabel").textContent=method==="Izi Zaytouna"?"Photo du paiement / reçu":recharge?"Photo de la carte de recharge":"Capture d’écran du paiement";
+if($("proofHint"))$("proofHint").textContent=t("proofHint");
+}
+
+async function loadPaymentSettings(){
+const display=$("paymentDestinationDisplay");if(display)display.textContent="جارٍ تحميل البيانات...";
+try{
+const {data,error}=await supabaseClient.from("site_payment_settings").select("flouci_wallet_number,d17_wallet_number,izi_zaytouna_account,ooredoo_number,orange_number,tunisie_telecom_number").limit(1).maybeSingle();
+if(error)throw error;
+paymentSettingsCache=data||{};flouciWalletNumber=String(paymentSettingsCache.flouci_wallet_number||"").trim()||null;
+updatePaymentInstructions();
+}catch(error){console.error("Load payment settings:",error);paymentSettingsCache={};if(display)display.textContent="تعذر تحميل بيانات الاستقبال؛ يرجى التواصل مع الدعم";}
+}
+async function loadFlouciWallet(){return loadPaymentSettings()}
+const translations={
+ar:{notificationTitle:"إشعارات حسابك",markRead:"قراءة الكل",loginNotifications:"سجّل الدخول لعرض إشعاراتك.",sectionSports:"الرياضة",sportsIntro:"واجهة المباريات الرياضية.",sectionCasino:"الكازينو",casinoIntro:"الألعاب والعروض المتاحة على المنصة.",sectionLive:"مباشر",liveIntro:"الأحداث المباشرة.",sectionWallet:"المحفظة",walletIntro:"إدارة طلبات الإيداع والسحب.",sectionHistory:"سجل المحفظة",historyIntro:"جميع طلبات الإيداع والسحب الخاصة بحسابك.",sectionSupport:"الدعم",supportIntro:"تواصل مع فريق الدعم من داخل الموقع.",walletTypeLabel:"نوع العملية",deposit:"إيداع",withdrawal:"سحب",amountLabel:"المبلغ بالدينار التونسي",methodLabel:"طريقة الدفع",referenceLabel:"مرجع العملية إن وجد",promoLabel:"كود العرض (اختياري)",submitRequest:"إرسال الطلب",colType:"النوع",colAmount:"المبلغ",colMethod:"الطريقة",colStatus:"الحالة",colDate:"التاريخ",myBets:"رهاناتي",navSports:"الرياضة",navCasino:"الكازينو",navLive:"مباشر",navWallet:"المحفظة",navHistory:"سجل المعاملات",support:"الدعم",myAccount:"حسابي",accountTitle:"حسابي / My Account / Mon compte",accountIntro:"ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.",profileTitle:"الملف الشخصي",fullName:"الاسم الكامل",phone:"رقم الهاتف",email:"البريد الإلكتروني",saveProfile:"حفظ بيانات الملف",requestStatusTitle:"حالة الإيداع والسحب",requestStatusInfo:"تظهر حالات الطلبات في سجل المحفظة أدناه. لا يمكن إلغاء السحب من الواجهة قبل تجهيز إجراء آمن في قاعدة البيانات.",viewHistory:"عرض سجل المعاملات",betsInfo:"لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.",betsNotice:"يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.",rights:"جميع الحقوق محفوظة.",withdrawAccount:"حساب / هاتف السحب",rechargePhone:"رقم الهاتف المرتبط ببطاقة التعبئة",paymentAccount:"رقم الحساب / الهاتف",notConfigured:"لم يتم إعداد بيانات هذه الوسيلة بعد",cardPhoto:"صورة بطاقة التعبئة",paymentProof:"صورة إثبات الدفع",proofHint:"صورة JPEG أو PNG أو WebP فقط، بحد أقصى 4 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع."},
+en:{notificationTitle:"Account notifications",markRead:"Mark all read",loginNotifications:"Sign in to view your notifications.",sectionSports:"Sports",sportsIntro:"Sports matches interface.",sectionCasino:"Casino",casinoIntro:"Demo sections.",sectionLive:"Live",liveIntro:"Live events.",sectionWallet:"Wallet",walletIntro:"Manage deposit and withdrawal requests.",sectionHistory:"Wallet history",historyIntro:"Your deposit and withdrawal requests.",sectionSupport:"Support",supportIntro:"Contact the support team from the website.",walletTypeLabel:"Transaction type",deposit:"Deposit",withdrawal:"Withdrawal",amountLabel:"Amount in Tunisian dinars",methodLabel:"Payment method",referenceLabel:"Transaction reference (if any)",promoLabel:"Promo code (optional)",submitRequest:"Submit request",colType:"Type",colAmount:"Amount",colMethod:"Method",colStatus:"Status",colDate:"Date",myBets:"My Bets",navSports:"Sports",navCasino:"Casino",navLive:"Live",navWallet:"Wallet",navHistory:"Transactions",support:"Support",myAccount:"My Account",accountTitle:"My Account",accountIntro:"Your profile, request statuses, transaction history and bets.",profileTitle:"Personal profile",fullName:"Full name",phone:"Phone number",email:"Email address",saveProfile:"Save profile",requestStatusTitle:"Deposit and withdrawal status",requestStatusInfo:"Request statuses appear in wallet history below. Withdrawal cancellation is not enabled until a safe database procedure is available.",viewHistory:"View transaction history",betsInfo:"No bets data source is connected in the current database; no fake bets will be shown.",betsNotice:"A real bets table is required before this section can show actual data.",rights:"All rights reserved.",withdrawAccount:"Withdrawal account / phone",rechargePhone:"Phone number associated with recharge card",paymentAccount:"Account / phone number",notConfigured:"Payment details have not been configured yet",cardPhoto:"Recharge card photo",paymentProof:"Payment proof image",proofHint:"JPEG, PNG or WebP image only, maximum 4 MB. Uploading does not approve a deposit."},
+fr:{notificationTitle:"Notifications du compte",markRead:"Tout marquer comme lu",loginNotifications:"Connectez-vous pour voir vos notifications.",sectionSports:"Sports",sportsIntro:"Interface des matchs sportifs.",sectionCasino:"Casino",casinoIntro:"Sections de démonstration.",sectionLive:"En direct",liveIntro:"Événements en direct.",sectionWallet:"Portefeuille",walletIntro:"Gérer les demandes de dépôt et de retrait.",sectionHistory:"Historique du portefeuille",historyIntro:"Vos demandes de dépôt et de retrait.",sectionSupport:"Assistance",supportIntro:"Contactez l’équipe d’assistance depuis le site.",walletTypeLabel:"Type d’opération",deposit:"Dépôt",withdrawal:"Retrait",amountLabel:"Montant en dinars tunisiens",methodLabel:"Mode de paiement",referenceLabel:"Référence de transaction (facultatif)",promoLabel:"Code promo (facultatif)",submitRequest:"Envoyer la demande",colType:"Type",colAmount:"Montant",colMethod:"Méthode",colStatus:"Statut",colDate:"Date",myBets:"Mes paris",navSports:"Sports",navCasino:"Casino",navLive:"En direct",navWallet:"Portefeuille",navHistory:"Transactions",support:"Assistance",myAccount:"Mon compte",accountTitle:"Mon compte",accountIntro:"Votre profil, l’état des demandes, l’historique et les paris.",profileTitle:"Profil personnel",fullName:"Nom complet",phone:"Numéro de téléphone",email:"Adresse e-mail",saveProfile:"Enregistrer le profil",requestStatusTitle:"État des dépôts et retraits",requestStatusInfo:"L’état des demandes apparaît dans l’historique du portefeuille. L’annulation d’un retrait reste désactivée jusqu’à la mise en place d’une procédure sécurisée en base de données.",viewHistory:"Voir l’historique",betsInfo:"Aucune source de paris n’est connectée à la base actuelle ; aucun pari fictif ne sera affiché.",betsNotice:"Une vraie table de paris est nécessaire pour afficher des données réelles.",rights:"Tous droits réservés.",withdrawAccount:"Compte / téléphone de retrait",rechargePhone:"Numéro associé à la carte de recharge",paymentAccount:"Numéro de compte / téléphone",notConfigured:"Les informations de paiement ne sont pas encore configurées",cardPhoto:"Photo de la carte de recharge",paymentProof:"Image de preuve de paiement",proofHint:"Image JPEG, PNG ou WebP uniquement, maximum 4 Mo. Le dépôt n’est pas approuvé automatiquement."}};
+let currentLanguage=localStorage.getItem("sdnbet365_language")||"ar";
+function t(key){return (translations[currentLanguage]&&translations[currentLanguage][key])||translations.ar[key]||key}
+function setLanguage(lang){if(!translations[lang])return;currentLanguage=lang;localStorage.setItem("sdnbet365_language",lang);document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";const sel=$("languageSelect");if(sel)sel.value=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t(k))el.textContent=t(k)});updatePaymentInstructions();const mb=$("userBalanceMini");if(mb){const raw=mb.textContent.replace(/^(الرصيد: |Balance: |Solde : )/,"");mb.textContent=(lang==="fr"?"Solde : ":lang==="en"?"Balance: ":"الرصيد: ")+raw;}}
+function openAccount(){if(!currentUser){showToast(currentLanguage==="fr"?"Veuillez vous connecter d’abord":currentLanguage==="en"?"Please log in first":"يرجى تسجيل الدخول أولًا");openModal("loginModal");return}location.hash="#account";loadProfileForm()}
+async function loadProfileForm(){if(!currentUser)return;const profile=await loadProfile();$("profileName").value=profile?.username||currentUser.user_metadata?.full_name||"";$("profilePhone").value=profile?.phone||currentUser.user_metadata?.phone||"";$("profileEmail").value=currentUser.email||"";}
+async function saveProfile(){if(!currentUser){openModal("loginModal");return}const username=$("profileName").value.trim(),phone=$("profilePhone").value.trim();if(!username){showStatus("profileStatus",currentLanguage==="fr"?"Entrez votre nom complet":currentLanguage==="en"?"Enter your full name":"أدخل الاسم الكامل","error");return}const payload={id:currentUser.id,username,phone,updated_at:new Date().toISOString()};const {error}=await supabaseClient.from("profiles").upsert(payload,{onConflict:"id"});if(error){console.error("Save profile:",error);const msg=(currentLanguage==="fr"?"Impossible d’enregistrer le profil dans la base de données. Vérifiez la table profiles et ses autorisations RLS.":currentLanguage==="en"?"Could not save the profile to the database. Check the profiles table and its RLS permissions.":"تعذر حفظ الملف في قاعدة البيانات. يجب التحقق من جدول profiles وصلاحيات RLS.");showStatus("profileStatus",msg,"error");return}currentProfile=payload;showStatus("profileStatus",currentLanguage==="fr"?"Profil enregistré":currentLanguage==="en"?"Profile saved":"تم حفظ الملف الشخصي","success")}
+function notificationStorageKey(){return currentUser?"sdnbet365_read_notifications_"+currentUser.id:"sdnbet365_read_notifications_guest"}
+function getReadNotifications(){try{return JSON.parse(localStorage.getItem(notificationStorageKey())||"[]")}catch(e){return []}}
+function setReadNotifications(ids){try{localStorage.setItem(notificationStorageKey(),JSON.stringify(ids))}catch(e){console.warn("Could not save notification read state",e)}}
+function getRequestNotification(item){
+const type=item.request_type==="deposit"?"deposit":"withdrawal";
+const amount=formatMoney(item.amount);
+const status=String(item.status||"pending").toLowerCase();
+let title="",message="";
+if(type==="deposit"){
+if(status==="approved"){title="تم تأكيد الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND est confirmée.`}
+else if(status==="rejected"){title="تم رفض الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été refusée.`}
+else if(status==="cancelled"){title="تم إلغاء طلب الإيداع";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été annulée.`}
+else{title="طلب إيداع قيد المراجعة";message=`Votre demande de dépôt d’un montant de ${Number(item.amount||0).toFixed(3)} TND est en cours de traitement.`}
+}else{
+if(status==="approved"){title="تمت الموافقة على السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été approuvée.`}
+else if(status==="rejected"){title="تم رفض السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été refusée.`}
+else if(status==="cancelled"){title="تم إلغاء طلب السحب";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND a été annulée.`}
+else{title="طلب سحب قيد المراجعة";message=`Votre demande de retrait d’un montant de ${Number(item.amount||0).toFixed(3)} TND est en cours de traitement.`}
+}
+return {title,message,amount,type,status,date:item.updated_at||item.created_at||null,id:String(item.id??[type,item.amount,item.created_at].join("_"))};
+}
+function toggleNotifications(){
+const panel=$("notificationPanel"),button=$("notificationButton");
+if(!panel||!button)return;
+const opening=panel.classList.contains("hidden");
+panel.classList.toggle("hidden");
+button.setAttribute("aria-expanded",String(opening));
+if(opening){renderNotifications();markNotificationsRead(false)}
+}
+function markNotificationsRead(refresh=true){
+if(!currentUser)return;
+const ids=walletRequestsCache.map(item=>getRequestNotification(item).id);
+setReadNotifications(Array.from(new Set([...getReadNotifications(),...ids])));
+updateNotificationBadge();
+if(refresh)renderNotifications();
+}
+function updateNotificationBadge(){
+const badge=$("notificationCount");
+if(!badge)return;
+if(!currentUser){badge.classList.add("hidden");badge.textContent="0";return}
+const read=new Set(getReadNotifications());
+const unread=walletRequestsCache.filter(item=>!read.has(getRequestNotification(item).id)).length;
+badge.textContent=unread>99?"99+":String(unread);
+badge.classList.toggle("hidden",unread===0);
+}
+function renderNotifications(){
+const list=$("notificationList");
+if(!list)return;
+if(!currentUser){list.innerHTML='<div class="notificationEmpty"><span data-i18n="loginNotifications">سجّل الدخول لعرض إشعاراتك.</span></div>';return}
+if(!walletRequestsCache.length){list.innerHTML='<div class="notificationEmpty">لا توجد إشعارات لمحفظتك حتى الآن.</div>';return}
+const read=new Set(getReadNotifications());
+list.innerHTML=walletRequestsCache.slice(0,30).map(item=>{
+const n=getRequestNotification(item),unread=!read.has(n.id);
+return `<div class="notificationItem ${unread?"unread":""}"><strong>${escapeHtml(n.title)}</strong><div>${escapeHtml(n.message)}</div><small>${escapeHtml(formatDate(n.date))} · ${escapeHtml(item.payment_method||"")}</small></div>`;
+}).join("");
+}
+async function getCurrentUser(){try{const {data,error}=await supabaseClient.auth.getUser();if(error){console.error("getCurrentUser:",error);return null}return data?.user||null}catch(error){console.error("getCurrentUser exception:",error);return null}}
+async function registerUser(){
+const name=$("registerName").value.trim(),phone=$("registerPhone").value.trim(),email=$("registerEmail").value.trim(),password=$("registerPassword").value;
+if(!email||!password){showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
+if(password.length<6){showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");return}
+showStatus("registerStatus","جارٍ إنشاء الحساب...");
+try{
+const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name:name,phone}}});
+if(error){console.error("Register error:",error);showStatus("registerStatus",error.message,"error");return}
+if(data?.user){showStatus("registerStatus","تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.","success");setTimeout(()=>closeModal("registerModal"),1800)}
+}catch(error){console.error("Register exception:",error);showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error")}
+}
+async function loginUser(){
+const email=$("loginEmail").value.trim(),password=$("loginPassword").value;
+if(!email||!password){showStatus("loginStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
+showStatus("loginStatus","جارٍ تسجيل الدخول...");
+try{
+const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+if(error){console.error("Login error:",error);showStatus("loginStatus",error.message,"error");return}
+currentUser=data?.user||null;closeModal("loginModal");showToast("تم تسجيل الدخول بنجاح");await updateAuthUI(currentUser);
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}
+}catch(error){console.error("Login exception:",error);showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error")}
+}
+async function signOutUser(){
+try{await supabaseClient.auth.signOut()}catch(error){console.error("Sign out:",error)}
+currentUser=null;currentProfile=null;currentConversation=null;walletRequestsCache=[];
+await updateAuthUI(null);
+$("historyBody").innerHTML="";
+$("supportMessages").innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
+$("notificationPanel").classList.add("hidden");
+showToast("تم تسجيل الخروج");
+}
+async function updateAuthUI(userOverride){
+if(arguments.length>0)currentUser=userOverride;else currentUser=await getCurrentUser();
+const authButtons=$("authButtons"),userArea=$("userArea"),userName=$("userName");
+if(currentUser){
+document.body.classList.add("authenticated");
+authButtons.classList.add("hidden");userArea.classList.remove("hidden");
+userName.textContent=currentUser.user_metadata?.full_name||"حسابي";
+$("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
+}else{
+document.body.classList.remove("authenticated");
+authButtons.classList.remove("hidden");userArea.classList.add("hidden");if($("sideMenuBalance"))$("sideMenuBalance").classList.add("hidden");
+$("heroBalance").textContent="0.000 د.ت";$("walletBalance").textContent="0.000 د.ت";$("userBalanceMini").textContent="الرصيد: —";
+$("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
+walletRequestsCache=[];renderNotifications();updateNotificationBadge();
+}
+}
+async function loadProfile(){
+if(!currentUser)return null;
+const {data,error}=await supabaseClient.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
+if(error){console.error("Profile error:",error);return null}currentProfile=data||null;return data||null;
+}
+async function loadWalletData(){
+const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("userBalanceMini"),sideBalance=$("sideMenuBalance"),sideBalanceValue=$("sideMenuBalanceValue");
+if(!currentUser){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : —":currentLanguage==="en"?"Balance: —":"الرصيد: —");if(sideBalance)sideBalance.classList.add("hidden");if(sideBalanceValue)sideBalanceValue.textContent="— د.ت";return}
+if(heroBalance)heroBalance.textContent="جاري التحميل...";if(walletBalance)walletBalance.textContent="جاري التحميل...";if(miniBalance)miniBalance.textContent="الرصيد: جاري التحميل...";
+try{
+const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+if(userError||!userData?.user){if(userError)console.error("Auth user error:",userError);if(heroBalance)heroBalance.textContent="تعذر قراءة الحساب";if(walletBalance)walletBalance.textContent="تعذر قراءة الحساب";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
+const user=userData.user;currentUser=user;
+const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("user_id,balance,currency").eq("user_id",user.id).limit(1);
+if(walletError){console.error("Wallet account error:",walletError);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
+const wallet=Array.isArray(walletRows)?walletRows[0]:null;
+if(!wallet){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+"0.000 TND";return}
+const balance=Number(wallet.balance??0),currency=String(wallet.currency||"TND").toUpperCase();
+const formatted=balance.toFixed(3)+(currency==="TND"?" د.ت":" "+currency);
+if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.textContent=formatted;if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+formatted;if(sideBalanceValue)sideBalanceValue.textContent=formatted;if(sideBalance&&currentUser)sideBalance.classList.remove("hidden");
+}catch(error){console.error("loadWalletData exception:",error);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح"}
+}
+async function createWalletRequest(){
+if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
+const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value;if(["Bank Cards","All Crypto (FulgurPay)"].includes(method)){showToast("هذه الطريقة تحتاج إلى ربط مزود الدفع والتحقق منه قبل استقبال الطلبات.");return}const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);let account=(type==="deposit"&&recharge?$("paymentAccountRecharge")?.value:$("paymentAccount")?.value||"")?.trim()||"";const reference=$("paymentReference")?.value.trim()||"";const promoCode=recharge?($("promoCode")?.value.trim()||""):"";const cardCodes=[1,2,3,4].map(n=>$("cardCode"+n)?.value.trim()||"");if(type==="deposit"&&recharge){const maxRecharge=method==="Ooredoo Recharge"?80:100;if(amount<5||amount>maxRecharge){showToast("Montant de recharge : minimum 5 TND, maximum "+maxRecharge+" TND");return}if(!cardCodes.some(Boolean)){showToast("Saisissez au moins un numéro/code de carte de recharge");return}account="Codes: "+cardCodes.map((c,i)=>c?`Carte ${i+1}: ${c}`:"").filter(Boolean).join(" | ")+(account?" | Téléphone: "+account:"");} 
+if(!Number.isFinite(amount)||amount<=0){showToast("أدخل مبلغًا صحيحًا");return}
+if(type==="deposit"&&method==="D17"&&(amount<5||amount>500)){showToast("حدود D17 الحالية في الواجهة: من 5 إلى 500 د.ت؛ تحقق من الحدود المعتمدة قبل التشغيل.");return}
+if(type==="deposit"&&method==="Flouci"&&amount<5){showToast("الحد الأدنى الظاهر لـ Flouci هو 5 د.ت.");return}
+if(method==="Flouci"){const flouciName=$("flouciAccountName")?.value.trim()||"";if(!flouciName){showToast("أدخل الاسم المسجل في Flouci");return}account+=" | Nom Flouci: "+flouciName}
+if(!account){showToast("أدخل رقم الحساب أو الهاتف");return}
+let proofPath=null;
+if(type==="deposit"){
+ const file=$("paymentProof")?.files?.[0];
+ if(!file){showToast("أرفق صورة إثبات الدفع قبل إرسال طلب الإيداع");return}
+ const allowedTypes=["image/jpeg","image/png","image/gif","image/webp","image/heif","image/heic","application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];const allowedExt=/\.(pdf|doc|docx|jpe?g|png|gif|heif|heic|webp)$/i;if(!(allowedTypes.includes(file.type)||allowedExt.test(file.name||""))){showToast("نوع الملف غير مدعوم. استخدم PDF أو DOC أو DOCX أو صورة معتمدة.");return}
+ if(file.size>4*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 4 ميغابايت");return}
+}
+if(type==="withdrawal"){
+const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
+if(walletError){console.error("Wallet balance error:",walletError);showToast("تعذر التحقق من الرصيد");return}
+const walletAccount=Array.isArray(walletRows)?walletRows[0]:null,balance=Number(walletAccount?.balance||0);
+if(amount>balance){showToast("الرصيد غير كافٍ لطلب السحب");return}
+}else{
+ const file=$("paymentProof").files[0];
+ const safeName=String(file.name||"proof").replace(/[^a-zA-Z0-9._-]/g,"_").slice(-80);
+ proofPath=currentUser.id+"/"+Date.now()+"_"+safeName;
+ const {error:uploadError}=await supabaseClient.storage.from("payment-proofs").upload(proofPath,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+ if(uploadError){console.error("Payment proof upload:",uploadError);showToast("تعذر رفع إثبات الدفع: "+uploadError.message);return}
+}
+const payload={user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,promo_code:promoCode||null,proof_storage_path:proofPath,status:"pending"};
+const {error}=await supabaseClient.from("wallet_requests").insert(payload);
+if(error){console.error("Wallet request:",error);showToast("تعذر إرسال الطلب: "+error.message);return}
+$("walletAmount").value="";if($("paymentAccount"))$("paymentAccount").value="";if($("paymentAccountRecharge"))$("paymentAccountRecharge").value="";if($("paymentReference"))$("paymentReference").value="";["promoCode","cardCode1","cardCode2","cardCode3","cardCode4"].forEach(id=>{if($(id))$(id).value=""});if($("paymentProof"))$("paymentProof").value="";
+showToast("تم إرسال طلبك بنجاح وهو قيد المراجعة اليدوية؛ لن يُضاف الرصيد تلقائيًا");
+await loadWalletHistory();
+}
+async function loadWalletHistory(){
+const body=$("historyBody"),message=$("historyLoginMessage");if(!body)return;body.innerHTML="";
+if(!currentUser){message.classList.remove("hidden");walletRequestsCache=[];renderNotifications();updateNotificationBadge();return}
+message.classList.add("hidden");
+const {data,error}=await supabaseClient.from("wallet_requests").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});
+if(error){console.error("Wallet history:",error);body.innerHTML='<tr><td colspan="5">تعذر تحميل السجل.</td></tr>';return}
+walletRequestsCache=Array.isArray(data)?data:[];
+if(!walletRequestsCache.length){body.innerHTML='<tr><td colspan="5">لا توجد معاملات حتى الآن.</td></tr>'}
+else walletRequestsCache.forEach(item=>{
+const tr=document.createElement("tr"),type=item.request_type==="deposit"?"إيداع":"سحب",status=String(item.status||"pending").toLowerCase();
+const statusClass=status==="approved"?"status-approved":status==="rejected"?"status-rejected":status==="cancelled"?"status-cancelled":"status-pending";
+const statusText=status==="approved"?"مقبول":status==="rejected"?"مرفوض":status==="cancelled"?"ملغى":"قيد المراجعة";
+tr.innerHTML=`<td>${escapeHtml(type)}</td><td>${escapeHtml(formatMoney(item.amount))}</td><td>${escapeHtml(item.payment_method||"-")}</td><td><span class="status ${statusClass}">${escapeHtml(statusText)}</span></td><td>${escapeHtml(formatDate(item.updated_at||item.created_at))}</td>`;
+body.appendChild(tr);
+});
+updateNotificationBadge();renderNotifications();
+}
+async function getOrCreateConversation(){
+if(!currentUser)return null;
+const {data:existing,error:findError}=await supabaseClient.from("support_conversations").select("*").eq("user_id",currentUser.id).eq("status","open").order("created_at",{ascending:false}).limit(1).maybeSingle();
+if(findError){console.error("Support conversation search error:",findError);return null}
+if(existing){currentConversation=existing;return existing}
+let result=await supabaseClient.from("support_conversations").insert({user_id:currentUser.id,status:"open"}).select("*").single();
+if(result.error)result=await supabaseClient.from("support_conversations").insert({user_id:currentUser.id,visitor_name:currentUser.user_metadata?.full_name||currentUser.email||"عميل",topic:"دعم من الموقع",status:"open"}).select("*").single();
+if(result.error){console.error("Support conversation create error:",result.error);return null}currentConversation=result.data;return result.data;
+}
+async function loadSupport(){
+const box=$("supportMessages");if(!box)return;
+if(!currentUser){box.innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';return}
+const conversation=await getOrCreateConversation();
+if(!conversation){box.innerHTML='<div style="color:#ff7773;text-align:center">تعذر فتح محادثة الدعم.</div>';return}
+const {data,error}=await supabaseClient.from("support_messages").select("*").eq("conversation_id",conversation.id).order("created_at",{ascending:true});
+if(error){console.error("Support messages:",error);box.innerHTML='<div style="color:#ff7773;text-align:center">تعذر تحميل رسائل الدعم.</div>';return}
+box.innerHTML="";
+if(!data||data.length===0){box.innerHTML='<div style="color:var(--muted);text-align:center">اكتب رسالتك الأولى لفريق الدعم.</div>';return}
+data.forEach(message=>{const div=document.createElement("div"),role=String(message.sender_role||"").toLowerCase(),isUser=role==="visitor";div.className="message "+(isUser?"user":"admin");div.innerHTML=`<div>${escapeHtml(message.message||"")}</div><div class="messageTime">${escapeHtml(formatDate(message.created_at))}</div>`;box.appendChild(div)});
+box.scrollTop=box.scrollHeight;
+}
+async function sendSupportMessage(){
+if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
+const input=$("supportInput"),message=input.value.trim();if(!message){showToast("اكتب رسالة أولًا");return}
+const conversation=await getOrCreateConversation();if(!conversation){showToast("تعذر فتح المحادثة");return}
+showStatus("supportStatus","جارٍ إرسال الرسالة...");
+const {error}=await supabaseClient.from("support_messages").insert({conversation_id:conversation.id,sender_role:"visitor",message});
+if(error){console.error("Send support message:",error);showStatus("supportStatus","تعذر إرسال الرسالة: "+error.message,"error");return}
+input.value="";showStatus("supportStatus","تم إرسال الرسالة بنجاح.","success");await loadSupport();
+}
+function openRecovery(){closeModal("loginModal");openModal("recoveryModal")}
+async function sendRecovery(){
+const email=$("recoveryEmail").value.trim();if(!email){showStatus("recoveryStatus","أدخل بريدك الإلكتروني.","error");return}
+const redirectTo=window.location.origin+window.location.pathname+"?type=recovery";
+const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo});
+if(error){showStatus("recoveryStatus",error.message,"error");return}
+showStatus("recoveryStatus","تم إرسال رابط الاستعادة إلى بريدك الإلكتروني.","success");
+}
+async function changePassword(){
+const password=$("newPassword").value;if(password.length<6){showStatus("resetStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");return}
+const {error}=await supabaseClient.auth.updateUser({password});
+if(error){showStatus("resetStatus",error.message,"error");return}
+showStatus("resetStatus","تم تغيير كلمة المرور بنجاح.","success");setTimeout(()=>closeModal("resetModal"),1500);
+}
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+currentUser=session?.user||null;
+setTimeout(async()=>{
+await updateAuthUI(currentUser);
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}else{currentConversation=null;walletRequestsCache=[];renderNotifications();updateNotificationBadge()}
+},0);
+if(event==="PASSWORD_RECOVERY")setTimeout(()=>openModal("resetModal"),300);
+});
+async function initialize(){
+try{
+const {data,error}=await supabaseClient.auth.getUser();
+if(error){console.error("Initial auth error:",error);await updateAuthUI(null);return}
+currentUser=data?.user||null;await updateAuthUI(currentUser);
+if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}
+}catch(error){console.error("Initialization error:",error)}
+}
+if(new URLSearchParams(window.location.search).get("type")==="recovery")setTimeout(()=>openModal("resetModal"),800);
+setLanguage(currentLanguage);
+initialize();
+updatePaymentInstructions();
+loadPaymentSettings();
+$("walletType")?.addEventListener("change",updatePaymentInstructions);
+document.querySelectorAll(".modal").forEach(modal=>modal.addEventListener("click",event=>{if(event.target===modal)modal.classList.remove("show")}));
+document.addEventListener("click",event=>{
+const wrap=document.querySelector(".notificationWrap"),panel=$("notificationPanel"),button=$("notificationButton");
+if(wrap&&panel&&!wrap.contains(event.target)){panel.classList.add("hidden");if(button)button.setAttribute("aria-expanded","false")}
+});
+setInterval(async()=>{if(!currentUser||notificationRefreshBusy)return;notificationRefreshBusy=true;try{await loadWalletData();await loadWalletHistory()}finally{notificationRefreshBusy=false}},15000);
+</script>
+
+<script>
+function toggleSideMenu(open){
+  document.body.classList.toggle("menu-open",!!open);
+  const trigger=document.getElementById("menuTrigger"),menu=document.getElementById("sideMenu");
+  if(trigger)trigger.setAttribute("aria-expanded",String(!!open));
+  if(menu)menu.setAttribute("aria-hidden",String(!open));
+  if(open){const userLabel=document.getElementById("sideMenuUser");if(userLabel)userLabel.textContent=currentUser?(currentUser.user_metadata?.full_name||currentUser.email||"Account"):"Connectez-vous pour accéder à votre compte";}
+}
+function openWalletAction(type){
+  if(!currentUser){openModal("loginModal");showToast("سجّل الدخول أولًا للوصول إلى المحفظة");return;}
+  location.hash="#wallet";
+  setTimeout(()=>{const select=document.getElementById("walletType");if(select)select.value=type;},80);
+}
+document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMenu(false)});
+</script>
+<script>
+(function(){
+  const ids=["sports","casino","live","wallet","history","account","support"];
+  const hero=document.querySelector("main>.hero");
+  function showSection(){
+    const requested=(location.hash||"#sports").slice(1);
+    const target=ids.includes(requested)?requested:"sports";
+    document.body.classList.add("section-mode");
+    document.querySelectorAll("main>section").forEach(sec=>{
+      const active=sec.id===target;
+      sec.classList.toggle("section-active",active);
+      if(active)sec.removeAttribute("aria-hidden");else sec.setAttribute("aria-hidden","true");
+    });
+    if(hero){const active=target==="sports";hero.classList.toggle("section-active",active);hero.setAttribute("aria-hidden",String(!active));}
+    document.querySelectorAll(".navlinks a[href^='#']").forEach(a=>{
+      const active=a.getAttribute("href")==="#"+target;
+      if(active)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");
+    });
+    if(target==="account"&&typeof loadProfileForm==="function"&&window.currentUser)loadProfileForm();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  window.addEventListener("hashchange",showSection);
+  document.addEventListener("DOMContentLoaded",showSection);
+  document.querySelectorAll(".navlinks a[href^='#']").forEach(a=>a.addEventListener("click",()=>{
+    const hash=a.getAttribute("href");if(location.hash===hash)showSection();
+  }));
+  showSection();
+})();
+
+// Payment cards: sync visual selection with the existing payment form.
+document.addEventListener("DOMContentLoaded",()=>{
+ const select=document.getElementById("paymentMethod");
+ const cards=[...document.querySelectorAll(".payment-method")];
+ function chooseMethod(method){if(select && [...select.options].some(o=>o.value===method)){select.value=method;updatePaymentInstructions();}
+ cards.forEach(card=>card.classList.toggle("selected",card.dataset.method===method));
+ const flouci=document.getElementById("flouciNameGroup");if(flouci)flouci.classList.toggle("hidden",method!=="Flouci");
+ }
+ cards.forEach(card=>card.addEventListener("click",()=>chooseMethod(card.dataset.method)));
+ document.querySelectorAll(".payment-tab").forEach(tab=>tab.addEventListener("click",()=>{
+ document.querySelectorAll(".payment-tab").forEach(t=>t.classList.toggle("active",t===tab));
+ const filter=tab.dataset.filter;cards.forEach(card=>{card.style.display=(filter==="all"||card.dataset.category.split(" ").includes(filter))?"flex":"none";});
+ }));
+ if(select){select.addEventListener("change",()=>chooseMethod(select.value));chooseMethod(select.value);}
+ const type=document.getElementById("walletType");if(type)type.addEventListener("change",()=>updatePaymentInstructions());
+});
+</script>
+
+</body>
+                                                                                                                   </html>
