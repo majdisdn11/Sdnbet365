@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080808">
-<title>SDNBet365 | Black & Gold — Complete</title>
+<meta name="theme-color" content="#f4faf6">
+<title>SDNBet365 | Sports & Wallet</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#080808;--panel:#151515;--panel2:#201b11;--border:#4a3a1d;--text:#f5f0e4;--muted:#b9b1a1;--green:#dfb84f;--green2:#b88a2c;--red:#ef5350;--yellow:#f0d887;--blue:#328bd1;--shadow:0 15px 40px rgba(0,0,0,.48)}
@@ -543,6 +543,39 @@ color: #19d66b !important;
 background: #19d66b !important;
 color: #03180b !important;
   }
+
+
+/* SDNBet365 light + green refresh. CSS-only overrides preserve existing functionality. */
+:root{--bg:#f4f8f5;--panel:#ffffff;--panel2:#edf7f0;--border:#d7e7dc;--text:#17251c;--muted:#617267;--green:#168447;--green2:#0e6b36;--red:#c73535;--yellow:#a56b00;--blue:#1769aa;--shadow:0 12px 30px rgba(20,75,42,.09)}
+html{background:var(--bg);color-scheme:light}
+body{background:var(--bg)!important;color:var(--text)!important}
+header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid var(--border)!important;box-shadow:0 4px 20px rgba(20,75,42,.06)!important}
+.logo{font-weight:950!important;font-size:clamp(23px,3.2vw,32px)!important;letter-spacing:-1px!important;color:#11763b!important;text-shadow:0 1px 0 #d8f0e0;white-space:nowrap}
+.logo::first-letter{color:#0c542b}
+.btn-primary,.btn.btn-primary{background:linear-gradient(135deg,#1b9a50,#0e7138)!important;color:#fff!important;border-color:#168447!important;box-shadow:0 5px 14px rgba(22,132,71,.15)!important}
+.btn:not(.btn-primary),button.btn{background:#fff!important;color:var(--text)!important;border-color:var(--border)!important}
+.card,.heroCard,.walletCard,.walletActionCard,.sectionCard,.modalCard,.paymentMethodCard,.historyCard,.supportCard{background:#fff!important;color:var(--text)!important;border-color:var(--border)!important;box-shadow:var(--shadow)!important}
+section{color:var(--text)}
+.sectionTitle h2,.walletActionCard h3,.card h3{color:#174b2b!important}
+input,select,textarea{background:#fff!important;color:#17251c!important;border:1px solid #cbded0!important}
+input::placeholder,textarea::placeholder{color:#89988e!important}
+.notice,.flouciInfo{background:#eef8f1!important;color:#285c3b!important;border-color:#d2e9d9!important}
+.sideMenu{background:#fff!important;color:var(--text)!important;border-left:1px solid var(--border)!important}
+.sideMenu a{color:var(--text)!important;border-bottom-color:var(--border)!important}
+.sideMenu a:hover{background:#edf8f0!important;color:#0e7138!important}
+.sideMenuHead{border-bottom-color:var(--border)!important}
+.sideMenuUser,.sideMenuBalance{background:#f1f8f3!important;color:var(--text)!important}
+.paymentMethodCards{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px!important;margin:12px 0 18px!important}
+.paymentMethodCard{min-height:86px!important;border:1px solid #d7e7dc!important;border-radius:16px!important;padding:14px 10px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;font-weight:800!important;transition:transform .16s,border-color .16s,background .16s!important}
+.paymentMethodCard:hover{transform:translateY(-2px);border-color:#168447!important}
+.paymentMethodCard[aria-pressed="true"]{border:2px solid #168447!important;background:#edf8f0!important;box-shadow:0 0 0 3px rgba(22,132,71,.08)!important;color:#0e7138!important}
+.paymentMethodIcon{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:42px!important;min-height:42px!important;border-radius:12px!important;padding:6px!important;background:#e1f3e7!important;color:#116b35!important;font-size:15px!important;font-weight:950!important}
+.walletSections{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px!important}
+.walletActionCard{border-radius:18px!important;padding:18px!important}
+.walletActionCard h3{font-size:20px!important;margin-bottom:8px!important}
+.walletActionCard p{color:var(--muted)!important;line-height:1.7!important}
+@media(max-width:520px){.walletSections{grid-template-columns:1fr!important}.paymentMethodCards{grid-template-columns:repeat(2,minmax(0,1fr))!important}.paymentMethodCard{min-height:78px!important}.logo{font-size:22px!important}}
+
 </style>
 </head>
 <body>
@@ -625,17 +658,16 @@ color: #03180b !important;
 <div class="paymentMethodCards" id="paymentMethodCards" aria-label="اختيار وسيلة الدفع">
 <button type="button" class="paymentMethodCard" data-method="D17" aria-pressed="true"><span class="paymentMethodIcon">D17</span><span>D17</span></button>
 <button type="button" class="paymentMethodCard" data-method="Flouci" aria-pressed="false"><span class="paymentMethodIcon">F</span><span>Flouci</span></button>
+<button type="button" class="paymentMethodCard" data-method="Izi Zaytouna" aria-pressed="false"><span class="paymentMethodIcon">IZ</span><span>IZI · Zitouna Paiement</span></button>
 <button type="button" class="paymentMethodCard" data-method="Ooredoo Recharge" aria-pressed="false"><span class="paymentMethodIcon">O</span><span>Ooredoo</span></button>
 <button type="button" class="paymentMethodCard" data-method="Orange" aria-pressed="false"><span class="paymentMethodIcon">●</span><span>Orange</span></button>
 <button type="button" class="paymentMethodCard" data-method="Tunisie Telecom" aria-pressed="false"><span class="paymentMethodIcon">TT</span><span>Tunisie Télécom</span></button>
-<button type="button" class="paymentMethodCard" data-method="Izi Zaytouna" aria-pressed="false"><span class="paymentMethodIcon">IZ</span><span>Izi</span></button>
-<button type="button" class="paymentMethodCard" data-method="FulgurPay" aria-pressed="false"><span class="paymentMethodIcon">₿</span><span>FulgurPay</span></button><button type="button" class="paymentMethodCard" data-method="Card" aria-pressed="false"><span class="paymentMethodIcon">VISA</span><span>Carte bancaire</span></button>
 </div>
 
 <div id="paymentInstructions" class="flouciInfo" aria-live="polite">بيانات الاستقبال: <strong id="paymentDestinationDisplay">جارٍ تحميل البيانات...</strong><div style="color:var(--muted);font-size:13px;margin-top:5px">تحقق من بيانات الاستقبال قبل التحويل. إرسال الطلب لا يؤكد وصول الدفع تلقائيًا.</div></div>
 <div class="formGroup"><label>رقم الحساب / الهاتف</label><input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب"></div>
 <div class="formGroup"><label data-i18n="referenceLabel">مرجع العملية إن وجد</label><input id="paymentReference" type="text" placeholder="رقم العملية"></div>
-<div class="formGroup"><label data-i18n="promoLabel">كود العرض (اختياري)</label><input id="promoCode" type="text" maxlength="80" placeholder="أدخل كود العرض إن وجد"></div>
+<div class="formGroup"><label data-i18n="promoLabel">Code promo / الرمز الترويجي (اختياري)</label><input id="promoCode" type="text" maxlength="80" placeholder="أدخل كود العرض إن وجد"></div>
 <div id="rechargeFields" class="hidden"><div class="notice" id="rechargeLimit">Carte de recharge — Min 5 TND · Max 80 TND</div><div class="formGroup"><label for="cardCode1">Code de carte num 1</label><input id="cardCode1" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode2">Code de carte num 2</label><input id="cardCode2" inputmode="numeric" autocomplete="off"></div></div><div class="formGroup" id="proofUploadGroup"><label for="paymentProof" id="proofLabel">Photo de paiement / Photo de carte</label><input id="paymentProof" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.heif,.heic,.webp,image/jpeg,image/png,image/webp,image/gif,image/heif,image/heic,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><small id="proofHint" style="display:block;color:var(--muted);margin-top:6px">PDF, DOC, DOCX, JPEG, JPG, PNG, GIF, HEIF ou WebP — maximum 4 MB. L’envoi ne confirme pas automatiquement le paiement.</small></div>
 <button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()" data-i18n="submitRequest">إرسال الطلب</button></div>
 </div></div></section>
