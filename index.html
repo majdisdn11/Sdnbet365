@@ -202,7 +202,7 @@ footer{background:#ffffff;border-top-color:#d5e5d9}
  .nav{padding:10px 0;gap:9px}
 .navlinks{order:5;width:100%;padding:7px 2px 9px;border-top:1px solid #d5e5d9;margin-top:3px}
  .navlinks a{border:1px solid transparent}
-.navlinks a[aria-current="page"]{border-color:#16834a}
+ .navlinks a[
  .heroGrid{grid-template-columns:1fr}
  .balanceCard{min-height:135px}
 }
@@ -575,6 +575,68 @@ input::placeholder,textarea::placeholder{color:#89988e!important}
 .walletActionCard h3{font-size:20px!important;margin-bottom:8px!important}
 .walletActionCard p{color:var(--muted)!important;line-height:1.7!important}
 @media(max-width:520px){.walletSections{grid-template-columns:1fr!important}.paymentMethodCards{grid-template-columns:repeat(2,minmax(0,1fr))!important}.paymentMethodCard{min-height:78px!important}.logo{font-size:22px!important}}
+
+/* SDNBet365 - Unified light green theme */
+:root{
+  color-scheme:light;
+  --bg:#f4f8f5;
+  --panel:#ffffff;
+  --panel2:#e8f3eb;
+  --border:#d5e5d9;
+  --text:#20352a;
+  --muted:#65786c;
+  --green:#16834a;
+  --green2:#106b3b;
+  --shadow:0 10px 28px rgba(25,90,50,.10);
+}
+body{
+  background:var(--bg)!important;
+  color:var(--text)!important;
+}
+header,footer,.modal-content,.modal-card,.walletCard,.card,.match,
+.supportCard,.balanceCard,.heroCard,.historyCard,.formCard{
+  background:#fff!important;
+  color:var(--text)!important;
+  border-color:var(--border)!important;
+}
+.sectionTitle{
+  background:linear-gradient(100deg,#fff,#e8f3eb)!important;
+  color:var(--text)!important;
+}
+.sectionTitle h1,.sectionTitle h2,.sectionTitle h3,
+.card h3,.match h3,.walletCard h3{
+  color:var(--text)!important;
+}
+p,label,.formGroup label,.matchLeague,.card p{
+  color:var(--muted)!important;
+}
+input,select,textarea{
+  background:#fff!important;
+  color:var(--text)!important;
+  border-color:var(--border)!important;
+}
+button,.btn{
+  border-color:var(--green)!important;
+}
+.btn-primary,.primaryBtn,.submitBtn,
+button[type="submit"]{
+  background:var(--green)!important;
+  color:#fff!important;
+}
+.navlinks a{
+  color:var(--text)!important;
+}
+.navlinks a:hover,.navlinks a[aria-current="page"]{
+  background:var(--panel2)!important;
+  color:var(--green)!important;
+  border-color:var(--green)!important;
+}
+.odd,.siteLink{
+  background:var(--panel2)!important;
+  color:var(--green2)!important;
+  border-color:var(--border)!important;
+}
+.flouciInfo strong{color:var(--green)!important}
 
 </style>
 </head>
