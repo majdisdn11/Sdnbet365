@@ -937,6 +937,31 @@ return `<div class="notificationItem ${unread?"unread":""}"><strong>${escapeHtml
 }).join("");
 }
 async function getCurrentUser(){try{const {data,error}=await supabaseClient.auth.getUser();if(error){console.error("getCurrentUser:",error);return null}return data?.user||null}catch(error){console.error("getCurrentUser exception:",error);return null}}
+
+// Record the signed-in user's IP through the deployed server-side Edge Function.
+// This uses the user's session token; no service-role secret is exposed in this page.
+async function recordCurrentUserIp(session){
+try{
+const accessToken=session?.access_token;
+if(!accessToken)return;
+const response=await fetch(SUPABASE_URL+"/functions/v1/record-user-ip",{
+method:"POST",
+headers:{
+"Authorization":"Bearer "+accessToken,
+"apikey":SUPABASE_PUBLISHABLE_KEY,
+"Content-Type":"application/json"
+},
+body:JSON.stringify({})
+});
+if(!response.ok){
+const details=await response.text().catch(()=>"");
+console.warn("IP logging was not confirmed:",response.status,details);
+}
+}catch(error){
+// IP logging must never prevent a user from signing in or using the site.
+console.warn("IP logging request failed:",error);
+}
+}
 async function registerUser(){
 const name=$("registerName").value.trim(),phone=$("registerPhone").value.trim(),email=$("registerEmail").value.trim(),password=$("registerPassword").value;
 if(!email||!password){showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
@@ -955,7 +980,7 @@ showStatus("loginStatus","جارٍ تسجيل الدخول...");
 try{
 const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
 if(error){console.error("Login error:",error);showStatus("loginStatus",error.message,"error");return}
-currentUser=data?.user||null;closeModal("loginModal");showToast("تم تسجيل الدخول بنجاح");await updateAuthUI(currentUser);
+currentUser=data?.user||null;closeModal("loginModal");showToast("تم تسجيل الدخول بنجاح");await recordCurrentUserIp(data?.session);await updateAuthUI(currentUser);
 if(currentUser){await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm()}
 }catch(error){console.error("Login exception:",error);showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error")}
 }
