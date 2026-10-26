@@ -3,76 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07111f">
+<meta name="theme-color" content="#080706">
 <title>SDNBet365 | Administration</title>
 <style>
 :root{
- --bg:#07111f;--sidebar:#0b1728;--panel:#101e31;--panel2:#15263c;--line:#263b55;
- --text:#edf4fc;--muted:#91a5bf;--green:#20d391;--green2:#0e9f6e;--gold:#f4c15d;
+ --bg:#080706;--sidebar:#0d0b09;--panel:#15110d;--panel2:#20170f;--line:#49301b;
+ --text:#edf4fc;--muted:#91a5bf;--green:#ff8500;--green2:#d96800;--gold:#f4c15d;
  --red:#ff747d;--blue:#6eb8ff;--radius:16px;--shadow:0 12px 35px #0003
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 75% -10%,#16304b 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+body{margin:0;background:radial-gradient(ellipse at 75% -10%,#301a09 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 13px;font-weight:700;transition:.18s ease}
 button:hover{filter:brightness(1.08);transform:translateY(-1px)}
 button:disabled{opacity:.5;cursor:not-allowed;transform:none}
-input,textarea,select{width:100%;padding:12px 13px;margin:7px 0 12px;border:1px solid var(--line);border-radius:10px;background:#091626;color:var(--text);outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #20d39118}
+input,textarea,select{width:100%;padding:12px 13px;margin:7px 0 12px;border:1px solid var(--line);border-radius:10px;background:#0c0a08;color:var(--text);outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #ff850018}
 textarea{min-height:100px;resize:vertical}
 label{display:block;font-size:12px;color:var(--muted);font-weight:700}
 a{color:inherit}
 .hidden{display:none!important}
 .app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
-.sidebar{background:#091525eF;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+.sidebar{background:#0c0a08eF;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;overflow:auto}
 .brand{display:flex;align-items:center;gap:10px;padding:4px 10px 25px;font-size:18px;font-weight:900;letter-spacing:.3px}
-.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--green),#087a5a);display:grid;place-items:center;color:#06251b;font-size:17px;box-shadow:0 8px 22px #20d39125}
+.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--green),#a94f00);display:grid;place-items:center;color:#1a0d00;font-size:17px;box-shadow:0 8px 22px #ff850025}
 .brand span{color:var(--green)}
 .nav-label{padding:14px 12px 7px;color:#657d9b;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
 .nav{display:grid;gap:6px}
 .nav button{display:flex;align-items:center;gap:11px;text-align:left;width:100%;background:transparent;color:#a9bad0;border:1px solid transparent;padding:12px;border-radius:11px;font-size:13px}
 .nav button .ico{width:24px;text-align:center;font-size:16px}
-.nav button.active{background:linear-gradient(90deg,#20d39120,#20d39108);border-color:#20d39132;color:#dffff2}
+.nav button.active{background:linear-gradient(90deg,#ff850020,#ff850008);border-color:#ff850032;color:#fff0df}
 .nav button.active .ico{color:var(--green)}
-.sidebar-bottom{margin-top:25px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#101e31}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;box-shadow:0 0 0 4px #20d39116}
+.sidebar-bottom{margin-top:25px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#15110d}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;box-shadow:0 0 0 4px #ff850016}
 .main{min-width:0}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 27px;border-bottom:1px solid var(--line);background:#081423c9;backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}
 .crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--text);font-size:14px;display:block;margin-top:4px}
 .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.avatar{width:35px;height:35px;display:grid;place-items:center;background:#1c3851;color:var(--green);border-radius:50%;font-weight:900}
+.avatar{width:35px;height:35px;display:grid;place-items:center;background:#382313;color:var(--green);border-radius:50%;font-weight:900}
 .page{padding:26px;max-width:1600px;margin:auto}
 .welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}
 h1{font-size:25px;letter-spacing:-.5px;margin:0 0 7px}h2{font-size:17px;margin:0 0 15px}h3{font-size:14px;margin:0 0 10px}
 .muted,.small{color:var(--muted);font-size:12px;line-height:1.75}.small{font-size:11px}
-.btn-primary{background:var(--green);color:#052719}.btn-secondary{background:#15263c;color:var(--text);border-color:#304761}
-.btn-danger{background:#4a242c;color:#ffdce0;border-color:#76333d}.btn-warning{background:#46371b;color:#ffe5a0;border-color:#745c2b}
+.btn-primary{background:var(--green);color:#1a0d00}.btn-secondary{background:#20170f;color:var(--text);border-color:#65401f}
+.btn-danger{background:#4a242c;color:#ffdce0;border-color:#76333d}.btn-warning{background:#38210e;color:#ffc58a;border-color:#784315}
 .btn-quiet{background:transparent;color:var(--muted);border-color:var(--line)}
-.card{background:linear-gradient(145deg,#122238,#0e1b2d);border:1px solid var(--line);border-radius:var(--radius);padding:19px;min-width:0;box-shadow:var(--shadow);margin-bottom:17px}
+.card{background:linear-gradient(145deg,#21150c,#100d0a);border:1px solid var(--line);border-radius:var(--radius);padding:19px;min-width:0;box-shadow:var(--shadow);margin-bottom:17px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}
-.stat{position:relative;overflow:hidden;background:linear-gradient(145deg,#14263c,#0e1b2d);border:1px solid var(--line);border-radius:15px;padding:17px}
-.stat:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#20d39109;right:-30px;bottom:-45px}
+.stat{position:relative;overflow:hidden;background:linear-gradient(145deg,#14263c,#100d0a);border:1px solid var(--line);border-radius:15px;padding:17px}
+.stat:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#ff850009;right:-30px;bottom:-45px}
 .stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}
-.stat-icon{width:32px;height:32px;border-radius:10px;background:#20344b;display:grid;place-items:center;color:var(--green);font-size:15px}
+.stat-icon{width:32px;height:32px;border-radius:10px;background:#302116;display:grid;place-items:center;color:var(--green);font-size:15px}
 .stat strong{display:block;font-size:27px;letter-spacing:-.5px;margin-top:12px}
 .stat-foot{color:var(--muted);font-size:10px;margin-top:5px}
 .panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}
 .panel-head h2{margin:0}
 .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#16283e;border-radius:999px;padding:5px 9px;font-size:11px;color:#c4d3e5;white-space:nowrap}
-.pill.green{background:#12382f;color:#8cf0c6;border-color:#24654f}.pill.gold{background:#3c311b;color:#ffe2a0;border-color:#6a542b}.pill.red{background:#40242c;color:#ffb5bc;border-color:#6e3640}.pill.blue{background:#182f49;color:#a5d2ff;border-color:#315477}
+.pill.green{background:#38210e;color:#ffc58a;border-color:#784315}.pill.gold{background:#38210e;color:#ffc58a;border-color:#784315}.pill.red{background:#40242c;color:#ffb5bc;border-color:#6e3640}.pill.blue{background:#182f49;color:#a5d2ff;border-color:#315477}
 .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:13px 0}
-.toolbar button.active{background:var(--green);color:#052719;border-color:var(--green)}
+.toolbar button.active{background:var(--green);color:#1a0d00;border-color:var(--green)}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
 table{width:100%;min-width:850px;border-collapse:separate;border-spacing:0;text-align:left;font-size:12px}
-th,td{padding:13px 12px;border-bottom:1px solid #263750a8;vertical-align:middle;white-space:nowrap}
+th,td{padding:13px 12px;border-bottom:1px solid #382719a8;vertical-align:middle;white-space:nowrap}
 th{background:#0d1a2b;color:#8298b4;font-size:10px;text-transform:uppercase;letter-spacing:.65px;position:sticky;top:0;z-index:1}
 tbody tr:hover{background:#ffffff04}tbody tr:last-child td{border-bottom:0}
 td .cell-main{font-weight:700}td .cell-sub{font-size:10px;color:var(--muted);margin-top:4px}
 td button{padding:7px 9px;font-size:11px;margin:2px}
 .status{font-size:12px;line-height:1.8;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;margin-top:10px}
 .status.error{color:var(--red)}.status.good{color:var(--green)}
-.notice{display:flex;gap:12px;padding:13px 15px;background:#302719;border:1px solid #66512a;color:#ffe6a5;border-radius:12px;font-size:12px;line-height:1.8;margin:12px 0}
+.notice{display:flex;gap:12px;padding:13px 15px;background:#2c1a0b;border:1px solid #7b4517;color:#ffd9b0;border-radius:12px;font-size:12px;line-height:1.8;margin:12px 0}
 .notice strong{display:block;margin-bottom:3px}
 .grid-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
 .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}
@@ -108,6 +108,7 @@ td button{padding:7px 9px;font-size:11px;margin:2px}
    <button data-tab="deposits" type="button"><span class="ico">↙</span>Dépôts</button>
    <button data-tab="withdrawals" type="button"><span class="ico">↗</span>Retraits</button>
    <button data-tab="ledger" type="button"><span class="ico">≋</span>Historique financier</button>
+   <button data-tab="users" type="button"><span class="ico">♙</span>Comptes utilisateurs</button>
    <button data-tab="support" type="button"><span class="ico">◌</span>Support client</button>
    <button data-tab="settings" type="button"><span class="ico">⚙</span>Moyens de paiement</button>
   </nav>
@@ -137,6 +138,12 @@ td button{padding:7px 9px;font-size:11px;margin:2px}
     <div class="card"><div class="panel-head"><h2>Demandes de retrait</h2><span class="pill" id="withdrawalTotalPill">0 demande</span></div><div class="toolbar"><button id="allWithdrawalsBtn" class="btn-secondary active" type="button">Toutes</button><button id="pendingWithdrawalsBtn" class="btn-secondary" type="button">En attente</button></div><div id="withdrawalStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Client / ID</th><th>Montant</th><th>Moyen</th><th>Bénéficiaire</th><th>Référence</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead><tbody id="withdrawalBody"></tbody></table></div></div>
    </section>
    <section id="tab-ledger" class="hidden-section"><div class="welcome"><div><h1>Historique financier</h1><div class="muted">Journal des opérations enregistrées par la base de données.</div></div><button class="btn-secondary" id="refreshLedgerBtn" type="button">↻ Actualiser</button></div><div class="card"><div class="panel-head"><h2>Ledger</h2><span class="pill" id="ledgerTotalPill">0 mouvement</span></div><div id="ledgerStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Type</th><th>Sens</th><th>Montant</th><th>Solde avant</th><th>Solde après</th><th>Note</th><th>Date</th><th>Client / ID</th></tr></thead><tbody id="ledgerBody"></tbody></table></div></div></section>
+   <section id="tab-users" class="hidden-section">
+    <div class="welcome"><div><h1>Comptes utilisateurs</h1><div class="muted">Consultez les profils et les informations disponibles dans la base de données.</div></div><button id="refreshUsersBtn" class="btn-secondary" type="button">↻ Actualiser</button></div>
+    <div class="notice"><div>⚠</div><div><strong>IP et blocage de compte</strong>Cette base ne fournit pas encore d’historique IP ni de fonction serveur de blocage dans les fichiers actuels. Les adresses IP ne seront pas devinées et les actions de blocage resteront désactivées jusqu’à la configuration sécurisée côté serveur.</div></div>
+    <div class="card"><div class="panel-head"><h2>Profils enregistrés</h2><span class="pill" id="usersTotalPill">0 compte</span></div><label for="usersSearch">Rechercher par identifiant, nom ou téléphone</label><input id="usersSearch" type="search" placeholder="Rechercher un compte…"><div id="usersStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Identifiant utilisateur</th><th>Nom d’utilisateur</th><th>Téléphone</th><th>Date de naissance</th><th>Inscription</th><th>Adresse IP</th><th>Actions</th></tr></thead><tbody id="usersBody"></tbody></table></div></div>
+    <div class="card"><h2>Détails du compte sélectionné</h2><div id="userDetails" class="muted">Choisissez « Examiner » sur un compte pour afficher les données disponibles.</div><div id="userDetailsStatus" class="status"></div></div>
+   </section>
    <section id="tab-support" class="hidden-section"><div class="welcome"><div><h1>Support client</h1><div class="muted">Consultez les conversations et répondez aux clients.</div></div><button id="refreshSupportBtn" class="btn-secondary" type="button">↻ Actualiser</button></div><div class="grid-2"><div class="card"><div class="panel-head"><h2>Conversations</h2><span class="pill" id="conversationPill">0</span></div><div id="supportStatus" class="status"></div><div id="conversationList"></div></div><div class="card"><h2 id="selectedConversationTitle">Sélectionnez une conversation</h2><div id="messagesList"></div><form id="replyForm"><label for="replyText">Votre réponse</label><textarea id="replyText" required placeholder="Écrivez votre réponse..."></textarea><button class="btn-primary" id="replyBtn" type="submit" disabled>Envoyer la réponse</button></form><div id="replyStatus" class="status"></div></div></div></section>
    <section id="tab-settings" class="hidden-section"><div class="welcome"><div><h1>Moyens de paiement</h1><div class="muted">Configurez les coordonnées de réception utilisées sur le site.</div></div><button id="reloadFlouciWalletBtn" class="btn-secondary" type="button">↻ Recharger</button></div><div class="notice"><div>i</div><div><strong>À noter</strong>Enregistrer une coordonnée ne réalise aucun paiement automatiquement. Vérifiez les transactions reçues séparément.</div></div><div class="card"><h2>Coordonnées de réception</h2><div class="form-grid"><div><label for="flouciWalletNumber">Flouci — numéro de portefeuille</label><input id="flouciWalletNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Flouci"></div><div><label for="d17WalletNumber">D17 — numéro de portefeuille</label><input id="d17WalletNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro D17"></div><div><label for="iziZaytounaAccount">Izi Zaytouna — compte</label><input id="iziZaytounaAccount" type="text" autocomplete="off" maxlength="100" placeholder="Compte Izi Zaytouna"></div><div><label for="ooredooNumber">Ooredoo Recharge — numéro</label><input id="ooredooNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Ooredoo"></div><div><label for="orangeNumber">Orange — numéro</label><input id="orangeNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Orange"></div><div><label for="tunisieTelecomNumber">Tunisie Telecom — numéro</label><input id="tunisieTelecomNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Tunisie Telecom"></div></div><div class="toolbar"><button id="savePaymentSettingsBtn" class="btn-primary" type="button">Enregistrer les paramètres</button></div><div id="flouciWalletStatus" class="status" role="status"></div></div></section>
   </main>
@@ -149,8 +156,8 @@ const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const $=id=>document.getElementById(id);
-let currentUser=null,selectedConversationId=null,walletCache=[],conversationsCache=[],ledgerCache=[],depositPendingOnly=false,withdrawalPendingOnly=false,busy=false;
-const tabNames={overview:"Tableau de bord",deposits:"Dépôts",withdrawals:"Retraits",ledger:"Historique financier",support:"Support client",settings:"Moyens de paiement"};
+let currentUser=null,selectedConversationId=null,walletCache=[],conversationsCache=[],ledgerCache=[],usersCache=[],depositPendingOnly=false,withdrawalPendingOnly=false,busy=false;
+const tabNames={overview:"Tableau de bord",deposits:"Dépôts",withdrawals:"Retraits",ledger:"Historique financier",users:"Comptes utilisateurs",support:"Support client",settings:"Moyens de paiement"};
 function message(id,text,isError=false){const node=$(id);if(!node)return;node.textContent=text||"";node.classList.toggle("error",!!isError);node.classList.toggle("good",!isError&&!!text)}
 function show(id,visible){const node=$(id);if(node)node.classList.toggle("hidden",!visible)}
 function safeDate(value){if(!value)return "—";const date=new Date(value);return Number.isNaN(date.getTime())?"—":date.toLocaleString("fr-TN")}
@@ -182,7 +189,17 @@ function renderConversations(){const list=$("conversationList");list.replaceChil
 async function openConversation(conv){selectedConversationId=conv.id;$("selectedConversationTitle").textContent=(conv.visitor_name||"Client")+" — "+(conv.topic||"Question générale");$("replyBtn").disabled=false;$("messagesList").replaceChildren();message("replyStatus","Chargement des messages...");const {data,error}=await db.from("support_messages").select("id,sender_role,message,created_at").eq("conversation_id",conv.id).order("created_at",{ascending:true}).limit(300);if(error){message("replyStatus","Chargement des messages impossible : "+error.message,true);return}for(const msg of data||[]){const bubble=document.createElement("div");bubble.className="item";const sender=document.createElement("strong");sender.textContent=msg.sender_role==="admin"?"Support":msg.sender_role==="visitor"?"Client":msg.sender_role||"Expéditeur";bubble.appendChild(sender);const content=document.createElement("p");content.textContent=msg.message||"";content.style.whiteSpace="pre-wrap";bubble.appendChild(content);const time=document.createElement("div");time.className="small";time.textContent=safeDate(msg.created_at);bubble.appendChild(time);$("messagesList").appendChild(bubble)}message("replyStatus","Messages chargés.")}
 $("replyForm").addEventListener("submit",async event=>{event.preventDefault();if(!selectedConversationId||!currentUser){message("replyStatus","Sélectionnez d'abord une conversation.",true);return}const reply=$("replyText").value.trim();if(!reply){message("replyStatus","Saisissez une réponse.",true);return}$("replyBtn").disabled=true;message("replyStatus","Envoi de la réponse...");try{const {error}=await db.from("support_messages").insert({conversation_id:selectedConversationId,sender_role:"admin",message:reply});if(error)throw error;$("replyText").value="";message("replyStatus","Réponse envoyée.");const conv=conversationsCache.find(c=>c.id===selectedConversationId);if(conv)await openConversation(conv)}catch(error){message("replyStatus","Impossible d'envoyer la réponse :\n"+(error.message||String(error)),true)}finally{$("replyBtn").disabled=!selectedConversationId}});
 function updateStats(){$("depositCount").textContent=walletCache.filter(isDeposit).length;$("withdrawCount").textContent=walletCache.filter(isWithdrawal).length;$("conversationCount").textContent=conversationsCache.length;$("pendingCount").textContent=walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length;$("overviewStatus").textContent="Demandes chargées : "+walletCache.length+"\nDépôts : "+walletCache.filter(isDeposit).length+"\nRetraits : "+walletCache.filter(isWithdrawal).length+"\nEn attente : "+walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length+"\nMouvements financiers : "+ledgerCache.length+"\nConversations support : "+conversationsCache.length}
-function switchTab(tab){document.querySelectorAll("[data-tab]").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));Object.keys(tabNames).forEach(name=>{const section=$("tab-"+name);if(section)section.classList.toggle("hidden-section",name!==tab)});$("pageTitle").textContent=tabNames[tab]||tabNames.overview}
+async function loadUsers(){
+ const body=$("usersBody"); if(!body)return; body.replaceChildren(); message("usersStatus","Chargement des profils…");
+ try{
+  const {data,error}=await db.from("profiles").select("id,username,date_of_birth,phone,created_at").order("created_at",{ascending:false}).limit(500);
+  if(error)throw error; usersCache=data||[]; renderUsers(); message("usersStatus",usersCache.length+" profil(s) chargé(s). Les adresses IP ne sont pas disponibles dans les colonnes actuelles.");
+ }catch(error){usersCache=[];renderUsers();message("usersStatus","Impossible de lire les profils : "+(error.message||String(error))+". Vérifiez les règles RLS et les colonnes de la table profiles.",true)}
+}
+function renderUsers(){const body=$("usersBody");if(!body)return;body.replaceChildren();const q=String($("usersSearch")?.value||"").trim().toLowerCase();const rows=usersCache.filter(u=>[u.id,u.username,u.phone,u.date_of_birth].some(v=>String(v||"").toLowerCase().includes(q)));$("usersTotalPill").textContent=rows.length+" compte(s)";if(!rows.length){const tr=document.createElement("tr"),td=addCell(tr,usersCache.length?"Aucun résultat de recherche":"Aucun profil disponible");td.colSpan=7;td.className="empty";body.appendChild(tr);return}for(const user of rows){const tr=document.createElement("tr");addCell(tr,user.id||"—");addCell(tr,user.username||"—");addCell(tr,user.phone||"—");addCell(tr,user.date_of_birth||"—");addCell(tr,safeDate(user.created_at));addCell(tr,"Non enregistré");const actions=document.createElement("td");addButton(actions,"Examiner","btn-secondary",()=>showUserDetails(user));const ban=addButton(actions,"Bloquer","btn-danger",()=>message("userDetailsStatus","Le blocage n’est pas activé : il faut d’abord installer une fonction Edge sécurisée côté serveur.",true));ban.disabled=true;ban.title="Nécessite une fonction serveur sécurisée";tr.appendChild(actions);body.appendChild(tr)}}
+async function showUserDetails(user){const box=$("userDetails");box.replaceChildren();message("userDetailsStatus","Chargement des données du compte…");const title=document.createElement("strong");title.textContent=user.username||"Profil utilisateur";box.appendChild(title);const p=document.createElement("p");p.className="small";p.textContent="ID : "+(user.id||"—")+"\nTéléphone : "+(user.phone||"—")+"\nDate de naissance : "+(user.date_of_birth||"—")+"\nCréation du profil : "+safeDate(user.created_at)+"\nAdresse IP : non enregistrée dans les colonnes connues.";p.style.whiteSpace="pre-wrap";box.appendChild(p);try{const {data,error}=await db.from("wallet_accounts").select("balance,currency,created_at").eq("user_id",user.id).maybeSingle();if(error)throw error;const wallet=document.createElement("p");wallet.textContent="Solde : "+(data?String(data.balance)+" "+String(data.currency||"TND"):"aucun compte de portefeuille trouvé");box.appendChild(wallet);message("userDetailsStatus","Données de profil et portefeuille chargées. Pour afficher l’authentification complète, l’IP et bloquer un compte, il faut une fonction serveur protégée.")}catch(error){message("userDetailsStatus","Profil chargé, mais lecture du portefeuille impossible : "+(error.message||String(error)),true)}}
+$("refreshUsersBtn")?.addEventListener("click",loadUsers);$("usersSearch")?.addEventListener("input",renderUsers);
+function switchTab(tab){document.querySelectorAll("[data-tab]").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));Object.keys(tabNames).forEach(name=>{const section=$("tab-"+name);if(section)section.classList.toggle("hidden-section",name!==tab)});$("pageTitle").textContent=tabNames[tab]||tabNames.overview;if(tab==="users")loadUsers()}
 document.querySelectorAll("[data-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.tab)));
 document.querySelectorAll("[data-open-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.openTab)));
 $("allDepositsBtn").addEventListener("click",()=>{depositPendingOnly=false;$("allDepositsBtn").classList.add("active");$("pendingDepositsBtn").classList.remove("active");renderWallet()});
