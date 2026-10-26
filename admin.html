@@ -157,6 +157,7 @@ const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const $=id=>document.getElementById(id);
 let currentUser=null,selectedConversationId=null,walletCache=[],conversationsCache=[],ledgerCache=[],usersCache=[],depositPendingOnly=false,withdrawalPendingOnly=false,busy=false;
+let ipLatestByUser={}, blockedByUser={}, userManagementReady=false;
 const tabNames={overview:"Tableau de bord",deposits:"Dépôts",withdrawals:"Retraits",ledger:"Historique financier",users:"Comptes utilisateurs",support:"Support client",settings:"Moyens de paiement"};
 function message(id,text,isError=false){const node=$(id);if(!node)return;node.textContent=text||"";node.classList.toggle("error",!!isError);node.classList.toggle("good",!isError&&!!text)}
 function show(id,visible){const node=$(id);if(node)node.classList.toggle("hidden",!visible)}
@@ -189,15 +190,116 @@ function renderConversations(){const list=$("conversationList");list.replaceChil
 async function openConversation(conv){selectedConversationId=conv.id;$("selectedConversationTitle").textContent=(conv.visitor_name||"Client")+" — "+(conv.topic||"Question générale");$("replyBtn").disabled=false;$("messagesList").replaceChildren();message("replyStatus","Chargement des messages...");const {data,error}=await db.from("support_messages").select("id,sender_role,message,created_at").eq("conversation_id",conv.id).order("created_at",{ascending:true}).limit(300);if(error){message("replyStatus","Chargement des messages impossible : "+error.message,true);return}for(const msg of data||[]){const bubble=document.createElement("div");bubble.className="item";const sender=document.createElement("strong");sender.textContent=msg.sender_role==="admin"?"Support":msg.sender_role==="visitor"?"Client":msg.sender_role||"Expéditeur";bubble.appendChild(sender);const content=document.createElement("p");content.textContent=msg.message||"";content.style.whiteSpace="pre-wrap";bubble.appendChild(content);const time=document.createElement("div");time.className="small";time.textContent=safeDate(msg.created_at);bubble.appendChild(time);$("messagesList").appendChild(bubble)}message("replyStatus","Messages chargés.")}
 $("replyForm").addEventListener("submit",async event=>{event.preventDefault();if(!selectedConversationId||!currentUser){message("replyStatus","Sélectionnez d'abord une conversation.",true);return}const reply=$("replyText").value.trim();if(!reply){message("replyStatus","Saisissez une réponse.",true);return}$("replyBtn").disabled=true;message("replyStatus","Envoi de la réponse...");try{const {error}=await db.from("support_messages").insert({conversation_id:selectedConversationId,sender_role:"admin",message:reply});if(error)throw error;$("replyText").value="";message("replyStatus","Réponse envoyée.");const conv=conversationsCache.find(c=>c.id===selectedConversationId);if(conv)await openConversation(conv)}catch(error){message("replyStatus","Impossible d'envoyer la réponse :\n"+(error.message||String(error)),true)}finally{$("replyBtn").disabled=!selectedConversationId}});
 function updateStats(){$("depositCount").textContent=walletCache.filter(isDeposit).length;$("withdrawCount").textContent=walletCache.filter(isWithdrawal).length;$("conversationCount").textContent=conversationsCache.length;$("pendingCount").textContent=walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length;$("overviewStatus").textContent="Demandes chargées : "+walletCache.length+"\nDépôts : "+walletCache.filter(isDeposit).length+"\nRetraits : "+walletCache.filter(isWithdrawal).length+"\nEn attente : "+walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length+"\nMouvements financiers : "+ledgerCache.length+"\nConversations support : "+conversationsCache.length}
+async function callUserManagement(payload){
+ const {data:sessionData,error:sessionError}=await db.auth.getSession();
+ if(sessionError)throw sessionError;
+ const token=sessionData?.session?.access_token;
+ if(!token)throw new Error("La session administrateur a expiré. Reconnectez-vous.");
+ const response=await fetch(SUPABASE_URL+"/functions/v1/admin-user-management",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+token,
+   "apikey":SUPABASE_PUBLISHABLE_KEY
+  },
+  body:JSON.stringify(payload)
+ });
+ let result={};
+ try{result=await response.json()}catch(_){}
+ if(!response.ok||result.error)throw new Error(result.error||("Erreur serveur ("+response.status+")"));
+ return result;
+}
+function setUserManagementUnavailable(error){
+ userManagementReady=false;
+ message("usersStatus","Profils chargés, mais le service sécurisé IP/blocage n’est pas disponible. Déployez la fonction Edge admin-user-management. Détail : "+(error.message||String(error)),true);
+}
 async function loadUsers(){
  const body=$("usersBody"); if(!body)return; body.replaceChildren(); message("usersStatus","Chargement des profils…");
  try{
   const {data,error}=await db.from("profiles").select("id,username,date_of_birth,phone,created_at").order("created_at",{ascending:false}).limit(500);
-  if(error)throw error; usersCache=data||[]; renderUsers(); message("usersStatus",usersCache.length+" profil(s) chargé(s). Les adresses IP ne sont pas disponibles dans les colonnes actuelles.");
+  if(error)throw error;
+  usersCache=data||[];
+  ipLatestByUser={}; blockedByUser={}; userManagementReady=false;
+  try{
+   const result=await callUserManagement({action:"list",userIds:usersCache.map(u=>u.id).filter(Boolean)});
+   ipLatestByUser=result.latestIps||{};
+   blockedByUser=result.blockedUsers||{};
+   userManagementReady=true;
+   renderUsers();
+   message("usersStatus",usersCache.length+" profil(s) chargé(s). Historique IP et statut du compte synchronisés.");
+  }catch(serviceError){
+   renderUsers();
+   setUserManagementUnavailable(serviceError);
+  }
  }catch(error){usersCache=[];renderUsers();message("usersStatus","Impossible de lire les profils : "+(error.message||String(error))+". Vérifiez les règles RLS et les colonnes de la table profiles.",true)}
 }
-function renderUsers(){const body=$("usersBody");if(!body)return;body.replaceChildren();const q=String($("usersSearch")?.value||"").trim().toLowerCase();const rows=usersCache.filter(u=>[u.id,u.username,u.phone,u.date_of_birth].some(v=>String(v||"").toLowerCase().includes(q)));$("usersTotalPill").textContent=rows.length+" compte(s)";if(!rows.length){const tr=document.createElement("tr"),td=addCell(tr,usersCache.length?"Aucun résultat de recherche":"Aucun profil disponible");td.colSpan=7;td.className="empty";body.appendChild(tr);return}for(const user of rows){const tr=document.createElement("tr");addCell(tr,user.id||"—");addCell(tr,user.username||"—");addCell(tr,user.phone||"—");addCell(tr,user.date_of_birth||"—");addCell(tr,safeDate(user.created_at));addCell(tr,"Non enregistré");const actions=document.createElement("td");addButton(actions,"Examiner","btn-secondary",()=>showUserDetails(user));const ban=addButton(actions,"Bloquer","btn-danger",()=>message("userDetailsStatus","Le blocage n’est pas activé : il faut d’abord installer une fonction Edge sécurisée côté serveur.",true));ban.disabled=true;ban.title="Nécessite une fonction serveur sécurisée";tr.appendChild(actions);body.appendChild(tr)}}
-async function showUserDetails(user){const box=$("userDetails");box.replaceChildren();message("userDetailsStatus","Chargement des données du compte…");const title=document.createElement("strong");title.textContent=user.username||"Profil utilisateur";box.appendChild(title);const p=document.createElement("p");p.className="small";p.textContent="ID : "+(user.id||"—")+"\nTéléphone : "+(user.phone||"—")+"\nDate de naissance : "+(user.date_of_birth||"—")+"\nCréation du profil : "+safeDate(user.created_at)+"\nAdresse IP : non enregistrée dans les colonnes connues.";p.style.whiteSpace="pre-wrap";box.appendChild(p);try{const {data,error}=await db.from("wallet_accounts").select("balance,currency,created_at").eq("user_id",user.id).maybeSingle();if(error)throw error;const wallet=document.createElement("p");wallet.textContent="Solde : "+(data?String(data.balance)+" "+String(data.currency||"TND"):"aucun compte de portefeuille trouvé");box.appendChild(wallet);message("userDetailsStatus","Données de profil et portefeuille chargées. Pour afficher l’authentification complète, l’IP et bloquer un compte, il faut une fonction serveur protégée.")}catch(error){message("userDetailsStatus","Profil chargé, mais lecture du portefeuille impossible : "+(error.message||String(error)),true)}}
+function renderUsers(){
+ const body=$("usersBody");if(!body)return;body.replaceChildren();
+ const q=String($("usersSearch")?.value||"").trim().toLowerCase();
+ const rows=usersCache.filter(u=>[u.id,u.username,u.phone,u.date_of_birth,ipLatestByUser[u.id]?.ip_address].some(v=>String(v||"").toLowerCase().includes(q)));
+ $("usersTotalPill").textContent=rows.length+" compte(s)";
+ if(!rows.length){const tr=document.createElement("tr"),td=addCell(tr,usersCache.length?"Aucun résultat de recherche":"Aucun profil disponible");td.colSpan=7;td.className="empty";body.appendChild(tr);return}
+ for(const user of rows){
+  const tr=document.createElement("tr");
+  addCell(tr,user.id||"—");addCell(tr,user.username||"—");addCell(tr,user.phone||"—");addCell(tr,user.date_of_birth||"—");addCell(tr,safeDate(user.created_at));
+  const ipCell=document.createElement("td");
+  const ipRecord=ipLatestByUser[user.id];
+  ipCell.textContent=ipRecord?.ip_address||"Non enregistré";
+  if(ipRecord?.recorded_at){const sub=document.createElement("div");sub.className="cell-sub";sub.textContent=safeDate(ipRecord.recorded_at);ipCell.appendChild(sub)}
+  tr.appendChild(ipCell);
+  const actions=document.createElement("td");
+  addButton(actions,"Examiner","btn-secondary",()=>showUserDetails(user));
+  const isBlocked=!!blockedByUser[user.id];
+  const ban=addButton(actions,isBlocked?"Débloquer":"Bloquer",isBlocked?"btn-warning":"btn-danger",()=>changeUserBlock(user,isBlocked));
+  ban.disabled=!userManagementReady||!user.id;
+  ban.title=userManagementReady?"":"Nécessite la fonction Edge sécurisée admin-user-management";
+  tr.appendChild(actions);body.appendChild(tr);
+ }
+}
+async function changeUserBlock(user,isCurrentlyBlocked){
+ if(!userManagementReady){message("userDetailsStatus","Le service sécurisé n’est pas disponible. Déployez d’abord admin-user-management.",true);return}
+ const action=isCurrentlyBlocked?"unban":"ban";
+ const promptText=isCurrentlyBlocked
+  ?"Confirmer le déblocage de ce compte utilisateur ?"
+  :"Confirmer le blocage de ce compte utilisateur ? L’utilisateur ne pourra plus se connecter jusqu’au déblocage.";
+ if(!window.confirm(promptText))return;
+ message("userDetailsStatus",isCurrentlyBlocked?"Déblocage du compte…":"Blocage du compte…");
+ try{
+  await callUserManagement({action,userId:user.id});
+  message("userDetailsStatus",isCurrentlyBlocked?"Compte débloqué avec succès.":"Compte bloqué avec succès.");
+  await loadUsers();
+  await showUserDetails(user);
+ }catch(error){message("userDetailsStatus","Opération impossible : "+(error.message||String(error)),true)}
+}
+async function showUserDetails(user){
+ const box=$("userDetails");box.replaceChildren();message("userDetailsStatus","Chargement des données du compte…");
+ const title=document.createElement("strong");title.textContent=user.username||"Profil utilisateur";box.appendChild(title);
+ const p=document.createElement("p");p.className="small";
+ const ipRecord=ipLatestByUser[user.id];
+ p.textContent="ID : "+(user.id||"—")+"\nTéléphone : "+(user.phone||"—")+"\nDate de naissance : "+(user.date_of_birth||"—")+"\nCréation du profil : "+safeDate(user.created_at)+"\nDernière adresse IP : "+(ipRecord?.ip_address||"non enregistrée")+"\nDernière activité IP : "+(ipRecord?.recorded_at?safeDate(ipRecord.recorded_at):"—")+"\nStatut : "+(blockedByUser[user.id]?"Bloqué":"Non bloqué");
+ p.style.whiteSpace="pre-wrap";box.appendChild(p);
+ const historyHeading=document.createElement("h3");historyHeading.textContent="Historique des adresses IP";box.appendChild(historyHeading);
+ const history=document.createElement("div");history.className="small";history.textContent="Chargement de l’historique IP…";box.appendChild(history);
+ try{
+  const result=await callUserManagement({action:"history",userId:user.id});
+  history.replaceChildren();
+  const logs=Array.isArray(result.history)?result.history:[];
+  if(!logs.length){history.textContent="Aucun historique IP enregistré pour ce compte."}
+  else{
+   for(const log of logs){
+    const row=document.createElement("div");row.className="item";
+    const ip=document.createElement("strong");ip.textContent=log.ip_address||"IP inconnue";row.appendChild(ip);
+    const time=document.createElement("div");time.className="small";time.textContent=safeDate(log.recorded_at);row.appendChild(time);history.appendChild(row);
+   }
+  }
+ }catch(error){history.textContent="Historique IP indisponible : "+(error.message||String(error))}
+ try{
+  const {data,error}=await db.from("wallet_accounts").select("balance,currency,created_at").eq("user_id",user.id).maybeSingle();
+  if(error)throw error;
+  const wallet=document.createElement("p");wallet.textContent="Solde : "+(data?String(data.balance)+" "+String(data.currency||"TND"):"aucun compte de portefeuille trouvé");box.appendChild(wallet);
+  message("userDetailsStatus","Détails du compte chargés.");
+ }catch(error){message("userDetailsStatus","Détails du profil chargés, mais lecture du portefeuille impossible : "+(error.message||String(error)),true)}
+}
 $("refreshUsersBtn")?.addEventListener("click",loadUsers);$("usersSearch")?.addEventListener("input",renderUsers);
 function switchTab(tab){document.querySelectorAll("[data-tab]").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));Object.keys(tabNames).forEach(name=>{const section=$("tab-"+name);if(section)section.classList.toggle("hidden-section",name!==tab)});$("pageTitle").textContent=tabNames[tab]||tabNames.overview;if(tab==="users")loadUsers()}
 document.querySelectorAll("[data-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.tab)));
