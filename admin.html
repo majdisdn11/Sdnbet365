@@ -1,164 +1,795 @@
-<!doctype html>
-<html lang="fr" dir="ltr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080706">
-<title>SDNBet365 | Administration</title>
-<style>
-:root{
- --bg:#080706;--sidebar:#0d0b09;--panel:#15110d;--panel2:#20170f;--line:#49301b;
- --text:#edf4fc;--muted:#91a5bf;--green:#ff8500;--green2:#d96800;--gold:#f4c15d;
- --red:#ff747d;--blue:#6eb8ff;--radius:16px;--shadow:0 12px 35px #0003
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 75% -10%,#301a09 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 13px;font-weight:700;transition:.18s ease}
-button:hover{filter:brightness(1.08);transform:translateY(-1px)}
-button:disabled{opacity:.5;cursor:not-allowed;transform:none}
-input,textarea,select{width:100%;padding:12px 13px;margin:7px 0 12px;border:1px solid var(--line);border-radius:10px;background:#0c0a08;color:var(--text);outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #ff850018}
-textarea{min-height:100px;resize:vertical}
-label{display:block;font-size:12px;color:var(--muted);font-weight:700}
-a{color:inherit}
-.hidden{display:none!important}
-.app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
-.sidebar{background:#0c0a08eF;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;overflow:auto}
-.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 25px;font-size:18px;font-weight:900;letter-spacing:.3px}
-.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--green),#a94f00);display:grid;place-items:center;color:#1a0d00;font-size:17px;box-shadow:0 8px 22px #ff850025}
-.brand span{color:var(--green)}
-.nav-label{padding:14px 12px 7px;color:#657d9b;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
-.nav{display:grid;gap:6px}
-.nav button{display:flex;align-items:center;gap:11px;text-align:left;width:100%;background:transparent;color:#a9bad0;border:1px solid transparent;padding:12px;border-radius:11px;font-size:13px}
-.nav button .ico{width:24px;text-align:center;font-size:16px}
-.nav button.active{background:linear-gradient(90deg,#ff850020,#ff850008);border-color:#ff850032;color:#fff0df}
-.nav button.active .ico{color:var(--green)}
-.sidebar-bottom{margin-top:25px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#15110d}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;box-shadow:0 0 0 4px #ff850016}
-.main{min-width:0}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 27px;border-bottom:1px solid var(--line);background:#081423c9;backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}
-.crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--text);font-size:14px;display:block;margin-top:4px}
-.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.avatar{width:35px;height:35px;display:grid;place-items:center;background:#382313;color:var(--green);border-radius:50%;font-weight:900}
-.page{padding:26px;max-width:1600px;margin:auto}
-.welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}
-h1{font-size:25px;letter-spacing:-.5px;margin:0 0 7px}h2{font-size:17px;margin:0 0 15px}h3{font-size:14px;margin:0 0 10px}
-.muted,.small{color:var(--muted);font-size:12px;line-height:1.75}.small{font-size:11px}
-.btn-primary{background:var(--green);color:#1a0d00}.btn-secondary{background:#20170f;color:var(--text);border-color:#65401f}
-.btn-danger{background:#4a242c;color:#ffdce0;border-color:#76333d}.btn-warning{background:#38210e;color:#ffc58a;border-color:#784315}
-.btn-quiet{background:transparent;color:var(--muted);border-color:var(--line)}
-.card{background:linear-gradient(145deg,#21150c,#100d0a);border:1px solid var(--line);border-radius:var(--radius);padding:19px;min-width:0;box-shadow:var(--shadow);margin-bottom:17px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}
-.stat{position:relative;overflow:hidden;background:linear-gradient(145deg,#14263c,#100d0a);border:1px solid var(--line);border-radius:15px;padding:17px}
-.stat:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#ff850009;right:-30px;bottom:-45px}
-.stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}
-.stat-icon{width:32px;height:32px;border-radius:10px;background:#302116;display:grid;place-items:center;color:var(--green);font-size:15px}
-.stat strong{display:block;font-size:27px;letter-spacing:-.5px;margin-top:12px}
-.stat-foot{color:var(--muted);font-size:10px;margin-top:5px}
-.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}
-.panel-head h2{margin:0}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#16283e;border-radius:999px;padding:5px 9px;font-size:11px;color:#c4d3e5;white-space:nowrap}
-.pill.green{background:#38210e;color:#ffc58a;border-color:#784315}.pill.gold{background:#38210e;color:#ffc58a;border-color:#784315}.pill.red{background:#40242c;color:#ffb5bc;border-color:#6e3640}.pill.blue{background:#182f49;color:#a5d2ff;border-color:#315477}
-.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:13px 0}
-.toolbar button.active{background:var(--green);color:#1a0d00;border-color:var(--green)}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
-table{width:100%;min-width:850px;border-collapse:separate;border-spacing:0;text-align:left;font-size:12px}
-th,td{padding:13px 12px;border-bottom:1px solid #382719a8;vertical-align:middle;white-space:nowrap}
-th{background:#0d1a2b;color:#8298b4;font-size:10px;text-transform:uppercase;letter-spacing:.65px;position:sticky;top:0;z-index:1}
-tbody tr:hover{background:#ffffff04}tbody tr:last-child td{border-bottom:0}
-td .cell-main{font-weight:700}td .cell-sub{font-size:10px;color:var(--muted);margin-top:4px}
-td button{padding:7px 9px;font-size:11px;margin:2px}
-.status{font-size:12px;line-height:1.8;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;margin-top:10px}
-.status.error{color:var(--red)}.status.good{color:var(--green)}
-.notice{display:flex;gap:12px;padding:13px 15px;background:#2c1a0b;border:1px solid #7b4517;color:#ffd9b0;border-radius:12px;font-size:12px;line-height:1.8;margin:12px 0}
-.notice strong{display:block;margin-bottom:3px}
-.grid-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}
-.item{padding:13px;border:1px solid var(--line);background:#0c192a;border-radius:12px;margin-bottom:9px;overflow-wrap:anywhere}
-.item p{white-space:pre-wrap}
-.empty{padding:30px 12px;text-align:center;color:var(--muted);font-size:12px}
-.hidden-section{display:none!important}
-.login-shell{max-width:460px;margin:7vh auto;padding:15px}
-.login-card{padding:27px}
-.balance,.credit{color:var(--green);font-weight:800}.debit{color:var(--red);font-weight:800}
-.mobile-menu{display:none}
+<!DOCTYPE html>
+<html dir="ltr" lang="fr">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#080706" name="theme-color"/>
+  <title>
+   SDNBet365 | Administration
+  </title>
+  <style>
+   :root{--bg:#080706;--sidebar:#0d0b09;--panel:#15110d;--panel2:#20170f;--line:#49301b;--text:#edf4fc;--muted:#91a5bf;--green:#ff8500;--green2:#d96800;--gold:#f4c15d;--red:#ff747d;--blue:#6eb8ff;--radius:16px;--shadow:0 12px 35px #0003}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#301a09 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 13px;font-weight:700;transition:.18s ease}button:hover{filter:brightness(1.08);transform:translateY(-1px)}button:disabled{opacity:.5;cursor:not-allowed;transform:none}input,textarea,select{width:100%;padding:12px 13px;margin:7px 0 12px;border:1px solid var(--line);border-radius:10px;background:#0c0a08;color:var(--text);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #ff850018}textarea{min-height:100px;resize:vertical}label{display:block;font-size:12px;color:var(--muted);font-weight:700}a{color:inherit}.hidden{display:none!important}.app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}.sidebar{background:#0c0a08eF;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 25px;font-size:18px;font-weight:900;letter-spacing:.3px}.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,var(--green),#a94f00);display:grid;place-items:center;color:#1a0d00;font-size:17px;box-shadow:0 8px 22px #ff850025}.brand span{color:var(--green)}.nav-label{padding:14px 12px 7px;color:#657d9b;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}.nav{display:grid;gap:6px}.nav button{display:flex;align-items:center;gap:11px;text-align:left;width:100%;background:transparent;color:#a9bad0;border:1px solid transparent;padding:12px;border-radius:11px;font-size:13px}.nav button .ico{width:24px;text-align:center;font-size:16px}.nav button.active{background:linear-gradient(90deg,#ff850020,#ff850008);border-color:#ff850032;color:#fff0df}.nav button.active .ico{color:var(--green)}.sidebar-bottom{margin-top:25px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#15110d}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;box-shadow:0 0 0 4px #ff850016}.main{min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 27px;border-bottom:1px solid var(--line);background:#081423c9;backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}.crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--text);font-size:14px;display:block;margin-top:4px}.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.avatar{width:35px;height:35px;display:grid;place-items:center;background:#382313;color:var(--green);border-radius:50%;font-weight:900}.page{padding:26px;max-width:1600px;margin:auto}.welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}h1{font-size:25px;letter-spacing:-.5px;margin:0 0 7px}h2{font-size:17px;margin:0 0 15px}h3{font-size:14px;margin:0 0 10px}.muted,.small{color:var(--muted);font-size:12px;line-height:1.75}.small{font-size:11px}.btn-primary{background:var(--green);color:#1a0d00}.btn-secondary{background:#20170f;color:var(--text);border-color:#65401f}.btn-danger{background:#4a242c;color:#ffdce0;border-color:#76333d}.btn-warning{background:#38210e;color:#ffc58a;border-color:#784315}.btn-quiet{background:transparent;color:var(--muted);border-color:var(--line)}.card{background:linear-gradient(145deg,#21150c,#100d0a);border:1px solid var(--line);border-radius:var(--radius);padding:19px;min-width:0;box-shadow:var(--shadow);margin-bottom:17px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}.stat{position:relative;overflow:hidden;background:linear-gradient(145deg,#14263c,#100d0a);border:1px solid var(--line);border-radius:15px;padding:17px}.stat:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#ff850009;right:-30px;bottom:-45px}.stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}.stat-icon{width:32px;height:32px;border-radius:10px;background:#302116;display:grid;place-items:center;color:var(--green);font-size:15px}.stat strong{display:block;font-size:27px;letter-spacing:-.5px;margin-top:12px}.stat-foot{color:var(--muted);font-size:10px;margin-top:5px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}.panel-head h2{margin:0}.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#16283e;border-radius:999px;padding:5px 9px;font-size:11px;color:#c4d3e5;white-space:nowrap}.pill.green,.pill.gold{background:#38210e;color:#ffc58a;border-color:#784315}.pill.red{background:#40242c;color:#ffb5bc;border-color:#6e3640}.pill.blue{background:#182f49;color:#a5d2ff;border-color:#315477}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:13px 0}.toolbar button.active{background:var(--green);color:#1a0d00;border-color:var(--green)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;min-width:850px;border-collapse:separate;border-spacing:0;text-align:left;font-size:12px}th,td{padding:13px 12px;border-bottom:1px solid #382719a8;vertical-align:middle;white-space:nowrap}th{background:#0d1a2b;color:#8298b4;font-size:10px;text-transform:uppercase;letter-spacing:.65px;position:sticky;top:0;z-index:1}tbody tr:hover{background:#ffffff04}tbody tr:last-child td{border-bottom:0}td .cell-main{font-weight:700}td .cell-sub{font-size:10px;color:var(--muted);margin-top:4px}td button{padding:7px 9px;font-size:11px;margin:2px}.status{font-size:12px;line-height:1.8;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;margin-top:10px}.status.error{color:var(--red)}.status.good{color:var(--green)}.notice{display:flex;gap:12px;padding:13px 15px;background:#2c1a0b;border:1px solid #7b4517;color:#ffd9b0;border-radius:12px;font-size:12px;line-height:1.8;margin:12px 0}.notice strong{display:block;margin-bottom:3px}.grid-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}.item{padding:13px;border:1px solid var(--line);background:#0c192a;border-radius:12px;margin-bottom:9px;overflow-wrap:anywhere}.item p{white-space:pre-wrap}.empty{padding:30px 12px;text-align:center;color:var(--muted);font-size:12px}.hidden-section{display:none!important}.login-shell{max-width:460px;margin:7vh auto;padding:15px}.login-card{padding:27px}.balance,.credit{color:var(--green);font-weight:800}.debit{color:var(--red);font-weight:800}.mobile-menu{display:none}
 @media(max-width:1050px){.app{grid-template-columns:205px minmax(0,1fr)}.page{padding:20px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar{padding:17px 10px}}
 @media(max-width:760px){.app{display:block}.sidebar{position:static;height:auto;padding:12px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:3px 5px 12px}.nav-label,.sidebar-bottom{display:none}.nav{display:flex;overflow-x:auto;padding-bottom:2px}.nav button{width:auto;flex:0 0 auto;white-space:nowrap;padding:10px 12px}.topbar{position:static;padding:13px 16px}.page{padding:15px}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:23px}.stat-top{font-size:11px}.card{padding:14px;border-radius:13px}.grid-2,.form-grid{grid-template-columns:1fr}h1{font-size:22px}.welcome{margin-bottom:16px}.top-actions .account-email{display:none}}
 @media(max-width:400px){.stats{grid-template-columns:1fr 1fr}.stat strong{font-size:20px}.topbar{align-items:flex-start}.top-actions{gap:6px}}
-</style>
-</head>
-<body>
-<section id="loginPanel" class="login-shell hidden">
- <div class="card login-card">
-  <div class="brand" style="padding:0 0 18px"><div class="brand-mark">S</div><div>SDN<span>Bet365</span><div class="small">Administration sécurisée</div></div></div>
-  <h1>Connexion administrateur</h1><p class="muted">Connectez-vous avec votre compte administrateur.</p>
-  <form id="loginForm"><label for="email">Adresse e-mail</label><input id="email" type="email" autocomplete="username" required><label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" required><button class="btn-primary" id="loginBtn" type="submit" style="width:100%;margin-top:8px">Se connecter</button></form>
-  <div id="loginStatus" class="status" role="status"></div>
- </div>
-</section>
-<section id="deniedPanel" class="login-shell hidden"><div class="card"><h1>Accès refusé</h1><p id="deniedText" class="status error"></p><p class="muted">Ce compte ne dispose pas des droits administrateur.</p><button id="deniedLogout" class="btn-secondary" type="button">Se déconnecter</button></div></section>
-<div id="dashboard" class="app hidden">
- <aside class="sidebar">
-  <div class="brand"><div class="brand-mark">S</div><div>SDN<span>Bet365</span><div class="small">CONTROL CENTER</div></div></div>
-  <div class="nav-label">Workspace</div>
-  <nav class="nav" id="mainNav">
-   <button class="active" data-tab="overview" type="button"><span class="ico">▦</span>Tableau de bord</button>
-   <button data-tab="deposits" type="button"><span class="ico">↙</span>Dépôts</button>
-   <button data-tab="withdrawals" type="button"><span class="ico">↗</span>Retraits</button>
-   <button data-tab="ledger" type="button"><span class="ico">≋</span>Historique financier</button>
-   <button data-tab="users" type="button"><span class="ico">♙</span>Comptes utilisateurs</button>
-   <button data-tab="support" type="button"><span class="ico">◌</span>Support client</button>
-   <button data-tab="settings" type="button"><span class="ico">⚙</span>Moyens de paiement</button>
-  </nav>
-  <div class="sidebar-bottom"><div class="small"><span class="dot"></span>Connexion à Supabase</div><div class="small" style="margin-top:7px">Session administrateur protégée</div></div>
- </aside>
- <div class="main">
-  <header class="topbar"><div class="crumb">SDNBet365 / <strong id="pageTitle">Tableau de bord</strong></div><div class="top-actions"><span class="pill green"><span class="dot" style="margin:0;width:6px;height:6px"></span>En ligne</span><div class="avatar">A</div><div class="account-email small" id="accountLabel">Vérification du compte...</div><button id="logoutBtn" class="btn-quiet" type="button">Déconnexion</button></div></header>
-  <main class="page">
-   <section id="tab-overview">
-    <div class="welcome"><div><h1>Bonjour, Administrateur</h1><div class="muted">Voici le résumé de l'activité de votre plateforme.</div></div><button id="refreshBtn" class="btn-primary" type="button">↻ Actualiser les données</button></div>
-    <div class="notice"><div>⚠</div><div><strong>Important — validation des retraits</strong>La validation d'un retrait déduit le montant du solde du client et enregistre l'opération dans le ledger. Elle n'envoie pas d'argent. Effectuez et vérifiez le transfert externe avant de confirmer le retrait.</div></div>
-    <div class="stats">
-     <div class="stat"><div class="stat-top"><span>Total des dépôts affichés</span><span class="stat-icon">↙</span></div><strong id="depositCount">—</strong><div class="stat-foot">Demandes chargées</div></div>
-     <div class="stat"><div class="stat-top"><span>Total des retraits affichés</span><span class="stat-icon">↗</span></div><strong id="withdrawCount">—</strong><div class="stat-foot">Demandes chargées</div></div>
-     <div class="stat"><div class="stat-top"><span>Conversations support</span><span class="stat-icon">◌</span></div><strong id="conversationCount">—</strong><div class="stat-foot">Conversations chargées</div></div>
-     <div class="stat"><div class="stat-top"><span>En attente</span><span class="stat-icon">◷</span></div><strong id="pendingCount">—</strong><div class="stat-foot">Demandes à examiner</div></div>
+  </style>
+ </head>
+ <body>
+  <section class="login-shell hidden" id="loginPanel">
+   <div class="card login-card">
+    <div class="brand" style="padding:0 0 18px">
+     <div class="brand-mark">
+      S
+     </div>
+     <div>
+      SDN
+      <span>
+       Bet365
+      </span>
+      <div class="small">
+       Administration sécurisée
+      </div>
+     </div>
     </div>
-    <div class="card"><div class="panel-head"><h2>Activité récente — demandes de portefeuille</h2><button class="btn-secondary" data-open-tab="deposits" type="button">Voir les dépôts</button></div><div id="overviewStatus" class="status">Chargement des données...</div></div>
-   </section>
-   <section id="tab-deposits" class="hidden-section">
-    <div class="welcome"><div><h1>Gestion des dépôts</h1><div class="muted">Vérifiez les justificatifs avant de créditer le portefeuille.</div></div><button class="btn-secondary" data-refresh-wallet type="button">↻ Actualiser</button></div>
-    <div class="card"><div class="panel-head"><h2>Demandes de dépôt</h2><span class="pill" id="depositTotalPill">0 demande</span></div><div class="toolbar"><button id="allDepositsBtn" class="btn-secondary active" type="button">Toutes</button><button id="pendingDepositsBtn" class="btn-secondary" type="button">En attente</button></div><div id="depositStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Client / ID</th><th>Montant</th><th>Moyen</th><th>Compte</th><th>Référence / code</th><th>Justificatif</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead><tbody id="depositBody"></tbody></table></div></div>
-   </section>
-   <section id="tab-withdrawals" class="hidden-section">
-    <div class="welcome"><div><h1>Gestion des retraits</h1><div class="muted">Contrôlez le bénéficiaire et effectuez le transfert externe avant validation.</div></div><button class="btn-secondary" data-refresh-wallet type="button">↻ Actualiser</button></div>
-    <div class="notice"><div>⚠</div><div><strong>Validation manuelle obligatoire</strong>Le bouton « Confirmer » enregistre le retrait et déduit le solde. Il ne réalise aucun virement externe.</div></div>
-    <div class="card"><div class="panel-head"><h2>Demandes de retrait</h2><span class="pill" id="withdrawalTotalPill">0 demande</span></div><div class="toolbar"><button id="allWithdrawalsBtn" class="btn-secondary active" type="button">Toutes</button><button id="pendingWithdrawalsBtn" class="btn-secondary" type="button">En attente</button></div><div id="withdrawalStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Client / ID</th><th>Montant</th><th>Moyen</th><th>Bénéficiaire</th><th>Référence</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead><tbody id="withdrawalBody"></tbody></table></div></div>
-   </section>
-   <section id="tab-ledger" class="hidden-section"><div class="welcome"><div><h1>Historique financier</h1><div class="muted">Journal des opérations enregistrées par la base de données.</div></div><button class="btn-secondary" id="refreshLedgerBtn" type="button">↻ Actualiser</button></div><div class="card"><div class="panel-head"><h2>Ledger</h2><span class="pill" id="ledgerTotalPill">0 mouvement</span></div><div id="ledgerStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Type</th><th>Sens</th><th>Montant</th><th>Solde avant</th><th>Solde après</th><th>Note</th><th>Date</th><th>Client / ID</th></tr></thead><tbody id="ledgerBody"></tbody></table></div></div></section>
-   <section id="tab-users" class="hidden-section">
-    <div class="welcome"><div><h1>Comptes utilisateurs</h1><div class="muted">Consultez les profils et les informations disponibles dans la base de données.</div></div><button id="refreshUsersBtn" class="btn-secondary" type="button">↻ Actualiser</button></div>
-    <div class="notice"><div>⚠</div><div><strong>IP et blocage de compte</strong>Cette base ne fournit pas encore d’historique IP ni de fonction serveur de blocage dans les fichiers actuels. Les adresses IP ne seront pas devinées et les actions de blocage resteront désactivées jusqu’à la configuration sécurisée côté serveur.</div></div>
-    <div class="card"><div class="panel-head"><h2>Profils enregistrés</h2><span class="pill" id="usersTotalPill">0 compte</span></div><label for="usersSearch">Rechercher par identifiant, nom ou téléphone</label><input id="usersSearch" type="search" placeholder="Rechercher un compte…"><div id="usersStatus" class="status"></div><div class="table-wrap"><table><thead><tr><th>Identifiant utilisateur</th><th>Nom d’utilisateur</th><th>Téléphone</th><th>Date de naissance</th><th>Inscription</th><th>Adresse IP</th><th>Actions</th></tr></thead><tbody id="usersBody"></tbody></table></div></div>
-    <div class="card"><h2>Détails du compte sélectionné</h2><div id="userDetails" class="muted">Choisissez « Examiner » sur un compte pour afficher les données disponibles.</div><div id="userDetailsStatus" class="status"></div></div>
-   </section>
-   <section id="tab-support" class="hidden-section"><div class="welcome"><div><h1>Support client</h1><div class="muted">Consultez les conversations et répondez aux clients.</div></div><button id="refreshSupportBtn" class="btn-secondary" type="button">↻ Actualiser</button></div><div class="grid-2"><div class="card"><div class="panel-head"><h2>Conversations</h2><span class="pill" id="conversationPill">0</span></div><div id="supportStatus" class="status"></div><div id="conversationList"></div></div><div class="card"><h2 id="selectedConversationTitle">Sélectionnez une conversation</h2><div id="messagesList"></div><form id="replyForm"><label for="replyText">Votre réponse</label><textarea id="replyText" required placeholder="Écrivez votre réponse..."></textarea><button class="btn-primary" id="replyBtn" type="submit" disabled>Envoyer la réponse</button></form><div id="replyStatus" class="status"></div></div></div></section>
-   <section id="tab-settings" class="hidden-section"><div class="welcome"><div><h1>Moyens de paiement</h1><div class="muted">Configurez les coordonnées de réception utilisées sur le site.</div></div><button id="reloadFlouciWalletBtn" class="btn-secondary" type="button">↻ Recharger</button></div><div class="notice"><div>i</div><div><strong>À noter</strong>Enregistrer une coordonnée ne réalise aucun paiement automatiquement. Vérifiez les transactions reçues séparément.</div></div><div class="card"><h2>Coordonnées de réception</h2><div class="form-grid"><div><label for="flouciWalletNumber">Flouci — numéro de portefeuille</label><input id="flouciWalletNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Flouci"></div><div><label for="d17WalletNumber">D17 — numéro de portefeuille</label><input id="d17WalletNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro D17"></div><div><label for="iziZaytounaAccount">Izi Zaytouna — compte</label><input id="iziZaytounaAccount" type="text" autocomplete="off" maxlength="100" placeholder="Compte Izi Zaytouna"></div><div><label for="ooredooNumber">Ooredoo Recharge — numéro</label><input id="ooredooNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Ooredoo"></div><div><label for="orangeNumber">Orange — numéro</label><input id="orangeNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Orange"></div><div><label for="tunisieTelecomNumber">Tunisie Telecom — numéro</label><input id="tunisieTelecomNumber" type="text" inputmode="tel" autocomplete="off" maxlength="100" placeholder="Numéro Tunisie Telecom"></div></div><div class="toolbar"><button id="savePaymentSettingsBtn" class="btn-primary" type="button">Enregistrer les paramètres</button></div><div id="flouciWalletStatus" class="status" role="status"></div></div></section>
-  </main>
- </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-"use strict";
+    <h1>
+     Connexion administrateur
+    </h1>
+    <p class="muted">
+     Connectez-vous avec votre compte administrateur.
+    </p>
+    <form id="loginForm">
+     <label for="email">
+      Adresse e-mail
+     </label>
+     <input autocomplete="username" id="email" required="" type="email"/>
+     <label for="password">
+      Mot de passe
+     </label>
+     <input autocomplete="current-password" id="password" required="" type="password"/>
+     <button class="btn-primary" id="loginBtn" style="width:100%;margin-top:8px" type="submit">
+      Se connecter
+     </button>
+    </form>
+    <div class="status" id="loginStatus" role="status">
+    </div>
+   </div>
+  </section>
+  <section class="login-shell hidden" id="deniedPanel">
+   <div class="card">
+    <h1>
+     Accès refusé
+    </h1>
+    <p class="status error" id="deniedText">
+    </p>
+    <p class="muted">
+     Ce compte ne dispose pas des droits administrateur.
+    </p>
+    <button class="btn-secondary" id="deniedLogout" type="button">
+     Se déconnecter
+    </button>
+   </div>
+  </section>
+  <div class="app hidden" id="dashboard">
+   <aside class="sidebar">
+    <div class="brand">
+     <div class="brand-mark">
+      S
+     </div>
+     <div>
+      SDN
+      <span>
+       Bet365
+      </span>
+      <div class="small">
+       CONTROL CENTER
+      </div>
+     </div>
+    </div>
+    <div class="nav-label">
+     Workspace
+    </div>
+    <nav class="nav" id="mainNav">
+     <button class="active" data-tab="overview" type="button">
+      <span class="ico">
+       ▦
+      </span>
+      Tableau de bord
+     </button>
+     <button data-tab="deposits" type="button">
+      <span class="ico">
+       ↙
+      </span>
+      Dépôts
+     </button>
+     <button data-tab="withdrawals" type="button">
+      <span class="ico">
+       ↗
+      </span>
+      Retraits
+     </button>
+     <button data-tab="ledger" type="button">
+      <span class="ico">
+       ≋
+      </span>
+      Historique financier
+     </button>
+     <button data-tab="users" type="button">
+      <span class="ico">
+       ♙
+      </span>
+      Comptes utilisateurs
+     </button>
+     <button data-tab="manual" type="button">
+      <span class="ico">
+       ±
+      </span>
+      Normal dépôt / retrait
+     </button>
+     <button data-tab="support" type="button">
+      <span class="ico">
+       ◌
+      </span>
+      Support client
+     </button>
+     <button data-tab="settings" type="button">
+      <span class="ico">
+       ⚙
+      </span>
+      Moyens de paiement
+     </button>
+    </nav>
+    <div class="sidebar-bottom">
+     <div class="small">
+      <span class="dot">
+      </span>
+      Connexion à Supabase
+     </div>
+     <div class="small" style="margin-top:7px">
+      Session administrateur protégée
+     </div>
+    </div>
+   </aside>
+   <div class="main">
+    <header class="topbar">
+     <div class="crumb">
+      SDNBet365 /
+      <strong id="pageTitle">
+       Tableau de bord
+      </strong>
+     </div>
+     <div class="top-actions">
+      <span class="pill green">
+       <span class="dot" style="margin:0;width:6px;height:6px">
+       </span>
+       En ligne
+      </span>
+      <div class="avatar">
+       A
+      </div>
+      <div class="account-email small" id="accountLabel">
+       Vérification du compte...
+      </div>
+      <button class="btn-quiet" id="logoutBtn" type="button">
+       Déconnexion
+      </button>
+     </div>
+    </header>
+    <main class="page">
+     <section id="tab-overview">
+      <div class="welcome">
+       <div>
+        <h1>
+         Bonjour, Administrateur
+        </h1>
+        <div class="muted">
+         Voici le résumé de l'activité de votre plateforme.
+        </div>
+       </div>
+       <button class="btn-primary" id="refreshBtn" type="button">
+        ↻ Actualiser les données
+       </button>
+      </div>
+      <div class="notice">
+       <div>
+        ⚠
+       </div>
+       <div>
+        <strong>
+         Important — validation des retraits
+        </strong>
+        La validation d'un retrait déduit le montant du solde du client et enregistre l'opération dans le ledger. Elle n'envoie pas d'argent. Effectuez et vérifiez le transfert externe avant de confirmer le retrait.
+       </div>
+      </div>
+      <div class="stats">
+       <div class="stat">
+        <div class="stat-top">
+         <span>
+          Total des dépôts affichés
+         </span>
+         <span class="stat-icon">
+          ↙
+         </span>
+        </div>
+        <strong id="depositCount">
+         —
+        </strong>
+        <div class="stat-foot">
+         Demandes chargées
+        </div>
+       </div>
+       <div class="stat">
+        <div class="stat-top">
+         <span>
+          Total des retraits affichés
+         </span>
+         <span class="stat-icon">
+          ↗
+         </span>
+        </div>
+        <strong id="withdrawCount">
+         —
+        </strong>
+        <div class="stat-foot">
+         Demandes chargées
+        </div>
+       </div>
+       <div class="stat">
+        <div class="stat-top">
+         <span>
+          Conversations support
+         </span>
+         <span class="stat-icon">
+          ◌
+         </span>
+        </div>
+        <strong id="conversationCount">
+         —
+        </strong>
+        <div class="stat-foot">
+         Conversations chargées
+        </div>
+       </div>
+       <div class="stat">
+        <div class="stat-top">
+         <span>
+          En attente
+         </span>
+         <span class="stat-icon">
+          ◷
+         </span>
+        </div>
+        <strong id="pendingCount">
+         —
+        </strong>
+        <div class="stat-foot">
+         Demandes à examiner
+        </div>
+       </div>
+      </div>
+      <div class="card">
+       <div class="panel-head">
+        <h2>
+         Activité récente — demandes de portefeuille
+        </h2>
+        <button class="btn-secondary" data-open-tab="deposits" type="button">
+         Voir les dépôts
+        </button>
+       </div>
+       <div class="status" id="overviewStatus">
+        Chargement des données...
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-deposits">
+      <div class="welcome">
+       <div>
+        <h1>
+         Gestion des dépôts
+        </h1>
+        <div class="muted">
+         Vérifiez les justificatifs avant de créditer le portefeuille.
+        </div>
+       </div>
+       <button class="btn-secondary" data-refresh-wallet="" type="button">
+        ↻ Actualiser
+       </button>
+      </div>
+      <div class="card">
+       <div class="panel-head">
+        <h2>
+         Demandes de dépôt
+        </h2>
+        <span class="pill" id="depositTotalPill">
+         0 demande
+        </span>
+       </div>
+       <div class="toolbar">
+        <button class="btn-secondary active" id="allDepositsBtn" type="button">
+         Toutes
+        </button>
+        <button class="btn-secondary" id="pendingDepositsBtn" type="button">
+         En attente
+        </button>
+       </div>
+       <div class="status" id="depositStatus">
+       </div>
+       <div class="table-wrap">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Client / ID
+           </th>
+           <th>
+            Montant
+           </th>
+           <th>
+            Moyen
+           </th>
+           <th>
+            Compte
+           </th>
+           <th>
+            Référence / code
+           </th>
+           <th>
+            Justificatif
+           </th>
+           <th>
+            Statut
+           </th>
+           <th>
+            Date
+           </th>
+           <th>
+            Actions
+           </th>
+          </tr>
+         </thead>
+         <tbody id="depositBody">
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-withdrawals">
+      <div class="welcome">
+       <div>
+        <h1>
+         Gestion des retraits
+        </h1>
+        <div class="muted">
+         Contrôlez le bénéficiaire et effectuez le transfert externe avant validation.
+        </div>
+       </div>
+       <button class="btn-secondary" data-refresh-wallet="" type="button">
+        ↻ Actualiser
+       </button>
+      </div>
+      <div class="notice">
+       <div>
+        ⚠
+       </div>
+       <div>
+        <strong>
+         Validation manuelle obligatoire
+        </strong>
+        Le bouton « Confirmer » enregistre le retrait et déduit le solde. Il ne réalise aucun virement externe.
+       </div>
+      </div>
+      <div class="card">
+       <div class="panel-head">
+        <h2>
+         Demandes de retrait
+        </h2>
+        <span class="pill" id="withdrawalTotalPill">
+         0 demande
+        </span>
+       </div>
+       <div class="toolbar">
+        <button class="btn-secondary active" id="allWithdrawalsBtn" type="button">
+         Toutes
+        </button>
+        <button class="btn-secondary" id="pendingWithdrawalsBtn" type="button">
+         En attente
+        </button>
+       </div>
+       <div class="status" id="withdrawalStatus">
+       </div>
+       <div class="table-wrap">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Client / ID
+           </th>
+           <th>
+            Montant
+           </th>
+           <th>
+            Moyen
+           </th>
+           <th>
+            Bénéficiaire
+           </th>
+           <th>
+            Référence
+           </th>
+           <th>
+            Statut
+           </th>
+           <th>
+            Date
+           </th>
+           <th>
+            Actions
+           </th>
+          </tr>
+         </thead>
+         <tbody id="withdrawalBody">
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-ledger">
+      <div class="welcome">
+       <div>
+        <h1>
+         Historique financier
+        </h1>
+        <div class="muted">
+         Journal des opérations enregistrées par la base de données.
+        </div>
+       </div>
+       <button class="btn-secondary" id="refreshLedgerBtn" type="button">
+        ↻ Actualiser
+       </button>
+      </div>
+      <div class="card">
+       <div class="panel-head">
+        <h2>
+         Ledger
+        </h2>
+        <span class="pill" id="ledgerTotalPill">
+         0 mouvement
+        </span>
+       </div>
+       <div class="status" id="ledgerStatus">
+       </div>
+       <div class="table-wrap">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Type
+           </th>
+           <th>
+            Sens
+           </th>
+           <th>
+            Montant
+           </th>
+           <th>
+            Solde avant
+           </th>
+           <th>
+            Solde après
+           </th>
+           <th>
+            Note
+           </th>
+           <th>
+            Date
+           </th>
+           <th>
+            Client / ID
+           </th>
+          </tr>
+         </thead>
+         <tbody id="ledgerBody">
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-users">
+      <div class="welcome">
+       <div>
+        <h1>
+         Comptes utilisateurs
+        </h1>
+        <div class="muted">
+         Consultez les profils et les informations disponibles dans la base de données.
+        </div>
+       </div>
+       <button class="btn-secondary" id="refreshUsersBtn" type="button">
+        ↻ Actualiser
+       </button>
+      </div>
+      <div class="notice">
+       <div>
+        ⚠
+       </div>
+       <div>
+        <strong>
+         Blocage de compte
+        </strong>
+        Le bouton Bloquer/ Débloquer utilise le service sécurisé admin-user-management s’il est déployé. Le blocage de niveau site est également enregistré dans profiles.is_blocked.
+       </div>
+      </div>
+      <div class="card">
+       <div class="panel-head">
+        <h2>
+         Profils enregistrés
+        </h2>
+        <span class="pill" id="usersTotalPill">
+         0 compte
+        </span>
+       </div>
+       <label for="usersSearch">
+        Rechercher par identifiant, nom ou téléphone
+       </label>
+       <input id="usersSearch" placeholder="Rechercher un compte…" type="search"/>
+       <div class="status" id="usersStatus">
+       </div>
+       <div class="table-wrap">
+        <table>
+         <thead>
+          <tr>
+           <th>
+            Identifiant utilisateur
+           </th>
+           <th>
+            Nom d’utilisateur
+           </th>
+           <th>
+            Téléphone
+           </th>
+           <th>
+            Date de naissance
+           </th>
+           <th>
+            Inscription
+           </th>
+           <th>
+            Adresse IP
+           </th>
+           <th>
+            Actions
+           </th>
+          </tr>
+         </thead>
+         <tbody id="usersBody">
+         </tbody>
+        </table>
+       </div>
+      </div>
+      <div class="card">
+       <h2>
+        Détails du compte sélectionné
+       </h2>
+       <div class="muted" id="userDetails">
+        Choisissez « Examiner » sur un compte pour afficher les données disponibles.
+       </div>
+       <div class="status" id="userDetailsStatus">
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-manual">
+      <div class="welcome">
+       <div>
+        <h1>
+         Normal dépôt / retrait
+        </h1>
+        <div class="muted">
+         Ajustement manuel du solde interne avec enregistrement dans le ledger.
+        </div>
+       </div>
+       <button class="btn-secondary" id="refreshManualBtn" type="button">
+        ↻ Actualiser les utilisateurs
+       </button>
+      </div>
+      <div class="notice">
+       <div>
+        ⚠
+       </div>
+       <div>
+        <strong>
+         Solde interne uniquement
+        </strong>
+        Cette fonction ne transfère pas d’argent réel. Vérifiez le compte et le montant avant chaque opération. Un retrait ne peut pas rendre le solde négatif.
+       </div>
+      </div>
+      <div class="card">
+       <form id="manualWalletForm">
+        <div class="form-grid">
+         <div>
+          <label for="manualUserId">
+           Utilisateur
+          </label>
+          <select id="manualUserId" required="">
+           <option value="">
+            Chargement des utilisateurs…
+           </option>
+          </select>
+         </div>
+         <div>
+          <label for="manualDirection">
+           Opération
+          </label>
+          <select id="manualDirection" required="">
+           <option value="deposit">
+            Normal dépôt — ajouter au solde
+           </option>
+           <option value="withdraw">
+            Normal retrait — retirer du solde
+           </option>
+          </select>
+         </div>
+         <div>
+          <label for="manualAmount">
+           Montant (TND)
+          </label>
+          <input id="manualAmount" min="0.001" placeholder="10.000" required="" step="0.001" type="number"/>
+         </div>
+         <div>
+          <label for="manualNote">
+           Motif obligatoire
+          </label>
+          <input id="manualNote" maxlength="300" placeholder="Motif de l’ajustement" required="" type="text"/>
+         </div>
+        </div>
+        <div class="toolbar">
+         <button class="btn-primary" id="manualSubmitBtn" type="submit">
+          Exécuter l’opération
+         </button>
+        </div>
+        <div class="status" id="manualStatus">
+        </div>
+       </form>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-support">
+      <div class="welcome">
+       <div>
+        <h1>
+         Support client
+        </h1>
+        <div class="muted">
+         Consultez les conversations et répondez aux clients.
+        </div>
+       </div>
+       <button class="btn-secondary" id="refreshSupportBtn" type="button">
+        ↻ Actualiser
+       </button>
+      </div>
+      <div class="grid-2">
+       <div class="card">
+        <div class="panel-head">
+         <h2>
+          Conversations
+         </h2>
+         <span class="pill" id="conversationPill">
+          0
+         </span>
+        </div>
+        <div class="status" id="supportStatus">
+        </div>
+        <div id="conversationList">
+        </div>
+       </div>
+       <div class="card">
+        <h2 id="selectedConversationTitle">
+         Sélectionnez une conversation
+        </h2>
+        <div id="messagesList">
+        </div>
+        <form id="replyForm">
+         <label for="replyText">
+          Votre réponse
+         </label>
+         <textarea id="replyText" placeholder="Écrivez votre réponse..." required=""></textarea>
+         <button class="btn-primary" disabled="" id="replyBtn" type="submit">
+          Envoyer la réponse
+         </button>
+        </form>
+        <div class="status" id="replyStatus">
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="hidden-section" id="tab-settings">
+      <div class="welcome">
+       <div>
+        <h1>
+         Moyens de paiement
+        </h1>
+        <div class="muted">
+         Configurez les coordonnées de réception utilisées sur le site.
+        </div>
+       </div>
+       <button class="btn-secondary" id="reloadFlouciWalletBtn" type="button">
+        ↻ Recharger
+       </button>
+      </div>
+      <div class="notice">
+       <div>
+        i
+       </div>
+       <div>
+        <strong>
+         À noter
+        </strong>
+        Enregistrer une coordonnée ne réalise aucun paiement automatiquement. Vérifiez les transactions reçues séparément.
+       </div>
+      </div>
+      <div class="card">
+       <h2>
+        Coordonnées de réception
+       </h2>
+       <div class="form-grid">
+        <div>
+         <label for="flouciWalletNumber">
+          Flouci — numéro de portefeuille
+         </label>
+         <input autocomplete="off" id="flouciWalletNumber" inputmode="tel" maxlength="100" placeholder="Numéro Flouci" type="text"/>
+        </div>
+        <div>
+         <label for="d17WalletNumber">
+          D17 — numéro de portefeuille
+         </label>
+         <input autocomplete="off" id="d17WalletNumber" inputmode="tel" maxlength="100" placeholder="Numéro D17" type="text"/>
+        </div>
+        <div>
+         <label for="iziZaytounaAccount">
+          Izi Zaytouna — compte
+         </label>
+         <input autocomplete="off" id="iziZaytounaAccount" maxlength="100" placeholder="Compte Izi Zaytouna" type="text"/>
+        </div>
+        <div>
+         <label for="ooredooNumber">
+          Ooredoo Recharge — numéro
+         </label>
+         <input autocomplete="off" id="ooredooNumber" inputmode="tel" maxlength="100" placeholder="Numéro Ooredoo" type="text"/>
+        </div>
+        <div>
+         <label for="orangeNumber">
+          Orange — numéro
+         </label>
+         <input autocomplete="off" id="orangeNumber" inputmode="tel" maxlength="100" placeholder="Numéro Orange" type="text"/>
+        </div>
+        <div>
+         <label for="tunisieTelecomNumber">
+          Tunisie Telecom — numéro
+         </label>
+         <input autocomplete="off" id="tunisieTelecomNumber" inputmode="tel" maxlength="100" placeholder="Numéro Tunisie Telecom" type="text"/>
+        </div>
+       </div>
+       <div class="toolbar">
+        <button class="btn-primary" id="savePaymentSettingsBtn" type="button">
+         Enregistrer les paramètres
+        </button>
+       </div>
+       <div class="status" id="flouciWalletStatus" role="status">
+       </div>
+      </div>
+     </section>
+    </main>
+   </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  </script>
+  <script>
+   "use strict";
 const SUPABASE_URL="https://bjzowejwvhicgmphkwkk.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_O5rsM4bPYTpU09g0ZSuohw_uBasP2mj";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const $=id=>document.getElementById(id);
 let currentUser=null,selectedConversationId=null,walletCache=[],conversationsCache=[],ledgerCache=[],usersCache=[],depositPendingOnly=false,withdrawalPendingOnly=false,busy=false;
-let ipLatestByUser={}, blockedByUser={}, userManagementReady=false;
-const tabNames={overview:"Tableau de bord",deposits:"Dépôts",withdrawals:"Retraits",ledger:"Historique financier",users:"Comptes utilisateurs",support:"Support client",settings:"Moyens de paiement"};
+let ipLatestByUser={},blockedByUser={},userManagementReady=false;
+const tabNames={overview:"Tableau de bord",deposits:"Dépôts",withdrawals:"Retraits",ledger:"Historique financier",users:"Comptes utilisateurs",manual:"Normal dépôt / retrait",support:"Support client",settings:"Moyens de paiement"};
 function message(id,text,isError=false){const node=$(id);if(!node)return;node.textContent=text||"";node.classList.toggle("error",!!isError);node.classList.toggle("good",!isError&&!!text)}
 function show(id,visible){const node=$(id);if(node)node.classList.toggle("hidden",!visible)}
 function safeDate(value){if(!value)return "—";const date=new Date(value);return Number.isNaN(date.getTime())?"—":date.toLocaleString("fr-TN")}
@@ -166,158 +797,49 @@ function amountText(value){const number=Number(value);return Number.isFinite(num
 function requestType(value){const type=String(value||"").toLowerCase();if(type==="deposit")return "Dépôt";if(type==="withdraw"||type==="withdrawal")return "Retrait";return value||"Non défini"}
 function statusText(value){const status=String(value||"").toLowerCase();const labels={pending:"En attente",processing:"En cours",approved:"Confirmé",rejected:"Rejeté",completed:"Terminé",open:"Ouverte",closed:"Fermée"};return labels[status]||value||"Non défini"}
 function statusPill(value){const status=String(value||"").toLowerCase();const cls=status==="approved"||status==="completed"?"green":status==="pending"?"gold":status==="rejected"?"red":status==="processing"?"blue":"";const span=document.createElement("span");span.className="pill "+cls;span.textContent=statusText(value);return span}
-function ledgerType(value){const type=String(value||"").toLowerCase();if(type==="deposit")return "Dépôt";if(type==="withdrawal")return "Retrait";if(type==="adjustment")return "Ajustement";return value||"—"}
+function ledgerType(value){const type=String(value||"").toLowerCase();if(type==="deposit")return "Dépôt";if(type==="withdrawal"||type==="withdraw")return "Retrait";if(type==="admin_manual")return "Ajustement manuel admin";if(type==="adjustment")return "Ajustement";return value||"—"}
 function addCell(row,value){const cell=document.createElement("td");cell.textContent=String(value??"—");row.appendChild(cell);return cell}
 function addButton(parent,label,className,handler){const button=document.createElement("button");button.type="button";button.textContent=label;button.className=className;button.addEventListener("click",handler);parent.appendChild(button);return button}
 function requestKind(item){return String(item.request_type||"").toLowerCase()}
 function isDeposit(item){return requestKind(item)==="deposit"}
 function isWithdrawal(item){return ["withdraw","withdrawal"].includes(requestKind(item))}
 async function checkAdmin(user){const {data,error}=await db.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();if(error)throw error;return !!data}
-async function start(){show("dashboard",false);show("deniedPanel",false);show("loginPanel",false);message("mainStatus","");const {data,error}=await db.auth.getSession();if(error){show("loginPanel",true);message("loginStatus","Impossible de vérifier la session : "+error.message,true);return}const user=data.session?.user;if(!user){currentUser=null;$("accountLabel")&&($("accountLabel").textContent="Non connecté");show("loginPanel",true);return}currentUser=user;$("accountLabel").textContent=user.email||user.id;show("logoutBtn",true);try{if(!await checkAdmin(user)){show("deniedPanel",true);message("deniedText","Ce compte n'est pas enregistré comme administrateur.",true);return}show("dashboard",true);await refreshAll();await loadFlouciWallet()}catch(error){show("deniedPanel",true);message("deniedText","Vérification administrateur impossible.\n"+(error.message||String(error)),true)}}
-async function refreshAll(){if(!currentUser||busy)return;busy=true;if($("refreshBtn"))$("refreshBtn").disabled=true;message("overviewStatus","Actualisation des données...");try{await Promise.all([loadWallet(),loadConversations(),loadLedger()]);updateStats();message("overviewStatus","Données actualisées.\nDemandes de portefeuille : "+walletCache.length+"\nDépôts : "+walletCache.filter(isDeposit).length+"\nRetraits : "+walletCache.filter(isWithdrawal).length+"\nDemandes en attente : "+walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length+"\nMouvements du ledger : "+ledgerCache.length+"\nConversations : "+conversationsCache.length)}catch(error){message("overviewStatus","Actualisation impossible : "+(error.message||String(error)),true)}finally{busy=false;if($("refreshBtn"))$("refreshBtn").disabled=false}}
+async function start(){show("dashboard",false);show("deniedPanel",false);show("loginPanel",false);const {data,error}=await db.auth.getSession();if(error){show("loginPanel",true);message("loginStatus","Impossible de vérifier la session : "+error.message,true);return}const user=data.session?.user;if(!user){currentUser=null;$("accountLabel").textContent="Non connecté";show("loginPanel",true);return}currentUser=user;$("accountLabel").textContent=user.email||user.id;show("logoutBtn",true);try{if(!await checkAdmin(user)){show("deniedPanel",true);message("deniedText","Ce compte n'est pas enregistré comme administrateur.",true);return}show("dashboard",true);await refreshAll();await loadFlouciWallet();await loadUsers()}catch(error){show("deniedPanel",true);message("deniedText","Vérification administrateur impossible.\n"+(error.message||String(error)),true)}}
+async function refreshAll(){if(!currentUser||busy)return;busy=true;$("refreshBtn").disabled=true;message("overviewStatus","Actualisation des données...");try{await Promise.all([loadWallet(),loadConversations(),loadLedger()]);updateStats();message("overviewStatus","Données actualisées.\nDemandes : "+walletCache.length+"\nDépôts : "+walletCache.filter(isDeposit).length+"\nRetraits : "+walletCache.filter(isWithdrawal).length+"\nEn attente : "+walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length+"\nLedger : "+ledgerCache.length+"\nConversations : "+conversationsCache.length)}catch(error){message("overviewStatus","Actualisation impossible : "+(error.message||String(error)),true)}finally{busy=false;$("refreshBtn").disabled=false}}
 async function loadWallet(){message("depositStatus","Chargement des demandes...");message("withdrawalStatus","Chargement des demandes...");const {data,error}=await db.from("wallet_requests").select("id,user_id,request_type,amount,payment_method,payment_account,payment_reference,proof_storage_path,admin_note,status,created_at,updated_at").order("created_at",{ascending:false}).limit(200);if(error){walletCache=[];message("depositStatus","Lecture impossible : "+error.message,true);message("withdrawalStatus","Lecture impossible : "+error.message,true);renderWallet();updateStats();return}walletCache=data||[];renderWallet();updateStats()}
-function renderWallet(){renderWalletSection("deposit", "depositBody", "depositStatus", depositPendingOnly);renderWalletSection("withdrawal", "withdrawalBody", "withdrawalStatus", withdrawalPendingOnly);$("depositTotalPill").textContent=walletCache.filter(isDeposit).length+" demande(s)";$("withdrawalTotalPill").textContent=walletCache.filter(isWithdrawal).length+" demande(s)";}
-function renderWalletSection(kind,bodyId,statusId,pendingOnly){const body=$(bodyId);body.replaceChildren();let rows=walletCache.filter(item=>kind==="deposit"?isDeposit(item):isWithdrawal(item));if(pendingOnly)rows=rows.filter(x=>String(x.status||"").toLowerCase()==="pending");if(!rows.length){message(statusId,"Aucune demande correspondante.");const tr=document.createElement("tr"),td=addCell(tr,"Aucune demande à afficher");td.colSpan=kind==="deposit"?9:8;td.className="empty";body.appendChild(tr);return}message(statusId,rows.length+" demande(s) affichée(s).");for(const item of rows){const tr=document.createElement("tr");const userCell=addCell(tr,item.user_id);userCell.innerHTML="";const userMain=document.createElement("div");userMain.className="cell-main";userMain.textContent=String(item.user_id||"Client");userCell.appendChild(userMain);const userSub=document.createElement("div");userSub.className="cell-sub";userSub.textContent=String(item.id||"");userCell.appendChild(userSub);addCell(tr,amountText(item.amount));addCell(tr,item.payment_method||"—");addCell(tr,item.payment_account||"—");addCell(tr,item.payment_reference||"—");if(kind==="deposit"){const proofCell=document.createElement("td");if(item.proof_storage_path){const proofButton=addButton(proofCell,"Voir le justificatif","btn-secondary",()=>openPaymentProof(item,proofButton));}else proofCell.textContent="Aucun justificatif";tr.appendChild(proofCell)}const statusCell=document.createElement("td");statusCell.appendChild(statusPill(item.status));tr.appendChild(statusCell);addCell(tr,safeDate(item.created_at));const actions=document.createElement("td"),status=String(item.status||"").toLowerCase();if(status==="pending"||status==="processing"){if(kind==="deposit")addButton(actions,"Confirmer","btn-primary",()=>approveDeposit(item));else addButton(actions,"Confirmer","btn-warning",()=>approveWithdrawal(item));addButton(actions,"Rejeter","btn-danger",()=>rejectWalletRequest(item));if(status!=="processing")addButton(actions,"En cours","btn-secondary",()=>markWalletProcessing(item))}else actions.appendChild(statusPill(item.status));tr.appendChild(actions);body.appendChild(tr)}}
+function renderWallet(){renderWalletSection("deposit","depositBody","depositStatus",depositPendingOnly);renderWalletSection("withdrawal","withdrawalBody","withdrawalStatus",withdrawalPendingOnly);$("depositTotalPill").textContent=walletCache.filter(isDeposit).length+" demande(s)";$("withdrawalTotalPill").textContent=walletCache.filter(isWithdrawal).length+" demande(s)"}
+function renderWalletSection(kind,bodyId,statusId,pendingOnly){const body=$(bodyId);body.replaceChildren();let rows=walletCache.filter(item=>kind==="deposit"?isDeposit(item):isWithdrawal(item));if(pendingOnly)rows=rows.filter(x=>String(x.status||"").toLowerCase()==="pending");if(!rows.length){message(statusId,"Aucune demande correspondante.");const tr=document.createElement("tr"),td=addCell(tr,"Aucune demande à afficher");td.colSpan=kind==="deposit"?9:8;td.className="empty";body.appendChild(tr);return}message(statusId,rows.length+" demande(s) affichée(s).");for(const item of rows){const tr=document.createElement("tr");const userCell=addCell(tr,item.user_id);userCell.innerHTML="";const userMain=document.createElement("div");userMain.className="cell-main";userMain.textContent=String(item.user_id||"Client");userCell.appendChild(userMain);const userSub=document.createElement("div");userSub.className="cell-sub";userSub.textContent=String(item.id||"");userCell.appendChild(userSub);addCell(tr,amountText(item.amount));addCell(tr,item.payment_method||"—");addCell(tr,item.payment_account||"—");addCell(tr,item.payment_reference||"—");if(kind==="deposit"){const proofCell=document.createElement("td");if(item.proof_storage_path){const proofButton=addButton(proofCell,"Voir le justificatif","btn-secondary",()=>openPaymentProof(item,proofButton))}else proofCell.textContent="Aucun justificatif";tr.appendChild(proofCell)}const statusCell=document.createElement("td");statusCell.appendChild(statusPill(item.status));tr.appendChild(statusCell);addCell(tr,safeDate(item.created_at));const actions=document.createElement("td"),status=String(item.status||"").toLowerCase();if(status==="pending"||status==="processing"){if(kind==="deposit")addButton(actions,"Confirmer","btn-primary",()=>approveDeposit(item));else addButton(actions,"Confirmer","btn-warning",()=>approveWithdrawal(item));addButton(actions,"Rejeter","btn-danger",()=>rejectWalletRequest(item));if(status!=="processing")addButton(actions,"En cours","btn-secondary",()=>markWalletProcessing(item))}else actions.appendChild(statusPill(item.status));tr.appendChild(actions);body.appendChild(tr)}}
 async function openPaymentProof(item,button){const path=String(item.proof_storage_path||"").trim();if(!path){message("depositStatus","Aucun chemin de justificatif pour cette demande.",true);return}button.disabled=true;const oldText=button.textContent;button.textContent="Ouverture...";try{const {data,error}=await db.storage.from("payment-proofs").createSignedUrl(path,300);if(error)throw error;if(!data?.signedUrl)throw new Error("Aucun lien sécurisé temporaire n'a été créé.");window.open(data.signedUrl,"_blank","noopener,noreferrer");message("depositStatus","Lien privé temporaire créé. Vérifiez le justificatif avant de confirmer le dépôt.")}catch(error){message("depositStatus","Impossible d'ouvrir le justificatif : "+(error.message||String(error)),true)}finally{button.disabled=false;button.textContent=oldText}}
 async function markWalletProcessing(item){if(!confirm("Passer cette demande au statut « En cours » ?"))return;const statusId=isDeposit(item)?"depositStatus":"withdrawalStatus";message(statusId,"Mise à jour du statut...");try{const {data,error}=await db.rpc("admin_set_wallet_request_processing",{p_request_id:item.id});if(error)throw error;if(data&&data.success===false)throw new Error(data.message||"Mise à jour impossible");message(statusId,"Statut mis à jour : En cours.");await loadWallet();updateStats()}catch(error){message(statusId,"Échec de la mise à jour : "+(error.message||String(error)),true)}}
 async function approveDeposit(item){if(!confirm("Confirmer ce dépôt de "+amountText(item.amount)+" ?\n\nLe montant sera ajouté au portefeuille et une écriture sera créée dans le ledger.\n\nVérifiez que le paiement a réellement été reçu avant de continuer."))return;message("depositStatus","Validation du dépôt...");try{const {data,error}=await db.rpc("admin_process_wallet_request",{p_request_id:item.id});if(error)throw error;if(!data||data.success!==true)throw new Error("La base de données n'a pas confirmé l'opération.");message("depositStatus","Dépôt confirmé.\nSolde avant : "+amountText(data.balance_before)+"\nSolde après : "+amountText(data.balance_after));await Promise.all([loadWallet(),loadLedger()]);updateStats()}catch(error){message("depositStatus","Échec de validation du dépôt :\n"+(error.message||String(error)),true)}}
 async function approveWithdrawal(item){const confirmed=confirm("ATTENTION — validation du retrait\n\nMontant : "+amountText(item.amount)+"\nBénéficiaire : "+String(item.payment_account||"Non renseigné")+"\n\nCette action déduira le montant du solde et enregistrera le retrait dans le ledger.\nAucun virement ne sera envoyé par le site.\n\nNe continuez que si le transfert externe a déjà été effectué et vérifié.\n\nConfirmer le retrait ?");if(!confirmed)return;message("withdrawalStatus","Validation du retrait et enregistrement du débit...");try{const {data,error}=await db.rpc("admin_process_wallet_request",{p_request_id:item.id});if(error)throw error;if(!data||data.success!==true)throw new Error("La base de données n'a pas confirmé l'opération.");message("withdrawalStatus","Retrait enregistré et solde déduit. Aucun transfert externe n'a été effectué par le site.\nSolde avant : "+amountText(data.balance_before)+"\nSolde après : "+amountText(data.balance_after));await Promise.all([loadWallet(),loadLedger()]);updateStats()}catch(error){message("withdrawalStatus","Échec de validation du retrait :\n"+(error.message||String(error)),true)}}
 async function rejectWalletRequest(item){const statusId=isDeposit(item)?"depositStatus":"withdrawalStatus";const reason=prompt("Motif du rejet ?","Paiement non confirmé");if(reason===null)return;message(statusId,"Rejet de la demande...");try{const {data,error}=await db.rpc("admin_reject_wallet_request",{p_request_id:item.id,p_admin_note:reason.trim()||"Demande rejetée"});if(error)throw error;if(!data||data.success!==true)throw new Error("Le rejet n'a pas été confirmé. La demande a peut-être déjà été traitée.");message(statusId,"Demande rejetée sans modification du solde.");await loadWallet();updateStats()}catch(error){message(statusId,"Échec du rejet :\n"+(error.message||String(error)),true)}}
 async function loadLedger(){message("ledgerStatus","Chargement du ledger...");$("ledgerBody").replaceChildren();const {data,error}=await db.from("wallet_ledger").select("id,user_id,request_id,entry_type,direction,amount,balance_before,balance_after,note,created_at").order("created_at",{ascending:false}).limit(300);if(error){ledgerCache=[];message("ledgerStatus","Lecture du ledger impossible : "+error.message,true);renderLedger();return}ledgerCache=data||[];renderLedger()}
-function renderLedger(){const body=$("ledgerBody");body.replaceChildren();$("ledgerTotalPill").textContent=ledgerCache.length+" mouvement(s)";if(!ledgerCache.length){message("ledgerStatus","Aucun mouvement financier pour le moment.");const tr=document.createElement("tr"),td=addCell(tr,"Aucun mouvement à afficher");td.colSpan=8;td.className="empty";body.appendChild(tr);return}message("ledgerStatus",ledgerCache.length+" mouvement(s) affiché(s).");for(const item of ledgerCache){const tr=document.createElement("tr");addCell(tr,ledgerType(item.entry_type));const dc=addCell(tr,item.direction==="credit"?"Crédit":"Débit");dc.className=item.direction==="credit"?"credit":"debit";const ac=addCell(tr,amountText(item.amount));ac.className=item.direction==="credit"?"credit":"debit";const bc=addCell(tr,amountText(item.balance_before));bc.className="balance";const af=addCell(tr,amountText(item.balance_after));af.className="balance";addCell(tr,item.note||"—");addCell(tr,safeDate(item.created_at));addCell(tr,item.user_id);body.appendChild(tr)}}
+function renderLedger(){const body=$("ledgerBody");body.replaceChildren();$("ledgerTotalPill").textContent=ledgerCache.length+" mouvement(s)";if(!ledgerCache.length){message("ledgerStatus","Aucun mouvement financier pour le moment.");const tr=document.createElement("tr"),td=addCell(tr,"Aucun mouvement à afficher");td.colSpan=8;td.className="empty";body.appendChild(tr);return}message("ledgerStatus",ledgerCache.length+" mouvement(s) affiché(s).");for(const item of ledgerCache){const tr=document.createElement("tr");addCell(tr,ledgerType(item.entry_type));const credit=["credit","deposit"].includes(String(item.direction||"").toLowerCase());const dc=addCell(tr,credit?"Crédit":"Débit");dc.className=credit?"credit":"debit";const ac=addCell(tr,amountText(item.amount));ac.className=credit?"credit":"debit";const bc=addCell(tr,amountText(item.balance_before));bc.className="balance";const af=addCell(tr,amountText(item.balance_after));af.className="balance";addCell(tr,item.note||"—");addCell(tr,safeDate(item.created_at));addCell(tr,item.user_id);body.appendChild(tr)}}
 async function loadConversations(){message("supportStatus","Chargement des conversations...");$("conversationList").replaceChildren();const {data,error}=await db.from("support_conversations").select("id,visitor_token,visitor_name,topic,status,created_at,updated_at").order("updated_at",{ascending:false}).limit(100);if(error){conversationsCache=[];message("supportStatus","Lecture des conversations impossible : "+error.message,true);updateStats();return}conversationsCache=data||[];renderConversations();updateStats()}
 function renderConversations(){const list=$("conversationList");list.replaceChildren();$("conversationPill").textContent=conversationsCache.length;if(!conversationsCache.length){message("supportStatus","Aucune conversation.");const empty=document.createElement("div");empty.className="empty";empty.textContent="Aucune conversation à afficher.";list.appendChild(empty);return}message("supportStatus",conversationsCache.length+" conversation(s).");for(const conv of conversationsCache){const item=document.createElement("div");item.className="item";const title=document.createElement("strong");title.textContent=conv.visitor_name||"Client";item.appendChild(title);const details=document.createElement("p");details.className="small";details.textContent=(conv.topic||"Question générale")+" · "+statusText(conv.status)+"\n"+safeDate(conv.created_at);item.appendChild(details);addButton(item,"Ouvrir la conversation","btn-secondary",()=>openConversation(conv));list.appendChild(item)}}
 async function openConversation(conv){selectedConversationId=conv.id;$("selectedConversationTitle").textContent=(conv.visitor_name||"Client")+" — "+(conv.topic||"Question générale");$("replyBtn").disabled=false;$("messagesList").replaceChildren();message("replyStatus","Chargement des messages...");const {data,error}=await db.from("support_messages").select("id,sender_role,message,created_at").eq("conversation_id",conv.id).order("created_at",{ascending:true}).limit(300);if(error){message("replyStatus","Chargement des messages impossible : "+error.message,true);return}for(const msg of data||[]){const bubble=document.createElement("div");bubble.className="item";const sender=document.createElement("strong");sender.textContent=msg.sender_role==="admin"?"Support":msg.sender_role==="visitor"?"Client":msg.sender_role||"Expéditeur";bubble.appendChild(sender);const content=document.createElement("p");content.textContent=msg.message||"";content.style.whiteSpace="pre-wrap";bubble.appendChild(content);const time=document.createElement("div");time.className="small";time.textContent=safeDate(msg.created_at);bubble.appendChild(time);$("messagesList").appendChild(bubble)}message("replyStatus","Messages chargés.")}
 $("replyForm").addEventListener("submit",async event=>{event.preventDefault();if(!selectedConversationId||!currentUser){message("replyStatus","Sélectionnez d'abord une conversation.",true);return}const reply=$("replyText").value.trim();if(!reply){message("replyStatus","Saisissez une réponse.",true);return}$("replyBtn").disabled=true;message("replyStatus","Envoi de la réponse...");try{const {error}=await db.from("support_messages").insert({conversation_id:selectedConversationId,sender_role:"admin",message:reply});if(error)throw error;$("replyText").value="";message("replyStatus","Réponse envoyée.");const conv=conversationsCache.find(c=>c.id===selectedConversationId);if(conv)await openConversation(conv)}catch(error){message("replyStatus","Impossible d'envoyer la réponse :\n"+(error.message||String(error)),true)}finally{$("replyBtn").disabled=!selectedConversationId}});
 function updateStats(){$("depositCount").textContent=walletCache.filter(isDeposit).length;$("withdrawCount").textContent=walletCache.filter(isWithdrawal).length;$("conversationCount").textContent=conversationsCache.length;$("pendingCount").textContent=walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length;$("overviewStatus").textContent="Demandes chargées : "+walletCache.length+"\nDépôts : "+walletCache.filter(isDeposit).length+"\nRetraits : "+walletCache.filter(isWithdrawal).length+"\nEn attente : "+walletCache.filter(x=>String(x.status||"").toLowerCase()==="pending").length+"\nMouvements financiers : "+ledgerCache.length+"\nConversations support : "+conversationsCache.length}
-async function callUserManagement(payload){
- const {data:sessionData,error:sessionError}=await db.auth.getSession();
- if(sessionError)throw sessionError;
- const token=sessionData?.session?.access_token;
- if(!token)throw new Error("La session administrateur a expiré. Reconnectez-vous.");
- const response=await fetch(SUPABASE_URL+"/functions/v1/admin-user-management",{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   "Authorization":"Bearer "+token,
-   "apikey":SUPABASE_PUBLISHABLE_KEY
-  },
-  body:JSON.stringify(payload)
- });
- let result={};
- try{result=await response.json()}catch(_){}
- if(!response.ok||result.error)throw new Error(result.error||("Erreur serveur ("+response.status+")"));
- return result;
-}
-function setUserManagementUnavailable(error){
- userManagementReady=false;
- message("usersStatus","Profils chargés, mais le service sécurisé IP/blocage n’est pas disponible. Déployez la fonction Edge admin-user-management. Détail : "+(error.message||String(error)),true);
-}
-async function loadUsers(){
- const body=$("usersBody"); if(!body)return; body.replaceChildren(); message("usersStatus","Chargement des profils…");
- try{
-  const {data,error}=await db.from("profiles").select("id,username,date_of_birth,phone,created_at").order("created_at",{ascending:false}).limit(500);
-  if(error)throw error;
-  usersCache=data||[];
-  ipLatestByUser={}; blockedByUser={}; userManagementReady=false;
-  try{
-   const result=await callUserManagement({action:"list",userIds:usersCache.map(u=>u.id).filter(Boolean)});
-   ipLatestByUser=result.latestIps||{};
-   blockedByUser=result.blockedUsers||{};
-   userManagementReady=true;
-   renderUsers();
-   message("usersStatus",usersCache.length+" profil(s) chargé(s). Historique IP et statut du compte synchronisés.");
-  }catch(serviceError){
-   renderUsers();
-   setUserManagementUnavailable(serviceError);
-  }
- }catch(error){usersCache=[];renderUsers();message("usersStatus","Impossible de lire les profils : "+(error.message||String(error))+". Vérifiez les règles RLS et les colonnes de la table profiles.",true)}
-}
-function renderUsers(){
- const body=$("usersBody");if(!body)return;body.replaceChildren();
- const q=String($("usersSearch")?.value||"").trim().toLowerCase();
- const rows=usersCache.filter(u=>[u.id,u.username,u.phone,u.date_of_birth,ipLatestByUser[u.id]?.ip_address].some(v=>String(v||"").toLowerCase().includes(q)));
- $("usersTotalPill").textContent=rows.length+" compte(s)";
- if(!rows.length){const tr=document.createElement("tr"),td=addCell(tr,usersCache.length?"Aucun résultat de recherche":"Aucun profil disponible");td.colSpan=7;td.className="empty";body.appendChild(tr);return}
- for(const user of rows){
-  const tr=document.createElement("tr");
-  addCell(tr,user.id||"—");addCell(tr,user.username||"—");addCell(tr,user.phone||"—");addCell(tr,user.date_of_birth||"—");addCell(tr,safeDate(user.created_at));
-  const ipCell=document.createElement("td");
-  const ipRecord=ipLatestByUser[user.id];
-  ipCell.textContent=ipRecord?.ip_address||"Non enregistré";
-  if(ipRecord?.recorded_at){const sub=document.createElement("div");sub.className="cell-sub";sub.textContent=safeDate(ipRecord.recorded_at);ipCell.appendChild(sub)}
-  tr.appendChild(ipCell);
-  const actions=document.createElement("td");
-  addButton(actions,"Examiner","btn-secondary",()=>showUserDetails(user));
-  const isBlocked=!!blockedByUser[user.id];
-  const ban=addButton(actions,isBlocked?"Débloquer":"Bloquer",isBlocked?"btn-warning":"btn-danger",()=>changeUserBlock(user,isBlocked));
-  ban.disabled=!userManagementReady||!user.id;
-  ban.title=userManagementReady?"":"Nécessite la fonction Edge sécurisée admin-user-management";
-  tr.appendChild(actions);body.appendChild(tr);
- }
-}
-async function changeUserBlock(user,isCurrentlyBlocked){
- if(!userManagementReady){message("userDetailsStatus","Le service sécurisé n’est pas disponible. Déployez d’abord admin-user-management.",true);return}
- const action=isCurrentlyBlocked?"unban":"ban";
- const promptText=isCurrentlyBlocked
-  ?"Confirmer le déblocage de ce compte utilisateur ?"
-  :"Confirmer le blocage de ce compte utilisateur ? L’utilisateur ne pourra plus se connecter jusqu’au déblocage.";
- if(!window.confirm(promptText))return;
- message("userDetailsStatus",isCurrentlyBlocked?"Déblocage du compte…":"Blocage du compte…");
- try{
-  await callUserManagement({action,userId:user.id});
-  message("userDetailsStatus",isCurrentlyBlocked?"Compte débloqué avec succès.":"Compte bloqué avec succès.");
-  await loadUsers();
-  await showUserDetails(user);
- }catch(error){message("userDetailsStatus","Opération impossible : "+(error.message||String(error)),true)}
-}
-async function showUserDetails(user){
- const box=$("userDetails");box.replaceChildren();message("userDetailsStatus","Chargement des données du compte…");
- const title=document.createElement("strong");title.textContent=user.username||"Profil utilisateur";box.appendChild(title);
- const p=document.createElement("p");p.className="small";
- const ipRecord=ipLatestByUser[user.id];
- p.textContent="ID : "+(user.id||"—")+"\nTéléphone : "+(user.phone||"—")+"\nDate de naissance : "+(user.date_of_birth||"—")+"\nCréation du profil : "+safeDate(user.created_at)+"\nDernière adresse IP : "+(ipRecord?.ip_address||"non enregistrée")+"\nDernière activité IP : "+(ipRecord?.recorded_at?safeDate(ipRecord.recorded_at):"—")+"\nStatut : "+(blockedByUser[user.id]?"Bloqué":"Non bloqué");
- p.style.whiteSpace="pre-wrap";box.appendChild(p);
- const historyHeading=document.createElement("h3");historyHeading.textContent="Historique des adresses IP";box.appendChild(historyHeading);
- const history=document.createElement("div");history.className="small";history.textContent="Chargement de l’historique IP…";box.appendChild(history);
- try{
-  const result=await callUserManagement({action:"history",userId:user.id});
-  history.replaceChildren();
-  const logs=Array.isArray(result.history)?result.history:[];
-  if(!logs.length){history.textContent="Aucun historique IP enregistré pour ce compte."}
-  else{
-   for(const log of logs){
-    const row=document.createElement("div");row.className="item";
-    const ip=document.createElement("strong");ip.textContent=log.ip_address||"IP inconnue";row.appendChild(ip);
-    const time=document.createElement("div");time.className="small";time.textContent=safeDate(log.recorded_at);row.appendChild(time);history.appendChild(row);
-   }
-  }
- }catch(error){history.textContent="Historique IP indisponible : "+(error.message||String(error))}
- try{
-  const {data,error}=await db.from("wallet_accounts").select("balance,currency,created_at").eq("user_id",user.id).maybeSingle();
-  if(error)throw error;
-  const wallet=document.createElement("p");wallet.textContent="Solde : "+(data?String(data.balance)+" "+String(data.currency||"TND"):"aucun compte de portefeuille trouvé");box.appendChild(wallet);
-  message("userDetailsStatus","Détails du compte chargés.");
- }catch(error){message("userDetailsStatus","Détails du profil chargés, mais lecture du portefeuille impossible : "+(error.message||String(error)),true)}
-}
-$("refreshUsersBtn")?.addEventListener("click",loadUsers);$("usersSearch")?.addEventListener("input",renderUsers);
-function switchTab(tab){document.querySelectorAll("[data-tab]").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));Object.keys(tabNames).forEach(name=>{const section=$("tab-"+name);if(section)section.classList.toggle("hidden-section",name!==tab)});$("pageTitle").textContent=tabNames[tab]||tabNames.overview;if(tab==="users")loadUsers()}
-document.querySelectorAll("[data-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.tab)));
-document.querySelectorAll("[data-open-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.openTab)));
-$("allDepositsBtn").addEventListener("click",()=>{depositPendingOnly=false;$("allDepositsBtn").classList.add("active");$("pendingDepositsBtn").classList.remove("active");renderWallet()});
-$("pendingDepositsBtn").addEventListener("click",()=>{depositPendingOnly=true;$("pendingDepositsBtn").classList.add("active");$("allDepositsBtn").classList.remove("active");renderWallet()});
-$("allWithdrawalsBtn").addEventListener("click",()=>{withdrawalPendingOnly=false;$("allWithdrawalsBtn").classList.add("active");$("pendingWithdrawalsBtn").classList.remove("active");renderWallet()});
-$("pendingWithdrawalsBtn").addEventListener("click",()=>{withdrawalPendingOnly=true;$("pendingWithdrawalsBtn").classList.add("active");$("allWithdrawalsBtn").classList.remove("active");renderWallet()});
-document.querySelectorAll("[data-refresh-wallet]").forEach(button=>button.addEventListener("click",loadWallet));
+async function callUserManagement(payload){const {data:sessionData,error:sessionError}=await db.auth.getSession();if(sessionError)throw sessionError;const token=sessionData?.session?.access_token;if(!token)throw new Error("La session administrateur a expiré. Reconnectez-vous.");const response=await fetch(SUPABASE_URL+"/functions/v1/admin-user-management",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+token,"apikey":SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify(payload)});let result={};try{result=await response.json()}catch(_){}if(!response.ok||result.error)throw new Error(result.error||("Erreur serveur ("+response.status+")"));return result}
+function setUserManagementUnavailable(error){userManagementReady=false;message("usersStatus","Profils chargés, mais le service sécurisé IP/blocage n’est pas disponible. Détail : "+(error.message||String(error)),true)}
+async function loadUsers(){const body=$("usersBody");if(!body)return;body.replaceChildren();message("usersStatus","Chargement des profils…");try{const {data,error}=await db.from("profiles").select("id,user_id,username,date_of_birth,phone,created_at,is_blocked").order("created_at",{ascending:false}).limit(500);if(error)throw error;usersCache=data||[];ipLatestByUser={};blockedByUser={};usersCache.forEach(u=>blockedByUser[u.user_id||u.id]=!!u.is_blocked);try{const result=await callUserManagement({action:"list",userIds:usersCache.map(u=>u.user_id||u.id).filter(Boolean)});ipLatestByUser=result.latestIps||{};blockedByUser={...blockedByUser,...(result.blockedUsers||{})};userManagementReady=true;renderUsers();message("usersStatus",usersCache.length+" profil(s) chargé(s).")}catch(serviceError){renderUsers();setUserManagementUnavailable(serviceError)}renderManualUsers()}catch(error){usersCache=[];renderUsers();message("usersStatus","Impossible de lire les profils : "+(error.message||String(error)),true)}}
+function renderUsers(){const body=$("usersBody");if(!body)return;body.replaceChildren();const q=String($("usersSearch")?.value||"").trim().toLowerCase();const rows=usersCache.filter(u=>[u.id,u.user_id,u.username,u.phone,u.date_of_birth,ipLatestByUser[u.user_id||u.id]?.ip_address].some(v=>String(v||"").toLowerCase().includes(q)));$("usersTotalPill").textContent=rows.length+" compte(s)";if(!rows.length){const tr=document.createElement("tr"),td=addCell(tr,usersCache.length?"Aucun résultat de recherche":"Aucun profil disponible");td.colSpan=7;td.className="empty";body.appendChild(tr);return}for(const user of rows){const uid=user.user_id||user.id;const tr=document.createElement("tr");addCell(tr,uid||"—");addCell(tr,user.username||"—");addCell(tr,user.phone||"—");addCell(tr,user.date_of_birth||"—");addCell(tr,safeDate(user.created_at));const ipCell=document.createElement("td"),ipRecord=ipLatestByUser[uid];ipCell.textContent=ipRecord?.ip_address||"Non enregistré";if(ipRecord?.recorded_at){const sub=document.createElement("div");sub.className="cell-sub";sub.textContent=safeDate(ipRecord.recorded_at);ipCell.appendChild(sub)}tr.appendChild(ipCell);const actions=document.createElement("td");addButton(actions,"Examiner","btn-secondary",()=>showUserDetails(user));const blocked=!!blockedByUser[uid];const ban=addButton(actions,blocked?"Débloquer":"Bloquer",blocked?"btn-warning":"btn-danger",()=>changeUserBlock(user,blocked));ban.disabled=!uid;tr.appendChild(actions);body.appendChild(tr)}}
+async function changeUserBlock(user,isCurrentlyBlocked){const uid=user.user_id||user.id;const action=isCurrentlyBlocked?"unban":"ban";if(!confirm(isCurrentlyBlocked?"Confirmer le déblocage de ce compte ?":"Confirmer le blocage de ce compte ?"))return;message("userDetailsStatus",isCurrentlyBlocked?"Déblocage du compte…":"Blocage du compte…");try{const {error:blockError}=await db.rpc("admin_set_user_blocked",{p_user_id:uid,p_blocked:!isCurrentlyBlocked});if(blockError)throw blockError;if(userManagementReady){await callUserManagement({action,userId:uid})}blockedByUser[uid]=!isCurrentlyBlocked;message("userDetailsStatus",isCurrentlyBlocked?"Compte débloqué.":"Compte marqué comme bloqué dans le site.");await loadUsers();await showUserDetails(user)}catch(error){message("userDetailsStatus","Opération impossible : "+(error.message||String(error)),true)}}
+async function showUserDetails(user){const uid=user.user_id||user.id;const box=$("userDetails");box.replaceChildren();message("userDetailsStatus","Chargement des données du compte…");const title=document.createElement("strong");title.textContent=user.username||"Profil utilisateur";box.appendChild(title);const p=document.createElement("p");p.className="small";const ipRecord=ipLatestByUser[uid];p.textContent="ID : "+uid+"\nTéléphone : "+(user.phone||"—")+"\nDate de naissance : "+(user.date_of_birth||"—")+"\nCréation du profil : "+safeDate(user.created_at)+"\nDernière adresse IP : "+(ipRecord?.ip_address||"non enregistrée")+"\nStatut : "+(blockedByUser[uid]?"Bloqué":"Non bloqué");p.style.whiteSpace="pre-wrap";box.appendChild(p);const heading=document.createElement("h3");heading.textContent="Historique des adresses IP";box.appendChild(heading);const history=document.createElement("div");history.className="small";history.textContent="Chargement de l’historique IP…";box.appendChild(history);if(userManagementReady){try{const result=await callUserManagement({action:"history",userId:uid});history.replaceChildren();const logs=Array.isArray(result.history)?result.history:[];if(!logs.length)history.textContent="Aucun historique IP enregistré.";else for(const log of logs){const row=document.createElement("div");row.className="item";const ip=document.createElement("strong");ip.textContent=log.ip_address||"IP inconnue";row.appendChild(ip);const time=document.createElement("div");time.className="small";time.textContent=safeDate(log.recorded_at);row.appendChild(time);history.appendChild(row)}}catch(error){history.textContent="Historique IP indisponible : "+(error.message||String(error))}}else history.textContent="Le service d’historique IP n’est pas disponible.";try{const {data,error}=await db.from("wallet_accounts").select("balance,currency,created_at").eq("user_id",uid).maybeSingle();if(error)throw error;const wallet=document.createElement("p");wallet.textContent="Solde : "+(data?String(data.balance)+" "+String(data.currency||"TND"):"aucun compte de portefeuille trouvé");box.appendChild(wallet);message("userDetailsStatus","Détails du compte chargés.")}catch(error){message("userDetailsStatus","Détails du profil chargés, mais lecture du portefeuille impossible : "+(error.message||String(error)),true)}}
+function renderManualUsers(){const select=$("manualUserId");if(!select)return;const previous=select.value;select.innerHTML='<option value="">Choisir un utilisateur…</option>'+usersCache.map(u=>{const uid=u.user_id||u.id;return '<option value="'+String(uid).replace(/&/g,"&amp;").replace(/"/g,"&quot;")+'">'+String(u.username||"Sans nom").replace(/</g,"&lt;")+' — '+String(uid)+'</option>'}).join("");if(usersCache.some(u=>(u.user_id||u.id)===previous))select.value=previous}
+async function performManualWallet(event){event.preventDefault();const userId=$("manualUserId").value,direction=$("manualDirection").value,amount=Number($("manualAmount").value),note=$("manualNote").value.trim(),button=$("manualSubmitBtn");if(!userId){message("manualStatus","Choisissez un utilisateur.",true);return}if(!Number.isFinite(amount)||amount<=0){message("manualStatus","Saisissez un montant supérieur à zéro.",true);return}if(!note){message("manualStatus","Le motif est obligatoire.",true);return}if(!confirm("Confirmer "+(direction==="deposit"?"Normal dépôt":"Normal retrait")+" de "+amountText(amount)+" ?\nCette opération modifie le solde interne uniquement."))return;button.disabled=true;message("manualStatus","Opération en cours…");try{const {data,error}=await db.rpc("admin_adjust_wallet",{p_user_id:userId,p_amount:amount,p_direction:direction,p_note:note});if(error)throw error;message("manualStatus","Opération réussie.\nSolde avant : "+amountText(data?.balance_before)+"\nSolde après : "+amountText(data?.balance_after));$("manualAmount").value="";$("manualNote").value="";await Promise.all([loadLedger(),loadUsers()]);}catch(error){message("manualStatus","Échec de l’opération : "+(error.message||String(error)),true)}finally{button.disabled=false}}
+$("manualWalletForm").addEventListener("submit",performManualWallet);$("refreshManualBtn").addEventListener("click",loadUsers);$("refreshUsersBtn").addEventListener("click",loadUsers);$("usersSearch").addEventListener("input",renderUsers);
+function switchTab(tab){document.querySelectorAll("[data-tab]").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));Object.keys(tabNames).forEach(name=>{const section=$("tab-"+name);if(section)section.classList.toggle("hidden-section",name!==tab)});$("pageTitle").textContent=tabNames[tab]||tabNames.overview;if(tab==="users"||tab==="manual")loadUsers()}
+document.querySelectorAll("[data-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.tab)));document.querySelectorAll("[data-open-tab]").forEach(button=>button.addEventListener("click",()=>switchTab(button.dataset.openTab)));
+$("allDepositsBtn").addEventListener("click",()=>{depositPendingOnly=false;$("allDepositsBtn").classList.add("active");$("pendingDepositsBtn").classList.remove("active");renderWallet()});$("pendingDepositsBtn").addEventListener("click",()=>{depositPendingOnly=true;$("pendingDepositsBtn").classList.add("active");$("allDepositsBtn").classList.remove("active");renderWallet()});$("allWithdrawalsBtn").addEventListener("click",()=>{withdrawalPendingOnly=false;$("allWithdrawalsBtn").classList.add("active");$("pendingWithdrawalsBtn").classList.remove("active");renderWallet()});$("pendingWithdrawalsBtn").addEventListener("click",()=>{withdrawalPendingOnly=true;$("pendingWithdrawalsBtn").classList.add("active");$("allWithdrawalsBtn").classList.remove("active");renderWallet()});document.querySelectorAll("[data-refresh-wallet]").forEach(button=>button.addEventListener("click",loadWallet));
 $("refreshBtn").addEventListener("click",refreshAll);$("refreshLedgerBtn").addEventListener("click",loadLedger);$("refreshSupportBtn").addEventListener("click",loadConversations);
 async function loadFlouciWallet(){message("flouciWalletStatus","Chargement des paramètres de paiement...");try{const {data,error}=await db.from("site_payment_settings").select("flouci_wallet_number,d17_wallet_number,izi_zaytouna_account,ooredoo_number,orange_number,tunisie_telecom_number").eq("id",1).maybeSingle();if(error)throw error;$("flouciWalletNumber").value=data?.flouci_wallet_number||"";$("d17WalletNumber").value=data?.d17_wallet_number||"";$("iziZaytounaAccount").value=data?.izi_zaytouna_account||"";$("ooredooNumber").value=data?.ooredoo_number||"";$("orangeNumber").value=data?.orange_number||"";$("tunisieTelecomNumber").value=data?.tunisie_telecom_number||"";message("flouciWalletStatus","Paramètres chargés.")}catch(error){message("flouciWalletStatus","Impossible de charger les paramètres : "+(error.message||String(error)),true)}}
-async function savePaymentSettings(){const button=$("savePaymentSettingsBtn");if(button.disabled)return;const values={flouci:$("flouciWalletNumber").value.trim(),d17:$("d17WalletNumber").value.trim(),izi:$("iziZaytounaAccount").value.trim(),ooredoo:$("ooredooNumber").value.trim(),orange:$("orangeNumber").value.trim(),telecom:$("tunisieTelecomNumber").value.trim()};for(const value of Object.values(values)){if(value.length>100){message("flouciWalletStatus","Une valeur est trop longue. Maximum : 100 caractères.",true);return}}button.disabled=true;message("flouciWalletStatus","Enregistrement des paramètres...");try{const {error}=await db.rpc("admin_update_payment_settings",{p_d17_wallet_number:values.d17,p_izi_zaytouna_account:values.izi,p_ooredoo_number:values.ooredoo,p_orange_number:values.orange,p_tunisie_telecom_number:values.telecom});if(error)throw error;const {error:flouciError}=await db.rpc("admin_update_flouci_wallet",{p_wallet_number:values.flouci});if(flouciError)throw flouciError;message("flouciWalletStatus","Paramètres envoyés pour enregistrement. Rechargez-les pour vérifier les valeurs sauvegardées.")}catch(error){message("flouciWalletStatus","Échec de l'enregistrement : "+(error.message||String(error)),true)}finally{button.disabled=false}}
+async function savePaymentSettings(){const button=$("savePaymentSettingsBtn");if(button.disabled)return;const values={flouci:$("flouciWalletNumber").value.trim(),d17:$("d17WalletNumber").value.trim(),izi:$("iziZaytounaAccount").value.trim(),ooredoo:$("ooredooNumber").value.trim(),orange:$("orangeNumber").value.trim(),telecom:$("tunisieTelecomNumber").value.trim()};for(const value of Object.values(values)){if(value.length>100){message("flouciWalletStatus","Une valeur est trop longue. Maximum : 100 caractères.",true);return}}button.disabled=true;message("flouciWalletStatus","Enregistrement des paramètres...");try{const {error}=await db.rpc("admin_update_payment_settings",{p_d17_wallet_number:values.d17,p_izi_zaytouna_account:values.izi,p_ooredoo_number:values.ooredoo,p_orange_number:values.orange,p_tunisie_telecom_number:values.telecom});if(error)throw error;const {error:flouciError}=await db.rpc("admin_update_flouci_wallet",{p_wallet_number:values.flouci});if(flouciError)throw flouciError;message("flouciWalletStatus","Paramètres enregistrés. Rechargez pour vérifier les valeurs.")}catch(error){message("flouciWalletStatus","Échec de l'enregistrement : "+(error.message||String(error)),true)}finally{button.disabled=false}}
 $("savePaymentSettingsBtn").addEventListener("click",savePaymentSettings);$("reloadFlouciWalletBtn").addEventListener("click",loadFlouciWallet);
 $("loginForm").addEventListener("submit",async event=>{event.preventDefault();const button=$("loginBtn");button.disabled=true;message("loginStatus","Connexion en cours...");try{const {error}=await db.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error)throw error;await start()}catch(error){message("loginStatus","Échec de connexion :\n"+(error.message||String(error)),true)}finally{button.disabled=false}});
 async function logout(){await db.auth.signOut();currentUser=null;selectedConversationId=null;await start()}
-$("logoutBtn").addEventListener("click",logout);$("deniedLogout").addEventListener("click",logout);
-db.auth.onAuthStateChange(()=>{setTimeout(()=>start(),0)});
-start();
-</script>
-</body>
+$("logoutBtn").addEventListener("click",logout);$("deniedLogout").addEventListener("click",logout);db.auth.onAuthStateChange(()=>{setTimeout(()=>start(),0)});start();
+  </script>
+ </body>
 </html>
