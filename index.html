@@ -993,7 +993,50 @@ $("supportMessages").innerHTML='<div style="color:var(--muted);text-align:center
 $("notificationPanel").classList.add("hidden");
 showToast("تم تسجيل الخروج");
 }
-async function updateAuthUI(userOverride){
+
+async function updateAuthUI(userOverride) {
+  if (arguments.length > 0) {
+    currentUser = userOverride;
+  } else {
+    currentUser = await getCurrentUser();
+  }
+
+  const authButtons = $("authButtons");
+  const userArea = $("userArea");
+  const userName = $("userName");
+
+  if (currentUser) {
+    document.body.classList.add("authenticated");
+    authButtons.classList.add("hidden");
+    userArea.classList.remove("hidden");
+
+    userName.textContent =
+      currentUser.user_metadata?.full_name || "حسابي";
+
+    $("heroHint").textContent =
+      "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
+  } else {
+    document.body.classList.remove("authenticated");
+    authButtons.classList.remove("hidden");
+    userArea.classList.add("hidden");
+
+    if ($("sideMenuBalance")) {
+      $("sideMenuBalance").classList.add("hidden");
+    }
+
+    $("heroBalance").textContent = "0.000 د.ت";
+    $("walletBalance").textContent = "0.000 د.ت";
+    $("headerBalanceValue").textContent = "0.000 د.ت";
+
+    $("heroHint").textContent =
+      "سجّل الدخول للوصول إلى بيانات حسابك.";
+
+    walletRequestsCache = [];
+    renderNotifications();
+    updateNotificationBadge();
+  }
+}
+
 if(arguments.length>0)currentUser=userOverride;else currentUser=await getCurrentUser();
 const authButtons=$("authButtons"),userArea=$("userArea"),userName=$("userName");
 if(currentUser){
