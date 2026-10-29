@@ -690,6 +690,13 @@ th{background:#21160d!important;color:#ff9b28!important}td,th,table{border-color
 @media(max-width:390px){.nav{gap:5px!important;padding-inline:8px!important}.menuTrigger{flex-basis:39px!important;width:39px!important;min-width:39px!important;height:42px!important}.logo{font-size:17px!important;letter-spacing:-.7px!important}.userArea,.userArea.hidden{gap:3px!important}.userArea .userBalanceMini{height:36px!important;gap:4px!important;padding:0 5px!important;font-size:9px!important}.balanceCoinIcon{width:16px!important;height:16px!important;flex-basis:16px!important}#headerBalanceValue{max-width:64px!important}.balancePlus{width:18px!important;height:18px!important;flex-basis:18px!important;font-size:15px!important}.userArea .notificationButton{width:29px!important;min-width:29px!important}.notificationButton svg{width:22px!important;height:22px!important}.userArea .accountIcon{width:25px!important;min-width:25px!important}.accountIcon svg{width:23px!important;height:23px!important}}
 </style>
 
+<style id="sdnbet365-auth-visibility-fix">
+/* Keep the login/register controls and signed-in controls mutually exclusive. */
+.authButtons:not(.hidden){display:flex!important}
+.authButtons.hidden{display:none!important}
+.userArea:not(.hidden){display:flex!important}
+.userArea.hidden{display:none!important}
+</style>
 </head>
 <body>
 <header class="siteHeader">
@@ -963,15 +970,56 @@ console.warn("IP logging request failed:",error);
 }
 }
 async function registerUser(){
-const name=$("registerName").value.trim(),phone=$("registerPhone").value.trim(),email=$("registerEmail").value.trim(),password=$("registerPassword").value;
-if(!email||!password){showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");return}
-if(password.length<6){showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");return}
-showStatus("registerStatus","جارٍ إنشاء الحساب...");
-try{
-const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name:name,phone}}});
-if(error){console.error("Register error:",error);showStatus("registerStatus",error.message,"error");return}
-if(data?.user){showStatus("registerStatus","تم إنشاء الحساب. تحقق من بريدك الإلكتروني إذا كان تأكيد البريد مفعّلًا.","success");setTimeout(()=>closeModal("registerModal"),1800)}
-}catch(error){console.error("Register exception:",error);showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error")}
+ const name=$("registerName").value.trim();
+ const phone=$("registerPhone").value.trim();
+ const email=$("registerEmail").value.trim();
+ const password=$("registerPassword").value;
+
+ if(!email||!password){
+   showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
+   return;
+ }
+ if(password.length<6){
+   showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
+   return;
+ }
+
+ showStatus("registerStatus","جارٍ إنشاء الحساب...");
+ try{
+   const {data,error}=await supabaseClient.auth.signUp({
+     email,
+     password,
+     options:{data:{full_name:name,phone}}
+   });
+
+   if(error){
+     console.error("Register error:",error);
+     showStatus("registerStatus",error.message,"error");
+     return;
+   }
+
+   if(data?.session && data?.user){
+     currentUser=data.user;
+     closeModal("registerModal");
+     showToast("تم إنشاء الحساب وتسجيل الدخول بنجاح");
+     await updateAuthUI(currentUser);
+     await loadWalletData();
+     await loadWalletHistory();
+     await loadSupport();
+     await loadProfileForm();
+   }else if(data?.user){
+     showStatus(
+       "registerStatus",
+       "تم إنشاء الحساب، لكن لم تُنشأ جلسة دخول تلقائية. جرّب تسجيل الدخول الآن؛ إذا تعذر ذلك، تحقّق من إعدادات Email في Supabase وسجل أخطاء المصادقة.",
+       "success"
+     );
+   }else{
+     showStatus("registerStatus","لم يتم إنشاء الحساب. حاول مرة أخرى.","error");
+   }
+ }catch(error){
+   console.error("Register exception:",error);
+   showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error");
+ }
 }
 async function loginUser(){
 const email=$("loginEmail").value.trim(),password=$("loginPassword").value;
@@ -985,73 +1033,70 @@ if(currentUser){await loadWalletData();await loadWalletHistory();await loadSuppo
 }catch(error){console.error("Login exception:",error);showStatus("loginStatus","حدث خطأ أثناء تسجيل الدخول.","error")}
 }
 async function signOutUser(){
-try{await supabaseClient.auth.signOut()}catch(error){console.error("Sign out:",error)}
-currentUser=null;currentProfile=null;currentConversation=null;walletRequestsCache=[];
-await updateAuthUI(null);
-$("historyBody").innerHTML="";
-$("supportMessages").innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
-$("notificationPanel").classList.add("hidden");
-showToast("تم تسجيل الخروج");
+ const button=$("sideLogout");
+ if(button){button.disabled=true;button.textContent="جارٍ تسجيل الخروج...";}
+ try{
+   const {error}=await supabaseClient.auth.signOut({scope:"local"});
+   if(error) throw error;
+
+   currentUser=null;
+   currentProfile=null;
+   currentConversation=null;
+   walletRequestsCache=[];
+
+   await updateAuthUI(null);
+   if($("historyBody"))$("historyBody").innerHTML="";
+   if($("supportMessages"))$("supportMessages").innerHTML='<div style="color:var(--muted);text-align:center">سجّل الدخول لبدء المحادثة.</div>';
+   if($("notificationPanel"))$("notificationPanel").classList.add("hidden");
+   if($("sideMenuUser"))$("sideMenuUser").textContent="مرحبًا بك — سجّل الدخول للوصول إلى حسابك";
+   if($("sideMenuBalance"))$("sideMenuBalance").classList.add("hidden");
+
+   toggleSideMenu(false);
+   showToast("تم تسجيل الخروج بنجاح");
+ }catch(error){
+   console.error("Sign out failed:",error);
+   showToast("تعذر تسجيل الخروج. تحقق من الاتصال ثم حاول مجددًا.");
+ }finally{
+   if(button){button.disabled=false;button.innerHTML="↪ &nbsp; Logout";}
+ }
 }
 
 async function updateAuthUI(userOverride) {
-  if (arguments.length > 0) {
-    currentUser = userOverride;
-  } else {
-    currentUser = await getCurrentUser();
-  }
+  if (arguments.length > 0) currentUser = userOverride;
+  else currentUser = await getCurrentUser();
 
-  const authButtons = $("authButtons");
-  const userArea = $("userArea");
-  const userName = $("userName");
+  const authButtons=$("authButtons");
+  const userArea=$("userArea");
+  const userName=$("userName");
 
-  if (currentUser) {
+  if(currentUser){
     document.body.classList.add("authenticated");
-    authButtons.classList.add("hidden");
-    userArea.classList.remove("hidden");
-
-    userName.textContent =
-      currentUser.user_metadata?.full_name || "حسابي";
-
-    $("heroHint").textContent =
-      "أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
-  } else {
-    document.body.classList.remove("authenticated");
-    authButtons.classList.remove("hidden");
-    userArea.classList.add("hidden");
-
-    if ($("sideMenuBalance")) {
-      $("sideMenuBalance").classList.add("hidden");
+    authButtons?.classList.add("hidden");
+    userArea?.classList.remove("hidden");
+    if(userName){
+      userName.textContent=currentUser.user_metadata?.full_name||"حسابي";
+      userName.classList.remove("hidden");
+      userName.setAttribute("aria-hidden","false");
     }
-
-    $("heroBalance").textContent = "0.000 د.ت";
-    $("walletBalance").textContent = "0.000 د.ت";
-    $("headerBalanceValue").textContent = "0.000 د.ت";
-
-    $("heroHint").textContent =
-      "سجّل الدخول للوصول إلى بيانات حسابك.";
-
-    walletRequestsCache = [];
+    if($("sideMenuUser"))$("sideMenuUser").textContent="مرحبًا، "+(currentUser.user_metadata?.full_name||currentUser.email||"حسابي");
+    $("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
+  }else{
+    document.body.classList.remove("authenticated");
+    authButtons?.classList.remove("hidden");
+    userArea?.classList.add("hidden");
+    if(userName){userName.textContent="";userName.classList.add("hidden");userName.setAttribute("aria-hidden","true");}
+    if($("sideMenuBalance"))$("sideMenuBalance").classList.add("hidden");
+    $("heroBalance").textContent="0.000 د.ت";
+    $("walletBalance").textContent="0.000 د.ت";
+    $("headerBalanceValue").textContent="0.000 د.ت";
+    $("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
+    if($("sideMenuUser"))$("sideMenuUser").textContent="مرحبًا بك — سجّل الدخول للوصول إلى حسابك";
+    walletRequestsCache=[];
     renderNotifications();
     updateNotificationBadge();
   }
 }
 
-if(arguments.length>0)currentUser=userOverride;else currentUser=await getCurrentUser();
-const authButtons=$("authButtons"),userArea=$("userArea"),userName=$("userName");
-if(currentUser){
-document.body.classList.add("authenticated");
-authButtons.classList.add("hidden");userArea.classList.remove("hidden");
-userName.textContent=currentUser.user_metadata?.full_name||"حسابي";
-$("heroHint").textContent="أنت مسجل الدخول ويمكنك استخدام المحفظة والدعم.";
-}else{
-document.body.classList.remove("authenticated");
-authButtons.classList.add("hidden");userArea.classList.remove("hidden");if($("sideMenuBalance"))$("sideMenuBalance").classList.add("hidden");
-$("heroBalance").textContent="0.000 د.ت";$("walletBalance").textContent="0.000 د.ت";$("headerBalanceValue").textContent="0.000 د.ت";
-$("heroHint").textContent="سجّل الدخول للوصول إلى بيانات حسابك.";
-walletRequestsCache=[];renderNotifications();updateNotificationBadge();
-}
-}
 async function loadProfile(){
 if(!currentUser)return null;
 const {data,error}=await supabaseClient.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
