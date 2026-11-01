@@ -543,6 +543,37 @@ color: #19d66b !important;
 background: #19d66b !important;
 color: #03180b !important;
   }
+
+.depositWizard{margin-top:18px;padding:clamp(18px,4vw,30px);border:1px solid #26384b;border-radius:20px;background:linear-gradient(145deg,#0c1422,#111c2e);color:#f5f7fb;box-shadow:0 18px 45px #0005}
+.depositSteps{display:flex;justify-content:center;align-items:center;gap:12px;margin:4px auto 28px;direction:ltr}
+.depositStep{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#252d3c;border:3px solid #3a4352;color:#aab3c2;font-weight:800}
+.depositStep.active,.depositStep.done{background:#10b981;border-color:#10b981;color:#fff}
+.depositStepLine{height:4px;width:42px;background:#343d4b;border-radius:9px}
+.depositStepLine.done{background:#10b981}
+.depositWizard h3{text-align:center;font-size:clamp(23px,5vw,30px);margin:12px 0}
+.depositLead{text-align:center;color:#aeb8c8;font-size:16px;line-height:1.8;margin:0 auto 22px;max-width:520px}
+.depositProviderChip{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 24px;padding:12px 18px;border-radius:40px;background:#1a2434;width:max-content;max-width:100%;font-weight:800}
+.depositProviderChip button{border:0;background:transparent;color:#31c995;font-weight:800;cursor:pointer}
+.depositAmountInput{font-size:25px!important;font-weight:800!important;padding:20px!important;min-height:78px}
+.depositQuickAmounts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 26px}
+.depositQuickAmounts button{padding:16px;border:1px solid #3b4555;border-radius:13px;background:#1b2432;color:#f4f6fa;font-size:20px;font-weight:800}
+.depositQuickAmounts button.active{border-color:#10b981;background:#12372f;color:#6ee7b7}
+.depositNext{width:100%;min-height:76px;font-size:19px;font-weight:800;border-radius:18px;background:linear-gradient(110deg,#0ea5e9,#1673bd)!important;color:white!important}
+.depositSummary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px;border:2px solid #9a8340;border-radius:18px;margin:20px 0 26px}
+.depositSummary>div{padding:12px;border:1px solid #24506b;border-radius:13px;background:#0d2031;min-width:0}
+.depositSummary small{display:block;color:#e3c56d;font-size:12px;margin-bottom:5px}
+.depositSummary strong{display:block;overflow-wrap:anywhere;font-size:16px}
+.depositPaymentCard{padding:22px 18px;border:2px solid #9a8340;border-radius:24px;background:linear-gradient(145deg,#132c40,#0c1b2d);text-align:center}
+.depositPaymentCard p{font-size:18px;line-height:1.8;color:#e4eaf2}
+.depositPaymentLabel{margin:22px 0 10px;color:#e5c65d;font-weight:800;letter-spacing:.5px}
+.depositCopyRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px;border:2px solid #1c597b;border-radius:20px;background:#0a1a2a}
+.depositMasked{font-size:24px;letter-spacing:5px;color:#aab6c5;padding:8px;direction:ltr}
+.depositCopyButton{border:0;border-radius:14px;padding:16px 20px;background:#169cda;color:#fff;font-weight:800;font-size:17px;cursor:pointer}
+.depositPrivacy{color:#9eabba;font-size:14px;line-height:1.8;margin:14px auto}
+.depositBack{background:transparent;border:1px solid #536174;color:#dce5ef;border-radius:12px;padding:12px 18px;margin-top:14px}
+.depositPanel[hidden]{display:none!important}
+@media(max-width:480px){.depositSummary{gap:7px;padding:8px}.depositSummary>div{padding:9px}.depositCopyRow{gap:6px}.depositCopyButton{padding:13px 12px}.depositMasked{font-size:20px;letter-spacing:3px}}
+
 </style>
 
 <style id="sdnbet365-payment-brand-marks">
@@ -690,6 +721,25 @@ th{background:#21160d!important;color:#ff9b28!important}td,th,table{border-color
 @media(max-width:390px){.nav{gap:5px!important;padding-inline:8px!important}.menuTrigger{flex-basis:39px!important;width:39px!important;min-width:39px!important;height:42px!important}.logo{font-size:17px!important;letter-spacing:-.7px!important}.userArea,.userArea.hidden{gap:3px!important}.userArea .userBalanceMini{height:36px!important;gap:4px!important;padding:0 5px!important;font-size:9px!important}.balanceCoinIcon{width:16px!important;height:16px!important;flex-basis:16px!important}#headerBalanceValue{max-width:64px!important}.balancePlus{width:18px!important;height:18px!important;flex-basis:18px!important;font-size:15px!important}.userArea .notificationButton{width:29px!important;min-width:29px!important}.notificationButton svg{width:22px!important;height:22px!important}.userArea .accountIcon{width:25px!important;min-width:25px!important}.accountIcon svg{width:23px!important;height:23px!important}}
 </style>
 
+
+<style id="sdn-auth-promo-panels">
+.authPromo{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 17px;direction:ltr}
+.authPromoCard{position:relative;min-height:116px;overflow:hidden;border:1px solid #4a3824;border-radius:13px;background:linear-gradient(135deg,#1d291f,#111713);padding:11px;color:#fff}
+.authPromoCard h3{position:relative;z-index:2;font-size:14px;line-height:1.35;margin:0 0 5px;color:#fff}
+.authPromoCard p{position:relative;z-index:2;font-size:10px;line-height:1.55;margin:0;color:#e0e8df;max-width:78%}
+.authPromoCard .authPromoTag{position:relative;z-index:2;font-size:9px;font-weight:900;color:#f3c46b;letter-spacing:.6px}
+.authPromoFootball{background:linear-gradient(110deg,#101914 0%,#182a20 55%,#243e2d 100%)}
+.authPromoFootball img{position:absolute;right:-5px;bottom:-14px;height:122px;width:88px;object-fit:cover;object-position:50% 20%;border-radius:40px 40px 0 0;opacity:.88;mask-image:linear-gradient(to top,#000 70%,transparent 100%)}
+.authPromoGame{background:radial-gradient(circle at 80% 45%,#6d3d12 0,#2b1c10 45%,#11130f 100%)}
+.authPromoWheel{position:absolute;right:9px;bottom:-16px;width:82px;height:82px;border-radius:50%;border:5px solid #f5c76c;background:conic-gradient(#e74c3c 0 30deg,#f7d45d 30deg 60deg,#39a96b 60deg 90deg,#3478b9 90deg 120deg,#e74c3c 120deg 150deg,#f7d45d 150deg 180deg,#39a96b 180deg 210deg,#3478b9 210deg 240deg,#e74c3c 240deg 270deg,#f7d45d 270deg 300deg,#39a96b 300deg 330deg,#3478b9 330deg);box-shadow:0 0 22px #0009}
+.authPromoWheel:after{content:'★';position:absolute;inset:27px;border-radius:50%;display:grid;place-items:center;background:#17120c;color:#f7d77e;font-size:18px;border:2px solid #f5c76c}
+.authBenefits{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 16px;direction:rtl}
+.authBenefit{padding:8px 5px;text-align:center;border:1px solid #304638;border-radius:10px;background:#101a14;color:#dce9df;font-size:10px;line-height:1.45}
+.authBenefit b{display:block;color:#f2c76e;font-size:11px;margin-bottom:2px}
+.authPromoFoot{font-size:9px;color:#aebdb1;line-height:1.5;margin:-8px 0 12px}
+@media(max-width:420px){.authPromo{gap:6px}.authPromoCard{min-height:105px;padding:9px}.authPromoCard h3{font-size:12px}.authPromoCard p{font-size:9px;max-width:82%}.authPromoFootball img{height:108px;width:75px}.authPromoWheel{width:70px;height:70px}.authPromoWheel:after{inset:23px}.authBenefits{gap:4px}.authBenefit{font-size:9px;padding:7px 3px}.authBenefit b{font-size:10px}}
+</style>
+
 <style id="sdnbet365-auth-visibility-fix">
 /* Keep the login/register controls and signed-in controls mutually exclusive. */
 .authButtons:not(.hidden){display:flex!important}
@@ -697,6 +747,92 @@ th{background:#21160d!important;color:#ff9b28!important}td,th,table{border-color
 .userArea:not(.hidden){display:flex!important}
 .userArea.hidden{display:none!important}
 </style>
+
+<style id="sdnbet365-emerald-premium">
+:root{--bg:#070b09;--panel:#101914;--panel2:#17241c;--border:#263b30;--text:#f4f7f2;--muted:#aab8ad;--green:#19c784;--green2:#0d9f68;--gold:#d9b45b;--red:#e45d63;--shadow:0 18px 48px rgba(0,0,0,.34);color-scheme:dark}
+html{scroll-behavior:smooth;background:var(--bg)}body{background:radial-gradient(ellipse at 15% -15%,rgba(25,199,132,.16),transparent 38%),radial-gradient(ellipse at 100% 5%,rgba(217,180,91,.08),transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
+.siteHeader{background:rgba(7,13,10,.94)!important;border-bottom:1px solid rgba(217,180,91,.22)!important;box-shadow:0 10px 35px #0005!important;backdrop-filter:blur(18px)}
+.logo,.logoMark{color:var(--green)!important}.logoOrange{color:var(--gold)!important}.logoMark{background:linear-gradient(145deg,var(--green),#08764d)!important;color:#03150d!important;box-shadow:0 8px 25px #19c78430!important}
+.btn,.walletActionCard,.walletCard,.supportCard,.card,.match,.sectionTitle,.promoSlide,.referenceTile{border-color:rgba(217,180,91,.2)!important}
+.btn{border-radius:12px!important;transition:transform .18s ease,filter .18s ease,border-color .18s ease!important}.btn:hover{transform:translateY(-2px)}.btn-primary{background:linear-gradient(135deg,#24d994,#0c9d66)!important;border-color:#20c985!important;color:#03170e!important;box-shadow:0 8px 22px #19c78425}
+.heroCard{background:radial-gradient(ellipse at 90% 0%,#1b513b 0,transparent 44%),linear-gradient(135deg,#14251b,#0b120e)!important;border:1px solid #b9954a45!important;box-shadow:var(--shadow)!important;border-radius:24px!important}.heroCard h1 span{color:var(--gold)!important}.heroEyebrow,.promoTag{color:var(--gold)!important;letter-spacing:1.4px}
+.promoSlide{background:linear-gradient(135deg,#17271d,#101713)!important;border-radius:20px!important}.promoSlide h2 em{color:var(--green)!important}.referenceTile{background:linear-gradient(150deg,#17241c,#0d1510)!important;border-radius:18px!important}
+.sectionTitle{background:linear-gradient(100deg,rgba(22,48,34,.9),rgba(15,22,17,.94))!important;border-radius:16px!important;padding:20px!important}.sectionTitle h2{color:#f5f7f2!important}.sectionTitle h2:after{content:"";display:block;width:46px;height:3px;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:4px;margin-top:9px}
+.card,.walletCard,.supportCard,.walletActionCard{background:linear-gradient(145deg,#121d16,#0d140f)!important;border-radius:18px!important;box-shadow:0 12px 34px #0003!important}.cardIcon{filter:drop-shadow(0 5px 10px #19c78425)}
+.walletGrid{align-items:start}.walletSections{gap:14px}.walletActionCard{padding:22px!important}.walletActionCard h3{color:var(--gold)}.notice{background:#17251c!important;border-color:#35533f!important;color:#d7e4d9!important;border-radius:12px!important}
+.formGroup input,.formGroup select,.formGroup textarea,.modalBox input{background:#080f0b!important;border:1px solid #31463a!important;color:#f4f7f2!important;border-radius:11px!important;min-height:46px}.formGroup input:focus,.formGroup select:focus,.formGroup textarea:focus{border-color:var(--green)!important;box-shadow:0 0 0 3px #19c78422!important}.formGroup label{color:#d7e1d8!important;font-weight:700}.modalBox{background:linear-gradient(145deg,#142019,#0b110d)!important;border:1px solid #9b80424a!important;border-radius:22px!important;box-shadow:0 25px 90px #000b!important}
+.paymentMethodCard{background:#101a14!important;border:1px solid #2d4436!important;border-radius:13px!important}.paymentMethodCard[aria-pressed="true"]{border-color:var(--green)!important;box-shadow:0 0 0 2px #19c78420!important;background:#14271c!important}.flouciInfo{background:#10241a!important;border-color:#28583d!important;border-radius:13px!important}.flouciInfo strong{color:var(--gold)!important}
+.tableWrap{border:1px solid #2d4436!important;border-radius:14px!important}table{min-width:600px}th{background:#17251c!important;color:#e2c77f!important}td{border-color:#26382d!important}
+.messages{background:#080f0b!important;border:1px solid #263c30!important;border-radius:14px!important}.message.user{background:#124b34!important}.message.admin{background:#26372d!important}
+.sideMenu{background:#0b130e!important;border-inline-start:1px solid #8d713b55!important}.sideMenu a:hover{background:#17271d!important;color:var(--green)!important}.bottomNav{background:rgba(8,15,11,.96)!important;border-top:1px solid #947a414d!important;backdrop-filter:blur(16px)}.bottomNav a.active{color:var(--green)!important}.bottomNav a.active .navIcon{color:var(--gold)!important}
+footer{border-color:#344537!important;color:#aab8ad!important}.siteLink{background:#132219!important;color:var(--gold)!important;border-color:#8e743d66!important}
+.matchEmpty{display:grid;justify-items:center;gap:8px;text-align:center;padding:30px 18px;background:linear-gradient(145deg,#121e16,#0b120e);border:1px dashed #536b58;border-radius:17px;color:var(--muted)}.matchEmpty strong{font-size:18px;color:var(--text)}.matchEmptyIcon{font-size:34px}.matchEmpty p{max-width:520px}
+.registerGrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.registerWide{grid-column:1/-1}.privacyNote{font-size:12px;line-height:1.8;color:#b9c8bd;background:#132219;border:1px solid #304638;border-radius:11px;padding:11px 13px;margin:4px 0 14px}
+#registerModal .modalBox{width:min(560px,100%);max-height:94dvh;padding:clamp(18px,4vw,28px)}#registerModal .formGroup{margin-bottom:10px}#registerModal input{width:100%}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold)!important;outline-offset:3px!important}
+@media(max-width:760px){.heroCard{padding:24px!important}.promoCarousel{border-radius:18px}.walletGrid{grid-template-columns:1fr!important}.walletSections{grid-template-columns:1fr 1fr}.bottomNav{padding-bottom:env(safe-area-inset-bottom)}.sideMenu{width:min(88vw,360px)}}
+@media(max-width:520px){.registerGrid{grid-template-columns:1fr}.registerWide{grid-column:auto}.walletSections{grid-template-columns:1fr}.sectionTitle{padding:16px!important}.sectionTitle h2{font-size:23px}.heroCard h1{font-size:clamp(27px,8vw,40px)}.promoSlide{padding:22px!important}.paymentMethodCards{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+
+
+<style id="sdn-mobile-deposit-compact-final">
+/* Compact mobile wallet/deposit layout */
+@media (max-width: 600px) {
+  #wallet .container { width: min(100% - 22px, 520px) !important; }
+  #wallet { padding-top: 12px !important; padding-bottom: 18px !important; }
+  #wallet .sectionTitle { margin-bottom: 12px !important; padding: 12px 14px !important; }
+  #wallet .sectionTitle h2 { font-size: 20px !important; margin-bottom: 4px !important; }
+  #wallet .sectionTitle p { font-size: 12px !important; line-height: 1.5 !important; }
+  #wallet .walletGrid { display: block !important; }
+  #wallet .walletCard { padding: 11px !important; border-radius: 13px !important; }
+  #wallet .notice { padding: 9px 11px !important; margin-bottom: 10px !important; font-size: 11px !important; line-height: 1.55 !important; }
+  #wallet .formGroup { margin-bottom: 10px !important; }
+  #wallet .formGroup label { font-size: 12px !important; margin-bottom: 5px !important; }
+  #wallet .formGroup input, #wallet .formGroup select { min-height: 43px !important; padding: 9px 11px !important; font-size: 14px !important; border-radius: 9px !important; }
+  .depositWizard { margin-top: 9px !important; padding: 12px !important; border-radius: 14px !important; box-shadow: 0 7px 18px #0004 !important; }
+  .depositSteps { gap: 6px !important; margin: 0 auto 14px !important; }
+  .depositStep { width: 30px !important; height: 30px !important; border-width: 2px !important; font-size: 12px !important; }
+  .depositStepLine { width: 24px !important; height: 3px !important; }
+  .depositWizard h3 { font-size: 18px !important; margin: 7px 0 !important; }
+  .depositLead { font-size: 12px !important; line-height: 1.55 !important; margin: 0 auto 12px !important; }
+  .paymentMethodCards { grid-template-columns: repeat(3,minmax(0,1fr)) !important; gap: 7px !important; margin: 8px 0 12px !important; }
+  .paymentMethodCard { min-width: 0 !important; min-height: 68px !important; padding: 6px 4px !important; gap: 4px !important; border-radius: 9px !important; }
+  .paymentMethodCard .paymentMethodIcon { width: 100% !important; height: 30px !important; min-height: 30px !important; padding: 2px 4px !important; }
+  .paymentMethodCard .paymentBrandImage { width: 58px !important; height: 27px !important; }
+  .paymentMethodCard > span:last-child { font-size: 10px !important; line-height: 1.2 !important; }
+  .depositAmountInput { min-height: 48px !important; padding: 10px 12px !important; font-size: 18px !important; border-radius: 9px !important; }
+  .depositQuickAmounts { gap: 7px !important; margin: 8px 0 13px !important; }
+  .depositQuickAmounts button { min-height: 40px !important; padding: 8px !important; font-size: 15px !important; border-radius: 9px !important; }
+  .depositNext { min-height: 48px !important; padding: 10px 12px !important; font-size: 14px !important; border-radius: 10px !important; }
+  .depositSummary { gap: 6px !important; padding: 7px !important; margin: 10px 0 12px !important; border-width: 1px !important; border-radius: 12px !important; }
+  .depositSummary > div { padding: 7px !important; border-radius: 8px !important; }
+  .depositSummary small { font-size: 9px !important; margin-bottom: 3px !important; }
+  .depositSummary strong { font-size: 12px !important; line-height: 1.35 !important; }
+  .depositPaymentCard { padding: 12px 10px !important; border-width: 1px !important; border-radius: 14px !important; }
+  .depositPaymentCard p { font-size: 13px !important; line-height: 1.55 !important; margin-bottom: 8px !important; }
+  .depositPaymentLabel { margin: 12px 0 7px !important; font-size: 12px !important; }
+  .depositCopyRow { gap: 6px !important; padding: 6px !important; border-width: 1px !important; border-radius: 11px !important; }
+  .depositMasked { font-size: 16px !important; letter-spacing: 2px !important; padding: 5px !important; }
+  .depositCopyButton { padding: 9px 11px !important; border-radius: 8px !important; font-size: 12px !important; white-space: nowrap !important; }
+  .depositPrivacy { font-size: 10px !important; line-height: 1.5 !important; margin: 8px auto !important; }
+  #depositMaskedAccount { font-size: 11px !important; overflow-wrap: anywhere !important; }
+  .depositBack { padding: 8px 11px !important; margin-top: 8px !important; font-size: 11px !important; }
+  #wallet .walletSections { grid-template-columns: repeat(2,minmax(0,1fr)) !important; gap: 7px !important; margin: 8px 0 !important; }
+  #wallet .walletActionCard { padding: 9px !important; border-radius: 10px !important; }
+  #wallet .walletActionCard h3 { font-size: 13px !important; margin-bottom: 4px !important; }
+  #wallet .walletActionCard p { font-size: 10px !important; line-height: 1.45 !important; margin-bottom: 7px !important; }
+  #wallet .walletActionCard .btn { padding: 7px 9px !important; font-size: 11px !important; }
+}
+@media (max-width: 360px) {
+  #wallet .container { width: calc(100% - 16px) !important; }
+  .paymentMethodCards { gap: 5px !important; }
+  .paymentMethodCard > span:last-child { font-size: 9px !important; }
+  .depositWizard { padding: 9px !important; }
+  .depositStepLine { width: 18px !important; }
+}
+</style>
+
 </head>
 <body>
 <header class="siteHeader">
@@ -756,51 +892,93 @@ th{background:#21160d!important;color:#ff9b28!important}td,th,table{border-color
 
 <section id="sports"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionSports">الرياضة</h2><p data-i18n="sportsIntro">المباريات والنتائج المتاحة.</p></div>
 <div class="cards">
-<div class="card"><div class="cardIcon">⚽</div><h3>كرة القدم</h3><p>تابع المباريات والبطولات في واجهة مرتبة وسريعة.</p><a href="#matches" class="btn">عرض المباريات</a></div>
-<div class="card"><div class="cardIcon">🏀</div><h3>كرة السلة</h3><p>واجهة متجاوبة لمتابعة الفرق والمواجهات.</p><button class="btn" onclick="showToast('بيانات هذه الرياضة غير متاحة حاليًا')">عرض الخيارات</button></div>
-<div class="card"><div class="cardIcon">🎾</div><h3>التنس</h3><p>تصميم بسيط لمتابعة مباريات التنس.</p><button class="btn" onclick="showToast('بيانات هذه الرياضة غير متاحة حاليًا')">عرض الخيارات</button></div>
+<div class="card"><div class="cardIcon">⚽</div><h3 data-i18n="footballTitle">كرة القدم</h3><p data-i18n="footballDesc">المباريات والبطولات.</p><a href="#matches" class="btn" data-i18n="viewMatches">عرض المباريات</a></div>
+<div class="card"><div class="cardIcon">🏀</div><h3 data-i18n="basketballTitle">كرة السلة</h3><p data-i18n="basketballDesc">منافسات كرة السلة.</p></div>
+<div class="card"><div class="cardIcon">🎾</div><h3 data-i18n="tennisTitle">التنس</h3><p data-i18n="tennisDesc">بطولات ومباريات التنس.</p></div>
 </div>
-<div id="matches" class="matches" style="margin-top:18px">
-<section id="live-matches" style="width:100%;margin:20px auto;padding:10px 0;">
-<h2 style="color:#d4af37;text-align:center;margin-bottom:15px;">⚽ المباريات والنتائج المباشرة</h2>
-<iframe src="https://embed.soccersapi.com/widgets/ls-soccersapi/free.html?uid=6ad863ddb21c82f8ef0eeff4&widget-id=livescore&locale=fr" style="width:100%;height:1200px;min-height:1200px;border:0;display:block;" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" data-soccersapi-widget="v2-free"></iframe>
-</section>
+<div id="matches" class="matches" style="margin-top:18px"><div class="matchEmpty"><span class="matchEmptyIcon">⚽</span><strong data-i18n="matchEmptyTitle">المباريات والأسواق</strong><p data-i18n="matchEmptyText">لا توجد مباريات متاحة للعرض الآن.</p></div></div>
                                                                                                                                                                                                                                     
 </div></div></section>
 <section id="casino"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionCasino">الكازينو</h2><p data-i18n="casinoIntro">استكشف أقسام الألعاب المتاحة.</p></div><div class="cards">
-<div class="card"><div class="cardIcon">🎰</div><h3>Slots</h3><p>قسم ألعاب الفتحات.</p><button class="btn" onclick="showToast('قسم الألعاب يحتاج ربط مزود ألعاب فعلي')">فتح</button></div>
-<div class="card"><div class="cardIcon">🃏</div><h3>Cards</h3><p>ألعاب البطاقات — يتطلب هذا القسم ربط مزود ألعاب.</p><button class="btn" onclick="showToast('قسم الألعاب يحتاج ربط مزود ألعاب فعلي')">فتح</button></div>
-<div class="card"><div class="cardIcon">🎲</div><h3>Games</h3><p>ألعاب إضافية عند تفعيل مزود الألعاب.</p><button class="btn" onclick="showToast('قسم الألعاب يحتاج ربط مزود ألعاب فعلي')">فتح</button></div>
+<div class="card"><div class="cardIcon">🎰</div><h3 data-i18n="slotsTitle">ألعاب الفتحات</h3><p data-i18n="slotsDesc">ألعاب الفتحات.</p></div>
+<div class="card"><div class="cardIcon">🃏</div><h3 data-i18n="cardsTitle">ألعاب الورق</h3><p data-i18n="cardsDesc">ألعاب الورق.</p></div>
+<div class="card"><div class="cardIcon">🎲</div><h3 data-i18n="gamesTitle">ألعاب متنوعة</h3><p data-i18n="gamesDesc">ألعاب متنوعة.</p></div>
 </div></div></section>
-<section id="live"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionLive">مباشر</h2><p data-i18n="liveIntro">الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3>البث المباشر</h3><p>سيتم عرض الأحداث المباشرة عند ربط المنصة بمصدر بيانات أو خدمة بث مرخّصة.</p></div></div></section>
+<section id="live"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionLive">مباشر</h2><p data-i18n="liveIntro">الأحداث المباشرة.</p></div><div class="card"><div class="cardIcon">🔴</div><h3 data-i18n="liveEventsTitle">الأحداث المباشرة</h3><p data-i18n="liveEventsEmpty">لا توجد أحداث مباشرة متاحة للعرض الآن.</p></div></div></section>
 <section id="wallet"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionWallet">المحفظة</h2><p data-i18n="walletIntro">إدارة طلبات الإيداع والسحب.</p></div><div class="walletGrid">
 <span id="walletBalance" class="hidden" aria-hidden="true">0.000 د.ت</span>
 <div class="walletSections" aria-label="اختيار نوع العملية">
 <div class="walletActionCard"><h3>＋ إيداع</h3><p>اختر وسيلة الدفع، أدخل البيانات المطلوبة وأرفق إثبات التحويل. تتم مراجعة الطلب يدويًا.</p><button type="button" class="btn btn-primary" onclick="openWalletAction('deposit')">بدء الإيداع</button></div>
 <div class="walletActionCard"><h3>↗ سحب</h3><p>أدخل المبلغ وحساب الاستلام. طلب السحب يخضع للتحقق من الرصيد والمراجعة.</p><button type="button" class="btn" onclick="openWalletAction('withdrawal')">بدء السحب</button></div>
 </div>
-<div class="walletCard"><div class="notice">وسائل الدفع تسجل طلبك فقط. لن يُضاف أي رصيد تلقائيًا؛ سيراجع المدير التحويل وإثبات الدفع يدويًا.</div>
+<div class="walletCard">
+<div class="notice">وسائل الدفع تسجل طلبك فقط. لن يُضاف أي رصيد تلقائيًا؛ سيراجع المدير التحويل وإثبات الدفع يدويًا.</div>
 <div class="formGroup"><label data-i18n="walletTypeLabel">نوع العملية</label><select id="walletType"><option value="deposit" data-i18n="deposit">إيداع</option><option value="withdrawal" data-i18n="withdrawal">سحب</option></select></div>
-<div class="formGroup"><label data-i18n="amountLabel">المبلغ بالدينار التونسي</label><input id="walletAmount" type="number" min="0.001" step="0.001" placeholder="مثال: 50"></div>
-<div class="formGroup"><label data-i18n="methodLabel">طريقة الدفع</label><select id="paymentMethod" onchange="updatePaymentInstructions()"><option value="D17">D17</option><option value="Flouci">Flouci</option><option value="Izi Zaytouna">Izi Zaytouna</option><option value="Ooredoo Recharge">Ooredoo Recharge</option><option value="Orange">Orange</option><option value="Tunisie Telecom">Tunisie Telecom</option><option value="FulgurPay">FulgurPay (Crypto)</option><option value="Card">Carte bancaire</option></select></div>
-<div class="paymentMethodCards" id="paymentMethodCards" aria-label="اختيار وسيلة الدفع">
-<button type="button" class="paymentMethodCard" data-method="D17" aria-pressed="true"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://www.topnet.tn/u_p_l_d/unnamed.png" alt="شعار D17" loading="lazy" referrerpolicy="no-referrer"></span><span>D17</span></button>
-<button type="button" class="paymentMethodCard" data-method="Flouci" aria-pressed="false"><span class="paymentMethodIcon brandLogo flouciLogoMark" aria-label="Flouci"><svg viewBox="0 0 48 48" role="img" aria-label="Flouci" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="44" height="44" rx="13" fill="#0EAA7E"/><path d="M29.8 11.5c-8.9 0-15.1 5.5-15.1 14.2v10.8h8V25.9c0-4.3 2.6-7 7.1-7h3v-7.4h-3z" fill="#fff"/><circle cx="33.7" cy="33.1" r="4.1" fill="#EF8B47"/></svg></span><span>Flouci</span></button>
-<button type="button" class="paymentMethodCard" data-method="Ooredoo Recharge" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://content.mosaiquefm.net/uploads/content/large/1730876512.png" alt="شعار Ooredoo" loading="lazy" referrerpolicy="no-referrer"></span><span>Ooredoo</span></button>
-<button type="button" class="paymentMethodCard" data-method="Orange" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://mcce.tn/web/image/2360-7b595bfb/Grey%20Mechanic%20Logo%20%2850%29.webp" alt="شعار Orange" loading="lazy" referrerpolicy="no-referrer"></span><span>Orange</span></button>
-<button type="button" class="paymentMethodCard" data-method="Tunisie Telecom" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://thd.tn/wp-content/uploads/2017/11/tt_logo_3_2_2.jpg" alt="شعار Tunisie Télécom" loading="lazy" referrerpolicy="no-referrer"></span><span>Tunisie Télécom</span></button>
-<button type="button" class="paymentMethodCard" data-method="Izi Zaytouna" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://cdn.brandfetch.io/idmcvSFNag/w/1533/h/1533/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1769430974388" alt="شعار IZI" loading="lazy" referrerpolicy="no-referrer"></span><span>IZI</span></button>
-<button type="button" class="paymentMethodCard" data-method="FulgurPay" aria-pressed="false"><span class="paymentMethodIcon">₿</span><span>FulgurPay</span></button>
-<button type="button" class="paymentMethodCard" data-method="Card" aria-pressed="false"><span class="paymentMethodIcon">VISA</span><span>Carte bancaire</span></button>
+
+<div id="depositWizard" class="depositWizard">
+  <div class="depositSteps" aria-label="خطوات الإيداع">
+    <span class="depositStep done" id="depositStep1">✓</span><span class="depositStepLine done" id="depositLine1"></span>
+    <span class="depositStep active" id="depositStep2">2</span><span class="depositStepLine" id="depositLine2"></span>
+    <span class="depositStep" id="depositStep3">3</span>
+  </div>
+  <div class="depositPanel" id="depositPanel1">
+    <h3>اختيار وسيلة الدفع والمبلغ</h3>
+    <p class="depositLead">اختر المحفظة التي تريد استخدامها، ثم حدد مبلغ الإيداع بالدينار التونسي.</p>
+    <div class="paymentMethodCards" id="paymentMethodCards" aria-label="اختيار وسيلة الدفع">
+      <button type="button" class="paymentMethodCard" data-method="D17" aria-pressed="true"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://www.topnet.tn/u_p_l_d/unnamed.png" alt="D17" loading="lazy"></span><span>D17</span></button>
+      <button type="button" class="paymentMethodCard" data-method="Flouci" aria-pressed="false"><span class="paymentMethodIcon brandLogo flouciLogoMark" aria-label="Flouci"><svg viewBox="0 0 48 48" role="img" aria-label="Flouci" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="44" height="44" rx="13" fill="#0EAA7E"/><path d="M29.8 11.5c-8.9 0-15.1 5.5-15.1 14.2v10.8h8V25.9c0-4.3 2.6-7 7.1-7h3v-7.4h-3z" fill="#fff"/><circle cx="33.7" cy="33.1" r="4.1" fill="#EF8B47"/></svg></span><span>Flouci</span></button>
+      <button type="button" class="paymentMethodCard" data-method="Izi Zaytouna" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://cdn.brandfetch.io/idmcvSFNag/w/1533/h/1533/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1769430974388" alt="IZI" loading="lazy"></span><span>IZI</span></button>
+      <button type="button" class="paymentMethodCard" data-method="Ooredoo Recharge" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://content.mosaiquefm.net/uploads/content/large/1730876512.png" alt="Ooredoo" loading="lazy"></span><span>Ooredoo</span></button>
+      <button type="button" class="paymentMethodCard" data-method="Orange" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://mcce.tn/web/image/2360-7b595bfb/Grey%20Mechanic%20Logo%20%2850%29.webp" alt="Orange" loading="lazy"></span><span>Orange</span></button>
+      <button type="button" class="paymentMethodCard" data-method="Tunisie Telecom" aria-pressed="false"><span class="paymentMethodIcon brandLogo"><img class="paymentBrandImage" src="https://thd.tn/wp-content/uploads/2017/11/tt_logo_3_2_2.jpg" alt="Tunisie Telecom" loading="lazy"></span><span>Tunisie Télécom</span></button>
+    </div>
+    <input id="paymentMethod" type="hidden" value="D17">
+    <div class="formGroup"><label for="walletAmount">مبلغ الإيداع (TND)</label><input id="walletAmount" class="depositAmountInput" type="number" min="1" step="1" placeholder="TND 0"></div>
+    <div class="depositQuickAmounts">
+      <button type="button" data-amount="10">10</button><button type="button" data-amount="20">20</button>
+      <button type="button" data-amount="50">50</button><button type="button" data-amount="100">100</button>
+    </div>
+    <button type="button" class="btn btn-primary depositNext" onclick="goDepositStep(2)">الحصول على رقم الدفع</button>
+  </div>
+
+  <div class="depositPanel" id="depositPanel2" hidden>
+    <h3>تعليمات الدفع</h3>
+    <p class="depositLead">أرسل المبلغ المحدد باستخدام وسيلة الدفع المختارة وفق المعلومات التالية.</p>
+    <div class="depositSummary">
+      <div><small>PROVIDER / المحفظة</small><strong id="depositSummaryMethod">D17</strong></div>
+      <div><small>AMOUNT / المبلغ</small><strong id="depositSummaryAmount">—</strong></div>
+      <div><small>PLAYER ID / معرّف اللاعب</small><strong id="depositPlayerId">—</strong></div>
+      <div><small>PLAYER / اللاعب</small><strong id="depositPlayerName">—</strong></div>
+    </div>
+    <div class="depositPaymentCard">
+      <p><strong id="depositGreetingName">مرحبًا</strong>، أنت على وشك شحن <strong id="depositGreetingAmount">—</strong> إلى حسابك.</p>
+      <div class="depositPaymentLabel">PAYMENT NUMBER / رقم الدفع</div>
+      <div class="depositCopyRow"><span class="depositMasked" id="depositMaskedNumber">••••••••</span><button type="button" class="depositCopyButton" onclick="copyDepositPaymentNumber()">▢ Copy</button></div>
+      <div class="depositPrivacy">رقم الدفع مخفي لحماية الخصوصية. اضغط على Copy لنسخه ثم الصقه داخل تطبيق المحفظة.</div>
+      <div id="depositMaskedAccount" style="color:#c4d0df">الحساب: —</div>
+    </div>
+    <button type="button" class="depositBack" onclick="goDepositStep(1)">تغيير الوسيلة أو المبلغ</button>
+    <button type="button" class="btn btn-primary depositNext" onclick="goDepositStep(3)">متابعة وإرفاق إثبات الدفع ←</button>
+  </div>
+
+  <div class="depositPanel" id="depositPanel3" hidden>
+    <h3>إرفاق إثبات التحويل</h3>
+    <p class="depositLead">بعد إتمام التحويل، أدخل بيانات العملية وأرفق صورة واضحة للإيصال.</p>
+    <div class="formGroup"><label for="paymentAccount">رقم الهاتف الذي تم الدفع منه</label><input id="paymentAccount" type="tel" inputmode="tel" autocomplete="tel" placeholder="مثال: 20 000 000"></div>
+    <div class="formGroup" id="transactionFieldGroup"><label for="paymentReference">Transaction Number / رقم المعاملة</label><input id="paymentReference" type="text" maxlength="120" autocomplete="off" placeholder="أدخل رقم المعاملة كما يظهر في التطبيق"></div>
+    <div class="formGroup" id="proofUploadGroup"><label for="paymentProof">Screenshot / لقطة شاشة لإثبات الدفع</label><input id="paymentProof" type="file" accept="image/jpeg,image/png,image/webp"><small id="proofHint" style="display:block;color:var(--muted);margin-top:6px">JPG أو PNG أو WebP، بحد أقصى 4 ميغابايت.</small></div>
+    <button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()">إرسال طلب الإيداع</button>
+    <button type="button" class="depositBack" onclick="goDepositStep(2)">العودة إلى تعليمات الدفع</button>
+  </div>
 </div>
 
-<div id="paymentInstructions" class="flouciInfo" aria-live="polite">بيانات الاستقبال: <strong id="paymentDestinationDisplay">جارٍ تحميل البيانات...</strong><div style="color:var(--muted);font-size:13px;margin-top:5px">تحقق من بيانات الاستقبال قبل التحويل. إرسال الطلب لا يؤكد وصول الدفع تلقائيًا.</div></div>
-<div class="formGroup"><label>رقم الحساب / الهاتف</label><input id="paymentAccount" type="text" placeholder="رقم الهاتف أو الحساب"></div>
-<div class="formGroup"><label data-i18n="referenceLabel">مرجع العملية إن وجد</label><input id="paymentReference" type="text" placeholder="رقم العملية"></div>
-<div class="formGroup"><label data-i18n="promoLabel">كود العرض (اختياري)</label><input id="promoCode" type="text" maxlength="80" placeholder="أدخل كود العرض إن وجد"></div>
-<div id="rechargeFields" class="hidden"><div class="notice" id="rechargeLimit">Carte de recharge — Min 5 TND · Max 80 TND</div><div class="formGroup"><label for="cardCode1">Code de carte num 1</label><input id="cardCode1" inputmode="numeric" autocomplete="off"></div><div class="formGroup"><label for="cardCode2">Code de carte num 2</label><input id="cardCode2" inputmode="numeric" autocomplete="off"></div></div><div class="formGroup" id="proofUploadGroup"><label for="paymentProof" id="proofLabel">Photo de paiement / Photo de carte</label><input id="paymentProof" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.heif,.heic,.webp,image/jpeg,image/png,image/webp,image/gif,image/heif,image/heic,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><small id="proofHint" style="display:block;color:var(--muted);margin-top:6px">PDF, DOC, DOCX, JPEG, JPG, PNG, GIF, HEIF ou WebP — maximum 4 MB. L’envoi ne confirme pas automatiquement le paiement.</small></div>
-<button class="btn btn-primary" style="width:100%" onclick="createWalletRequest()" data-i18n="submitRequest">إرسال الطلب</button></div>
-</div></div></section>
+<div id="withdrawalForm" class="depositWizard" hidden>
+  <div class="formGroup"><label>المبلغ بالدينار التونسي</label><input id="withdrawAmount" type="number" min="0.001" step="0.001" placeholder="مثال: 50"></div>
+  <div class="formGroup"><label>طريقة الاستلام</label><select id="withdrawMethod"><option>D17</option><option>Flouci</option><option>Izi Zaytouna</option><option>Ooredoo Recharge</option><option>Orange</option><option>Tunisie Telecom</option></select></div>
+  <div class="formGroup"><label>حساب / هاتف الاستلام</label><input id="withdrawAccount" type="tel" placeholder="أدخل رقم الحساب أو الهاتف"></div>
+  <button class="btn btn-primary" style="width:100%" onclick="submitWithdrawalWizard()">إرسال طلب السحب</button>
+</div>
+</div>
 <section id="history"><div class="container"><div class="sectionTitle"><h2 data-i18n="sectionHistory">سجل المحفظة</h2><p data-i18n="historyIntro">جميع طلبات الإيداع والسحب الخاصة بحسابك.</p></div><div class="walletCard">
 <div id="historyLoginMessage" class="notice">سجّل الدخول لعرض سجل المحفظة.</div><div class="tableWrap"><table><thead><tr><th data-i18n="colType">النوع</th><th data-i18n="colAmount">المبلغ</th><th data-i18n="colMethod">الطريقة</th><th data-i18n="colStatus">الحالة</th><th data-i18n="colDate">التاريخ</th></tr></thead><tbody id="historyBody"></tbody></table></div>
 </div></div></section>
@@ -828,11 +1006,31 @@ th{background:#21160d!important;color:#ff9b28!important}td,th,table{border-color
 <button id="sdnChatLauncher" type="button" aria-controls="sdnChatPanel" aria-expanded="false"><span class="sdnChatIcon" aria-hidden="true">☏</span><span>تحدث مع الدعم</span></button>
 
 
-<div class="modal" id="loginModal"><div class="modalBox"><div class="modalHeader"><h2>تسجيل الدخول</h2><button class="close" onclick="closeModal('loginModal')">×</button></div>
+<div class="modal" id="loginModal"><div class="modalBox"><div class="authPromo" aria-label="SDNBet365 promotions">
+ <article class="authPromoCard authPromoFootball"><span class="authPromoTag">SPORTS · SDNBET365</span><h3>كرة القدم<br>في قلب الحدث</h3><p>تابع أجواء المباريات والنجوم</p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Kylian_Mbappe_-_France_v_Senegal_-_16_June_2026.jpg/500px-Kylian_Mbappe_-_France_v_Senegal_-_16_June_2026.jpg" alt="Kylian Mbappé" loading="lazy"></article>
+ <article class="authPromoCard authPromoGame"><span class="authPromoTag">LIVE GAMES</span><h3>Crazy Time</h3><p>اكتشف أجواء الألعاب الترفيهية</p><span class="authPromoWheel" aria-hidden="true"></span></article>
+</div>
+<div class="authBenefits"><div class="authBenefit"><b>15% Cashback*</b>استرداد نقدي</div><div class="authBenefit"><b>Support 24/7</b>دعم متواصل</div><div class="authBenefit"><b>Dépôt & retrait</b>إجراءات آمنة</div></div>
+<p class="authPromoFoot">* عرض الاسترداد النقدي يخضع لتوفر العرض وشروطه. الإيداعات والسحوبات تخضع للمراجعة والتحقق. 18+.</p>
+<div class="modalHeader"><h2>تسجيل الدخول</h2><button class="close" onclick="closeModal('loginModal')">×</button></div>
 <div class="formGroup"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="loginPassword" type="password" autocomplete="current-password"></div>
 <button class="btn btn-primary" style="width:100%" onclick="loginUser()">دخول</button><button class="btn" style="width:100%;margin-top:9px" onclick="closeModal('loginModal');openModal('registerModal')">إنشاء حساب</button><button class="btn" style="width:100%;margin-top:9px" onclick="openRecovery()">نسيت كلمة المرور؟</button><div id="loginStatus" style="margin-top:12px"></div></div></div>
-<div class="modal" id="registerModal"><div class="modalBox"><div class="modalHeader"><h2>إنشاء حساب</h2><button class="close" onclick="closeModal('registerModal')">×</button></div>
-<div class="formGroup"><label>الاسم</label><input id="registerName" type="text" autocomplete="name"></div><div class="formGroup"><label>رقم الهاتف</label><input id="registerPhone" type="text" autocomplete="tel"></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="registerEmail" type="email" autocomplete="email"></div><div class="formGroup"><label>كلمة المرور</label><input id="registerPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button><div id="registerStatus" style="margin-top:12px"></div></div></div>
+<div class="modal" id="registerModal"><div class="modalBox"><div class="authPromo" aria-label="SDNBet365 promotions">
+ <article class="authPromoCard authPromoFootball"><span class="authPromoTag">SPORTS · SDNBET365</span><h3>كرة القدم<br>في قلب الحدث</h3><p>تابع أجواء المباريات والنجوم</p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Kylian_Mbappe_-_France_v_Senegal_-_16_June_2026.jpg/500px-Kylian_Mbappe_-_France_v_Senegal_-_16_June_2026.jpg" alt="Kylian Mbappé" loading="lazy"></article>
+ <article class="authPromoCard authPromoGame"><span class="authPromoTag">LIVE GAMES</span><h3>Crazy Time</h3><p>اكتشف أجواء الألعاب الترفيهية</p><span class="authPromoWheel" aria-hidden="true"></span></article>
+</div>
+<div class="authBenefits"><div class="authBenefit"><b>15% Cashback*</b>استرداد نقدي</div><div class="authBenefit"><b>Support 24/7</b>دعم متواصل</div><div class="authBenefit"><b>Dépôt & retrait</b>إجراءات آمنة</div></div>
+<p class="authPromoFoot">* عرض الاسترداد النقدي يخضع لتوفر العرض وشروطه. الإيداعات والسحوبات تخضع للمراجعة والتحقق. 18+.</p>
+<div class="modalHeader"><h2>إنشاء حساب</h2><button class="close" onclick="closeModal('registerModal')">×</button></div>
+<div class="registerGrid">
+<div class="formGroup"><label for="registerName" data-i18n="firstNameLabel">الاسم</label><input autocomplete="given-name" id="registerName" type="text" required maxlength="80"/></div>
+<div class="formGroup"><label for="registerSurname" data-i18n="lastNameLabel">اللقب</label><input autocomplete="family-name" id="registerSurname" type="text" required maxlength="80"/></div>
+<div class="formGroup"><label for="registerDob" data-i18n="birthDateLabel">تاريخ الميلاد</label><input autocomplete="bday" id="registerDob" type="date" required/></div>
+<div class="formGroup"><label for="registerPhone" data-i18n="phone">رقم الهاتف</label><input autocomplete="tel" id="registerPhone" type="tel" inputmode="tel" required maxlength="24"/></div>
+<div class="formGroup registerWide"><label for="registerEmail" data-i18n="email">البريد الإلكتروني</label><input autocomplete="email" id="registerEmail" type="email" required maxlength="254"/></div>
+<div class="formGroup registerWide"><label for="registerPassword" data-i18n="passwordLabel">كلمة المرور</label><input autocomplete="new-password" id="registerPassword" type="password" required minlength="8" maxlength="128"/></div>
+</div>
+<p class="privacyNote" data-i18n="privacyNote">تُستخدم بيانات الحساب لإدارة تسجيل الدخول والتواصل معك. لا تشارك كلمة مرورك مع أي شخص.</p><button class="btn btn-primary" style="width:100%" onclick="registerUser()">إنشاء الحساب</button><div id="registerStatus" style="margin-top:12px"></div></div></div>
 <div class="modal" id="recoveryModal"><div class="modalBox"><div class="modalHeader"><h2>استعادة كلمة المرور</h2><button class="close" onclick="closeModal('recoveryModal')">×</button></div><div class="formGroup"><label>البريد الإلكتروني</label><input id="recoveryEmail" type="email" autocomplete="email"></div><button class="btn btn-primary" style="width:100%" onclick="sendRecovery()">إرسال رابط الاستعادة</button><div id="recoveryStatus" style="margin-top:12px"></div></div></div>
 <div class="modal" id="resetModal"><div class="modalBox"><div class="modalHeader"><h2>تغيير كلمة المرور</h2></div><div class="formGroup"><label>كلمة المرور الجديدة</label><input id="newPassword" type="password" autocomplete="new-password"></div><button class="btn btn-primary" style="width:100%" onclick="changePassword()">حفظ كلمة المرور</button><div id="resetStatus" style="margin-top:12px"></div></div></div>
 <div class="toast" id="toast"></div>
@@ -845,8 +1043,6 @@ const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHA
 let currentUser=null,currentProfile=null,currentConversation=null;
 let walletRequestsCache=[];
 let notificationRefreshBusy=false;
-let flouciWalletNumber=null;
-let paymentSettingsCache={};
 
 function $(id){return document.getElementById(id)}
 function openModal(id){const el=$(id);if(el)el.classList.add("show")}
@@ -857,30 +1053,22 @@ function formatMoney(value){const amount=Number(value||0).toFixed(3);return curr
 function formatDate(date){if(!date)return "-";try{return new Date(date).toLocaleString("ar-TN",{dateStyle:"short",timeStyle:"short"})}catch(e){return "-"}}
 function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function updatePaymentInstructions(){
-const method=$("paymentMethod")?.value;const display=$("paymentDestinationDisplay");const type=$("walletType")?.value;
-const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);
+const method=$("paymentMethod")?.value;const type=$("walletType")?.value;
 const proofGroup=$("proofUploadGroup");if(proofGroup)proofGroup.classList.toggle("hidden",type==="withdrawal");
-const rechargeFields=$("rechargeFields");if(rechargeFields)rechargeFields.classList.toggle("hidden",type==="withdrawal"||!recharge);
-const accountLabel=document.querySelector('label[for="paymentAccount"]');if(accountLabel)accountLabel.textContent=type==="withdrawal"?t("withdrawAccount"):recharge?t("rechargePhone"):t("paymentAccount");
-if(display){const keys={"Flouci":"flouci_wallet_number","D17":"d17_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};display.textContent=String(paymentSettingsCache[keys[method]]||t("notConfigured")).trim();}
-if($("rechargeLimit"))$("rechargeLimit").textContent=(method==="Ooredoo Recharge"?"Carte de recharge Ooredoo":method==="Orange"?"Carte de recharge Orange":"Carte de recharge Tunisie Telecom")+" — Min 5 TND · Max "+(method==="Ooredoo Recharge"?"80":"500")+" TND";
-if($("proofLabel"))$("proofLabel").textContent=recharge?t("cardPhoto"):t("paymentProof");
-if($("proofHint"))$("proofHint").textContent=t("proofHint");
+const transactionGroup=$("transactionFieldGroup");if(transactionGroup)transactionGroup.classList.toggle("hidden",type==="withdrawal");
+const accountLabel=$("paymentAccountLabel");
+if(accountLabel)accountLabel.textContent=type==="withdrawal"?t("withdrawAccount"):t("depositPhone");
+const transactionLabel=$("paymentReferenceLabel");
+if(transactionLabel)transactionLabel.textContent=currentLanguage==="fr"?"Numéro de transaction":currentLanguage==="en"?"Transaction Number":"رقم المعاملة";
+const selected=$("selectedPaymentMethod");if(selected)selected.textContent=method||"—";
+const privateNotice=$("privatePaymentNotice");if(privateNotice){privateNotice.textContent=currentLanguage==="fr"?"Pour recevoir les instructions de paiement, veuillez contacter l’assistance. Les coordonnées et numéros des comptes de l’administration ne sont pas affichés aux clients.":currentLanguage==="en"?"Please contact support for payment instructions. The administration’s account details and wallet numbers are not displayed to customers.":"للحصول على تعليمات الدفع، يرجى التواصل مع فريق الدعم. بيانات الحسابات وأرقام المحافظ الخاصة بالإدارة غير معروضة للعملاء.";}
+if($("proofLabel"))$("proofLabel").textContent=currentLanguage==="fr"?"Capture d’écran du paiement":currentLanguage==="en"?"Payment Screenshot":"لقطة شاشة لإثبات الدفع";
+if($("proofHint"))$("proofHint").textContent=currentLanguage==="fr"?"JPG, PNG ou WebP uniquement — 4 Mo maximum.":currentLanguage==="en"?"Upload a clear JPG, PNG or WebP screenshot — 4 MB maximum.":"ارفع لقطة شاشة واضحة بصيغة JPG أو PNG أو WebP، بحد أقصى 4 ميغابايت.";
 }
-async function loadPaymentSettings(){
-const display=$("paymentDestinationDisplay");if(display)display.textContent="جارٍ تحميل البيانات...";
-try{
-const {data,error}=await supabaseClient.from("site_payment_settings").select("flouci_wallet_number,d17_wallet_number,izi_zaytouna_account,ooredoo_number,orange_number,tunisie_telecom_number").limit(1).maybeSingle();
-if(error)throw error;
-paymentSettingsCache=data||{};flouciWalletNumber=String(paymentSettingsCache.flouci_wallet_number||"").trim()||null;
-updatePaymentInstructions();
-}catch(error){console.error("Load payment settings:",error);paymentSettingsCache={};if(display)display.textContent="تعذر تحميل بيانات الاستقبال؛ يرجى التواصل مع الدعم";}
-}
-async function loadFlouciWallet(){return loadPaymentSettings()}
 const translations={
-ar:{notificationTitle:"إشعارات حسابك",markRead:"قراءة الكل",loginNotifications:"سجّل الدخول لعرض إشعاراتك.",sectionSports:"الرياضة",sportsIntro:"المباريات والنتائج المتاحة.",sectionCasino:"الكازينو",casinoIntro:"استكشف أقسام الألعاب المتاحة.",sectionLive:"مباشر",liveIntro:"الأحداث المباشرة.",sectionWallet:"المحفظة",walletIntro:"إدارة طلبات الإيداع والسحب.",sectionHistory:"سجل المحفظة",historyIntro:"جميع طلبات الإيداع والسحب الخاصة بحسابك.",sectionSupport:"الدعم",supportIntro:"تواصل مع فريق الدعم من داخل الموقع.",walletTypeLabel:"نوع العملية",deposit:"إيداع",withdrawal:"سحب",amountLabel:"المبلغ بالدينار التونسي",methodLabel:"طريقة الدفع",referenceLabel:"مرجع العملية إن وجد",promoLabel:"كود العرض (اختياري)",submitRequest:"إرسال الطلب",colType:"النوع",colAmount:"المبلغ",colMethod:"الطريقة",colStatus:"الحالة",colDate:"التاريخ",myBets:"رهاناتي",navSports:"الرياضة",navCasino:"الكازينو",navLive:"مباشر",navWallet:"المحفظة",navHistory:"سجل المعاملات",support:"الدعم",myAccount:"حسابي",accountTitle:"حسابي / My Account / Mon compte",accountIntro:"ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.",profileTitle:"الملف الشخصي",fullName:"الاسم الكامل",phone:"رقم الهاتف",email:"البريد الإلكتروني",saveProfile:"حفظ بيانات الملف",requestStatusTitle:"حالة الإيداع والسحب",requestStatusInfo:"تظهر حالات الطلبات في سجل المحفظة أدناه. لا يمكن إلغاء السحب من الواجهة قبل تجهيز إجراء آمن في قاعدة البيانات.",viewHistory:"عرض سجل المعاملات",betsInfo:"لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.",betsNotice:"يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.",rights:"جميع الحقوق محفوظة.",withdrawAccount:"حساب / هاتف السحب",rechargePhone:"رقم الهاتف المرتبط ببطاقة التعبئة",paymentAccount:"رقم الحساب / الهاتف",notConfigured:"لم يتم إعداد بيانات هذه الوسيلة بعد",cardPhoto:"صورة بطاقة التعبئة",paymentProof:"صورة إثبات الدفع",proofHint:"صورة JPEG أو PNG أو WebP فقط، بحد أقصى 4 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع."},
-en:{notificationTitle:"Account notifications",markRead:"Mark all read",loginNotifications:"Sign in to view your notifications.",sectionSports:"Sports",sportsIntro:"Sports matches interface.",sectionCasino:"Casino",casinoIntro:"Explore available game sections.",sectionLive:"Live",liveIntro:"Live events.",sectionWallet:"Wallet",walletIntro:"Manage deposit and withdrawal requests.",sectionHistory:"Wallet history",historyIntro:"Your deposit and withdrawal requests.",sectionSupport:"Support",supportIntro:"Contact the support team from the website.",walletTypeLabel:"Transaction type",deposit:"Deposit",withdrawal:"Withdrawal",amountLabel:"Amount in Tunisian dinars",methodLabel:"Payment method",referenceLabel:"Transaction reference (if any)",promoLabel:"Promo code (optional)",submitRequest:"Submit request",colType:"Type",colAmount:"Amount",colMethod:"Method",colStatus:"Status",colDate:"Date",myBets:"My Bets",navSports:"Sports",navCasino:"Casino",navLive:"Live",navWallet:"Wallet",navHistory:"Transactions",support:"Support",myAccount:"My Account",accountTitle:"My Account",accountIntro:"Your profile, request statuses, transaction history and bets.",profileTitle:"Personal profile",fullName:"Full name",phone:"Phone number",email:"Email address",saveProfile:"Save profile",requestStatusTitle:"Deposit and withdrawal status",requestStatusInfo:"Request statuses appear in wallet history below. Withdrawal cancellation is not enabled until a safe database procedure is available.",viewHistory:"View transaction history",betsInfo:"No bet provider is connected yet, so no fictional bets are displayed.",betsNotice:"A real bets table is required before this section can show actual data.",rights:"All rights reserved.",withdrawAccount:"Withdrawal account / phone",rechargePhone:"Phone number associated with recharge card",paymentAccount:"Account / phone number",notConfigured:"Payment details have not been configured yet",cardPhoto:"Recharge card photo",paymentProof:"Payment proof image",proofHint:"JPEG, PNG or WebP image only, maximum 4 MB. Uploading does not approve a deposit."},
-fr:{notificationTitle:"Notifications du compte",markRead:"Tout marquer comme lu",loginNotifications:"Connectez-vous pour voir vos notifications.",sectionSports:"Sports",sportsIntro:"Matchs et résultats disponibles.",sectionCasino:"Casino",casinoIntro:"Découvrez les catégories de jeux.",sectionLive:"En direct",liveIntro:"Événements en direct.",sectionWallet:"Portefeuille",walletIntro:"Gérer les demandes de dépôt et de retrait.",sectionHistory:"Historique du portefeuille",historyIntro:"Vos demandes de dépôt et de retrait.",sectionSupport:"Assistance",supportIntro:"Contactez l’équipe d’assistance depuis le site.",walletTypeLabel:"Type d’opération",deposit:"Dépôt",withdrawal:"Retrait",amountLabel:"Montant en dinars tunisiens",methodLabel:"Mode de paiement",referenceLabel:"Référence de transaction (facultatif)",promoLabel:"Code promo (facultatif)",submitRequest:"Envoyer la demande",colType:"Type",colAmount:"Montant",colMethod:"Méthode",colStatus:"Statut",colDate:"Date",myBets:"Mes paris",navSports:"Sports",navCasino:"Casino",navLive:"En direct",navWallet:"Portefeuille",navHistory:"Transactions",support:"Assistance",myAccount:"Mon compte",accountTitle:"Mon compte",accountIntro:"Votre profil, l’état des demandes, l’historique et les paris.",profileTitle:"Profil personnel",fullName:"Nom complet",phone:"Numéro de téléphone",email:"Adresse e-mail",saveProfile:"Enregistrer le profil",requestStatusTitle:"État des dépôts et retraits",requestStatusInfo:"L’état des demandes apparaît dans l’historique du portefeuille. L’annulation d’un retrait reste désactivée jusqu’à la mise en place d’une procédure sécurisée en base de données.",viewHistory:"Voir l’historique",betsInfo:"Aucune source de paris n’est connectée à la base actuelle ; aucun pari fictif ne sera affiché.",betsNotice:"Une vraie table de paris est nécessaire pour afficher des données réelles.",rights:"Tous droits réservés.",withdrawAccount:"Compte / téléphone de retrait",rechargePhone:"Numéro associé à la carte de recharge",paymentAccount:"Numéro de compte / téléphone",notConfigured:"Les informations de paiement ne sont pas encore configurées",cardPhoto:"Photo de la carte de recharge",paymentProof:"Image de preuve de paiement",proofHint:"Image JPEG, PNG ou WebP uniquement, maximum 4 Mo. Le dépôt n’est pas approuvé automatiquement."}};
+ar:{notificationTitle:"إشعارات حسابك",markRead:"قراءة الكل",loginNotifications:"سجّل الدخول لعرض إشعاراتك.",sectionSports:"الرياضة",sportsIntro:"المباريات والنتائج المتاحة.",sectionCasino:"الكازينو",casinoIntro:"استكشف أقسام الألعاب المتاحة.",sectionLive:"مباشر",liveIntro:"الأحداث المباشرة.",sectionWallet:"المحفظة",walletIntro:"إدارة طلبات الإيداع والسحب.",sectionHistory:"سجل المحفظة",historyIntro:"جميع طلبات الإيداع والسحب الخاصة بحسابك.",sectionSupport:"الدعم",supportIntro:"تواصل مع فريق الدعم من داخل الموقع.",walletTypeLabel:"نوع العملية",deposit:"إيداع",withdrawal:"سحب",amountLabel:"المبلغ بالدينار التونسي",methodLabel:"طريقة الدفع",referenceLabel:"رقم المعاملة",depositPhone:"رقم الهاتف الذي تم الدفع منه",submitRequest:"إرسال الطلب",colType:"النوع",colAmount:"المبلغ",colMethod:"الطريقة",colStatus:"الحالة",colDate:"التاريخ",myBets:"رهاناتي",navSports:"الرياضة",navCasino:"الكازينو",navLive:"مباشر",navWallet:"المحفظة",navHistory:"سجل المعاملات",support:"الدعم",myAccount:"حسابي",accountTitle:"حسابي / My Account / Mon compte",accountIntro:"ملفك الشخصي، حالة الطلبات، سجل المعاملات والرهانات.",profileTitle:"الملف الشخصي",fullName:"الاسم الكامل",phone:"رقم الهاتف",email:"البريد الإلكتروني",saveProfile:"حفظ بيانات الملف",requestStatusTitle:"حالة الإيداع والسحب",requestStatusInfo:"تظهر حالات الطلبات في سجل المحفظة أدناه. لا يمكن إلغاء السحب من الواجهة قبل تجهيز إجراء آمن في قاعدة البيانات.",viewHistory:"عرض سجل المعاملات",betsInfo:"لا توجد بيانات رهانات موصولة في قاعدة البيانات الحالية؛ لن نعرض رهانات وهمية.",betsNotice:"يحتاج هذا القسم إلى جدول رهانات فعلي قبل عرضه كبيانات حقيقية.",rights:"جميع الحقوق محفوظة.",withdrawAccount:"حساب / هاتف السحب",rechargePhone:"رقم الهاتف المرتبط ببطاقة التعبئة",paymentAccount:"رقم الحساب / الهاتف",notConfigured:"لم يتم إعداد بيانات هذه الوسيلة بعد",cardPhoto:"صورة بطاقة التعبئة",paymentProof:"صورة إثبات الدفع",proofHint:"صورة JPEG أو PNG أو WebP فقط، بحد أقصى 4 ميغابايت. رفع الصورة لا يعني اعتماد الإيداع."},
+en:{notificationTitle:"Account notifications",markRead:"Mark all read",loginNotifications:"Sign in to view your notifications.",sectionSports:"Sports",sportsIntro:"Sports matches interface.",sectionCasino:"Casino",casinoIntro:"Explore available game sections.",sectionLive:"Live",liveIntro:"Live events.",sectionWallet:"Wallet",walletIntro:"Manage deposit and withdrawal requests.",sectionHistory:"Wallet history",historyIntro:"Your deposit and withdrawal requests.",sectionSupport:"Support",supportIntro:"Contact the support team from the website.",walletTypeLabel:"Transaction type",deposit:"Deposit",withdrawal:"Withdrawal",amountLabel:"Amount in Tunisian dinars",methodLabel:"Payment method",referenceLabel:"Transaction Number",depositPhone:"Phone number used to make the payment",submitRequest:"Submit request",colType:"Type",colAmount:"Amount",colMethod:"Method",colStatus:"Status",colDate:"Date",myBets:"My Bets",navSports:"Sports",navCasino:"Casino",navLive:"Live",navWallet:"Wallet",navHistory:"Transactions",support:"Support",myAccount:"My Account",accountTitle:"My Account",accountIntro:"Your profile, request statuses, transaction history and bets.",profileTitle:"Personal profile",fullName:"Full name",phone:"Phone number",email:"Email address",saveProfile:"Save profile",requestStatusTitle:"Deposit and withdrawal status",requestStatusInfo:"Request statuses appear in wallet history below. Withdrawal cancellation is not enabled until a safe database procedure is available.",viewHistory:"View transaction history",betsInfo:"No bet provider is connected yet, so no fictional bets are displayed.",betsNotice:"A real bets table is required before this section can show actual data.",rights:"All rights reserved.",withdrawAccount:"Withdrawal account / phone",rechargePhone:"Phone number associated with recharge card",paymentAccount:"Account / phone number",notConfigured:"Payment details have not been configured yet",cardPhoto:"Recharge card photo",paymentProof:"Payment proof image",proofHint:"JPEG, PNG or WebP image only, maximum 4 MB. Uploading does not approve a deposit."},
+fr:{notificationTitle:"Notifications du compte",markRead:"Tout marquer comme lu",loginNotifications:"Connectez-vous pour voir vos notifications.",sectionSports:"Sports",sportsIntro:"Matchs et résultats disponibles.",sectionCasino:"Casino",casinoIntro:"Découvrez les catégories de jeux.",sectionLive:"En direct",liveIntro:"Événements en direct.",sectionWallet:"Portefeuille",walletIntro:"Gérer les demandes de dépôt et de retrait.",sectionHistory:"Historique du portefeuille",historyIntro:"Vos demandes de dépôt et de retrait.",sectionSupport:"Assistance",supportIntro:"Contactez l’équipe d’assistance depuis le site.",walletTypeLabel:"Type d’opération",deposit:"Dépôt",withdrawal:"Retrait",amountLabel:"Montant en dinars tunisiens",methodLabel:"Mode de paiement",referenceLabel:"Numéro de transaction",depositPhone:"Numéro de téléphone utilisé pour effectuer le paiement",submitRequest:"Envoyer la demande",colType:"Type",colAmount:"Montant",colMethod:"Méthode",colStatus:"Statut",colDate:"Date",myBets:"Mes paris",navSports:"Sports",navCasino:"Casino",navLive:"En direct",navWallet:"Portefeuille",navHistory:"Transactions",support:"Assistance",myAccount:"Mon compte",accountTitle:"Mon compte",accountIntro:"Votre profil, l’état des demandes, l’historique et les paris.",profileTitle:"Profil personnel",fullName:"Nom complet",phone:"Numéro de téléphone",email:"Adresse e-mail",saveProfile:"Enregistrer le profil",requestStatusTitle:"État des dépôts et retraits",requestStatusInfo:"L’état des demandes apparaît dans l’historique du portefeuille. L’annulation d’un retrait reste désactivée jusqu’à la mise en place d’une procédure sécurisée en base de données.",viewHistory:"Voir l’historique",betsInfo:"Aucune source de paris n’est connectée à la base actuelle ; aucun pari fictif ne sera affiché.",betsNotice:"Une vraie table de paris est nécessaire pour afficher des données réelles.",rights:"Tous droits réservés.",withdrawAccount:"Compte / téléphone de retrait",rechargePhone:"Numéro associé à la carte de recharge",paymentAccount:"Numéro de compte / téléphone",notConfigured:"Les informations de paiement ne sont pas encore configurées",cardPhoto:"Photo de la carte de recharge",paymentProof:"Image de preuve de paiement",proofHint:"Image JPEG, PNG ou WebP uniquement, maximum 4 Mo. Le dépôt n’est pas approuvé automatiquement."}};
 let currentLanguage=localStorage.getItem("sdnbet365_language")||"ar";
 function t(key){return (translations[currentLanguage]&&translations[currentLanguage][key])||translations.ar[key]||key}
 function setLanguage(lang){if(!translations[lang])return;currentLanguage=lang;localStorage.setItem("sdnbet365_language",lang);document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";const sel=$("languageSelect");if(sel)sel.value=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(t(k))el.textContent=t(k)});updatePaymentInstructions();const mb=$("headerBalanceValue");if(mb){const raw=mb.textContent.replace(/^(الرصيد: |Balance: |Solde : )/,"");mb.textContent=(lang==="fr"?"Solde : ":lang==="en"?"Balance: ":"")+raw;}}
@@ -970,56 +1158,36 @@ console.warn("IP logging request failed:",error);
 }
 }
 async function registerUser(){
- const name=$("registerName").value.trim();
- const phone=$("registerPhone").value.trim();
- const email=$("registerEmail").value.trim();
- const password=$("registerPassword").value;
-
- if(!email||!password){
-   showStatus("registerStatus","أدخل البريد الإلكتروني وكلمة المرور.","error");
-   return;
- }
- if(password.length<6){
-   showStatus("registerStatus","كلمة المرور يجب أن تكون 6 أحرف على الأقل.","error");
-   return;
- }
-
- showStatus("registerStatus","جارٍ إنشاء الحساب...");
- try{
-   const {data,error}=await supabaseClient.auth.signUp({
-     email,
-     password,
-     options:{data:{full_name:name,phone}}
-   });
-
-   if(error){
-     console.error("Register error:",error);
-     showStatus("registerStatus",error.message,"error");
-     return;
-   }
-
-   if(data?.session && data?.user){
-     currentUser=data.user;
-     closeModal("registerModal");
-     showToast("تم إنشاء الحساب وتسجيل الدخول بنجاح");
-     await updateAuthUI(currentUser);
-     await loadWalletData();
-     await loadWalletHistory();
-     await loadSupport();
-     await loadProfileForm();
-   }else if(data?.user){
-     showStatus(
-       "registerStatus",
-       "تم إنشاء الحساب، لكن لم تُنشأ جلسة دخول تلقائية. جرّب تسجيل الدخول الآن؛ إذا تعذر ذلك، تحقّق من إعدادات Email في Supabase وسجل أخطاء المصادقة.",
-       "success"
-     );
-   }else{
-     showStatus("registerStatus","لم يتم إنشاء الحساب. حاول مرة أخرى.","error");
-   }
- }catch(error){
-   console.error("Register exception:",error);
-   showStatus("registerStatus","حدث خطأ أثناء إنشاء الحساب.","error");
- }
+  const name=$("registerName").value.trim();
+  const surname=$("registerSurname").value.trim();
+  const dateOfBirth=$("registerDob").value;
+  const phone=$("registerPhone").value.trim();
+  const email=$("registerEmail").value.trim();
+  const password=$("registerPassword").value;
+  if(!name||!surname||!dateOfBirth||!phone||!email||!password){
+    showStatus("registerStatus",t("completeRequiredFields"),"error");return;
+  }
+  const birthDate=new Date(dateOfBirth+"T00:00:00");
+  const today=new Date();today.setHours(0,0,0,0);
+  if(Number.isNaN(birthDate.getTime())||birthDate>=today){
+    showStatus("registerStatus",t("validBirthDate"),"error");return;
+  }
+  if(password.length<8){showStatus("registerStatus",t("passwordMinLength"),"error");return;}
+  showStatus("registerStatus",currentLanguage==="fr"?"Création du compte…":currentLanguage==="en"?"Creating account…":"جارٍ إنشاء الحساب...");
+  try{
+    const {data,error}=await supabaseClient.auth.signUp({
+      email,password,
+      options:{data:{full_name:(name+" "+surname).trim(),first_name:name,last_name:surname,date_of_birth:dateOfBirth,phone}}
+    });
+    if(error){console.error("Register error:",error);showStatus("registerStatus",error.message,"error");return;}
+    if(data?.session&&data?.user){
+      currentUser=data.user;closeModal("registerModal");
+      showToast(currentLanguage==="fr"?"Compte créé avec succès":currentLanguage==="en"?"Account created successfully":"تم إنشاء الحساب بنجاح");
+      await updateAuthUI(currentUser);await loadWalletData();await loadWalletHistory();await loadSupport();await loadProfileForm();
+    }else if(data?.user){
+      showStatus("registerStatus",currentLanguage==="fr"?"Compte créé. Vérifiez votre e-mail pour confirmer l'inscription, puis connectez-vous.":currentLanguage==="en"?"Account created. Check your email to confirm registration, then sign in.":"تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيد التسجيل، ثم سجّل الدخول.","success");
+    }else{showStatus("registerStatus",currentLanguage==="fr"?"La création du compte a échoué.":currentLanguage==="en"?"Account creation failed.":"لم يتم إنشاء الحساب. حاول مرة أخرى.","error");}
+  }catch(error){console.error("Register exception:",error);showStatus("registerStatus",currentLanguage==="fr"?"Une erreur est survenue lors de la création du compte.":currentLanguage==="en"?"An error occurred while creating the account.":"حدث خطأ أثناء إنشاء الحساب.","error");}
 }
 async function loginUser(){
 const email=$("loginEmail").value.trim(),password=$("loginPassword").value;
@@ -1102,53 +1270,132 @@ if(!currentUser)return null;
 const {data,error}=await supabaseClient.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
 if(error){console.error("Profile error:",error);return null}currentProfile=data||null;return data||null;
 }
+let walletBalanceLoadPromise=null;
 async function loadWalletData(){
-const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("headerBalanceValue")||$("userBalanceMini"),sideBalance=$("sideMenuBalance"),sideBalanceValue=$("sideMenuBalanceValue");
-if(!currentUser){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : —":currentLanguage==="en"?"Balance: —":"الرصيد: —");if(sideBalance)sideBalance.classList.add("hidden");if(sideBalanceValue)sideBalanceValue.textContent="— د.ت";return}
-if(heroBalance)heroBalance.textContent="جاري التحميل...";if(walletBalance)walletBalance.textContent="جاري التحميل...";if(miniBalance)miniBalance.textContent="الرصيد: جاري التحميل...";
-try{
-const {data:userData,error:userError}=await supabaseClient.auth.getUser();
-if(userError||!userData?.user){if(userError)console.error("Auth user error:",userError);if(heroBalance)heroBalance.textContent="تعذر قراءة الحساب";if(walletBalance)walletBalance.textContent="تعذر قراءة الحساب";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
-const user=userData.user;currentUser=user;
-const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("user_id,balance,currency").eq("user_id",user.id).limit(1);
-if(walletError){console.error("Wallet account error:",walletError);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح";return}
-const wallet=Array.isArray(walletRows)?walletRows[0]:null;
-if(!wallet){if(heroBalance)heroBalance.textContent="0.000 د.ت";if(walletBalance)walletBalance.textContent="0.000 د.ت";if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+"0.000 TND";return}
-const balance=Number(wallet.balance??0),currency=String(wallet.currency||"TND").toUpperCase();
-const formatted=balance.toFixed(3)+(currency==="TND"?" د.ت":" "+currency);
-if(heroBalance)heroBalance.textContent=formatted;if(walletBalance)walletBalance.textContent=formatted;if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+formatted;if(sideBalanceValue)sideBalanceValue.textContent=formatted;if(sideBalance&&currentUser)sideBalance.classList.remove("hidden");
-}catch(error){console.error("loadWalletData exception:",error);if(heroBalance)heroBalance.textContent="تعذر قراءة الرصيد";if(walletBalance)walletBalance.textContent="تعذر قراءة الرصيد";if(miniBalance)miniBalance.textContent="الرصيد: غير متاح"}
+  // Prevent overlapping refreshes from auth events, login and the periodic timer.
+  if(walletBalanceLoadPromise) return walletBalanceLoadPromise;
+  walletBalanceLoadPromise=(async()=>{
+    const heroBalance=$("heroBalance"),walletBalance=$("walletBalance"),miniBalance=$("headerBalanceValue")||$("userBalanceMini"),sideBalance=$("sideMenuBalance"),sideBalanceValue=$("sideMenuBalanceValue");
+    if(!currentUser){
+      if(heroBalance)heroBalance.textContent="0.000 د.ت";
+      if(walletBalance)walletBalance.textContent="0.000 د.ت";
+      if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : —":currentLanguage==="en"?"Balance: —":"الرصيد: —");
+      if(sideBalance)sideBalance.classList.add("hidden");
+      if(sideBalanceValue)sideBalanceValue.textContent="— د.ت";
+      return;
+    }
+    // Keep the currently displayed balance visible while refreshing in the background.
+    try{
+      const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+      if(userError||!userData?.user){
+        if(userError)console.error("Auth user error:",userError);
+        return; // Do not replace a previously displayed balance with an error/loading message.
+      }
+      const user=userData.user;
+      currentUser=user;
+      const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("user_id,balance,currency").eq("user_id",user.id).limit(1);
+      if(walletError){console.error("Wallet account error:",walletError);return;}
+      const wallet=Array.isArray(walletRows)?walletRows[0]:null;
+      const balance=Number(wallet?.balance??0);
+      const currency=String(wallet?.currency||"TND").toUpperCase();
+      if(!Number.isFinite(balance))return;
+      const formatted=balance.toFixed(3)+(currency==="TND"?" د.ت":" "+currency);
+      if(heroBalance)heroBalance.textContent=formatted;
+      if(walletBalance)walletBalance.textContent=formatted;
+      if(miniBalance)miniBalance.textContent=(currentLanguage==="fr"?"Solde : ":currentLanguage==="en"?"Balance: ":"الرصيد: ")+formatted;
+      if(sideBalanceValue)sideBalanceValue.textContent=formatted;
+      if(sideBalance)sideBalance.classList.remove("hidden");
+    }catch(error){
+      console.error("loadWalletData exception:",error);
+      // Keep the last known balance visible if the network temporarily fails.
+    }
+  })();
+  try{return await walletBalanceLoadPromise;}
+  finally{walletBalanceLoadPromise=null;}
 }
+
+let depositPaymentSettings={};
+function maskPaymentValue(value){
+ const raw=String(value||"").trim();if(!raw)return "غير متاح";
+ const digits=raw.replace(/\s+/g,"");return "••••••"+digits.slice(-4);
+}
+function goDepositStep(step){
+ const amount=Number($("walletAmount")?.value||0);
+ if(step===2){
+  if(!Number.isFinite(amount)||amount<1){showToast("اختر مبلغ الإيداع أولًا");return}
+  const method=$("paymentMethod")?.value||"D17";
+  const keyMap={"D17":"d17_wallet_number","Flouci":"flouci_wallet_number","Izi Zaytouna":"izi_zaytouna_account","Ooredoo Recharge":"ooredoo_number","Orange":"orange_number","Tunisie Telecom":"tunisie_telecom_number"};
+  const destination=String(depositPaymentSettings[keyMap[method]]||"").trim();
+  if(!destination){showToast("بيانات استقبال هذه الوسيلة غير مهيأة. يرجى التواصل مع الدعم.");return}
+  window.currentDepositPaymentNumber=destination;
+  const name=currentProfile?.username||currentUser?.user_metadata?.full_name||currentUser?.email?.split("@")[0]||"اللاعب";
+  $("depositSummaryMethod").textContent=method;$("depositSummaryAmount").textContent=amount.toFixed(2)+" TND";
+  $("depositPlayerId").textContent=String(currentUser?.id||"").slice(0,8).toUpperCase();
+  $("depositPlayerName").textContent=name;$("depositGreetingName").textContent=name;
+  $("depositGreetingAmount").textContent=amount.toFixed(2)+" TND";
+  $("depositMaskedNumber").textContent=maskPaymentValue(destination);
+  $("depositMaskedAccount").textContent="الحساب: "+maskPaymentValue(depositPaymentSettings[keyMap[method]]);
+ }
+ [1,2,3].forEach(n=>{const panel=$("depositPanel"+n);if(panel)panel.hidden=n!==step;const dot=$("depositStep"+n);if(dot){dot.classList.toggle("active",n===step);dot.classList.toggle("done",n<step);dot.textContent=n<step?"✓":String(n)}});
+ $("depositLine1")?.classList.toggle("done",step>1);$("depositLine2")?.classList.toggle("done",step>2);
+}
+async function copyDepositPaymentNumber(){
+ const value=String(window.currentDepositPaymentNumber||"").trim();
+ if(!value){showToast("رقم الدفع غير متاح حاليًا");return}
+ try{await navigator.clipboard.writeText(value);showToast("تم نسخ رقم الدفع")}
+ catch(e){const temp=document.createElement("textarea");temp.value=value;document.body.appendChild(temp);temp.select();const ok=document.execCommand("copy");temp.remove();showToast(ok?"تم نسخ رقم الدفع":"تعذر النسخ؛ يرجى المحاولة مجددًا")}
+}
+async function loadDepositPaymentSettings(){
+ try{
+  const {data,error}=await supabaseClient.from("site_payment_settings").select("flouci_wallet_number,d17_wallet_number,izi_zaytouna_account,ooredoo_number,orange_number,tunisie_telecom_number").limit(1).maybeSingle();
+  if(error)throw error;depositPaymentSettings=data||{};
+ }catch(error){console.error("Payment settings:",error);depositPaymentSettings={};}
+}
+async function submitWithdrawalWizard(){
+ if(!currentUser){openModal("loginModal");return}
+ const amount=Number($("withdrawAmount").value),account=$("withdrawAccount").value.trim(),method=$("withdrawMethod").value;
+ if(!Number.isFinite(amount)||amount<=0||!account){showToast("أدخل مبلغًا وحساب استلام صحيحًا");return}
+ const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
+ if(walletError){showToast("تعذر التحقق من الرصيد");return}
+ if(amount>Number(walletRows?.[0]?.balance||0)){showToast("الرصيد غير كافٍ لطلب السحب");return}
+ const {error}=await supabaseClient.from("wallet_requests").insert({user_id:currentUser.id,request_type:"withdrawal",amount,payment_method:method,payment_account:account,payment_reference:null,promo_code:null,proof_storage_path:null,status:"pending"});
+ if(error){showToast("تعذر إرسال الطلب: "+error.message);return}
+ $("withdrawAmount").value="";$("withdrawAccount").value="";showToast("تم إرسال طلب السحب للمراجعة");await loadWalletHistory();
+}
+
 async function createWalletRequest(){
 if(!currentUser){showToast("يجب تسجيل الدخول أولًا");openModal("loginModal");return}
-const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value;let account=$("paymentAccount").value.trim();const reference=$("paymentReference").value.trim(),promoCode=$("promoCode")?.value.trim()||"";const recharge=["Ooredoo Recharge","Orange","Tunisie Telecom"].includes(method);const cardCodes=[1,2,3,4].map(n=>$("cardCode"+n)?.value.trim()||"");if(type==="deposit"&&recharge){const maxAmount=method==="Ooredoo Recharge"?80:500;if(amount<5||amount>maxAmount){showToast("حدود الإيداع لهذه الطريقة من 5 إلى "+maxAmount+" د.ت");return}if(!cardCodes.some(Boolean)){showToast("أدخل رمز بطاقة التعبئة في خانة واحدة على الأقل");return}account="Codes: "+cardCodes.map((c,i)=>c?`Carte ${i+1}: ${c}`:"").filter(Boolean).join(" | ")+ (account?" | Téléphone: "+account:"");}
+const type=$("walletType").value,amount=Number($("walletAmount").value),method=$("paymentMethod").value;
+const account=$("paymentAccount").value.trim();
+const reference=$("paymentReference").value.trim();
 if(!Number.isFinite(amount)||amount<=0){showToast("أدخل مبلغًا صحيحًا");return}
-if(!account){showToast("أدخل رقم الحساب أو الهاتف");return}
+if(!account){showToast(type==="deposit"?"أدخل رقم الهاتف الذي أجريت منه الدفع":"أدخل رقم الهاتف أو حساب الاستلام");return}
 let proofPath=null;
 if(type==="deposit"){
+ if(!reference){showToast("أدخل رقم المعاملة قبل إرسال طلب الإيداع");return}
  const file=$("paymentProof")?.files?.[0];
- if(!file){showToast("أرفق صورة إثبات الدفع قبل إرسال طلب الإيداع");return}
- const allowedMime=["image/jpeg","image/png","image/webp","image/gif","image/heif","image/heic","application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
- const allowedExt=/\.(pdf|doc|docx|jpe?g|png|gif|heif|heic|webp)$/i;
- if(!allowedMime.includes(file.type)&&!allowedExt.test(file.name||"")){showToast("صيغة الملف غير مدعومة. استخدم PDF أو DOC/DOCX أو JPEG/PNG/GIF/HEIF");return}
- if(file.size>4*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 4 ميغابايت");return}
-}
-if(type==="withdrawal"){
-const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
-if(walletError){console.error("Wallet balance error:",walletError);showToast("تعذر التحقق من الرصيد");return}
-const walletAccount=Array.isArray(walletRows)?walletRows[0]:null,balance=Number(walletAccount?.balance||0);
-if(amount>balance){showToast("الرصيد غير كافٍ لطلب السحب");return}
+ if(!file){showToast("أرفق لقطة شاشة لإثبات الدفع قبل إرسال الطلب");return}
+ const allowedMime=["image/jpeg","image/png","image/webp"];
+ if(!allowedMime.includes(file.type)){showToast("يرجى اختيار صورة JPG أو PNG أو WebP");return}
+ if(file.size>4*1024*1024){showToast("يجب ألا يتجاوز حجم لقطة الشاشة 4 ميغابايت");return}
 }else{
+ const {data:walletRows,error:walletError}=await supabaseClient.from("wallet_accounts").select("balance").eq("user_id",currentUser.id).limit(1);
+ if(walletError){console.error("Wallet balance error:",walletError);showToast("تعذر التحقق من الرصيد");return}
+ const walletAccount=Array.isArray(walletRows)?walletRows[0]:null,balance=Number(walletAccount?.balance||0);
+ if(amount>balance){showToast("الرصيد غير كافٍ لطلب السحب");return}
+}
+if(type==="deposit"){
  const file=$("paymentProof").files[0];
- const safeName=String(file.name||"proof").replace(/[^a-zA-Z0-9._-]/g,"_").slice(-80);
+ const safeName=String(file.name||"screenshot").replace(/[^a-zA-Z0-9._-]/g,"_").slice(-80);
  proofPath=currentUser.id+"/"+Date.now()+"_"+safeName;
  const {error:uploadError}=await supabaseClient.storage.from("payment-proofs").upload(proofPath,file,{cacheControl:"3600",upsert:false,contentType:file.type});
- if(uploadError){console.error("Payment proof upload:",uploadError);showToast("تعذر رفع إثبات الدفع: "+uploadError.message);return}
+ if(uploadError){console.error("Payment proof upload:",uploadError);showToast("تعذر رفع لقطة الشاشة: "+uploadError.message);return}
 }
-const payload={user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,promo_code:promoCode||null,proof_storage_path:proofPath,status:"pending"};
+// Reuse the existing wallet_requests columns; no database migration is required.
+const payload={user_id:currentUser.id,request_type:type,amount,payment_method:method,payment_account:account,payment_reference:reference||null,promo_code:null,proof_storage_path:proofPath,status:"pending"};
 const {error}=await supabaseClient.from("wallet_requests").insert(payload);
 if(error){console.error("Wallet request:",error);showToast("تعذر إرسال الطلب: "+error.message);return}
-$("walletAmount").value="";$("paymentAccount").value="";$("paymentReference").value="";if($("promoCode"))$("promoCode").value="";if($("paymentProof"))$("paymentProof").value="";
+$("walletAmount").value="";$("paymentAccount").value="";$("paymentReference").value="";if($("paymentProof"))$("paymentProof").value="";
 showToast("تم إرسال طلبك بنجاح وهو قيد المراجعة اليدوية؛ لن يُضاف الرصيد تلقائيًا");
 await loadWalletHistory();
 }
@@ -1248,8 +1495,8 @@ if(currentUser){await loadWalletData();await loadWalletHistory();await loadSuppo
 if(new URLSearchParams(window.location.search).get("type")==="recovery")setTimeout(()=>openModal("resetModal"),800);
 setLanguage(currentLanguage);
 initialize();
-loadPaymentSettings();
-$("walletType")?.addEventListener("change",updatePaymentInstructions);
+
+$("walletType")?.addEventListener("change",()=>{const dep=$("depositWizard"),wd=$("withdrawalForm");const isDeposit=$("walletType").value==="deposit";if(dep)dep.hidden=!isDeposit;if(wd)wd.hidden=isDeposit;if(isDeposit)goDepositStep(1);});
 document.querySelectorAll(".modal").forEach(modal=>modal.addEventListener("click",event=>{if(event.target===modal)modal.classList.remove("show")}));
 document.addEventListener("click",event=>{
 const wrap=document.querySelector(".notificationWrap"),panel=$("notificationPanel"),button=$("notificationButton");
@@ -1321,6 +1568,7 @@ document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMe
  const select=document.getElementById('paymentMethod'),cards=document.querySelectorAll('.paymentMethodCard');
  cards.forEach(card=>card.addEventListener('click',()=>{if(!select)return;select.value=card.dataset.method;select.dispatchEvent(new Event('change',{bubbles:true}));cards.forEach(c=>c.setAttribute('aria-pressed',String(c===card)));}));
  if(select){const sync=()=>cards.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.method===select.value)));select.addEventListener('change',sync);sync();}
+ document.querySelectorAll(".depositQuickAmounts button").forEach(btn=>btn.addEventListener("click",()=>{const amount=document.getElementById("walletAmount");if(amount)amount.value=btn.dataset.amount;document.querySelectorAll(".depositQuickAmounts button").forEach(b=>b.classList.toggle("active",b===btn));}));
 })();
 </script>
 
@@ -1350,5 +1598,21 @@ document.addEventListener("keydown",event=>{if(event.key==="Escape")toggleSideMe
 (function(){function updateBottomNav(){var section=(location.hash||'#sports').slice(1);if(section==='top')section='sports';document.querySelectorAll('.bottomNav a').forEach(function(a){var target=a.getAttribute('data-nav');a.classList.toggle('active',target===section||(section==='matches'&&target==='sports'));});var home=section==='sports'||section==='matches';var carousel=document.getElementById('promoCarousel');var tiles=document.querySelector('.referenceTiles');if(carousel)carousel.style.display=home?'':'none';if(tiles)tiles.style.display=home?'':'none';}window.addEventListener('hashchange',updateBottomNav);document.addEventListener('DOMContentLoaded',updateBottomNav);updateBottomNav();})();
 </script>
 
+
+<script id="sdnbet365-registration-language">
+(function(){
+ const packs={
+ ar:{firstNameLabel:"الاسم",lastNameLabel:"اللقب",birthDateLabel:"تاريخ الميلاد",passwordLabel:"كلمة المرور",privacyNote:"تُستخدم بيانات الحساب لإدارة تسجيل الدخول والتواصل معك. لا تشارك كلمة مرورك مع أي شخص.",completeRequiredFields:"يرجى إكمال جميع الحقول المطلوبة.",validBirthDate:"يرجى إدخال تاريخ ميلاد صحيح.",passwordMinLength:"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",footballTitle:"كرة القدم",footballDesc:"المباريات والبطولات.",viewMatches:"عرض المباريات",basketballTitle:"كرة السلة",basketballDesc:"منافسات كرة السلة.",tennisTitle:"التنس",tennisDesc:"بطولات ومباريات التنس.",matchEmptyTitle:"المباريات والأسواق",matchEmptyText:"لا توجد مباريات متاحة للعرض الآن.",slotsTitle:"ألعاب الفتحات",slotsDesc:"ألعاب الفتحات.",cardsTitle:"ألعاب الورق",cardsDesc:"ألعاب الورق.",gamesTitle:"ألعاب متنوعة",gamesDesc:"ألعاب متنوعة.",liveEventsTitle:"الأحداث المباشرة",liveEventsEmpty:"لا توجد أحداث مباشرة متاحة للعرض الآن."},
+ fr:{firstNameLabel:"Prénom",lastNameLabel:"Nom",birthDateLabel:"Date de naissance",passwordLabel:"Mot de passe",privacyNote:"Vos données servent à gérer votre compte et à vous contacter. Ne partagez jamais votre mot de passe.",completeRequiredFields:"Veuillez remplir tous les champs obligatoires.",validBirthDate:"Veuillez saisir une date de naissance valide.",passwordMinLength:"Le mot de passe doit contenir au moins 8 caractères.",footballTitle:"Football",footballDesc:"Matchs et compétitions.",viewMatches:"Voir les matchs",basketballTitle:"Basket-ball",basketballDesc:"Compétitions de basket-ball.",tennisTitle:"Tennis",tennisDesc:"Tournois et matchs de tennis.",matchEmptyTitle:"Matchs et marchés",matchEmptyText:"Aucun match n'est disponible pour le moment.",slotsTitle:"Machines à sous",slotsDesc:"Jeux de machines à sous.",cardsTitle:"Jeux de cartes",cardsDesc:"Jeux de cartes.",gamesTitle:"Jeux variés",gamesDesc:"Jeux variés.",liveEventsTitle:"Événements en direct",liveEventsEmpty:"Aucun événement en direct n'est disponible pour le moment."},
+ en:{firstNameLabel:"First name",lastNameLabel:"Last name",birthDateLabel:"Date of birth",passwordLabel:"Password",privacyNote:"Your details are used to manage your account and contact you. Never share your password.",completeRequiredFields:"Please complete all required fields.",validBirthDate:"Please enter a valid date of birth.",passwordMinLength:"Your password must contain at least 8 characters.",footballTitle:"Football",footballDesc:"Matches and competitions.",viewMatches:"View matches",basketballTitle:"Basketball",basketballDesc:"Basketball competitions.",tennisTitle:"Tennis",tennisDesc:"Tennis tournaments and matches.",matchEmptyTitle:"Matches and markets",matchEmptyText:"No matches are available to display right now.",slotsTitle:"Slots",slotsDesc:"Slot games.",cardsTitle:"Card games",cardsDesc:"Card games.",gamesTitle:"Games",gamesDesc:"A variety of games.",liveEventsTitle:"Live events",liveEventsEmpty:"No live events are available to display right now."}
+ };
+ Object.keys(packs).forEach(lang=>Object.assign(translations[lang],packs[lang]));
+ const previousSetLanguage=setLanguage;
+ window.setLanguage=function(lang){previousSetLanguage(lang);document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n");if(packs[lang]&&packs[lang][key])el.textContent=packs[lang][key];});};
+ const select=document.getElementById("languageSelect");if(select)window.setLanguage(select.value||currentLanguage||"ar");
+})();
+</script>
+
+<script>document.addEventListener("DOMContentLoaded",()=>{if(typeof loadDepositPaymentSettings==="function")loadDepositPaymentSettings()});</script>
 </body>
                                                                                                                    </html>
