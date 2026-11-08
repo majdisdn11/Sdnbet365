@@ -1,0 +1,60 @@
+/* SDNBet365 Admin Premium Theme
+   Visual-only styling layer. No JavaScript, Supabase, or database changes.
+   Save beside admin.html and link it from the page <head>.
+*/
+:root {
+  --green: #10b981; --green2: #047857; --gold: #d6b36a;
+  --bg: #070b09; --panel: #101713; --panel2: #151f19;
+  --text: #f3f7f4; --muted: #9aa9a0;
+  --border: rgba(214,179,106,.18);
+}
+html, body { background:#070b09 !important; color:var(--text) !important; }
+body {
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgba(16,185,129,.10), transparent 38%),
+    radial-gradient(ellipse at 90% 10%, rgba(214,179,106,.07), transparent 32%) !important;
+}
+* { scrollbar-color:#236b4e #0a100d; }
+button,.btn,[type="button"],[type="submit"] {
+  border-radius:10px !important;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+button:hover,.btn:hover,[type="button"]:hover,[type="submit"]:hover { transform:translateY(-1px); }
+button.primary,.btn-primary,button.success,.btn-success,[type="submit"] {
+  background:linear-gradient(135deg,#10b981,#047857) !important;
+  border:1px solid rgba(16,185,129,.45) !important; color:#fff !important;
+  box-shadow:0 7px 22px rgba(4,120,87,.18);
+}
+input,select,textarea {
+  background:#0b120e !important; color:#f3f7f4 !important;
+  border:1px solid rgba(148,163,184,.22) !important; border-radius:10px !important;
+}
+input:focus,select:focus,textarea:focus {
+  outline:none !important; border-color:#10b981 !important;
+  box-shadow:0 0 0 3px rgba(16,185,129,.13) !important;
+}
+.card,.panel,.stat-card,.section,.content-card,.modal-content,.sidebar,.topbar,.box {
+  background-color:rgba(16,23,19,.94) !important; border-color:var(--border) !important;
+  color:var(--text) !important; box-shadow:0 12px 32px rgba(0,0,0,.20);
+}
+.sidebar { background:linear-gradient(180deg,#101a14,#090e0b) !important; border-right:1px solid var(--border) !important; }
+a,.nav-link,.menu-item { transition:color .18s ease,background .18s ease; }
+a:hover,.nav-link:hover,.menu-item:hover { color:#34d399 !important; }
+.active,.nav-link.active,.menu-item.active {
+  background:rgba(16,185,129,.13) !important; color:#6ee7b7 !important;
+  border-color:rgba(16,185,129,.25) !important;
+}
+h1,h2,h3,h4,.section-title,.page-title { color:#f5f7f5 !important; letter-spacing:.1px; }
+small,.muted,.subtitle,.text-muted { color:var(--muted) !important; }
+table { color:var(--text) !important; border-color:var(--border) !important; }
+th { background:#142019 !important; color:#d8e8de !important; }
+td,th { border-color:rgba(148,163,184,.13) !important; }
+tr:hover td { background:rgba(16,185,129,.045) !important; }
+.badge,.status,.pill { border-radius:999px !important; }
+hr,.divider { border-color:var(--border) !important; }
+@media (max-width:768px) {
+  body { background-attachment:scroll !important; }
+  .card,.panel,.stat-card,.section,.content-card { border-radius:13px !important; }
+  table { font-size:13px; }
+  button,.btn { min-height:40px; }
+}
